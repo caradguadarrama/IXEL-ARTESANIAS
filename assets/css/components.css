@@ -1,0 +1,26 @@
+/* assets/css/components.css */
+
+/* ========== NAVBAR ========== */
+.navbar {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+  font-weight: bold;
+  color: #your-color !important;
+}
+
+.nav-link:hover {
+  color: #your-hover-color !important;
+}
+
+/* ========== FOOTER ========== */
+.footer {
+  background-color: #333;
+  color: white;
+  padding: 2rem 0;
+}
+
+.footer a {
+  color: #ccc;
+}
