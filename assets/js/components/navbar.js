@@ -4,7 +4,7 @@ export function createNavbar() {
   return `
     <!-- CENEFA SUPERIOR -->
     <div class="top-border">
-      <img src="assets/images/cenefa.png" alt="Decoración caracoles">
+      <img src="../../assets/img/icons/cenefa.png" alt="Decoración caracoles">
     </div>
 
     <header class="header">
@@ -46,7 +46,7 @@ export function createNavbar() {
       <!-- LOGO CENTRADO -->
       <div class="logo">
         <a href="/index.html">
-          <img src="assets/images/Marca-de-agua2.png" alt="Logo de la marca">
+          <img src="../../assets/img/icons/Marca-de-agua2.png" alt="Logo de la marca">
         </a>
       </div>
 
@@ -55,6 +55,7 @@ export function createNavbar() {
         <a href="/index.html">Home</a>
         <a href="/pages/public/about.html">About Us</a>
         <a href="/pages/public/products.html">Products</a>
+        <a href="/pages/public/contact.html">Contact</a>
       </nav>
     </header>
   `;

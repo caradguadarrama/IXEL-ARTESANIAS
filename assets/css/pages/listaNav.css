@@ -25,15 +25,15 @@
     left: 0;
 }
 
-/* PESTAÑA NEGRA REDONDEADA PEGADA AL BORDE DERECHO DEL MENÚ */
+/*PESTAÑA MENU LISTA */
 .selectable-list::before {
     content: "";
     position: absolute;
     top: 20px;           /* un poco hacia abajo para que no quede pegada al borde superior */
     right: -10px;        /* sobresale del borde derecho del menú */
     width: 20px;         /* ancho de la pestaña */
-    height: 80px;        /* alto de la pestaña */
-    background: #683531;    /* color negro */
+    height: 100px;        /* alto de la pestaña */
+    background: #683531;    /* color cafe */
     border-radius: 10px; /* bordes redondeados */
     cursor: pointer;
     animation: blinkTab 1.2s infinite; /* parpadeo */

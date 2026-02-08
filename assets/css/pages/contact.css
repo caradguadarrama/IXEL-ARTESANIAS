@@ -1,0 +1,64 @@
+body {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #f8f8f8;
+}
+
+@font-face {
+    font-family: myFont;
+    src: url(/assets/fonts/TheFarmerTextured.otf);
+}
+
+h1 {
+    font-family: myFont;
+}
+
+.text {
+    color: #683531;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 25px;
+}
+
+.title {
+    margin-bottom: 0px;
+    font-size: 80px;
+}
+
+.fondo {
+    background-image: url(/assets/img/contact/contact-fondo.png);
+    background-color: black;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.subtitle {
+    font-size: 60px;
+}
+
+.contactform {
+    background-color: #F4E3BB;
+    border-radius: 85px;
+    width: 60vw;
+    justify-self: center;
+}
+
+#button {
+    background-color: #E2646E;
+    color: white;
+}
+
+.espacio {
+    justify-content: space-between;
+}
+
+.iconmedia {
+    width: 150px !important;
+}
+
+.contactimage {
+    border-right: 5px solid #9E1B26;
+}
+
+.centro {
+    width: 20rem;
+}
