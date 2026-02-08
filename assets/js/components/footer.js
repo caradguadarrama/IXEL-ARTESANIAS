@@ -1,49 +1,67 @@
-export function createFooter(){
+// assets/js/components/footer.js
 
-    return `<footer class="footer">
-            <div class="container">
-                <div class="footer-row">
-                    <div class="footer-links">
-                        <h4>Compañía</h4>
-                        <ul>
-                            <li><a href="#">Nuestros servicios</a></li>
-                            <li><a href="#">Registro para promos</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-links">
-                        <h4>Ayuda</h4>
-                        <ul>
-                            <li><a href="#">Preguntas</a></li>
-                            <li><a href="#">Compras</a></li>
-                            <li><a href="#">Envíos</a></li>
-                            <li><a href="#">Estatus de orden</a></li>
-                            <li><a href="#">Métodos de pago</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-links">
-                        <h4>Tienda</h4>
-                        <ul>
-                            <li><a href="#">Colecciones</a></li>
-                            <li><a href="#">Productos</a></li>
-                            <li><a href="#">Donde encontrarnos</a></li>
-                            <li><a href="#">Quiero personalizar</a></li>
-                        </ul>
-                    </div>
+/**
+ * Genera el HTML del footer con estructura semántica y BEM
+ * @returns {string} HTML del footer completo
+ */
+export function createFooter() {
+  return `
+    <div class="footer">
+      <div class="footer__container">
+        <!-- Sección: Enlaces rápidos -->
+        <section class="footer__section">
+          <h4 class="footer__title">Enlaces Rápidos</h4>
+          <ul class="footer__list">
+            <li class="footer__list-item">
+              <a href="/index.html" class="footer__link">Inicio</a>
+            </li>
+            <li class="footer__list-item">
+              <a href="/pages/public/products.html" class="footer__link">Productos</a>
+            </li>
+            <li class="footer__list-item">
+              <a href="/pages/public/about.html" class="footer__link">Nosotros</a>
+            </li>
+            <li class="footer__list-item">
+              <a href="/pages/public/contact.html" class="footer__link">Contacto</a>
+            </li>
+          </ul>
+        </section>
 
+        <!-- Sección: Información -->
+        <section class="footer__section">
+          <h4 class="footer__title">Información</h4>
+          <ul class="footer__list">
+            <li class="footer__list-item">
+              <a href="/pages/public/about.html" class="footer__link">Sobre nosotros</a>
+            </li>
+            <li class="footer__list-item">
+              <a href="#" class="footer__link">Términos y condiciones</a>
+            </li>
+            <li class="footer__list-item">
+              <a href="#" class="footer__link">Política de privacidad</a>
+            </li>
+          </ul>
+        </section>
 
-                    <div class="footer-links">
-                        <h4>Síguenos</h4>
-                        <div></div>
-                            <a href="#"><img src="/assets/img/icons/facebook-3-xxl.png" height="35"></i></a>
-                            <a href="#"><img src="/assets/img/icons/linkedin-3-xxl.png" height="35"></a>
-                            <a href="#"><img src="/assets/img/icons/whatsapp-xxl.png" height="35"></a>
-                        </div>
-                    <div class="footer-links">
-                        <img id="imagenXFooter" src="/assets/img/icons/x.png" height="150px">
-                    </div>
-                </div>
-            </div>
-        </footer>`
+        <!-- Sección: Contacto -->
+        <section class="footer__section">
+          <h4 class="footer__title">Contacto</h4>
+          <ul class="footer__list">
+            <li class="footer__list-item">
+              <a href="tel:+523312345678" class="footer__link">+52 33 1234 5678</a>
+            </li>
+            <li class="footer__list-item">
+              <a href="mailto:contacto@ixelartesanias.com" class="footer__link">contacto@ixelartesanias.com</a>
+            </li>
+            <li class="footer__list-item">
+              <span class="footer__link">Jalisco, México</span>
+            </li>
+          </ul>
+        </section>
+      </div>
+
+      <!-- Cenefa decorativa -->
+      <div class="footer__border" role="presentation" aria-hidden="true"></div>
+    </div>
+  `;
 }
-
-      

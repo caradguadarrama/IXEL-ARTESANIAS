@@ -1,0 +1,95 @@
+/* ============================================
+   FOOTER - Metodología BEM
+   ============================================ */
+
+/* Variables específicas del footer */
+:root {
+  --footer-bg: #683531;
+  --footer-text: #f8e8cf;
+  --footer-border-height: 55px;
+}
+
+/* ============================================
+   FOOTER PRINCIPAL
+   ============================================ */
+.footer {
+  background-color: var(--footer-bg);
+  padding: 40px 20px 20px;
+  color: var(--footer-text);
+}
+
+.footer__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+/* ============================================
+   SECCIÓN DE ENLACES
+   ============================================ */
+.footer__section {
+  flex: 1;
+  min-width: 200px;
+}
+
+.footer__title {
+  font-size: 20px;
+  font-family: var(--font-secondary);
+  color: var(--footer-text);
+  margin-bottom: 25px;
+  display: inline-block;
+  border-bottom: 2px solid var(--footer-text);
+  padding-bottom: 5px;
+  line-height: 1;
+}
+
+.footer__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer__list-item {
+  margin-bottom: 10px;
+}
+
+.footer__link {
+  font-size: 15px;
+  font-family: var(--font-secondary);
+  color: var(--footer-text);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  line-height: 2;
+}
+
+.footer__link:hover {
+  color: var(--color-white);
+  text-decoration: underline;
+}
+
+/* ============================================
+   CENEFA DECORATIVA INFERIOR
+   ============================================ */
+.footer__border {
+  background-image: url(../img/icons/Pattern.png);
+  height: var(--footer-border-height);
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media screen and (max-width: 768px) {
+  .footer__container {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .footer__section {
+    min-width: 100%;
+  }
+}
