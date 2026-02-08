@@ -1,9 +1,10 @@
-/* !para usar esta lista de navegacion utiliza la clase  <ul class="selectable-list">" */
+
+/*!<ul class="selectable-list"> */
 /* CONTENEDOR DEL MENÚ */
 .selectable-list {
     position: fixed;
-    top: 80px;                    /* ajusta según tu navbar */
-    right: -240px;                /* OCULTO, deja visible la pestaña */
+    top: 80px;
+    left: -220px; /* oculto fuera de la pantalla */
     width: 280px;
     height: calc(100vh - 80px);
     background: #ffffff;
@@ -12,60 +13,44 @@
     list-style: none;
     overflow-y: auto;
 
-    border-radius: 12px 0 0 12px;
-    box-shadow: -6px 0 20px rgba(0,0,0,0.15);
+    border-radius: 0 12px 12px 0;
+    box-shadow: 6px 0 20px rgba(0,0,0,0.15);
 
-    transition: right 0.35s ease;
+    transition: left 0.35s ease;
     z-index: 1000;
 }
 
 /* APARECE AL PASAR EL MOUSE */
 .selectable-list:hover {
-    right: 0;
+    left: 0;
 }
 
-/* PESTAÑA VISIBLE (INDICADOR) */
+/*PESTAÑA MENU LISTA */
 .selectable-list::before {
-    content: "Categorías";
+    content: "";
     position: absolute;
-    left: -60px;
-    top: 120px;
-
-    width: 60px;
-    height: 140px;
-    background: #212529;
-    color: #ffffff;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 1px;
-
-    border-radius: 10px 0 0 10px;
+    top: 20px;           /* un poco hacia abajo para que no quede pegada al borde superior */
+    right: -10px;        /* sobresale del borde derecho del menú */
+    width: 20px;         /* ancho de la pestaña */
+    height: 100px;        /* alto de la pestaña */
+    background: #683531;    /* color cafe */
+    border-radius: 10px; /* bordes redondeados */
     cursor: pointer;
-
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-}
-/* ANIMACIÓN SUAVE PARA LLAMAR LA ATENCIÓN */
-@keyframes hintMove {
-    0% { transform: rotate(180deg) translateX(0); }
-    50% { transform: rotate(180deg) translateX(-6px); }
-    100% { transform: rotate(180deg) translateX(0); }
+    animation: blinkTab 1.2s infinite; /* parpadeo */
 }
 
-.selectable-list::before {
-    animation: hintMove 1.6s infinite;
+/* ANIMACIÓN DE PARPADEO */
+@keyframes blinkTab {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
 }
 
-/* ESTILO DE LOS LINKS  aqui se define la distacia entre cada seccion */
+/* ITEMS */
 .selectable-list li {
     margin-bottom: 12px;
 }
-/* color de letra toda la presentacion de texto */
+
+/* LINKS */
 .selectable-list a {
     text-decoration: none;
     color: #212529;
@@ -76,3 +61,7 @@
     transition: background 0.25s, color 0.25s;
 }
 
+.selectable-list a:hover {
+    background: #f9e8cf;
+    color: #683531;
+}

@@ -1,0 +1,70 @@
+/* Importar la tipografía de tu proyecto */
+@font-face {
+    font-family: 'TheFarmerTextured';
+    src: url('../../fonts/TheFarmerTextured.otf') format('opentype');
+}
+
+/* Hero Section: Requerimiento de 252px */
+.contact-hero {
+    width: 100%;
+    height: 252px;
+    background-image: url('../../img/fondo.png'); /* Usando tu fondo existente */
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-overlay {
+    background: rgba(0, 0, 0, 0.25); /* Filtro suave para legibilidad */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.font-textured {
+    font-family: 'TheFarmerTextured', sans-serif;
+    color: #ffffff;
+    font-size: 70px; /* Tamaño visualmente impactante */
+    text-transform: uppercase;
+    margin: 0;
+    letter-spacing: 5px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+/* Sección de Títulos: Requerimiento de 60px */
+.section-spacing {
+    padding: 60px 0 40px 0;
+}
+
+.title-bold {
+    font-size: 60px; /* Tamaño exacto pedido */
+    font-weight: 800; /* Negrita */
+    color: #212529;
+    margin-bottom: 15px;
+}
+
+.subtitle-text {
+    font-size: 20px;
+    color: #6c757d;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Estilo del formulario para que combine con la tienda */
+.contact-card {
+    background: #fdfdfd;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border: 1px solid #eee;
+}
+
+.form-control:focus {
+    border-color: #333;
+    box-shadow: none;
+}
