@@ -1,5 +1,5 @@
 /* ============================================
-   FOOTER - Metodología BEM
+   FOOTER REDISEÑADO - Metodología BEM
    ============================================ */
 
 /* Variables específicas del footer */
@@ -14,7 +14,7 @@
    ============================================ */
 .footer {
   background-color: var(--footer-bg);
-  padding: 40px 20px 20px;
+  padding: 40px 20px 0;
   color: var(--footer-text);
 }
 
@@ -24,6 +24,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 40px;
+  padding-bottom: 30px;
 }
 
 /* ============================================
@@ -32,6 +33,11 @@
 .footer__section {
   flex: 1;
   min-width: 200px;
+}
+
+/* Sección de contacto más ancha */
+.footer__section--contact {
+  flex: 1.5;
 }
 
 .footer__title {
@@ -70,26 +76,111 @@
 }
 
 /* ============================================
+   SECCIÓN DE CONTACTO
+   ============================================ */
+.footer__contact-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 30px;
+}
+
+/* ============================================
+   REDES SOCIALES (DERECHA)
+   ============================================ */
+.footer__social {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.footer__social a {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.footer__social a:hover {
+  transform: scale(1.15);
+}
+
+/* ============================================
+   MONOGRAMA X (DEBAJO DE CONTACTO)
+   ============================================ */
+.footer__monogram {
+  margin-top: 25px;
+  text-align: center;
+}
+
+.footer__monogram-image {
+  height: 80px;
+  width: auto;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.footer__monogram-image:hover {
+  opacity: 1;
+}
+
+/* ============================================
    CENEFA DECORATIVA INFERIOR
    ============================================ */
 .footer__border {
-  background-image: url(../img/icons/Pattern.png);
+  background-image: url(../img/icons/cenefa.png);
   height: var(--footer-border-height);
   width: 100%;
-  background-size: cover;
+  background-size: auto 100%;
+  background-repeat: repeat-x;
   background-position: center;
 }
 
 /* ============================================
-   RESPONSIVE
+   RESPONSIVE - TABLET
    ============================================ */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
   .footer__container {
+    gap: 30px;
+  }
+
+  .footer__contact-wrapper {
     flex-direction: column;
     gap: 20px;
   }
 
+  .footer__social {
+    justify-content: flex-start;
+  }
+}
+
+/* ============================================
+   RESPONSIVE - MÓVIL
+   ============================================ */
+@media screen and (max-width: 768px) {
+  .footer__container {
+    flex-direction: column;
+    gap: 25px;
+  }
+
   .footer__section {
     min-width: 100%;
+  }
+
+  .footer__contact-wrapper {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer__list {
+    text-align: center;
+  }
+
+  .footer__social {
+    justify-content: center;
+  }
+
+  .footer__monogram-image {
+    height: 60px;
   }
 }

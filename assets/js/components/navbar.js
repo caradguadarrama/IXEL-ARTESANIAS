@@ -13,18 +13,30 @@ export function createNavbar() {
 
     <!-- Header principal -->
     <header class="navbar">
-      <!-- Logo centrado -->
+      <!-- Logo a la izquierda -->
       <div class="navbar__logo">
         <a href="/index.html" aria-label="Ir a inicio">
           <img 
             src="/assets/img/icons/Marca-de-agua2_negro.png" 
             alt="IXEL Artesanías" 
-            class="navbar__logo-image"
+            class="navbar__logo-image navbar__logo-image--desktop"
+          >
+          <img 
+            src="/assets/img/icons/x.png" 
+            alt="IXEL" 
+            class="navbar__logo-image navbar__logo-image--mobile"
           >
         </a>
       </div>
 
-      <!-- Navegación principal -->
+      <!-- Botón hamburguesa (solo móvil) -->
+      <button class="navbar__hamburger" aria-label="Menú" aria-expanded="false">
+        <span class="navbar__hamburger-line"></span>
+        <span class="navbar__hamburger-line"></span>
+        <span class="navbar__hamburger-line"></span>
+      </button>
+
+      <!-- Navegación principal (centro) -->
       <nav class="navbar__nav" aria-label="Navegación principal">
         <ul class="navbar__links">
           <li><a href="/index.html" class="navbar__link">Inicio</a></li>
@@ -67,9 +79,11 @@ export function createNavbar() {
  * Inicializa la funcionalidad del navbar después de inyectarlo
  */
 export function initNavbar() {
-  // Efecto de transparencia al hacer scroll
   const navbar = document.querySelector('.navbar');
-  
+  const hamburger = document.querySelector('.navbar__hamburger');
+  const nav = document.querySelector('.navbar__nav');
+
+  // Efecto de transparencia al hacer scroll
   if (navbar) {
     window.addEventListener('scroll', () => {
       if (window.scrollY > 50) {
@@ -77,6 +91,27 @@ export function initNavbar() {
       } else {
         navbar.classList.remove('navbar--transparent');
       }
+    });
+  }
+
+  // Toggle menú hamburguesa
+  if (hamburger && nav) {
+    hamburger.addEventListener('click', () => {
+      const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
+      
+      hamburger.setAttribute('aria-expanded', !isExpanded);
+      hamburger.classList.toggle('navbar__hamburger--active');
+      nav.classList.toggle('navbar__nav--open');
+    });
+
+    // Cerrar menú al hacer click en un link
+    const links = nav.querySelectorAll('.navbar__link');
+    links.forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.classList.remove('navbar__hamburger--active');
+        nav.classList.remove('navbar__nav--open');
+      });
     });
   }
 
