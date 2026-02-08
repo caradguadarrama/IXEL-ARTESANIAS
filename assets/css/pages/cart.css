@@ -1,3 +1,4 @@
+/* !class="category-card"*/
 /* !Tarjetas de Categoría usa la clase para usar este card category-card*/
 .category-card {
     border: none;
@@ -39,7 +40,7 @@
 }/* !Tarjetas de Categoría */
 
 
-
+   /** <div class="product-card"> */
 /* *Sección de Productos para usar este card usa la clase product-card */
 
 .product-card {
@@ -88,68 +89,6 @@
     margin-bottom: 12px;
 }/* clase product-card */
 
-/* APARECE AL PASAR EL MOUSE */
-.selectable-list:hover {
-    right: 0;
-}
-
-/* PESTAÑA VISIBLE (INDICADOR) */
-.selectable-list::before {
-    content: "Categorías";
-    position: absolute;
-    left: -60px;
-    top: 120px;
-
-    width: 60px;
-    height: 140px;
-    background: #212529;
-    color: #ffffff;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 1px;
-
-    border-radius: 10px 0 0 10px;
-    cursor: pointer;
-
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-}
-
-/* ANIMACIÓN SUAVE PARA LLAMAR LA ATENCIÓN */
-@keyframes hintMove {
-    0% { transform: rotate(180deg) translateX(0); }
-    50% { transform: rotate(180deg) translateX(-6px); }
-    100% { transform: rotate(180deg) translateX(0); }
-}
-
-.selectable-list::before {
-    animation: hintMove 1.6s infinite;
-}
-
-/* ESTILO DE LOS LINKS */
-.selectable-list li {
-    margin-bottom: 12px;
-}
-
-.selectable-list a {
-    text-decoration: none;
-    color: #212529;
-    font-weight: 500;
-    display: block;
-    padding: 8px 10px;
-    border-radius: 6px;
-    transition: background 0.25s, color 0.25s;
-}
-
-.selectable-list a:hover {
-    background: #f1f1f1;
-    color: #000;
-}
 
 
 /* Contenedor de la imagen: recorta cualquier desbordamiento */
@@ -161,6 +100,7 @@
  /* imagenes grandes con zoom */
  /* Imagen: transición suave y zoom al hover */
 .product-image img {
+    
     width: 100%;
     height: auto;
     transition: transform 0.4s ease;
@@ -181,73 +121,6 @@
 /* *aqui termina el card  product*/
 
 
-/* ESTILO DE LOS LINKS */
-.selectable-list li {
-    margin-bottom: 12px;
-}
-
-.selectable-list a {
-    text-decoration: none;
-    color: #212529;
-    font-weight: 500;
-    display: block;
-    padding: 8px 10px;
-    border-radius: 6px;
-    transition: background 0.25s, color 0.25s;
-}
 
 
 
-/* penidenteeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee */
-
-/* CONTENEDOR DEL MENÚ */
-.selectable-list {
-    position: fixed;
-    top: 80px;                    /* ajusta según tu navbar */
-    right: -240px;                /* OCULTO, deja visible la pestaña */
-    width: 280px;
-    height: calc(100vh - 80px);
-    background: #ffffff;
-    padding: 20px;
-    margin: 0;
-    list-style: none;
-    overflow-y: auto;
-
-    border-radius: 12px 0 0 12px;
-    box-shadow: -6px 0 20px rgba(0,0,0,0.15);
-
-    transition: right 0.35s ease;
-    z-index: 1000;
-}
-
-/* APARECE AL PASAR EL MOUSE */
-.selectable-list:hover {
-    right: 0;
-}
-
-/* PESTAÑA VISIBLE (INDICADOR) */
-.selectable-list::before {
-    content: "Categorías";
-    position: absolute;
-    left: -60px;
-    top: 120px;
-
-    width: 60px;
-    height: 140px;
-    background: #212529;
-    color: #ffffff;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 1px;
-
-    border-radius: 10px 0 0 10px;
-    cursor: pointer;
-
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-}

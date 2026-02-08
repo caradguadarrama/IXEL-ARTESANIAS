@@ -1,107 +1,33 @@
-/* Configuración General */
 body {
-    background-color: #ffffff;
+    background-color: #f8e8cf;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     color: #000;
 }
 
 
+/*! formato de texto 1 TheFarmerTextured*/
 
-/* Sección de Productos */
-.section-title {
-    font-weight: 800;
-    font-size: 2.2rem;
-    margin-top: 60px;
-    margin-bottom: 30px;
+@font-face {
+    font-family: 'TheFarmerTextured';
+    src: url('../../../assets/fonts/TheFarmerTextured.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+h2 {
+    font-family: 'TheFarmerTextured', serif;
+    font-size: 3.5rem
 }
 
 
 
-/* CONTENEDOR DEL MENÚ */
 .selectable-list {
-    position: fixed;
-    top: 80px;                    /* ajusta según tu navbar */
-    right: -240px;                /* OCULTO, deja visible la pestaña */
-    width: 280px;
-    height: calc(100vh - 80px);
-    background: #ffffff;
-    padding: 20px;
-    margin: 0;
-    list-style: none;
-    overflow-y: auto;
-
-    border-radius: 12px 0 0 12px;
-    box-shadow: -6px 0 20px rgba(0,0,0,0.15);
-
-    transition: right 0.35s ease;
-    z-index: 1000;
+    font-family: 'TheFarmerTextured', serif;
+    font-size: 1.5rem
+    
+    
 }
 
-/* APARECE AL PASAR EL MOUSE */
-.selectable-list:hover {
-    right: 0;
+.category-name {
+    font-family: 'TheFarmerTextured', serif;
 }
-
-/* PESTAÑA VISIBLE (INDICADOR) */
-.selectable-list::before {
-    content: "Categorías";
-    position: absolute;
-    left: -60px;
-    top: 120px;
-
-    width: 60px;
-    height: 140px;
-    background: #212529;
-    color: #ffffff;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 1px;
-
-    border-radius: 10px 0 0 10px;
-    cursor: pointer;
-
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-}
-
-/* ANIMACIÓN SUAVE PARA LLAMAR LA ATENCIÓN */
-@keyframes hintMove {
-    0% { transform: rotate(180deg) translateX(0); }
-    50% { transform: rotate(180deg) translateX(-6px); }
-    100% { transform: rotate(180deg) translateX(0); }
-}
-
-.selectable-list::before {
-    animation: hintMove 1.6s infinite;
-}
-
-/* ESTILO DE LOS LINKS */
-.selectable-list li {
-    margin-bottom: 12px;
-}
-
-.selectable-list a {
-    text-decoration: none;
-    color: #212529;
-    font-weight: 500;
-    display: block;
-    padding: 8px 10px;
-    border-radius: 6px;
-    transition: background 0.25s, color 0.25s;
-}
-
-.selectable-list a:hover {
-    background: #f1f1f1;
-    color: #000;
-}
-
-
-
-
-
-

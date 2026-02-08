@@ -1,0 +1,193 @@
+/* assets/css/navbar.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;800&display=swap');
+
+/* HEADER */
+.header {
+  background-color: rgba(249, 232, 207, 1);
+  height: 296.74px;
+  padding: 5px 10%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  transition: background-color 0.5s ease;
+}
+
+/* Estado transparente */
+.header.transparent {
+  background-color: rgba(249, 232, 207, 0.7);
+}
+
+/* LOGO CENTRADO */
+.header .logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
+}
+
+.header .logo a {
+  display: block;
+}
+
+.header .logo img {
+  height: 247.57px;
+  width: 292px;
+  transition: all 0.3s;
+}
+
+.header .logo img:hover {
+  transform: scale(1.05);
+}
+
+/* BURBUJAS DERECHA */
+.right-icons {
+  display: flex;
+  gap: 10px;
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  align-items: center;
+}
+
+.bubble {
+  width: 38px;
+  height: 38px;
+  background-color: #683531;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.bubble a {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+
+.bubble:hover {
+  background-color: #8b4c47;
+  transform: scale(1.1);
+}
+
+/* Badge del carrito */
+.cart-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: #a0191e;
+  color: white;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+/* ÍCONOS SVG */
+.icon {
+  width: 20px;
+  height: 20px;
+  color: #fff;
+  stroke: #fff;
+  stroke-width: 1;
+  fill: white;
+}
+
+/* CENEFA SUPERIOR */
+.top-border img {
+  width: 100%;
+  height: auto;
+  max-height: 20px;
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+/* MENÚ DE NAVEGACIÓN */
+.nav-links {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 50px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  font-family: 'Nunito', sans-serif;
+  font-size: 20px;
+  color: #683531;
+  font-weight: normal;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.nav-links a:hover {
+  color: #a0191e;
+  transform: scale(1.1);
+}
+
+/* RESPONSIVE */
+@media screen and (max-width: 768px) {
+  .header {
+    height: auto;
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .header .logo {
+    position: static;
+    transform: none;
+    margin-bottom: 10px;
+  }
+
+  .header .logo img {
+    height: 150px;
+    width: auto;
+  }
+
+  .nav-links {
+    position: static;
+    transform: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .right-icons {
+    position: static;
+    transform: none;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  .bubble {
+    width: 30px;
+    height: 30px;
+  }
+
+  .icon {
+    width: 16px;
+    height: 16px;
+  }
+}
