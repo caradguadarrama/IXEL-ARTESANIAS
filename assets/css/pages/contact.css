@@ -1,306 +1,64 @@
-/* ============================================
-   CONTACT PAGE - Metodología BEM
-   ============================================ */
+body {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #f8f8f8;
+}
 
-/* Importar tipografía personalizada */
 @font-face {
-    font-family: 'TheFarmerTextured';
-    src: url('../../fonts/TheFarmerTextured.otf') format('opentype');
-    font-display: swap;
+    font-family: myFont;
+    src: url(/assets/fonts/TheFarmerTextured.otf);
 }
 
-/* Variables específicas de la página de contacto */
-:root {
-    --contact-hero-height: 252px;
-    --contact-title-size: 60px;
-    --contact-hero-title-size: 70px;
-    --contact-spacing-lg: 60px;
-    --contact-spacing-md: 40px;
-    --contact-spacing-sm: 30px;
+h1 {
+    font-family: myFont;
 }
 
-/* ============================================
-   HERO SECTION
-   ============================================ */
-.contact-hero {
-    width: 100%;
-    height: var(--contact-hero-height);
-    background-image: url('../../img/fondo.png');
+.text {
+    color: #683531;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 25px;
+}
+
+.title {
+    margin-bottom: 0px;
+    font-size: 80px;
+}
+
+.fondo {
+    background-image: url(/assets/img/contact/contact-fondo.png);
+    background-color: black;
     background-size: cover;
     background-position: center;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background-repeat: no-repeat;
 }
 
-.contact-hero__overlay {
-    background: rgba(0, 0, 0, 0.25);
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.subtitle {
+    font-size: 60px;
 }
 
-.contact-hero__title {
-    font-family: 'TheFarmerTextured', sans-serif;
-    color: var(--color-white);
-    font-size: var(--contact-hero-title-size);
-    text-transform: uppercase;
-    margin: 0;
-    letter-spacing: 5px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+.contactform {
+    background-color: #F4E3BB;
+    border-radius: 85px;
+    width: 60vw;
+    justify-self: center;
 }
 
-/* ============================================
-   SECCIÓN DE INTRODUCCIÓN
-   ============================================ */
-.contact-intro {
-    padding: var(--contact-spacing-lg) 0 var(--contact-spacing-md) 0;
-    text-align: center;
+#button {
+    background-color: #E2646E;
+    color: white;
 }
 
-.contact-intro__container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0 var(--spacing-md);
+.espacio {
+    justify-content: space-between;
 }
 
-.contact-intro__title {
-    font-size: var(--contact-title-size);
-    font-weight: 800;
-    color: var(--color-text-dark);
-    margin-bottom: 15px;
-    font-family: var(--font-primary);
-    line-height: 1.2;
+.iconmedia {
+    width: 150px !important;
 }
 
-.contact-intro__subtitle {
-    font-size: 20px;
-    color: #6c757d;
-    line-height: 1.6;
-    margin: 0;
+.contactimage {
+    border-right: 5px solid #9E1B26;
 }
 
-/* ============================================
-   CONTENIDO (FORMULARIO + LOGO)
-   ============================================ */
-.contact-content {
-    padding: 0 0 var(--contact-spacing-lg) 0;
-}
-
-.contact-content__container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 var(--spacing-md);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    align-items: center;
-}
-
-/* Wrapper del formulario */
-.contact-content__form-wrapper {
-    width: 100%;
-}
-
-/* Wrapper del logo */
-.contact-content__logo-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.contact-content__logo {
-    width: 50%;
-    max-width: 300px;
-    opacity: 0.5;
-    transition: opacity 0.3s ease;
-}
-
-.contact-content__logo:hover {
-    opacity: 0.7;
-}
-
-/* ============================================
-   FORMULARIO
-   ============================================ */
-.contact-form {
-    background: #fdfdfd;
-    padding: var(--contact-spacing-sm);
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    border: 1px solid #eee;
-}
-
-/* Campo del formulario */
-.contact-form__field {
-    margin-bottom: 24px;
-}
-
-/* Label */
-.contact-form__label {
-    display: block;
-    font-family: var(--font-primary);
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--color-text-dark);
-    margin-bottom: 8px;
-}
-
-.contact-form__required {
-    color: #dc3545;
-}
-
-/* Input y textarea base */
-.contact-form__input,
-.contact-form__textarea {
-    width: 100%;
-    padding: 12px 16px;
-    font-family: var(--font-primary);
-    font-size: 16px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    transition: all 0.3s ease;
-    background-color: var(--color-white);
-}
-
-.contact-form__input:focus,
-.contact-form__textarea:focus {
-    outline: none;
-    border-color: var(--color-primary);
-    box-shadow: 0 0 0 3px rgba(104, 53, 49, 0.1);
-}
-
-/* Estados de validación */
-.contact-form__input--error,
-.contact-form__textarea--error {
-    border-color: #dc3545;
-}
-
-.contact-form__input--success,
-.contact-form__textarea--success {
-    border-color: #28a745;
-}
-
-/* Textarea específico */
-.contact-form__textarea {
-    resize: vertical;
-    min-height: 120px;
-}
-
-/* Mensaje de error */
-.contact-form__error {
-    display: block;
-    color: #dc3545;
-    font-size: 13px;
-    margin-top: 5px;
-    font-family: var(--font-primary);
-    min-height: 18px;
-}
-
-/* Botón de envío */
-.contact-form__submit {
-    width: 100%;
-    padding: 14px 24px;
-    font-family: var(--font-primary);
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--color-white);
-    background-color: var(--color-accent);
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.contact-form__submit:hover {
-    background-color: #8b1519;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(160, 25, 30, 0.3);
-}
-
-.contact-form__submit:active {
-    transform: translateY(0);
-}
-
-.contact-form__submit:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-    transform: none;
-}
-
-/* Mensaje de éxito */
-.contact-form__success {
-    margin-top: 20px;
-    padding: 15px;
-    background-color: #d4edda;
-    border: 1px solid #c3e6cb;
-    color: #155724;
-    border-radius: 6px;
-    text-align: center;
-    font-family: var(--font-primary);
-    font-weight: 600;
-}
-
-/* ============================================
-   RESPONSIVE
-   ============================================ */
-@media screen and (max-width: 768px) {
-    :root {
-        --contact-hero-title-size: 48px;
-        --contact-title-size: 36px;
-        --contact-spacing-lg: 40px;
-        --contact-spacing-md: 30px;
-        --contact-spacing-sm: 20px;
-    }
-
-    .contact-content__container {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-
-    .contact-content__logo-wrapper {
-        order: -1; /* Logo arriba en mobile */
-    }
-
-    .contact-content__logo {
-        width: 40%;
-        max-width: 200px;
-    }
-
-    .contact-intro__title {
-        font-size: 32px;
-    }
-
-    .contact-intro__subtitle {
-        font-size: 18px;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .contact-hero__title {
-        font-size: 36px;
-        letter-spacing: 3px;
-    }
-
-    .contact-intro__title {
-        font-size: 28px;
-    }
-
-    .contact-intro__subtitle {
-        font-size: 16px;
-    }
-
-    .contact-form {
-        padding: 20px;
-    }
-
-    .contact-form__submit {
-        font-size: 14px;
-        padding: 12px 20px;
-    }
+.centro {
+    width: 20rem;
 }
