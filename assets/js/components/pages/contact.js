@@ -21,7 +21,7 @@ const DOM = {
    ======================================== */
 
 const CONFIG = {
-  enterpriseEmail: 'contacto@ixelartesanias.com',
+  enterpriseEmail: 'mario_xl.95@hotmail.com',
   minNameLength: 3,
   minMessageLength: 10,
   phoneLength: 10,
