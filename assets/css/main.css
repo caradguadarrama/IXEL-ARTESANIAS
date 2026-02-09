@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /* ============================================
    MAIN.CSS - Punto de entrada de estilos
    ============================================ */
@@ -9,6 +8,10 @@
 /* Importar componentes */
 @import url('./navbar.css');
 @import url('./footer.css');
+@import url('/assets/css/pages/buttons.css');
+@import url('/assets/css/pages/carrousel.css');
+
+
 
 /* ============================================
    ESTILOS GLOBALES
@@ -101,9 +104,4 @@ body {
     padding: var(--spacing-sm);
   }
 }
-=======
-@import url(/assets/css/pages/buttons.css);
-@import url(/assets/css/pages/carrousel.css);
-@import url(/assets/css/pages/about.css);
-@import url(/assets/css/components.css);
->>>>>>> feature/isaac-lopez
+
