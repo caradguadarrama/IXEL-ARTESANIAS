@@ -1,87 +1,236 @@
 // assets/js/components/navbar.js
 
+/**
+ * Genera el HTML del navbar con SVGs inline
+ * @returns {string} HTML del navbar completo
+ */
 export function createNavbar() {
   return `
-    <!-- CENEFA SUPERIOR -->
-    <div class="top-border">
-      <img src="../../assets/img/icons/cenefa.png" alt="Decoración caracoles">
+    <!-- Cenefa decorativa superior -->
+    <div class="navbar-border">
+      <img src="/assets/img/icons/cenefa.png" alt="Cenefa decorativa" class="navbar-border__image">
     </div>
 
-    <header class="header">
-      <!-- BURBUJAS DERECHA -->
-      <div class="right-icons">
-        <!-- BUSCADOR -->
-        <div class="bubble" id="search-btn">
-          <svg aria-hidden="true" focusable="false" fill="white" role="presentation" class="icon icon-search" viewBox="0 0 16 16">
-            <path d="M16 14.864L14.863 16l-4.24-4.241a6.406 6.406 0 01-4.048 1.392 6.61 6.61 0 01-4.65-1.925A6.493 6.493 0 01.5 9.098 6.51 6.51 0 010 6.575a6.536 6.536 0 011.922-4.652A6.62 6.62 0 014.062.5 6.52 6.52 0 016.575 0 6.5 6.5 0 019.1.5c.8.332 1.51.806 2.129 1.423a6.454 6.454 0 011.436 2.13 6.54 6.54 0 01.498 2.522c0 1.503-.468 2.853-1.4 4.048L16 14.864zM3.053 10.091c.973.972 2.147 1.461 3.522 1.461 1.378 0 2.551-.489 3.525-1.461.968-.967 1.45-2.138 1.45-3.514 0-1.37-.482-2.545-1.45-3.524-.981-.968-2.154-1.45-3.525-1.45-1.376 0-2.547.483-3.513 1.45-.973.973-1.46 2.146-1.46 3.523 0 1.375.483 2.548 1.45 3.515z"></path>
-          </svg>
-        </div>
-        
-        <!-- CARRITO -->
-        <div class="bubble" id="cart-btn">
-          <a href="pages/public/cart.html" style="display: flex; align-items: center; justify-content: center;">
-            <svg aria-hidden="true" focusable="false" role="presentation" fill="white" class="icon icon-cart" viewBox="0 0 25 25">
-              <path d="M5.058 23a2 2 0 104.001-.001A2 2 0 005.058 23zm12.079 0c0 1.104.896 2 2 2s1.942-.896 1.942-2-.838-2-1.942-2-2 .896-2 2zM0 1a1 1 0 001 1h1.078l.894 3.341L5.058 13c0 .072.034.134.042.204l-1.018 4.58A.997.997 0 005.058 19h16.71a1 1 0 000-2H6.306l.458-2.061c.1.017.19.061.294.061h12.31c1.104 0 1.712-.218 2.244-1.5l3.248-6.964C25.423 4.75 24.186 4 23.079 4H5.058c-.157 0-.292.054-.438.088L3.844.772A1 1 0 002.87 0H1a1 1 0 00-1 1zm5.098 5H22.93l-3.192 6.798c-.038.086-.07.147-.094.19-.067.006-.113.012-.277.012H7.058v-.198l-.038-.195L5.098 6z"></path>
-            </svg>
-            <span id="cart-count" class="cart-badge">0</span>
-          </a>
-        </div>
-        
-        <!-- USUARIO -->
-        <div class="bubble" id="user-btn">
-          <svg aria-hidden="true" focusable="false" role="presentation" fill="white" class="icon icon-account" viewBox="0 0 16 16">
-            <path d="M10.713 8.771c.31.112.53.191.743.27.555.204.985.372 1.367.539 1.229.535 1.993 1.055 2.418 1.885.464.937.722 1.958.758 2.997.03.84-.662 1.538-1.524 1.538H1.525c-.862 0-1.554-.697-1.524-1.538a7.36 7.36 0 01.767-3.016c.416-.811 1.18-1.33 2.41-1.866a25.25 25.25 0 011.366-.54l.972-.35a1.42 1.42 0 00-.006-.072c-.937-1.086-1.369-2.267-1.369-4.17C4.141 1.756 5.517 0 8.003 0c2.485 0 3.856 1.755 3.856 4.448 0 2.03-.492 3.237-1.563 4.386.169-.18.197-.253.207-.305a1.2 1.2 0 00-.019.16l.228.082zm-9.188 5.742h12.95a5.88 5.88 0 00-.608-2.402c-.428-.835-2.214-1.414-4.46-2.224-.608-.218-.509-1.765-.24-2.053.631-.677 1.166-1.471 1.166-3.386 0-1.934-.782-2.96-2.33-2.96-1.549 0-2.336 1.026-2.336 2.96 0 1.915.534 2.709 1.165 3.386.27.288.369 1.833-.238 2.053-2.245.81-4.033 1.389-4.462 2.224a5.88 5.88 0 00-.607 2.402z"></path>
-          </svg>
-        </div>
-        
-        <!-- CONTACTO -->
-        <div class="bubble" id="contact-btn">
-          <svg class="icon icon--medium icon--type-chat_bubble" stroke-width="1" aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-            <path fill="white" d="M11.3 13.02a6 6 0 111.72-1.72L14 14l-2.7-.98zm2.82-1.62a7 7 0 10-2.72 2.72l2.26.82a1 1 0 001.28-1.28l-.82-2.26z"></path>
-            <path fill="currentColor" d="M4.9 9.16c.52 0 .86-.36.86-.85 0-.5-.34-.85-.87-.85-.52 0-.86.36-.86.85 0 .5.34.85.86.85zM7.88 9.16c.53 0 .87-.36.87-.85 0-.5-.34-.85-.87-.85-.52 0-.87.36-.87.85 0 .5.35.85.87.85zM10.87 9.16c.52 0 .87-.36.87-.85 0-.5-.35-.85-.87-.85s-.87.36-.87.85c0 .5.35.85.87.85z"></path>
-          </svg>
-        </div>
-      </div>
-
-      <!-- LOGO CENTRADO -->
-      <div class="logo">
-        <a href="/index.html">
-          <img src="../../assets/img/icons/Marca-de-agua2.png" alt="Logo de la marca">
+    <!-- Header principal -->
+    <header class="navbar">
+      <!-- Logo a la izquierda -->
+      <div class="navbar__logo">
+        <a href="/index.html" aria-label="Ir a inicio">
+          <img 
+            src="/assets/img/icons/Marca-de-agua2_negro.png" 
+            alt="IXEL Artesanías" 
+            class="navbar__logo-image navbar__logo-image--desktop"
+          >
+          <img 
+            src="/assets/img/icons/x.png" 
+            alt="IXEL" 
+            class="navbar__logo-image navbar__logo-image--mobile"
+          >
         </a>
       </div>
 
-      <!-- MENÚ DE NAVEGACIÓN -->
-      <nav class="nav-links">
-        <a href="/index.html">Home</a>
-        <a href="/pages/public/about.html">About Us</a>
-        <a href="/pages/public/products.html">Products</a>
-        <a href="/pages/public/contact.html">Contact</a>
+      <!-- Botón hamburguesa (solo móvil) -->
+      <button class="navbar__hamburger" aria-label="Menú" aria-expanded="false">
+        <span class="navbar__hamburger-line"></span>
+        <span class="navbar__hamburger-line"></span>
+        <span class="navbar__hamburger-line"></span>
+      </button>
+
+      <!-- Navegación principal (centro en desktop, dentro del menú en mobile) -->
+      <nav class="navbar__nav" aria-label="Navegación principal">
+        <ul class="navbar__links">
+          <li><a href="/index.html" class="navbar__link">Inicio</a></li>
+          <li><a href="/pages/public/products.html" class="navbar__link">Productos</a></li>
+          <li><a href="/pages/public/about.html" class="navbar__link">Nosotros</a></li>
+          <li><a href="/pages/public/contact.html" class="navbar__link">Contacto</a></li>
+          
+          <!-- Íconos de acción SOLO en móvil (dentro del menú) -->
+          <li class="navbar__mobile-actions">
+            <!-- Búsqueda -->
+            <a href="#" class="navbar__mobile-action" data-action="search">
+              <svg class="navbar__mobile-action-icon" viewBox="0,0,256,256" xmlns="http://www.w3.org/2000/svg">
+                <g fill="currentColor" fill-rule="nonzero" stroke="none">
+                  <g transform="scale(10.66667,10.66667)">
+                    <path d="M10,2c-4.4094,0 -8,3.59061 -8,8c0,4.40939 3.5906,8 8,8c1.92974,0 3.63578,-0.77488 5.01953,-1.91797l5.69922,5.69922c0.18979,0.18983 0.46644,0.26399 0.72573,0.19452c0.25929,-0.06947 0.46182,-0.27199 0.53129,-0.53129c0.06947,-0.25929 -0.00469,-0.53594 -0.19452,-0.72573l-5.69922,-5.69922c1.14309,-1.38375 1.91797,-3.08979 1.91797,-5.01953c0,-4.40939 -3.5906,-8 -8,-8zM10,3.5c3.59874,0 6.5,2.90127 6.5,6.5c0,3.59873 -2.90126,6.5 -6.5,6.5c-3.59874,0 -6.5,-2.90127 -6.5,-6.5c0,-3.59873 2.90126,-6.5 6.5,-6.5z"></path>
+                  </g>
+                </g>
+              </svg>
+              <span class="navbar__mobile-action-text">Buscar producto</span>
+            </a>
+
+            <!-- Carrito -->
+            <a href="/pages/user/cart.html" class="navbar__mobile-action">
+              <svg class="navbar__mobile-action-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 2L7 6M17 2L19 6M7 6H19M19 6L20 20H4L5 6M10 10V16M14 10V16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span class="navbar__mobile-action-text">Mi carrito</span>
+              <span id="cart-count-mobile" class="navbar__mobile-badge">0</span>
+            </a>
+
+            <!-- Perfil -->
+            <a href="/pages/user/profile.html" class="navbar__mobile-action">
+              <svg class="navbar__mobile-action-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span class="navbar__mobile-action-text">Mi perfil</span>
+            </a>
+          </li>
+        </ul>
       </nav>
+
+      <!-- Íconos de acción (derecha - SOLO DESKTOP) -->
+      <div class="navbar__actions navbar__actions--desktop">
+        <!-- Ícono de búsqueda -->
+        <a href="#" class="navbar__bubble navbar__bubble--search" aria-label="Buscar" data-action="search">
+          <svg class="navbar__icon" viewBox="0,0,256,256" xmlns="http://www.w3.org/2000/svg">
+            <g fill="currentColor" fill-rule="nonzero" stroke="none">
+              <g transform="scale(10.66667,10.66667)">
+                <path d="M10,2c-4.4094,0 -8,3.59061 -8,8c0,4.40939 3.5906,8 8,8c1.92974,0 3.63578,-0.77488 5.01953,-1.91797l5.69922,5.69922c0.18979,0.18983 0.46644,0.26399 0.72573,0.19452c0.25929,-0.06947 0.46182,-0.27199 0.53129,-0.53129c0.06947,-0.25929 -0.00469,-0.53594 -0.19452,-0.72573l-5.69922,-5.69922c1.14309,-1.38375 1.91797,-3.08979 1.91797,-5.01953c0,-4.40939 -3.5906,-8 -8,-8zM10,3.5c3.59874,0 6.5,2.90127 6.5,6.5c0,3.59873 -2.90126,6.5 -6.5,6.5c-3.59874,0 -6.5,-2.90127 -6.5,-6.5c0,-3.59873 2.90126,-6.5 6.5,-6.5z"></path>
+              </g>
+            </g>
+          </svg>
+        </a>
+        
+        <!-- Ícono de carrito con badge -->
+        <a href="/pages/user/cart.html" class="navbar__bubble navbar__bubble--cart" aria-label="Carrito de compras">
+          <svg class="navbar__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 2L7 6M17 2L19 6M7 6H19M19 6L20 20H4L5 6M10 10V16M14 10V16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span id="cart-count" class="navbar__badge">0</span>
+        </a>
+        
+        <!-- Ícono de perfil -->
+        <a href="/pages/user/profile.html" class="navbar__bubble" aria-label="Mi perfil">
+          <svg class="navbar__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
     </header>
+
+    <!-- Barra de búsqueda modal (compartida) -->
+    <div class="navbar__search-modal" id="search-modal">
+      <div class="navbar__search-modal-content">
+        <input 
+          type="search" 
+          class="navbar__search-input" 
+          placeholder="Buscar productos..." 
+          id="search-input"
+        >
+        <button class="navbar__search-close" aria-label="Cerrar búsqueda">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
   `;
 }
 
-// Función para inicializar la funcionalidad del navbar
+/**
+ * Inicializa la funcionalidad del navbar después de inyectarlo
+ */
 export function initNavbar() {
-  // Efecto de transparencia al hacer scroll
-  window.addEventListener("scroll", function() {
-    const header = document.querySelector(".header");
-    if (header) {
-      if (window.scrollY > 50) {
-        header.classList.add("transparent");
-      } else {
-        header.classList.remove("transparent");
-      }
-    }
-  });
+  const navbar = document.querySelector('.navbar');
+  const hamburger = document.querySelector('.navbar__hamburger');
+  const nav = document.querySelector('.navbar__nav');
+  const searchModal = document.getElementById('search-modal');
+  const searchInput = document.getElementById('search-input');
+  const searchClose = document.querySelector('.navbar__search-close');
+  const searchTriggers = document.querySelectorAll('[data-action="search"]');
 
-  // Aquí puedes agregar más funcionalidad (búsqueda, etc.)
-  // Por ejemplo:
-  const searchBtn = document.getElementById('search-btn');
-  if (searchBtn) {
-    searchBtn.addEventListener('click', () => {
-      console.log('Búsqueda clickeada');
-      // Aquí irá tu lógica de búsqueda
+  // Efecto de scroll
+  if (navbar) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('navbar--scrolled');
+      } else {
+        navbar.classList.remove('navbar--scrolled');
+      }
     });
   }
+
+  // Toggle menú hamburguesa
+  if (hamburger && nav) {
+    hamburger.addEventListener('click', () => {
+      const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
+      
+      hamburger.setAttribute('aria-expanded', !isExpanded);
+      hamburger.classList.toggle('navbar__hamburger--active');
+      nav.classList.toggle('navbar__nav--open');
+      
+      // Prevenir scroll del body cuando el menú está abierto
+      document.body.style.overflow = !isExpanded ? 'hidden' : '';
+    });
+
+    // Cerrar menú al hacer click en un link
+    const links = nav.querySelectorAll('.navbar__link');
+    links.forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.classList.remove('navbar__hamburger--active');
+        nav.classList.remove('navbar__nav--open');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+
+  // Modal de búsqueda
+  if (searchModal && searchInput && searchClose) {
+    // Abrir modal
+    searchTriggers.forEach(trigger => {
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        searchModal.classList.add('navbar__search-modal--open');
+        searchInput.focus();
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    // Cerrar modal
+    searchClose.addEventListener('click', () => {
+      searchModal.classList.remove('navbar__search-modal--open');
+      document.body.style.overflow = '';
+      searchInput.value = '';
+    });
+
+    // Cerrar con ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && searchModal.classList.contains('navbar__search-modal--open')) {
+        searchModal.classList.remove('navbar__search-modal--open');
+        document.body.style.overflow = '';
+        searchInput.value = '';
+      }
+    });
+
+    // Cerrar al hacer click fuera
+    searchModal.addEventListener('click', (e) => {
+      if (e.target === searchModal) {
+        searchModal.classList.remove('navbar__search-modal--open');
+        document.body.style.overflow = '';
+        searchInput.value = '';
+      }
+    });
+  }
+
+  // Resaltar enlace activo
+  highlightActiveLink();
+}
+
+/**
+ * Resalta el enlace del navbar correspondiente a la página actual
+ */
+function highlightActiveLink() {
+  const currentPath = window.location.pathname;
+  const links = document.querySelectorAll('.navbar__link');
+  
+  links.forEach(link => {
+    const linkPath = new URL(link.href).pathname;
+    
+    if (currentPath === linkPath || (linkPath !== '/index.html' && currentPath.includes(linkPath))) {
+      link.classList.add('navbar__link--active');
+    }
+  });
 }
