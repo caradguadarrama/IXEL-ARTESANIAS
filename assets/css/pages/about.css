@@ -1,5 +1,5 @@
 body {
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'DM Sans', sans-serif;
     background-color: #f8f8f8;
 }
 
@@ -32,6 +32,7 @@ h1 {
     line-height: 1.8;
     text-align: justify;
     margin-bottom: 0;
+    text-transform: none;
 }
 
 /* Animación */
@@ -50,5 +51,3 @@ h1 {
         transform: translateY(0);
     }
 }
-
-

@@ -1,0 +1,94 @@
+.button-ixel-cafe {
+    background-color: #683531;
+    border-radius: 50px;
+    color: #ffffff;
+    border: 2px solid #683531;
+    padding: 12px 35px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(104, 53, 49, 0.2);
+}
+
+/* --- EFECTO AL PASAR EL MOUSE (HOVER) --- */
+.button-ixel-cafe:hover {
+    background-color: #7d443f;
+    /* Un tono ligeramente más claro */
+    border-color: #7d443f;
+    transform: translateY(-3px);
+    /* El botón "flota" hacia arriba */
+    box-shadow: 0 8px 15px rgba(104, 53, 49, 0.3);
+    /* La sombra crece */
+}
+
+/* --- EFECTO AL HACER CLICK (ACTIVE) --- */
+.button-ixel-cafe:active {
+    transform: translateY(-1px);
+    /* Baja un poco al presionar */
+    box-shadow: 0 3px 5px rgba(104, 53, 49, 0.3);
+}
+
+.button-ixel-beige {
+    background-color: #F8E8CF;
+    border-radius: 50px;
+    color: #683531;
+    border: 2px solid #F8E8CF;
+    padding: 12px 35px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(104, 53, 49, 0.2);
+}
+
+.button-ixel-beige:hover {
+    background-color: #F8E8CF;
+    /* Un tono ligeramente más claro */
+    border-color: #F8E8CF;
+    transform: translateY(-3px);
+    /* El botón "flota" hacia arriba */
+    box-shadow: 0 8px 15px rgba(104, 53, 49, 0.3);
+    /* La sombra crece */
+}
+
+.button-ixel-beige:active {
+    transform: translateY(-1px);
+    /* Baja un poco al presionar */
+    box-shadow: 0 3px 5px rgba(104, 53, 49, 0.3);
+}
+
+.button-ixel-rojo {
+    background-color: #A0191E;
+    border-radius: 50px;
+    color: #ffffff;
+    border: 2px solid #A0191E;
+    padding: 12px 35px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(104, 53, 49, 0.2);
+}
+
+.button-ixel-rojo:hover {
+    background-color: #A0191E;
+    /* Un tono ligeramente más claro */
+    border-color: #A0191E;
+    transform: translateY(-3px);
+    /* El botón "flota" hacia arriba */
+    box-shadow: 0 8px 15px rgba(104, 53, 49, 0.3);
+    /* La sombra crece */
+}
+
+.button-ixel-rojo:active {
+    transform: translateY(-1px);
+    /* Baja un poco al presionar */
+    box-shadow: 0 3px 5px rgba(104, 53, 49, 0.3);
+}
