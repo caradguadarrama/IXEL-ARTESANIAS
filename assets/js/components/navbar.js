@@ -48,6 +48,27 @@ export function createNavbar() {
 
       <!-- Íconos de acción (derecha) -->
       <div class="navbar__actions">
+  <!-- Ícono de búsqueda -->
+  <a href="#" class="navbar__bubble navbar__bubble--search" aria-label="Buscar">
+    <svg class="navbar__icon navbar__icon--search" viewBox="0,0,256,256" xmlns="http://www.w3.org/2000/svg">
+      <g fill="currentColor" fill-rule="nonzero" stroke="none">
+        <g transform="scale(10.66667,10.66667)">
+          <path d="M10,2c-4.4094,0 -8,3.59061 -8,8c0,4.40939 3.5906,8 8,8c1.92974,0 3.63578,-0.77488 5.01953,-1.91797l5.69922,5.69922c0.18979,0.18983 0.46644,0.26399 0.72573,0.19452c0.25929,-0.06947 0.46182,-0.27199 0.53129,-0.53129c0.06947,-0.25929 -0.00469,-0.53594 -0.19452,-0.72573l-5.69922,-5.69922c1.14309,-1.38375 1.91797,-3.08979 1.91797,-5.01953c0,-4.40939 -3.5906,-8 -8,-8zM10,3.5c3.59874,0 6.5,2.90127 6.5,6.5c0,3.59873 -2.90126,6.5 -6.5,6.5c-3.59874,0 -6.5,-2.90127 -6.5,-6.5c0,-3.59873 2.90126,-6.5 6.5,-6.5z"></path>
+        </g>
+      </g>
+    </svg>
+    <!-- Barra de búsqueda (oculta por defecto) -->
+    <input type="search" class="navbar__search-bar" placeholder="Buscar…">
+  </a>
+        
+        <!-- Ícono de carrito con badge -->
+        <a href="/pages/user/cart.html" class="navbar__bubble navbar__bubble--cart" aria-label="Carrito de compras">
+          <svg class="navbar__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 2L7 6M17 2L19 6M7 6H19M19 6L20 20H4L5 6M10 10V16M14 10V16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span id="cart-count" class="navbar__badge">0</span>
+        </a>
+        
         <!-- Ícono de perfil -->
         <a href="/pages/user/profile.html" class="navbar__bubble" aria-label="Mi perfil">
           <svg class="navbar__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -56,20 +77,6 @@ export function createNavbar() {
           </svg>
         </a>
 
-        <!-- Ícono de carrito con badge -->
-        <a href="/pages/user/cart.html" class="navbar__bubble navbar__bubble--cart" aria-label="Carrito de compras">
-          <svg class="navbar__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M9 2L7 6M17 2L19 6M7 6H19M19 6L20 20H4L5 6M10 10V16M14 10V16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <span id="cart-count" class="navbar__badge">0</span>
-        </a>
-
-        <!-- Ícono de teléfono -->
-        <a href="tel:+523312345678" class="navbar__bubble" aria-label="Llamar">
-          <svg class="navbar__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M22 16.92V19.92C22.0011 20.1985 21.9441 20.4742 21.8325 20.7293C21.7209 20.9845 21.5573 21.2136 21.3521 21.4019C21.1468 21.5901 20.9046 21.7335 20.6407 21.8227C20.3769 21.9119 20.0974 21.9451 19.82 21.92C16.7428 21.5856 13.787 20.5341 11.19 18.85C8.77382 17.3147 6.72533 15.2662 5.18999 12.85C3.49997 10.2412 2.44824 7.27099 2.11999 4.18C2.095 3.90347 2.12787 3.62476 2.21649 3.36162C2.30512 3.09849 2.44756 2.85669 2.63476 2.65162C2.82196 2.44655 3.0498 2.28271 3.30379 2.17052C3.55777 2.05833 3.83233 2.00026 4.10999 2H7.10999C7.5953 1.99522 8.06579 2.16708 8.43376 2.48353C8.80173 2.79999 9.04207 3.23945 9.10999 3.72C9.23662 4.68007 9.47144 5.62273 9.80999 6.53C9.94454 6.88792 9.97366 7.27691 9.8939 7.65088C9.81415 8.02485 9.62886 8.36811 9.35999 8.64L8.08999 9.91C9.51355 12.4135 11.5864 14.4864 14.09 15.91L15.36 14.64C15.6319 14.3711 15.9751 14.1858 16.3491 14.1061C16.7231 14.0263 17.1121 14.0555 17.47 14.19C18.3773 14.5286 19.3199 14.7634 20.28 14.89C20.7658 14.9585 21.2094 15.2032 21.5265 15.5775C21.8437 15.9518 22.0122 16.4296 22 16.92Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
       </div>
     </header>
   `;
@@ -134,3 +141,12 @@ function highlightActiveLink() {
     }
   });
 }
+// Agregar al final de tu archivo JS
+window.addEventListener('scroll', () => {
+  const navbar = document.querySelector('.navbar');
+  if (window.scrollY > 50) {
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+});
