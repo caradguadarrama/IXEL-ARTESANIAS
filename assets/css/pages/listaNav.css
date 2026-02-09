@@ -1,0 +1,67 @@
+
+/*!<ul class="selectable-list"> */
+/* CONTENEDOR DEL MENÚ */
+.selectable-list {
+    position: fixed;
+    top: 80px;
+    left: -220px; /* oculto fuera de la pantalla */
+    width: 280px;
+    height: calc(100vh - 80px);
+    background: #ffffff;
+    padding: 20px;
+    margin: 0;
+    list-style: none;
+    overflow-y: auto;
+
+    border-radius: 0 12px 12px 0;
+    box-shadow: 6px 0 20px rgba(0,0,0,0.15);
+
+    transition: left 0.35s ease;
+    z-index: 1000;
+}
+
+/* APARECE AL PASAR EL MOUSE */
+.selectable-list:hover {
+    left: 0;
+}
+
+/*PESTAÑA MENU LISTA */
+.selectable-list::before {
+    content: "";
+    position: absolute;
+    top: 20px;           /* un poco hacia abajo para que no quede pegada al borde superior */
+    right: -10px;        /* sobresale del borde derecho del menú */
+    width: 20px;         /* ancho de la pestaña */
+    height: 100px;        /* alto de la pestaña */
+    background: #683531;    /* color cafe */
+    border-radius: 10px; /* bordes redondeados */
+    cursor: pointer;
+    animation: blinkTab 1.2s infinite; /* parpadeo */
+}
+
+/* ANIMACIÓN DE PARPADEO */
+@keyframes blinkTab {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+/* ITEMS */
+.selectable-list li {
+    margin-bottom: 12px;
+}
+
+/* LINKS */
+.selectable-list a {
+    text-decoration: none;
+    color: #212529;
+    font-weight: 500;
+    display: block;
+    padding: 8px 10px;
+    border-radius: 6px;
+    transition: background 0.25s, color 0.25s;
+}
+
+.selectable-list a:hover {
+    background: #f9e8cf;
+    color: #683531;
+}
