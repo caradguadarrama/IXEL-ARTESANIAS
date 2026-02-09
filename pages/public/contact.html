@@ -9,15 +9,17 @@
     <link rel="stylesheet" href="../../assets/css/main.css">
     <link rel="stylesheet" href="../../assets/css/pages/contact.css">
     
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    
     <!-- JavaScript -->
     <script defer type="module" src="../../assets/js/main.js"></script>
     <script defer type="module" src="../../assets/js/components/pages/contact.js"></script>
 </head>
-
 <body>
     <!-- Navbar -->
     <div id="navbar-container"></div>
-
+    
     <main class="contact">
         
         <!-- HERO SECTION -->
@@ -50,7 +52,7 @@
                         <!-- Campo: Nombre -->
                         <div class="contact-form__field">
                             <label for="name" class="contact-form__label">
-                                Nombre <span style="color: #dc3545;">*</span>
+                                Nombre <span class="contact-form__required">*</span>
                             </label>
                             <input 
                                 type="text" 
@@ -67,7 +69,7 @@
                         <!-- Campo: Teléfono -->
                         <div class="contact-form__field">
                             <label for="phone" class="contact-form__label">
-                                Teléfono <span style="color: #dc3545;">*</span>
+                                Teléfono <span class="contact-form__required">*</span>
                             </label>
                             <input 
                                 type="tel" 
@@ -85,7 +87,7 @@
                         <!-- Campo: Email -->
                         <div class="contact-form__field">
                             <label for="email" class="contact-form__label">
-                                Correo electrónico <span style="color: #dc3545;">*</span>
+                                Correo electrónico <span class="contact-form__required">*</span>
                             </label>
                             <input 
                                 type="email" 
@@ -107,7 +109,7 @@
                         <!-- Campo: Mensaje -->
                         <div class="contact-form__field contact-form__field--full">
                             <label for="message" class="contact-form__label">
-                                Mensaje <span style="color: #dc3545;">*</span>
+                                Mensaje <span class="contact-form__required">*</span>
                             </label>
                             <textarea 
                                 class="contact-form__textarea" 
@@ -122,7 +124,8 @@
                         <!-- Botón Submit -->
                         <div class="contact-form__submit-wrapper">
                             <button type="submit" class="contact-form__button">
-                                Enviar
+                                <span class="contact-form__button-text">Enviar</span>
+                                <span class="contact-form__button-loader"></span>
                             </button>
                         </div>
 
@@ -158,7 +161,7 @@
                             href="https://maps.app.goo.gl/rDUcb6Nzux7pkmzc9"
                             target="_blank" 
                             rel="noopener noreferrer"
-                            class="contact__palmilla contact__social-link" 
+                            class="contact__palmilla-link" 
                             aria-label="The Shoppes at Palmilla">
                             <img 
                                 src="../../assets/img/icons/palmilla.png" 

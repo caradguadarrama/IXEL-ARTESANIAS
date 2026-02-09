@@ -1,5 +1,6 @@
 /* ============================================
-   FOOTER - Metodología BEM
+   FOOTER - Metodología BEM - DISEÑO REFINADO
+   Layout: Izquierda (Enlaces/Info/Contacto) | Derecha (Redes + Monograma)
    ============================================ */
 
 :root {
@@ -14,7 +15,7 @@
 
 .footer {
   background-color: var(--footer-bg);
-  padding: 40px 20px 0;
+  padding: 45px 20px 0;
   color: var(--footer-text);
 }
 
@@ -22,33 +23,33 @@
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
-  flex-wrap: wrap;
-  gap: 40px;
-  padding-bottom: 40px;
+  justify-content: space-between;
+  gap: 70px;
+  padding-bottom: 35px;
 }
 
 /* ============================================
-   SECCIÓN DE ENLACES
+   COLUMNA IZQUIERDA
    ============================================ */
 
-.footer__section {
-  flex: 1;
-  min-width: 200px;
+.footer__left {
+  display: flex;
+  gap: 55px;
+  flex-wrap: wrap;
 }
 
-.footer__section--contact {
-  flex: 1.2;
+.footer__section {
+  min-width: 150px;
 }
 
 .footer__title {
-  font-size: 20px;
+  font-size: 14px;
   font-family: var(--font-secondary);
   color: var(--footer-text);
-  margin-bottom: 25px;
-  display: inline-block;
-  border-bottom: 2px solid var(--footer-text);
-  padding-bottom: 5px;
-  line-height: 1;
+  margin-bottom: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .footer__list {
@@ -58,21 +59,34 @@
 }
 
 .footer__list-item {
-  margin-bottom: 10px;
+  margin-bottom: 6px;
 }
 
 .footer__link {
-  font-size: 15px;
+  font-size: 13px;
   font-family: var(--font-secondary);
   color: var(--footer-text);
   text-decoration: none;
-  transition: color 0.3s ease;
-  line-height: 2;
+  transition: color 0.3s ease, padding-left 0.3s ease;
+  line-height: 1.8;
+  display: inline-block;
+  font-weight: 300;
 }
 
 .footer__link:hover {
   color: var(--color-white);
-  text-decoration: underline;
+  padding-left: 4px;
+}
+
+/* ============================================
+   COLUMNA DERECHA
+   ============================================ */
+
+.footer__right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
 }
 
 /* ============================================
@@ -81,24 +95,27 @@
 
 .footer__social {
   display: flex;
-  gap: 20px;
+  gap: 18px;
   align-items: center;
-  margin-top: 25px;
-  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .footer__social-link {
   display: inline-block;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease;
   flex-shrink: 0;
+  opacity: 0.9;
 }
 
 .footer__social-link:hover {
-  transform: scale(1.15);
+  transform: scale(1.12);
+  opacity: 1;
 }
 
 .footer__social-link svg {
   display: block;
+  width: 36px;
+  height: 36px;
 }
 
 /* ============================================
@@ -106,21 +123,18 @@
    ============================================ */
 
 .footer__monogram {
-  margin-top: 30px;
   text-align: center;
-  width: 100%;
 }
 
 .footer__monogram-image {
-  height: 80px;
+  height: 60px;
   width: auto;
-  opacity: 0.7;
+  opacity: 0.65;
   transition: opacity 0.3s ease;
-  margin: 0 auto;
 }
 
 .footer__monogram-image:hover {
-  opacity: 1;
+  opacity: 0.95;
 }
 
 /* ============================================
@@ -147,15 +161,26 @@
 
 @media screen and (max-width: 1024px) {
   .footer__container {
-    gap: 30px;
+    flex-direction: column;
+    gap: 40px;
   }
 
-  .footer__social {
+  .footer__left {
     justify-content: flex-start;
+    gap: 45px;
+  }
+
+  .footer__right {
+    align-items: flex-start;
   }
 
   .footer__monogram-image {
-    height: 70px;
+    height: 55px;
+  }
+
+  .footer__social-link svg {
+    width: 34px;
+    height: 34px;
   }
 }
 
@@ -164,25 +189,49 @@
    ============================================ */
 
 @media screen and (max-width: 768px) {
+  .footer {
+    padding: 35px 20px 0;
+  }
+
   .footer__container {
+    gap: 30px;
+  }
+
+  .footer__left {
     flex-direction: column;
     gap: 25px;
   }
 
   .footer__section {
     min-width: 100%;
-    text-align: center;
   }
 
-  .footer__list {
-    text-align: center;
+  .footer__title {
+    font-size: 13px;
+    margin-bottom: 8px;
+  }
+
+  .footer__link {
+    font-size: 12px;
+  }
+
+  .footer__right {
+    align-items: center;
+    width: 100%;
   }
 
   .footer__social {
+    flex-wrap: wrap;
     justify-content: center;
+    gap: 16px;
+  }
+
+  .footer__social-link svg {
+    width: 32px;
+    height: 32px;
   }
 
   .footer__monogram-image {
-    height: 60px;
+    height: 50px;
   }
 }

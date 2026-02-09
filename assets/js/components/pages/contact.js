@@ -1,13 +1,14 @@
 // assets/js/components/pages/contact.js
 /**
  * Formulario de Contacto - BEM
- * Validación, envío y feedback mejorados
+ * Con integración de EmailJS para envío automático
  */
+
+import { EMAILJS_CONFIG } from '../../config/emailjs.config.js';
 
 /* ========================================
    DOM ELEMENTS (BEM)
    ======================================== */
-
 const DOM = {
   form: null,
   inputs: {},
@@ -19,9 +20,7 @@ const DOM = {
 /* ========================================
    CONFIGURACIÓN
    ======================================== */
-
 const CONFIG = {
-  enterpriseEmail: 'mario_xl.95@hotmail.com',
   minNameLength: 3,
   minMessageLength: 10,
   phoneLength: 10,
@@ -31,8 +30,10 @@ const CONFIG = {
 /* ========================================
    INICIALIZACIÓN
    ======================================== */
-
 function initContactForm() {
+  // Inicializar EmailJS
+  emailjs.init(EMAILJS_CONFIG.publicKey);
+  
   // Obtener elementos del DOM
   DOM.form = document.getElementById('contact-form');
   
@@ -63,7 +64,6 @@ function initContactForm() {
 /* ========================================
    EVENT LISTENERS
    ======================================== */
-
 function setupEventListeners() {
   // Submit del formulario
   DOM.form.addEventListener('submit', handleSubmit);
@@ -78,12 +78,16 @@ function setupEventListeners() {
   DOM.inputs.phone.addEventListener('input', (e) => {
     e.target.value = e.target.value.replace(/[^0-9]/g, '');
   });
+
+  // NO permitir números en nombre
+  DOM.inputs.name.addEventListener('input', (e) => {
+    e.target.value = e.target.value.replace(/[0-9]/g, '');
+  });
 }
 
 /* ========================================
    MANEJO DE SUBMIT
    ======================================== */
-
 async function handleSubmit(event) {
   event.preventDefault();
 
@@ -102,9 +106,9 @@ async function handleSubmit(event) {
   setButtonLoading(true);
 
   try {
-    // Simular envío (en producción, aquí iría tu API)
-    await sendFormData(formData);
-
+    // Enviar email con EmailJS
+    await sendEmail(formData);
+    
     // Éxito
     showSuccessMessage();
     resetForm();
@@ -118,9 +122,37 @@ async function handleSubmit(event) {
 }
 
 /* ========================================
+   ENVÍO DE EMAIL CON EMAILJS
+   ======================================== */
+async function sendEmail(formData) {
+  // Parámetros que se enviarán a la plantilla de EmailJS
+  const templateParams = {
+    from_name: formData.name,
+    from_email: formData.email,
+    phone: formData.phone,
+    message: formData.message,
+    to_name: 'IXEL Artesanías'
+  };
+
+  try {
+    const response = await emailjs.send(
+      EMAILJS_CONFIG.serviceId,
+      EMAILJS_CONFIG.templateId,
+      templateParams
+    );
+    
+    console.log('Email enviado exitosamente:', response);
+    return response;
+    
+  } catch (error) {
+    console.error('Error al enviar email:', error);
+    throw error;
+  }
+}
+
+/* ========================================
    VALIDACIÓN
    ======================================== */
-
 /**
  * Valida todo el formulario
  */
@@ -157,6 +189,16 @@ function validateField(input) {
     case 'name':
       if (value.length < CONFIG.minNameLength) {
         showFieldError(input, `El nombre debe tener al menos ${CONFIG.minNameLength} caracteres`);
+        return false;
+      }
+      // Validar que no contenga números
+      if (/\d/.test(value)) {
+        showFieldError(input, 'El nombre no puede contener números');
+        return false;
+      }
+      // Validar que solo contenga letras, espacios y acentos
+      if (!/^[a-záéíóúñüA-ZÁÉÍÓÚÑÜ\s]+$/.test(value)) {
+        showFieldError(input, 'El nombre solo puede contener letras');
         return false;
       }
       break;
@@ -206,7 +248,6 @@ function validatePhone(phone) {
 /* ========================================
    UI FEEDBACK
    ======================================== */
-
 /**
  * Muestra error en un campo
  */
@@ -259,7 +300,6 @@ function clearAllErrors() {
  * Muestra error general del formulario
  */
 function showFormError(message) {
-  // Crear o actualizar mensaje de error general
   let errorDiv = DOM.form.querySelector('.contact-form__general-error');
   
   if (!errorDiv) {
@@ -310,12 +350,9 @@ function setButtonLoading(isLoading) {
 
   if (isLoading) {
     DOM.button.disabled = true;
-    DOM.button.dataset.originalText = DOM.button.textContent;
-    DOM.button.textContent = 'Enviando...';
     DOM.button.classList.add('contact-form__button--loading');
   } else {
     DOM.button.disabled = false;
-    DOM.button.textContent = DOM.button.dataset.originalText || 'Enviar';
     DOM.button.classList.remove('contact-form__button--loading');
   }
 }
@@ -323,7 +360,6 @@ function setButtonLoading(isLoading) {
 /* ========================================
    UTILIDADES
    ======================================== */
-
 /**
  * Obtiene datos del formulario
  */
@@ -344,58 +380,7 @@ function resetForm() {
   clearAllErrors();
 }
 
-/**
- * Envía los datos del formulario
- * En producción, esto haría un fetch a tu API
- */
-async function sendFormData(data) {
-  // Simular delay de red
-  await new Promise(resolve => setTimeout(resolve, 1500));
-
-  // OPCIÓN 1: Enviar a tu backend (RECOMENDADO)
-  /*
-  const response = await fetch('/api/contact', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
-  });
-
-  if (!response.ok) {
-    throw new Error('Error en el servidor');
-  }
-
-  return await response.json();
-  */
-
-  // OPCIÓN 2: Abrir mailto (fallback temporal)
-  openMailto(data);
-
-  return { success: true };
-}
-
-/**
- * Abre cliente de correo como fallback
- */
-function openMailto(data) {
-  const subject = 'Contacto desde Ixel Artesanías';
-  const body = `
-Nombre: ${data.name}
-Email: ${data.email}
-Teléfono: ${data.phone}
-
-Mensaje:
-${data.message}
-  `.trim();
-
-  const mailtoLink = `mailto:${CONFIG.enterpriseEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  
-  window.location.href = mailtoLink;
-}
-
 /* ========================================
    INIT
    ======================================== */
-
 document.addEventListener('DOMContentLoaded', initContactForm);
