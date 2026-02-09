@@ -1,265 +1,401 @@
 // assets/js/components/pages/contact.js
-
 /**
- * Manejo del formulario de contacto
+ * Formulario de Contacto - BEM
+ * Validación, envío y feedback mejorados
  */
 
-// Elementos del DOM
-let form;
-let inputs;
-let successMessage;
+/* ========================================
+   DOM ELEMENTS (BEM)
+   ======================================== */
 
-/**
- * Inicializa el formulario de contacto
- */
+const DOM = {
+  form: null,
+  inputs: {},
+  button: null,
+  successMessage: null,
+  errorElements: {}
+};
+
+/* ========================================
+   CONFIGURACIÓN
+   ======================================== */
+
+const CONFIG = {
+  enterpriseEmail: 'contacto@ixelartesanias.com',
+  minNameLength: 3,
+  minMessageLength: 10,
+  phoneLength: 10,
+  successMessageDuration: 5000
+};
+
+/* ========================================
+   INICIALIZACIÓN
+   ======================================== */
+
 function initContactForm() {
-    form = document.getElementById('contact-form');
-    
-    if (!form) return;
+  // Obtener elementos del DOM
+  DOM.form = document.getElementById('contact-form');
+  
+  if (!DOM.form) {
+    console.warn('Formulario de contacto no encontrado');
+    return;
+  }
 
-    inputs = {
-        name: form.querySelector('#name'),
-        phone: form.querySelector('#phone'),
-        email: form.querySelector('#email'),
-        message: form.querySelector('#message')
-    };
+  DOM.inputs = {
+    name: DOM.form.querySelector('#name'),
+    phone: DOM.form.querySelector('#phone'),
+    email: DOM.form.querySelector('#email'),
+    message: DOM.form.querySelector('#message')
+  };
 
-    successMessage = document.getElementById('success-message');
+  DOM.button = DOM.form.querySelector('.contact-form__button');
+  DOM.successMessage = document.getElementById('success-message');
 
-    // Event listeners
-    form.addEventListener('submit', handleSubmit);
+  // Obtener elementos de error
+  Object.keys(DOM.inputs).forEach(key => {
+    DOM.errorElements[key] = DOM.form.querySelector(`[data-error="${key}"]`);
+  });
 
-    // Validación en tiempo real
-    Object.values(inputs).forEach(input => {
-        input.addEventListener('blur', () => validateField(input));
-        input.addEventListener('input', () => clearFieldError(input));
-    });
+  // Event listeners
+  setupEventListeners();
 }
 
-/**
- * Maneja el envío del formulario
- * @param {Event} event - Evento de submit
- */
+/* ========================================
+   EVENT LISTENERS
+   ======================================== */
+
+function setupEventListeners() {
+  // Submit del formulario
+  DOM.form.addEventListener('submit', handleSubmit);
+
+  // Validación en tiempo real
+  Object.entries(DOM.inputs).forEach(([name, input]) => {
+    input.addEventListener('blur', () => validateField(input));
+    input.addEventListener('input', () => clearFieldError(input));
+  });
+
+  // Permitir solo números en teléfono
+  DOM.inputs.phone.addEventListener('input', (e) => {
+    e.target.value = e.target.value.replace(/[^0-9]/g, '');
+  });
+}
+
+/* ========================================
+   MANEJO DE SUBMIT
+   ======================================== */
+
 async function handleSubmit(event) {
-    event.preventDefault();
+  event.preventDefault();
 
-    // Validar todos los campos
-    const isValid = validateForm();
+  // Validar formulario completo
+  const isValid = validateForm();
+  
+  if (!isValid) {
+    showFormError('Por favor, corrige los errores antes de enviar');
+    return;
+  }
 
-    if (!isValid) {
-        return;
-    }
+  // Obtener datos del formulario
+  const formData = getFormData();
 
-    // Obtener datos del formulario
-    const formData = {
-        name: inputs.name.value.trim(),
-        phone: inputs.phone.value.trim(),
-        email: inputs.email.value.trim(),
-        message: inputs.message.value.trim(),
-        timestamp: new Date().toISOString()
-    };
+  // Cambiar estado del botón a "enviando"
+  setButtonLoading(true);
 
-    // Deshabilitar botón mientras se envía
-    const submitButton = form.querySelector('.contact-form__submit');
-    const originalText = submitButton.textContent;
-    submitButton.disabled = true;
-    submitButton.textContent = 'Enviando...';
+  try {
+    // Simular envío (en producción, aquí iría tu API)
+    await sendFormData(formData);
 
-    try {
-        // Simular envío (aquí conectarás con tu backend después)
-        await sendContactForm(formData);
-
-        // Mostrar mensaje de éxito
-        showSuccessMessage();
-
-        // Limpiar formulario
-        form.reset();
-        clearAllErrors();
-
-    } catch (error) {
-        console.error('Error al enviar el formulario:', error);
-        alert('Hubo un error al enviar el mensaje. Por favor, intenta de nuevo.');
-    } finally {
-        submitButton.disabled = false;
-        submitButton.textContent = originalText;
-    }
+    // Éxito
+    showSuccessMessage();
+    resetForm();
+    
+  } catch (error) {
+    console.error('Error enviando formulario:', error);
+    showFormError('Hubo un error al enviar el mensaje. Por favor, intenta de nuevo.');
+  } finally {
+    setButtonLoading(false);
+  }
 }
 
-/**
- * Simula el envío del formulario (reemplazar con API real)
- * @param {Object} data - Datos del formulario
- * @returns {Promise}
- */
-function sendContactForm(data) {
-    return new Promise((resolve) => {
-        // Guardar en localStorage temporalmente
-        const contacts = JSON.parse(localStorage.getItem('contacts') || '[]');
-        contacts.push(data);
-        localStorage.setItem('contacts', JSON.stringify(contacts));
-
-        // Simular delay de red
-        setTimeout(() => {
-            console.log('Formulario enviado:', data);
-            resolve();
-        }, 1000);
-    });
-}
+/* ========================================
+   VALIDACIÓN
+   ======================================== */
 
 /**
  * Valida todo el formulario
- * @returns {boolean} - true si es válido
  */
 function validateForm() {
-    let isValid = true;
+  let isValid = true;
 
-    Object.values(inputs).forEach(input => {
-        if (!validateField(input)) {
-            isValid = false;
-        }
-    });
+  Object.values(DOM.inputs).forEach(input => {
+    if (!validateField(input)) {
+      isValid = false;
+    }
+  });
 
-    return isValid;
+  return isValid;
 }
 
 /**
  * Valida un campo individual
- * @param {HTMLElement} input - Input a validar
- * @returns {boolean} - true si es válido
  */
 function validateField(input) {
-    const value = input.value.trim();
-    const name = input.name;
+  const value = input.value.trim();
+  const name = input.name;
 
-    // Limpiar errores previos
-    clearFieldError(input);
+  // Limpiar errores previos
+  clearFieldError(input);
 
-    // Validar campo vacío
-    if (!value) {
-        showFieldError(input, 'Este campo es obligatorio');
+  // Validar campo vacío
+  if (!value) {
+    showFieldError(input, 'Este campo es obligatorio');
+    return false;
+  }
+
+  // Validaciones específicas
+  switch (name) {
+    case 'name':
+      if (value.length < CONFIG.minNameLength) {
+        showFieldError(input, `El nombre debe tener al menos ${CONFIG.minNameLength} caracteres`);
         return false;
-    }
+      }
+      break;
 
-    // Validaciones específicas
-    switch (name) {
-        case 'name':
-            if (value.length < 3) {
-                showFieldError(input, 'El nombre debe tener al menos 3 caracteres');
-                return false;
-            }
-            if (!/^[a-záéíóúñ\s]+$/i.test(value)) {
-                showFieldError(input, 'El nombre solo puede contener letras');
-                return false;
-            }
-            break;
+    case 'phone':
+      if (!validatePhone(value)) {
+        showFieldError(input, `El teléfono debe tener ${CONFIG.phoneLength} dígitos`);
+        return false;
+      }
+      break;
 
-        case 'phone':
-            // Validar formato de teléfono (10 dígitos)
-            const phoneClean = value.replace(/\D/g, '');
-            if (phoneClean.length < 10) {
-                showFieldError(input, 'Ingresa un teléfono válido (10 dígitos)');
-                return false;
-            }
-            break;
+    case 'email':
+      if (!validateEmail(value)) {
+        showFieldError(input, 'Por favor, ingresa un correo válido');
+        return false;
+      }
+      break;
 
-        case 'email':
-            if (!isValidEmail(value)) {
-                showFieldError(input, 'Por favor, ingresa un correo válido');
-                return false;
-            }
-            break;
+    case 'message':
+      if (value.length < CONFIG.minMessageLength) {
+        showFieldError(input, `El mensaje debe tener al menos ${CONFIG.minMessageLength} caracteres`);
+        return false;
+      }
+      break;
+  }
 
-        case 'message':
-            if (value.length < 10) {
-                showFieldError(input, 'El mensaje debe tener al menos 10 caracteres');
-                return false;
-            }
-            if (value.length > 500) {
-                showFieldError(input, 'El mensaje no puede exceder 500 caracteres');
-                return false;
-            }
-            break;
-    }
-
-    // Si pasa todas las validaciones
-    markFieldAsValid(input);
-    return true;
+  // Si pasa todas las validaciones
+  markFieldAsValid(input);
+  return true;
 }
 
 /**
  * Valida formato de email
- * @param {string} email - Email a validar
- * @returns {boolean}
  */
-function isValidEmail(email) {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return regex.test(email);
+function validateEmail(email) {
+  const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  return regex.test(email);
 }
 
 /**
+ * Valida formato de teléfono
+ */
+function validatePhone(phone) {
+  return phone.length === CONFIG.phoneLength && /^\d+$/.test(phone);
+}
+
+/* ========================================
+   UI FEEDBACK
+   ======================================== */
+
+/**
  * Muestra error en un campo
- * @param {HTMLElement} input - Input con error
- * @param {string} message - Mensaje de error
  */
 function showFieldError(input, message) {
-    input.classList.add('contact-form__input--error');
-    input.classList.remove('contact-form__input--success');
+  input.classList.add('contact-form__input--error');
+  input.classList.remove('contact-form__input--success');
 
-    const errorElement = form.querySelector(`[data-error="${input.name}"]`);
-    if (errorElement) {
-        errorElement.textContent = message;
-    }
+  const errorElement = DOM.errorElements[input.name];
+  if (errorElement) {
+    errorElement.textContent = message;
+  }
 }
 
 /**
  * Limpia el error de un campo
- * @param {HTMLElement} input - Input a limpiar
  */
 function clearFieldError(input) {
-    input.classList.remove('contact-form__input--error');
-    
-    const errorElement = form.querySelector(`[data-error="${input.name}"]`);
-    if (errorElement) {
-        errorElement.textContent = '';
-    }
+  input.classList.remove('contact-form__input--error');
+
+  const errorElement = DOM.errorElements[input.name];
+  if (errorElement) {
+    errorElement.textContent = '';
+  }
 }
 
 /**
  * Marca un campo como válido
- * @param {HTMLElement} input - Input válido
  */
 function markFieldAsValid(input) {
-    input.classList.add('contact-form__input--success');
-    input.classList.remove('contact-form__input--error');
+  input.classList.add('contact-form__input--success');
+  input.classList.remove('contact-form__input--error');
 }
 
 /**
- * Limpia todos los errores del formulario
+ * Limpia todos los errores
  */
 function clearAllErrors() {
-    Object.values(inputs).forEach(input => {
-        input.classList.remove('contact-form__input--error', 'contact-form__input--success');
-    });
+  Object.values(DOM.inputs).forEach(input => {
+    input.classList.remove('contact-form__input--error', 'contact-form__input--success');
+  });
 
-    const errorElements = form.querySelectorAll('.contact-form__error');
-    errorElements.forEach(el => el.textContent = '');
+  Object.values(DOM.errorElements).forEach(el => {
+    if (el) el.textContent = '';
+  });
+
+  hideFormError();
 }
 
 /**
- * Muestra el mensaje de éxito
+ * Muestra error general del formulario
  */
-function showSuccessMessage() {
-    if (successMessage) {
-        successMessage.style.display = 'block';
+function showFormError(message) {
+  // Crear o actualizar mensaje de error general
+  let errorDiv = DOM.form.querySelector('.contact-form__general-error');
+  
+  if (!errorDiv) {
+    errorDiv = document.createElement('div');
+    errorDiv.className = 'contact-form__general-error';
+    DOM.form.insertBefore(errorDiv, DOM.form.firstChild);
+  }
 
-        // Ocultar después de 5 segundos
-        setTimeout(() => {
-            successMessage.style.display = 'none';
-        }, 5000);
+  errorDiv.textContent = message;
+  errorDiv.style.display = 'block';
 
-        // Scroll suave hacia el mensaje
-        successMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }
+  // Scroll al error
+  errorDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
-// Inicializar cuando el DOM esté listo
+/**
+ * Oculta error general del formulario
+ */
+function hideFormError() {
+  const errorDiv = DOM.form.querySelector('.contact-form__general-error');
+  if (errorDiv) {
+    errorDiv.style.display = 'none';
+  }
+}
+
+/**
+ * Muestra mensaje de éxito
+ */
+function showSuccessMessage() {
+  if (DOM.successMessage) {
+    DOM.successMessage.style.display = 'block';
+
+    // Scroll suave hacia el mensaje
+    DOM.successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    // Ocultar después de un tiempo
+    setTimeout(() => {
+      DOM.successMessage.style.display = 'none';
+    }, CONFIG.successMessageDuration);
+  }
+}
+
+/**
+ * Cambia estado del botón a loading
+ */
+function setButtonLoading(isLoading) {
+  if (!DOM.button) return;
+
+  if (isLoading) {
+    DOM.button.disabled = true;
+    DOM.button.dataset.originalText = DOM.button.textContent;
+    DOM.button.textContent = 'Enviando...';
+    DOM.button.classList.add('contact-form__button--loading');
+  } else {
+    DOM.button.disabled = false;
+    DOM.button.textContent = DOM.button.dataset.originalText || 'Enviar';
+    DOM.button.classList.remove('contact-form__button--loading');
+  }
+}
+
+/* ========================================
+   UTILIDADES
+   ======================================== */
+
+/**
+ * Obtiene datos del formulario
+ */
+function getFormData() {
+  return {
+    name: DOM.inputs.name.value.trim(),
+    phone: DOM.inputs.phone.value.trim(),
+    email: DOM.inputs.email.value.trim(),
+    message: DOM.inputs.message.value.trim()
+  };
+}
+
+/**
+ * Resetea el formulario
+ */
+function resetForm() {
+  DOM.form.reset();
+  clearAllErrors();
+}
+
+/**
+ * Envía los datos del formulario
+ * En producción, esto haría un fetch a tu API
+ */
+async function sendFormData(data) {
+  // Simular delay de red
+  await new Promise(resolve => setTimeout(resolve, 1500));
+
+  // OPCIÓN 1: Enviar a tu backend (RECOMENDADO)
+  /*
+  const response = await fetch('/api/contact', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  });
+
+  if (!response.ok) {
+    throw new Error('Error en el servidor');
+  }
+
+  return await response.json();
+  */
+
+  // OPCIÓN 2: Abrir mailto (fallback temporal)
+  openMailto(data);
+
+  return { success: true };
+}
+
+/**
+ * Abre cliente de correo como fallback
+ */
+function openMailto(data) {
+  const subject = 'Contacto desde Ixel Artesanías';
+  const body = `
+Nombre: ${data.name}
+Email: ${data.email}
+Teléfono: ${data.phone}
+
+Mensaje:
+${data.message}
+  `.trim();
+
+  const mailtoLink = `mailto:${CONFIG.enterpriseEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  
+  window.location.href = mailtoLink;
+}
+
+/* ========================================
+   INIT
+   ======================================== */
+
 document.addEventListener('DOMContentLoaded', initContactForm);
