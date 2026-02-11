@@ -1,33 +1,66 @@
 // assets/js/main.js
 
-import { createFooter } from './components/footer.js';
 import { createNavbar, initNavbar } from './components/navbar.js';
+import { createFooter } from './components/footer.js';
+import { getCart } from './utils/storage.js';
 
-// Inyectar el navbar en todas las páginas
-document.addEventListener('DOMContentLoaded', () => {
+/**
+ * Inicializa la aplicación
+ */
+function init() {
+  injectNavbar();
+  injectFooter();
+  updateCartCount();
+}
+
+/**
+ * Inyecta el navbar en el contenedor
+ */
+function injectNavbar() {
   const navbarContainer = document.getElementById('navbar-container');
+  
   if (navbarContainer) {
     navbarContainer.innerHTML = createNavbar();
-    // Inicializar funcionalidad del navbar DESPUÉS de inyectarlo
     initNavbar();
   }
-  
-  // Inyectar el footer en todas las páginas
+}
+
+/**
+ * Inyecta el footer en el contenedor
+ */
+function injectFooter() {
   const footerContainer = document.getElementById('footer-container');
+  
   if (footerContainer) {
     footerContainer.innerHTML = createFooter();
   }
+}
 
-  // Actualizar contador del carrito si existe
-  updateCartCount();
-});
-
-// Función para actualizar el contador del carrito
+/**
+ * Actualiza el contador del carrito
+ */
 function updateCartCount() {
-  const cartCount = document.getElementById('cart-count');
-  if (cartCount) {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const cartBadge = document.getElementById('cart-count');
+  
+  if (cartBadge) {
+    const cart = getCart();
     const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
-    cartCount.textContent = totalItems;
+    cartBadge.textContent = totalItems;
   }
 }
+
+/**
+ * Expone función para actualizar carrito globalmente
+ * Útil cuando se agrega un producto desde otra página
+ */
+window.updateCartCount = updateCartCount;
+
+// Ejecutar cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', init);
+
+// Actualizar contador cuando se modifique el localStorage desde otra pestaña
+window.addEventListener('storage', (event) => {
+  if (event.key === 'cart') {
+    updateCartCount();
+  }
+});
