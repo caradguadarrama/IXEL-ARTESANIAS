@@ -31,3 +31,14 @@ h2 {
 .category-name {
     font-family: 'TheFarmerTextured', serif;
 }
+/*borde de coleccion activa*/
+.category.active {
+  outline: 2px solid #A0191E;
+  border-radius: 5%;
+}
+/*para filtro de barra lateral*/ 
+.selectable-list a.active {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
