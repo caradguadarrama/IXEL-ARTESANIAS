@@ -48,6 +48,7 @@
 .product-card {
     background: #ffffff83;
     border: 1px solid #e0e0e0;
+    position: relative;
     border-radius: 14px;
     padding: 16px;
     text-align: center;
