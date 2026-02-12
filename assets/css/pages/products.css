@@ -19,6 +19,9 @@ h2 {
     font-size: 3.5rem
 }
 
+.section-titlee { /*h2 de productos*/
+    font-size: 90px; /* Cambia el valor al tamaño que quieras */
+}
 
 
 .selectable-list {
