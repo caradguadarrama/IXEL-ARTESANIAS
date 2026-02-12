@@ -1,8 +1,8 @@
 // Estado general de la aplicación
 let allProducts = [];      // productos (local)
 let filteredProducts = []; // productos filtrados que se van a renderizar
-let visibleCount = 4;     // productos mostrados inicialmente
-const PAGE_SIZE = 4; // paso de recarga (cuántos productos se cargan por vez)
+let visibleCount = 6;     // productos mostrados inicialmente
+const PAGE_SIZE = 6; // paso de recarga (cuántos productos se cargan por vez)
 let activeCategory = null; // categoría activa seleccionada
 let activeSubcategory = null; // subcategoría activa seleccionada
 const loadMoreBtn = document.querySelector("#loadMore");
