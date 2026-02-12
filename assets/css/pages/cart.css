@@ -1,6 +1,11 @@
 /* !class="category-card"*/
 /* !Tarjetas de Categoría usa la clase para usar este card category-card*/
 
+/* Primero defines la fuente */
+
+
+
+
 /* Tarjeta base */
 .category-card {
     border: none;
@@ -77,6 +82,8 @@
 /* La imagen del producto hace un zoom suave */
 .category-card:hover img {
     transform: scale(1.1);
+
+
 }
 /* !Tarjetas de Categoría */
 
