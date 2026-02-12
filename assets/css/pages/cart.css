@@ -1,43 +1,84 @@
 /* !class="category-card"*/
 /* !Tarjetas de Categoría usa la clase para usar este card category-card*/
+
+/* Tarjeta base */
 .category-card {
     border: none;
     background: transparent;
+    overflow: hidden;
+    cursor: pointer;
 }
 
+/* Contenedor de imagen con posición relativa */
 .category-image-container {
-    background-color: #f6f3eb; /* El tono crema de tu diseño */
+    background-color: #f6f3eb;
     border-radius: 16px;
     aspect-ratio: 4 / 3;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    margin-bottom: 12px;
+    position: relative; /* Clave para el overlay */
 }
 
 .category-image-container img {
     width: 90%;
     height: 90%;
     object-fit: contain;
+    transition: transform 0.5s ease;
 }
 
-.category-footer {
+/* El Overlay que contiene el nombre (invisible al inicio) */
+.category-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(104, 53, 49, 0.85); /* El café de tu marca con transparencia */
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    padding: 0 4px;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.4s ease-in-out;
 }
 
+/* Estilo del texto dentro del overlay */
 .category-name {
+    color: #fdf6ec;
     font-weight: 700;
-    font-size: 1rem;
+    font-size: 3.1rem;
+    text-transform: uppercase;
+    transform: translateY(15px);
+    transition: transform 0.4s ease;
 }
 
 .category-year {
-    color: #b0b0b0;
+    color: rgba(253, 246, 236, 0.7);
     font-size: 0.85rem;
-}/* !Tarjetas de Categoría */
+    transform: translateY(15px);
+    transition: transform 0.4s ease 0.1s; /* Retraso sutil */
+}
+
+/* --- ESTADO HOVER --- */
+
+/* Aparece el fondo café */
+.category-card:hover .category-overlay {
+    opacity: 1;
+}
+
+/* Los textos suben a su posición */
+.category-card:hover .category-name,
+.category-card:hover .category-year {
+    transform: translateY(0);
+}
+
+/* La imagen del producto hace un zoom suave */
+.category-card:hover img {
+    transform: scale(1.1);
+}
+/* !Tarjetas de Categoría */
 
 
    /** <div class="product-card"> */
