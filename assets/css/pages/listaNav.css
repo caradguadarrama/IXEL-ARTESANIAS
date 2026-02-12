@@ -16,7 +16,7 @@
     left: 20px; /* Se separa 20px de la pared izquierda al abrirse */
 }
 
-/* El cuerpo de la lista con diseño artesanal */
+/* El cuerpo de la lista */
 .selectable-list {
     width: 100%;
     background: #fdf6ec; 
@@ -32,7 +32,7 @@
 .list-tab {
     position: absolute;
     top: 30px; /* Un poco más abajo del inicio de la lista */
-    right: -38px; /* Se coloca justo afuera del borde derecho de la lista */
+    right: -38px; /*! distancia del lista ras de la pagina */
     width: 38px;
     height: 130px;
     background: #683531;
