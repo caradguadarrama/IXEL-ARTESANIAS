@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../../assets/css/pages/products.css">
     <link rel="stylesheet" href="../../assets/css/pages/listaNav.css">
     <link rel="stylesheet" href="../../assets/css/pages/cart.css">
-    <link rel="stylesheet" href="../../assets/css/pages/slidingCart.css">  
+    <link rel="stylesheet" href="../../assets/css/pages/slidingCart.css">
     <script defer type="module" src="/assets/js/main.js"></script>
     <script defer type="module" src="/assets/js/components/pages/slidingCart.js"></script>
     <script defer type="module" src="/assets/js/components/pages/products.js"></script>
@@ -23,7 +23,7 @@
 
     <div id="navbar-container">titulo</div>
 
-     <!-- Carrito de compras -->
+    <!-- Carrito de compras -->
     <div class="cart">
         <h1>Carrito</h1>
         <ul class="listCart"></ul>
@@ -92,22 +92,31 @@
 
 
         <section id="products" class="products-section my-5">
-           <center> <h2 class="section-titlee">Productos</h2></center>
+            <center>
+                <h2 class="section-titlee">Productos</h2>
+            </center>
             <div class="row g-3" id="cards">
-                
+
             </div>
             <!-- PESTAÑA DEL MENÚ (fuera de la lista); subcategory debe matchear con las subcategorias de los productos para poder filtrar -->
             <div class="right-list">
-                <ul class="selectable-list">
-                    <li><a href="#" data-subcategory="tortillero">Tortilleros</a></li>
-                    <li><a href="#" data-subcategory="caja">Cajas</a></li>
-                    <li><a href="#" data-subcategory="caja-te">Cajas para té</a></li>
-                    <li><a href="#" data-subcategory="caja-base">Cajas base Olinalá linaloe</a></li>
-                    <li><a href="#" data-subcategory="servilletero">Servilleteros</a></li>
-                    <li><a href="#" data-subcategory="charola">Charolas de servicio</a></li>
-                    <li><a href="#" data-subcategory="nicho">Nichos de vírgenes</a></li>
-                </ul>
+                <div class="selectable-list-container">
+                    <ul class="selectable-list">
+                        <li><a href="#" data-subcategory="tortillero">Tortilleros</a></li>
+                        <li><a href="#" data-subcategory="caja">Cajas</a></li>
+                        <li><a href="#" data-subcategory="caja-te">Cajas para té</a></li>
+                        <li><a href="#" data-subcategory="caja-base">Cajas base Olinalá</a></li>
+                        <li><a href="#" data-subcategory="servilletero">Servilleteros</a></li>
+                        <li><a href="#" data-subcategory="charola">Charolas de servicio</a></li>
+                        <li><a href="#" data-subcategory="nicho">Nichos de vírgenes</a></li>
+                    </ul>
+
+                    <div class="list-tab">
+                        <span>CATEGORÍAS</span>
+                    </div>
+                </div>
             </div>
+            
             <button id="loadMore" class="btn btn-outline-dark mt-4 boton-ixel-rojo">Cargar más</button>
             <br>
         </section>
