@@ -93,11 +93,11 @@ export function createNavbar() {
         </a>
         
         <!-- Ícono de carrito con badge -->
-        <a href="/pages/user/cart.html" class="navbar__bubble navbar__bubble--cart" aria-label="Carrito de compras">
+        <a class="navbar__bubble navbar__bubble--cart header-cart" aria-label="Carrito de compras">
           <svg class="navbar__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M9 2L7 6M17 2L19 6M7 6H19M19 6L20 20H4L5 6M10 10V16M14 10V16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          <span id="cart-count" class="navbar__badge">0</span>
+          <span id="cart-count" class="navbar__badge quantity">0</span>
         </a>
         
         <!-- Ícono de perfil -->
