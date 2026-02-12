@@ -1,0 +1,149 @@
+.header-cart{
+  position: relative;
+  text-align: right;
+  cursor: pointer;
+  touch-action: manipulation;
+  z-index: 1100;
+}
+
+.header-cart span{
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: antiquewhite;
+  position: absolute;
+  font-size: 13px;
+}
+/*seccion de carrito con ajustes de version en movil*/
+.cart{
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(400px, 100vw);
+  height: 100dvh;
+  background-color:#ffffff;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  transform: translateX(100%);
+  transition: transform 0.4s ease;
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+.cart.active{
+  transform: translateX(0);
+}
+
+.cart h1{
+  color: #000000;
+  font-weight: 100;
+  margin: 0;
+  padding: 0 20px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+}
+
+.listCart{
+  padding: 20px;
+}
+
+/*acomodo de elementos de productos en carrito*/
+.listCart li{
+  display: grid;
+  grid-template-columns: 90px repeat(3, 1fr);
+  color: #000000;
+  row-gap: 10px;
+  margin-bottom: 20px;
+}
+
+.listCart li div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.listCart li img{
+  width: 90px;
+  height: 80px;
+  border-radius: 20px;
+  object-fit: cover;
+  margin-top: 10%;
+}
+
+.listCart button{
+  width: auto;
+  background-color: #000000;
+  border: none;
+  padding: 4px 8px;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+.listCart .count{
+  margin: 0 10px;
+}
+
+/*elementos de compra*/
+.cart .checkout{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+}
+
+.cart .checkout div{
+  background-color: #000000;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+.cart .checkout div:nth-child(2){
+  background-color: #000000;
+  color: #ffffff;
+}
+
+/* atributos de las imagenes en carrito */
+.list{
+  margin-top: 30px;
+}
+
+.list .item{
+  display: grid;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.list .item img{
+  width: 200px;
+  height: 180px;
+  border-radius: 30%;
+  object-fit: cover;
+}
+
+/* estado de activo para version pc*/
+.active .container-c{
+  transform: translateX(-200px);
+}
+
+/*estado de activo para version movil */
+@media (max-width: 480px){
+  .container-c{
+    width: 100%;
+    grid-template-columns: 1fr 40px;
+    padding: 0 10px;
+  }
+
+  .active .container-c{
+    transform: none;
+  }
+
+  .list .item img{
+    width: 100%;
+    height: auto;
+  }
+}
