@@ -7,7 +7,7 @@
 
 .category-image-container {
     background-color: #f6f3eb; /* El tono crema de tu diseño */
-    border-radius: 16px;
+    border-radius: 1px;
     aspect-ratio: 4 / 3;
     display: flex;
     align-items: center;
@@ -37,14 +37,17 @@
 .category-year {
     color: #b0b0b0;
     font-size: 0.85rem;
-}/* !Tarjetas de Categoría */
+}
+
+/* !Tarjetas de Categoría */
 
 
    /** <div class="product-card"> */
 /* *Sección de Productos para usar este card usa la clase product-card */
 
 .product-card {
-    background: #fff;
+    background: #ffffff83;
+    border: 1px solid #e0e0e0;
     border-radius: 14px;
     padding: 16px;
     text-align: center;
@@ -73,22 +76,31 @@
 }
 
 .product-name {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.2rem;
     font-weight: 700;
-    margin-bottom: 4px;
+    margin-bottom: 18px;
+    text-align: left;
 }
 
 .product-price {
-    font-weight: 700;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.3rem;
+    font-style: light;
+    font-weight: 300;
     color: #000;
-    margin-bottom: 6px;
+    margin-bottom: 18px;
+    text-align: left;
 }
 
+/* Descripción del producto 
 .product-description {
     font-size: 0.9rem;
     color: #666;
-    margin-bottom: 12px;
-}/* clase product-card */
+    margin-bottom: 12px; 
+    } */
 
+/* clase product-card */
 
 
 /* Contenedor de la imagen: recorta cualquier desbordamiento */
