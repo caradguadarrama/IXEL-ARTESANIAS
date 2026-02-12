@@ -19,7 +19,7 @@
 /* El cuerpo de la lista */
 .selectable-list {
     width: 100%;
-    background: #f6f3eb; 
+    background: #F8E8CF; 
     padding: 25px 15px;
     margin: 0;
     list-style: none;
@@ -50,7 +50,7 @@
     text-orientation: mixed;
     color: #f8e8cf;
     font-weight: bold;
-    font-size: 11px;
+    font-size: 12px;
     letter-spacing: 2px;
     text-transform: uppercase;
     user-select: none;

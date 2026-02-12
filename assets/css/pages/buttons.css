@@ -92,3 +92,28 @@
     /* Baja un poco al presionar */
     box-shadow: 0 3px 5px rgba(104, 53, 49, 0.3);
 }
+
+
+.button-ixel-products {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: #801008; /* El tono guinda del diseño */
+    color:#ffffff;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.button-ixel-products:hover {
+    background-color: #5a0b06;
+}
