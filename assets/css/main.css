@@ -8,6 +8,10 @@
 /* Importar componentes */
 @import url('./navbar.css');
 @import url('./footer.css');
+@import url('/assets/css/pages/buttons.css');
+@import url('/assets/css/pages/carrousel.css');
+
+
 
 /* ============================================
    ESTILOS GLOBALES
@@ -100,3 +104,4 @@ body {
     padding: var(--spacing-sm);
   }
 }
+

@@ -8,18 +8,23 @@ let activeSubcategory = null; // subcategoría activa seleccionada
 const loadMoreBtn = document.querySelector("#loadMore");
 
 
-// mock up products, borrar al conectar a la db
-// Simula datos que normalmente vendrían de una API o base de datos
-const products = [
-  { id: 1, name: "Red Shirt oli", category: "olinala", subcategory:"tortillero", price: 25, description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit" },
-  { id: 2, name: "Blue Jeans oli", category: "olinala", subcategory:"servilletero", price: 40, description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit" },
-  { id: 3, name: "Running Shoes mart", category: "martina", subcategory:"charola", price: 60, description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit" },
-  { id: 4, name: "Boots mart", category: "martina", subcategory:"nicho", price: 80, description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit" },
-  { id: 5, name: "Cap mart", category: "martina", subcategory:"caja-te", price: 15, description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit" },
-  { id: 6, name: "Watch oli", category: "olinala", subcategory:"charola", price: 120, description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit" },
-  { id: 7, name: "Jacket jag", category: "jaguares", subcategory:"servilletero", price: 90, description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit" },
-  { id: 8, name: "Sandals panal", category: "panal", subcategory:"tortillero", price: 30, description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit" },
-];
+async function loadProductsData() {
+  try {
+    const response = await fetch('../../../../productos_final.json'); // Ajusta la ruta a tu archivo
+    if (!response.ok) throw new Error("No se pudo cargar el archivo JSON");
+
+    allProducts = await response.json();
+
+    // Inicializamos la vista
+    filteredProducts = [...allProducts];
+    renderProducts(filteredProducts, visibleCount);
+
+  } catch (error) {
+    console.error("Error en el Backend/Fetch:", error);
+    container.innerHTML = `<p class="text-danger">Error al cargar productos. Intente más tarde.</p>`;
+  }
+}
+
 
 // Contenedor donde se insertan dinámicamente las cards de productos
 const container = document.querySelector("#cards");
@@ -54,19 +59,19 @@ function renderProducts(list, count) {
     // Se añade la columna al contenedor principal
     container.appendChild(col);
   });
-    // Oculta o muestra el botón "Cargar más" según si hay más productos
-    if (count >= list.length) {
+  // Oculta o muestra el botón "Cargar más" según si hay más productos
+  if (count >= list.length) {
     loadMoreBtn.style.display = "none";
-    } else {
+  } else {
     loadMoreBtn.style.display = "block";
-    }
+  }
 }
 
 
 // Aplica todos los filtros activos (categoría y subcategoría)
 // y vuelve a renderizar los productos
 function applyFilters() {
-  filteredProducts = products.filter(p => {
+  filteredProducts = allProducts.filter(p => {
     // Si no hay categoría activa, se aceptan todas
     const matchCategory =
       !activeCategory || p.category === activeCategory;
@@ -87,9 +92,7 @@ function applyFilters() {
 
 // Inicialización cuando el DOM está completamente cargado
 document.addEventListener("DOMContentLoaded", () => {
-  // Al inicio se muestran todos los productos
-  filteredProducts = [...products];
-  renderProducts(filteredProducts, visibleCount);
+  loadProductsData();
 });
 
 
@@ -97,6 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // Botón "Cargar más": muestra más productos respetando los filtros activos
 document.querySelector("#loadMore").addEventListener("click", () => {
   visibleCount += PAGE_SIZE;
+
   renderProducts(filteredProducts, visibleCount);
 });
 

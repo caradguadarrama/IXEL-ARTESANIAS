@@ -24,21 +24,22 @@ h2 {
 .selectable-list {
     font-family: 'TheFarmerTextured', serif;
     font-size: 1.5rem
-    
-    
 }
 
 .category-name {
     font-family: 'TheFarmerTextured', serif;
 }
+
 /*borde de coleccion activa*/
 .category.active {
-  outline: 2px solid #A0191E;
-  border-radius: 5%;
+    outline: 2px solid #A0191E;
+    border-radius: 5%;
 }
-/*para filtro de barra lateral*/ 
+
+/*para filtro de barra lateral*/
 .selectable-list a.active {
-  font-weight: bold;
-  text-decoration: underline;
+    font-weight: bold;
+    text-decoration: underline;
 }
+
 
