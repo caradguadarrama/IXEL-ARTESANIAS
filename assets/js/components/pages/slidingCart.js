@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             li.innerHTML = `
                 <img src="../../assets/img/products/onilala.jpeg">
                 <div>${product.name}</div>
-                <div>$${product.price}</div>
+                <div class="price">$${product.price}</div>
                 <div>
                     <button data-id="${product.id}" class="qty-minus">-</button>
                     <div class="count">${item.quantity}</div>
