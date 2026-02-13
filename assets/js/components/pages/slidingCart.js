@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             const li = document.createElement('li');
             li.innerHTML = `
-                <img src="../../assets/img/products/onilala.jpeg">
+                <img src="../../assets/img/products/onilala.png">
                 <div>${product.name}</div>
                 <div class="price">$${product.price}</div>
                 <div>
