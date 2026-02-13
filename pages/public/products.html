@@ -10,6 +10,11 @@
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="../../assets/css/main.css">
     <link rel="stylesheet" href="../../assets/css/pages/slidingCart.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+        rel="stylesheet">
     <script defer type="module" src="/assets/js/main.js"></script>
     <script defer type="module" src="/assets/js/components/pages/slidingCart.js"></script>
     <script defer type="module" src="/assets/js/components/pages/products.js"></script>
@@ -37,6 +42,9 @@
 
         <section id="catalog" class="catalog-section my-5">
             <h2 class="section-title">Catálogo</h2>
+
+            <h2 class="section-title">Colecciones</h2>
+
 
             <div class="row g-4">
                 <div class="col-6 col-md-3 category" data-category="Olinala">
@@ -89,32 +97,41 @@
             </div>
         </section>
         <!-- PESTAÑA DEL MENÚ (fuera de la lista); subcategory debe matchear con las subcategorias de los productos para poder filtrar -->
-    
-            <div class="selectable-list-container ">
-                <ul class="selectable-list ">
-                    <li><a href="#" data-subcategory="Originales">Originales</a></li>
-                    <li><a href="#" data-subcategory="Tortilleros">Tortilleros</a></li>
-                    <li><a href="#" data-subcategory="Cajas">Cajas</a></li>
-                    <li><a href="#" data-subcategory="Servilleteros">Servilleteros</a></li>
-                    <li><a href="#" data-subcategory="Salseras">Salseras</a></li>
-                    <li><a href="#" data-subcategory="Charolas">Charolas de servicio</a></li>
-                    <li><a href="#" data-subcategory="Tabla">Tabla</a></li>
-                    <li><a href="#" data-subcategory="Molcajetes">Molcajetes</a></li>
-                    <li><a href="#" data-subcategory="Vajilla">Vajillas</a></li>
-                    <li><a href="#" data-subcategory="Mezcaleros/Tequileros">Mezcaleros/Tequileros</a></li>
-                </ul>
-            </div>
-        
 
-        <section id="products" class="products-section my-5">
+        <section id="products" class="products-section my-5 ">
 
-            <h2 class="section-titlee">Productos</h2>
+            <h2 class="section-title">Productos</h2>
 
+
+            <!--=========INSERTA PRODUCS.JS================-->
             <div class="row g-3" id="cards">
+
 
             </div>
 
             <button id="loadMore" class="button-ixel-cafe w-50 mx-auto mt-4 ">Cargar más</button>
+            <!--=========INSERTA PRODUCS.JS================-->
+
+            <!-- PESTAÑA DEL MENÚ (fuera de la lista); subcategory debe matchear con las subcategorias de los productos para poder filtrar -->
+            <div class="right-list">
+                <div class="selectable-list-container ">
+                    <ul class="selectable-list ">
+                        <li><a href="#" data-subcategory="Originales">Originales</a></li>
+                        <li><a href="#" data-subcategory="Tortilleros">Tortilleros</a></li>
+                        <li><a href="#" data-subcategory="Cajas">Cajas</a></li>
+                        <li><a href="#" data-subcategory="Servilleteros">Servilleteros</a></li>
+                        <li><a href="#" data-subcategory="Salseras">Salseras</a></li>
+                        <li><a href="#" data-subcategory="Charolas">Charolas de servicio</a></li>
+                        <li><a href="#" data-subcategory="Tabla">Tabla</a></li>
+                        <li><a href="#" data-subcategory="Molcajetes">Molcajetes</a></li>
+                        <li><a href="#" data-subcategory="Vajilla">Vajillas</a></li>
+                        <li><a href="#" data-subcategory="Mezcaleros/Tequileros">Mezcaleros/Tequileros</a></li>
+                    </ul>
+                    <div class="list-tab">
+                        <span>Secciones</span>
+                    </div>
+                </div>
+            </div>
 
             <br>
         </section>
