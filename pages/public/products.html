@@ -9,10 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="../../assets/css/main.css">
-    <link rel="stylesheet" href="../../assets/css/pages/products.css">
-    <link rel="stylesheet" href="../../assets/css/pages/listaNav.css">
-    <link rel="stylesheet" href="../../assets/css/pages/cart.css">
-    <link rel="stylesheet" href="../../assets/css/pages/slidingCart.css">  
+    <link rel="stylesheet" href="../../assets/css/pages/slidingCart.css">
     <script defer type="module" src="/assets/js/main.js"></script>
     <script defer type="module" src="/assets/js/components/pages/slidingCart.js"></script>
     <script defer type="module" src="/assets/js/components/pages/products.js"></script>
@@ -20,10 +17,13 @@
 
 <body>
 
+    <header>
+        <div id="navbar-container">titulo</div>
+    </header>
 
     <div id="navbar-container">titulo</div>
 
-     <!-- Carrito de compras -->
+    <!-- Carrito de compras -->
     <div class="cart">
         <h1>Carrito</h1>
         <ul class="listCart"></ul>
@@ -37,17 +37,17 @@
 
 
         <section id="catalog" class="catalog-section my-5">
-            <h2 class="section-title">Catalog</h2>
+            <h2 class="section-title">Catálogo</h2>
 
             <div class="row g-4">
                 <div class="col-6 col-md-3 category" data-category="Olinala">
                     <div class="category-card">
                         <div class="category-image-container">
                             <img src="../../assets/img/products/onilala.jpeg" alt="Olinalá">
-                        </div>
-                        <div class="category-footer">
-                            <span class="category-name">Olinalá</span>
-                            <span class="category-year">2026</span>
+                            <div class="category-overlay">
+                                <span class="category-name">Olinalá</span>
+                                <span class="category-year">2026</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -56,10 +56,10 @@
                     <div class="category-card">
                         <div class="category-image-container">
                             <img class="img-fluid" src="../../assets/img/products/martina.jpeg" alt="Martina">
-                        </div>
-                        <div class="category-footer">
-                            <span class="category-name">Martina</span>
-                            <span class="category-year">2026</span>
+                            <div class="category-overlay">
+                                <span class="category-name">Martina</span>
+                                <span class="category-year">2026</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -68,10 +68,10 @@
                     <div class="category-card">
                         <div class="category-image-container">
                             <img src="../../assets/img/products/jaguares.jpeg" alt="Jaguares">
-                        </div>
-                        <div class="category-footer">
-                            <span class="category-name">Jaguares</span>
-                            <span class="category-year">2026</span>
+                            <div class="category-overlay">
+                                <span class="category-name">Jaguares</span>
+                                <span class="category-year">2026</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -80,10 +80,10 @@
                     <div class="category-card">
                         <div class="category-image-container">
                             <img src="../../assets/img/products/pruba.jpeg" alt="Panal">
-                        </div>
-                        <div class="category-footer">
-                            <span class="category-name">Panal</span>
-                            <span class="category-year">2026</span>
+                            <div class="category-overlay">
+                                <span class="category-name">Panal</span>
+                                <span class="category-year">2026</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -92,9 +92,11 @@
 
 
         <section id="products" class="products-section my-5">
-            <h2 class="section-title">Products</h2>
+
+            <h2 class="section-titlee">Productos</h2>
+
             <div class="row g-3" id="cards">
-                
+
             </div>
             <!-- PESTAÑA DEL MENÚ (fuera de la lista); subcategory debe matchear con las subcategorias de los productos para poder filtrar -->
             <div class="right-list">
@@ -111,7 +113,8 @@
                     <li><a href="#" data-subcategory="Mezcaleros/Tequileros">Mezcaleros/Tequileros</a></li>
                 </ul>
             </div>
-            <button id="loadMore" class="btn btn-outline-dark mt-4 boton-ixel-rojo">Cargar más</button>
+            <button id="loadMore" class="button-ixel-cafe w-50 mx-auto mt-4 ">Cargar más</button>
+
             <br>
         </section>
 

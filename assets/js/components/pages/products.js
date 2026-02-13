@@ -50,8 +50,8 @@ function renderProducts(list, count) {
         <h5 class="product-name">${product.name}</h5>
         <p class="product-price">$${product.price}</p>
         <p class="product-description">${product.description}</p>
-        <button class="btn btn-dark btn-sm w-100 addCart" data-id="${product.id}">
-          Ver detalle
+        <button class="btn btn-dark btn-sm w-100 addCart" data-id=${product.id}>
+          agregar a carrito
         </button>
       </div>
     `;

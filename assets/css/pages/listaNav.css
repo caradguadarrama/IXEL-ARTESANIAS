@@ -1,80 +1,80 @@
-/* EL CONTENEDOR PADRE */
-/* Asegúrate de que este contenedor esté dentro de tu <main> o sección de productos */
-.right-list {
-    position: relative; /* Para que la lista se mueva respecto a este div */
-    z-index: 10; 
+/* Contenedor principal: Lo posicionamos fuera del borde izquierdo */
+.selectable-list-container {
+    position: fixed;
+    top: 150px;
+    /* AJUSTE: Ocultamos la mayoría del ancho (260px) pero dejamos un margen visual */
+    left: -245px; 
+    width: 260px;
+    display: flex;
+    align-items: flex-start;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efecto rebote */
+    z-index: 9999;
 }
 
-/* LA LISTA LATERAL */
-.selectable-list {
-    position: fixed; /* Mantenemos fixed para que te siga al hacer scroll */
-    top: 100px;      /* ALTURA DE TU NAVBAR (ajústalo si tu navbar mide más) */
-    bottom: 50px;    /* ESPACIO PARA EL FOOTER */
-    left: -240px;
-    width: 260px;
-    
-    /* Quitamos la altura 100vh para que no tape todo */
-    height: auto; 
-    max-height: calc(100vh - 150px); /* Restamos altura de navbar y footer */
+/* Al pasar el mouse, "sale" hacia la derecha dejando un espacio del borde */
+.selectable-list-container:hover {
+    left: 20px; /* Se separa 20px de la pared izquierda al abrirse */
+}
 
+/* El cuerpo de la lista */
+.selectable-list {
+    width: 100%;
     background: #fdf6ec; 
-    padding: 30px 20px;
+    padding: 25px 15px;
     margin: 0;
     list-style: none;
-    overflow-y: auto;
-
-    border-radius: 0 20px 20px 0;
-    border-right: 3px solid #683531;
-    box-shadow: 10px 0 30px rgba(104, 53, 49, 0.1); 
-
-    transition: left 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-    /* El Z-INDEX debe ser menor al de tu Navbar pero mayor al del contenido */
-    z-index: 999; 
+    border-radius: 12px; /* Redondeado completo para que no parezca pegada */
+    border: 2px solid #683531;
+    box-shadow: 8px 8px 25px rgba(104, 53, 49, 0.2);
 }
 
-/* APARECE AL PASAR EL MOUSE */
-.selectable-list:hover {
-    left: 0;
-}
-
-/* PESTAÑA INDICADORA */
-.selectable-list::before {
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
-    color: white;
-    font-size: 11px;
-    font-weight: bold;
+/* LA PESTAÑA: El "tirador" que siempre es visible */
+.list-tab {
+    position: absolute;
+    top: 30px; /* Un poco más abajo del inicio de la lista */
+    right: -38px; /*! distancia del lista ras de la pagina */
+    width: 38px;
+    height: 130px;
+    background: #683531;
     display: flex;
     align-items: center;
     justify-content: center;
-
-    position: absolute;
-    top: 20px; 
-    right: -30px; 
-    width: 30px; 
-    height: 100px; 
-    background: #683531; 
-    border-radius: 0 8px 8px 0;
+    border-radius: 0 10px 10px 0; /* Solo redondeado del lado exterior */
+    cursor: pointer;
+    box-shadow: 4px 0 10px rgba(0,0,0,0.15);
 }
 
-/* ESTILOS DE LINKS (Igual que el anterior para mantener estética) */
+/* Texto vertical de la pestaña */
+.list-tab span {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    color: #fdf6ec;
+    font-weight: bold;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    user-select: none;
+}
+
+/* Estilos de los links internos */
 .selectable-list li {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .selectable-list a {
     text-decoration: none;
     color: #4a2522;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 0.85rem;
+    font-weight: 700;
+    font-size: 0.9rem;
     display: block;
-    padding: 10px;
-    transition: 0.3s;
+    padding: 12px 15px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    white-space: nowrap; /* Evita que el texto se rompa cuando se está asomando */
 }
 
 .selectable-list a:hover {
     background: #683531;
     color: #fdf6ec;
-    border-radius: 8px;
+    transform: translateX(8px); /* Pequeño salto a la derecha al señalar */
 }
