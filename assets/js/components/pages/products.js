@@ -1,7 +1,7 @@
 let allProducts = [];
 let filteredProducts = [];
-let visibleCount = 4;
-const PAGE_SIZE = 4;
+let visibleCount = 6;
+const PAGE_SIZE = 6;
 
 let activeCollection = null; // cards grandes
 let activeCategory = null;   // sidebar (subcategory en HTML)
@@ -22,7 +22,7 @@ async function loadProductsData() {
 
     filteredProducts = [...allProducts];
     renderProducts(filteredProducts, visibleCount);
-    updateCategorySidebar();
+    updateCategorySidebar();    
 
   } catch (error) {
     console.error("Error al cargar productos:", error);
