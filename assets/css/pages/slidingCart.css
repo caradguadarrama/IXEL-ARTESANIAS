@@ -11,7 +11,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: antiquewhite;
+  color: #ffffff;
   position: absolute;
   font-size: 13px;
 }
@@ -29,6 +29,9 @@
   transition: transform 0.4s ease;
   z-index: 1000;
   overflow-y: auto;
+  font-family: 'Roboto', sans-serif;
+  border-bottom-left-radius: 7%;
+
 }
 
 .cart.active{
@@ -36,17 +39,19 @@
 }
 
 .cart h1{
-  color: #000000;
+  color: #a0191e;
   font-weight: 100;
   margin: 0;
   padding: 0 20px;
   height: 80px;
   display: flex;
   align-items: center;
+  font-family: 'TheFarmerTextured';
 }
 
 .listCart{
   padding: 20px;
+
 }
 
 /*acomodo de elementos de productos en carrito*/
@@ -74,7 +79,7 @@
 
 .listCart button{
   width: auto;
-  background-color: #000000;
+  background-color: #683531;
   border: none;
   padding: 4px 8px;
   cursor: pointer;
@@ -92,7 +97,7 @@
 }
 
 .cart .checkout div{
-  background-color: #000000;
+  background-color: #683531;
   height: 70px;
   display: flex;
   justify-content: center;
@@ -103,7 +108,7 @@
 }
 
 .cart .checkout div:nth-child(2){
-  background-color: #000000;
+  background-color: #683531;
   color: #ffffff;
 }
 
