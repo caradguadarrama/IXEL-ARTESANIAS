@@ -30,9 +30,8 @@
   --color-white: #ffffff;
 
   /* Tipografía */
-  --font-primary: 'Nunito', sans-serif;
-  --font-secondary: 'Roboto', sans-serif;
-
+  --font-primary:  "DM Sans", sans-serif;
+  --font-secondary:  "DM Sans", sans-serif;
   /* Espaciado */
   --spacing-xs: 5px;
   --spacing-sm: 10px;
