@@ -19,7 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Array interno que guarda los items que se agregan al carrito
     let listCarts = [];
-
     // Evento para abrir el carrito
     openShopping.addEventListener('click', (e) => {
         e.preventDefault();
