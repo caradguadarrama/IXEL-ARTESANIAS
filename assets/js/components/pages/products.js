@@ -22,7 +22,7 @@ async function loadProductsData() {
 
     filteredProducts = [...allProducts];
     renderProducts(filteredProducts, visibleCount);
-    updateCategorySidebar();    
+    updateCategorySidebar();
 
   } catch (error) {
     console.error("Error al cargar productos:", error);
@@ -171,12 +171,12 @@ document.querySelectorAll(".category").forEach(card => {
   });
 });
 
-// Sidebar categorías
+// Sidebar categorías FILTRAR CATEGORIAS DEPENDIENDO DEL CASO
 document.querySelectorAll(".selectable-list a").forEach(link => {
   link.addEventListener("click", e => {
     e.preventDefault();
 
-    const category = link.dataset.subcategory; // 🔥 FIX
+    const category = link.dataset.subcategory; //FIX
 
     if (activeCategory === category) {
       activeCategory = null;
