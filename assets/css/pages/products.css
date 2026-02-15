@@ -1,7 +1,7 @@
 body {
-    background-color: #f8e8cf;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    color: #000;
+    background-color: #ffffff;
+    font-family: "DM Sans", sans-serif;
+    color: #683531;
 }
 
 
@@ -12,6 +12,7 @@ body {
     src: url('../../../assets/fonts/TheFarmerTextured.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
+
 }
 
 h2 {
@@ -19,18 +20,24 @@ h2 {
     font-size: 3.5rem
 }
 
+.section-title {
+      font-size: 90px;
+        font-family: 'TheFarmerTextured', serif;
+        text-align: center;
+}
 .section-titlee { /*h2 de productos*/
     font-size: 90px; /* Cambia el valor al tamaño que quieras */
 }
 
-
 .selectable-list {
-    font-family: 'TheFarmerTextured', serif;
+    font-family: "DM Sans", sans-serif;
     font-size: 1.5rem
 }
 
 .category-name {
-    font-family: 'TheFarmerTextured', serif;
+    font-family: "DM Sans Black", sans-serif;
+    font-weight: 1500;
+    font-size: 30rem;
 }
 
 /*borde de coleccion activa*/
