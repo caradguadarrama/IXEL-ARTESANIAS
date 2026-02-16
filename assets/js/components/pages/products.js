@@ -45,7 +45,7 @@ function renderProducts(list, count) {
     col.innerHTML = `
       <div class="product-card">
         <div class="product-image favorite">
-          <img src="../../assets/img/products/onilala.png" alt="${product.name}">
+          <img src="${product.imagen}" alt="${product.name}">
         </div>
         <h5 class="product-name">${product.name}</h5>
         <p class="product-price">$${product.price}</p>
