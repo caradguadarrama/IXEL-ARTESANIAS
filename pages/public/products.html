@@ -9,12 +9,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="stylesheet" href="../../assets/css/pages/products.css">
+    <link rel="stylesheet" href="../../assets/css/pages/listaNav.css">
+    <link rel="stylesheet" href="../../assets/css/pages/cart.css">
     <link rel="stylesheet" href="../../assets/css/pages/slidingCart.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
-        rel="stylesheet">
     <script defer type="module" src="/assets/js/main.js"></script>
     <script defer type="module" src="/assets/js/components/pages/slidingCart.js"></script>
     <script defer type="module" src="/assets/js/components/pages/products.js"></script>
@@ -22,10 +20,8 @@
 
 <body>
 
-    <header>
-        <div id="navbar-container">titulo</div>
-    </header>
 
+    <div id="navbar-container">titulo</div>
 
     <!-- Carrito de compras -->
     <div class="cart">
@@ -41,12 +37,10 @@
 
 
         <section id="catalog" class="catalog-section my-5">
-
             <h2 class="section-title">Colecciones</h2>
 
-
             <div class="row g-4">
-                <div class="col-6 col-md-3 category" data-category="Olinala">
+                <div class="col-6 col-md-3 category" data-category="olinala">
                     <div class="category-card">
                         <div class="category-image-container">
                             <img src="../../assets/img/products/onilala.png" alt="Olinalá">
@@ -58,7 +52,7 @@
                     </div>
                 </div>
 
-                <div class="col-6 col-md-3 category" data-category="Martina">
+                <div class="col-6 col-md-3 category" data-category="martina">
                     <div class="category-card">
                         <div class="category-image-container">
                             <img class="img-fluid" src="../../assets/img/products/martina.png" alt="Martina">
@@ -70,7 +64,7 @@
                     </div>
                 </div>
 
-                <div class="col-6 col-md-3 category" data-category="Jaguares">
+                <div class="col-6 col-md-3 category" data-category="jaguares">
                     <div class="category-card">
                         <div class="category-image-container">
                             <img src="../../assets/img/products/jaguares.png" alt="Jaguares">
@@ -82,7 +76,7 @@
                     </div>
                 </div>
 
-                <div class="col-6 col-md-3 category" data-category="Panal">
+                <div class="col-6 col-md-3 category" data-category="panal">
                     <div class="category-card">
                         <div class="category-image-container">
                             <img src="../../assets/img/products/Tortillero Panal.png" alt="Panal">
@@ -95,48 +89,37 @@
                 </div>
             </div>
         </section>
-        <!-- PESTAÑA DEL MENÚ (fuera de la lista); subcategory debe matchear con las subcategorias de los productos para poder filtrar -->
-
-        <section id="products" class="products-section my-5 ">
-
-            <h2 class="section-title">Productos</h2>
 
 
-            <!--=========INSERTA PRODUCS.JS================-->
+        <section id="products" class="products-section my-5">
+            <center>
+                <h2 class="section-titlee">Productos</h2>
+            </center>
             <div class="row g-3" id="cards">
 
-
             </div>
-
-            <button id="loadMore" class="button-ixel-cafe w-50 mx-auto mt-4 ">Cargar más</button>
-            <!--=========INSERTA PRODUCS.JS================-->
-
             <!-- PESTAÑA DEL MENÚ (fuera de la lista); subcategory debe matchear con las subcategorias de los productos para poder filtrar -->
             <div class="right-list">
-                <div class="selectable-list-container ">
-                    <ul class="selectable-list ">
-                        <li><a href="#" data-subcategory="Tortilleros">Tortilleros</a></li>
-                        <li><a href="#" data-subcategory="Servilleteros">Servilleteros</a></li>
-                        <li><a href="#" data-subcategory="Salseras">Salseras</a></li>
-                        <li><a href="#" data-subcategory="Cajas">Cajas</a></li>
-                        <li><a href="#" data-subcategory="Molcajetes">Molcajetes</a></li>
-                        <li><a href="#" data-subcategory="Tablas">Tablas</a></li>
-                        <li><a href="#" data-subcategory="Charolas">Charolas de servicio</a></li>
-                        <li><a href="#" data-subcategory="Mezcaleros/Tequileros">Mezcaleros/Tequileros</a></li>
-                        <li><a href="#" data-subcategory="Originales">Originales</a></li>
-                        <li><a href="#" data-subcategory="Individuales">Individuales</a></li>
-
+                <div class="selectable-list-container">
+                    <ul class="selectable-list">
+                        <li><a href="#" data-subcategory="tortillero">Tortilleros</a></li>
+                        <li><a href="#" data-subcategory="caja">Cajas</a></li>
+                        <li><a href="#" data-subcategory="caja-te">Cajas para té</a></li>
+                        <li><a href="#" data-subcategory="caja-base">Cajas base Olinalá</a></li>
+                        <li><a href="#" data-subcategory="servilletero">Servilleteros</a></li>
+                        <li><a href="#" data-subcategory="charola">Charolas de servicio</a></li>
+                        <li><a href="#" data-subcategory="nicho">Nichos de vírgenes</a></li>
                     </ul>
+
                     <div class="list-tab">
-                        <span>Secciones</span>
+                        <span>SECCIONES</span>
                     </div>
                 </div>
             </div>
 
+            <button id="loadMore" class="btn btn-outline-dark mt-4 boton-ixel-rojo">Cargar más</button>
             <br>
         </section>
-
-
 
     </main>
     <footer>
