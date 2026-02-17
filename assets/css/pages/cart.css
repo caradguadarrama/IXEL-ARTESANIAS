@@ -1,29 +1,27 @@
 /* !class="category-card"*/
 /* !Tarjetas de Categoría usa la clase para usar este card category-card*/
 
-/* Primero defines la fuente */
+/* ============================================================
+   ESTILO ESCRITORIO (Basado en tu código original)
+   ============================================================ */
 
-
-
-
-/* Tarjeta base */
 .category-card {
     border: none;
     background: transparent;
     overflow: hidden;
     cursor: pointer;
+    transition: transform 0.3s ease;
 }
 
-/* Contenedor de imagen con posición relativa */
 .category-image-container {
     background-color: #f6f3eb;
     border-radius: 16px;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 4 / 3; /* Proporción horizontal en PC */
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    position: relative; /* Clave para el overlay */
+    position: relative;
 }
 
 .category-image-container img {
@@ -33,60 +31,107 @@
     transition: transform 0.5s ease;
 }
 
-/* El Overlay que contiene el nombre (invisible al inicio) */
 .category-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(104, 53, 49, 0.85); /* El café de tu marca con transparencia */
+    background: rgba(104, 53, 49, 0.85); 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    opacity: 0;
+    opacity: 0; /* Oculto en PC por defecto */
     transition: all 0.4s ease-in-out;
+    padding: 15px;
+    text-align: center;
 }
 
-/* Estilo del texto dentro del overlay */
 .category-name {
     color: #fdf6ec;
     font-weight: 700;
-    font-size: 2.7rem;
+    font-size: 2.5rem;
     text-transform: uppercase;
     transform: translateY(15px);
     transition: transform 0.4s ease;
+    line-height: 1.1;
 }
 
 .category-year {
     color: rgba(253, 246, 236, 0.7);
     font-size: 0.85rem;
     transform: translateY(15px);
-    transition: transform 0.4s ease 0.1s; /* Retraso sutil */
+    transition: transform 0.4s ease 0.1s;
 }
 
-/* --- ESTADO HOVER --- */
-
-/* Aparece el fondo café */
-.category-card:hover .category-overlay {
-    opacity: 1;
+/* --- HOVER SOLO PARA PC --- */
+@media (min-width: 992px) {
+    .category-card:hover .category-overlay {
+        opacity: 1;
+    }
+    .category-card:hover .category-name,
+    .category-card:hover .category-year {
+        transform: translateY(0);
+    }
+    .category-card:hover img {
+        transform: scale(1.1);
+    }
 }
 
-/* Los textos suben a su posición */
-.category-card:hover .category-name,
-.category-card:hover .category-year {
-    transform: translateY(0);
+/* ============================================================
+   MI VERSIÓN RESPONSIVA (Creativa y Rectangular)
+   ============================================================ */
+
+@media (max-width: 991px) {
+    .category-image-container {
+        /* Cambio a Proporción Rectangular Vertical (Editorial) */
+        aspect-ratio: 3 / 4; 
+        border-radius: 12px;
+    }
+
+    .category-overlay {
+        /* En móvil el overlay no es un cuadro sólido que tapa, 
+           sino un degradado elegante en la base para legibilidad */
+        opacity: 1; 
+        background: linear-gradient(to top, rgba(104, 53, 49, 0.9) 0%, transparent 60%);
+        justify-content: flex-end;
+        padding-bottom: 20px;
+    }
+
+    .category-name {
+        font-size: 1.4rem; /* Ajuste para que quepa en 2 columnas */
+        transform: translateY(0);
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .category-year {
+        font-size: 0.75rem;
+        transform: translateY(0);
+    }
+
+    /* Efecto de pulsación al tocar la tarjeta */
+    .category-card:active {
+        transform: scale(0.96);
+    }
+
+    .category-image-container img {
+        width: 80%; /* Un poco más pequeña para lucir el fondo editorial */
+        transform: translateY(-10%); /* Sube un poco la imagen para dejar aire al texto */
+    }
 }
 
-/* La imagen del producto hace un zoom suave */
-.category-card:hover img {
-    transform: scale(1.1);
-
-
+/* Ajuste fino para celulares muy pequeños */
+@media (max-width: 400px) {
+    .category-name {
+        font-size: 1.1rem;
+    }
+    .category-overlay {
+        padding-bottom: 12px;
+    }
 }
+
 /* !Tarjetas de Categoría */
-
 
    /** <div class="product-card"> */
 /* *Sección de Productos para usar este card usa la clase product-card */
