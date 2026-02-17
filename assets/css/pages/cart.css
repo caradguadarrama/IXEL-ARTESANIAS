@@ -1,9 +1,7 @@
 /* !class="category-card"*/
 /* !Tarjetas de Categoría usa la clase para usar este card category-card*/
 
-/* ============================================================
-   ESTILO ESCRITORIO (Basado en tu código original)
-   ============================================================ */
+/* Estilo escritorio*/
 
 .category-card {
     border: none;
@@ -16,7 +14,8 @@
 .category-image-container {
     background-color: #f6f3eb;
     border-radius: 16px;
-    aspect-ratio: 4 / 3; /* Proporción horizontal en PC */
+    aspect-ratio: 4 / 3;
+    /* Proporción horizontal en PC */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -37,12 +36,13 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(104, 53, 49, 0.85); 
+    background: rgba(104, 53, 49, 0.85);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    opacity: 0; /* Oculto en PC por defecto */
+    opacity: 0;
+    /* Oculto en PC por defecto */
     transition: all 0.4s ease-in-out;
     padding: 15px;
     text-align: center;
@@ -70,39 +70,40 @@
     .category-card:hover .category-overlay {
         opacity: 1;
     }
+
     .category-card:hover .category-name,
     .category-card:hover .category-year {
         transform: translateY(0);
     }
+
     .category-card:hover img {
         transform: scale(1.1);
     }
 }
 
-/* ============================================================
-   MI VERSIÓN RESPONSIVA (Creativa y Rectangular)
-   ============================================================ */
+/* 
+   MI VERSIÓN RESPONSIVA (Creativa y Rectangular) */
 
 @media (max-width: 991px) {
     .category-image-container {
         /* Cambio a Proporción Rectangular Vertical (Editorial) */
-        aspect-ratio: 3 / 4; 
+        aspect-ratio: 3 / 4;
         border-radius: 12px;
     }
 
     .category-overlay {
-        /* En móvil el overlay no es un cuadro sólido que tapa, 
-           sino un degradado elegante en la base para legibilidad */
-        opacity: 1; 
+        /* En móvil el overlay no es un cuadro sólido que tapa,  sino un degradado elegante en la base para legibilidad */
+        opacity: 1;
         background: linear-gradient(to top, rgba(104, 53, 49, 0.9) 0%, transparent 60%);
         justify-content: flex-end;
         padding-bottom: 20px;
     }
 
     .category-name {
-        font-size: 1.4rem; /* Ajuste para que quepa en 2 columnas */
+        font-size: 1.4rem;
+        /* Ajuste para que quepa en 2 columnas */
         transform: translateY(0);
-        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     }
 
     .category-year {
@@ -116,8 +117,10 @@
     }
 
     .category-image-container img {
-        width: 80%; /* Un poco más pequeña para lucir el fondo editorial */
-        transform: translateY(-10%); /* Sube un poco la imagen para dejar aire al texto */
+        width: 80%;
+        /* Un poco más pequeña para lucir el fondo */
+        transform: translateY(-10%);
+        /* Sube un poco la imagen para dejar aire al texto */
     }
 }
 
@@ -126,6 +129,7 @@
     .category-name {
         font-size: 1.1rem;
     }
+
     .category-overlay {
         padding-bottom: 12px;
     }
@@ -133,7 +137,7 @@
 
 /* !Tarjetas de Categoría */
 
-   /** <div class="product-card"> */
+/** <div class="product-card"> */
 /* *Sección de Productos para usar este card usa la clase product-card */
 
 .product-card {
@@ -144,13 +148,13 @@
     padding: 16px;
     text-align: center;
     height: 100%;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .product-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
 }
 
 .product-image {
@@ -198,33 +202,30 @@
 /* Contenedor de la imagen: recorta cualquier desbordamiento */
 .product-image {
     overflow: hidden;
-    border-radius: 8px;  /* opcional, bordes redondeados */
+    border-radius: 8px;
+    /* opcional, bordes redondeados */
 }
 
- /* imagenes grandes con zoom */
- /* Imagen: transición suave y zoom al hover */
+/* imagenes grandes con zoom */
+/* Imagen: transición suave y zoom al hover */
 .product-image img {
-    
+
     width: 100%;
     height: auto;
     transition: transform 0.4s ease;
     display: block;
-} 
+}
 
 /* Zoom al pasar el mouse */
 .product-image:hover img {
-    transform: scale(1.2);  /* aumenta un 20% */
-}  
+    transform: scale(1.2);
+    /* aumenta un 20% */
+}
 
 /* Opcional: sombra al hover para resaltar */
 .product-card:hover {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     transition: box-shadow 0.4s ease;
-} 
+}
 
 /* *aqui termina el card  product*/
-
-
-
-
-
