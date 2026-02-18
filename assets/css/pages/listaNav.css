@@ -1,19 +1,25 @@
 /* Contenedor principal: Lo posicionamos fuera del borde izquierdo */
 .selectable-list-container {
     position: fixed;
-    top: 150px;
+    top: var(--navbar-height);
+    bottom: 0;
+    
     /* AJUSTE: Ocultamos la mayoría del ancho (260px) pero dejamos un margen visual */
     left: -245px; 
-    width: 260px;
+    width: 290px;
     display: flex;
     align-items: flex-start;
     transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efecto rebote */
-    z-index: 9999;
+    z-index: 900;
+    height: calc(100vh - var(--navbar-height));
+   
 }
 
 /* Al pasar el mouse, "sale" hacia la derecha dejando un espacio del borde */
 .selectable-list-container:hover {
     left: 0px; /* Se separa 20px de la pared izquierda al abrirse */
+    width: 30vh;
+
 }
 
 /* El cuerpo de la lista */
@@ -34,8 +40,8 @@
     top: 30px; /* Un poco más abajo del inicio de la lista */
     right: -38px; /*! distancia del lista ras de la pagina */
     width: 38px;
-    height: 130px;
-    background: #683531dc;
+    height: 280px;
+    background: #a0191e;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -74,7 +80,7 @@
 }
 
 .selectable-list a:hover {
-    background: #683531;
+    background: #992025;
     color: #fdf6ec;
     transform: translateX(8px); /* Pequeño salto a la derecha al señalar */
 }
