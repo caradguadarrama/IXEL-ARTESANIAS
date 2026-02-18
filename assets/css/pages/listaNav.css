@@ -1,9 +1,8 @@
 /* Contenedor principal: Lo posicionamos fuera del borde izquierdo */
 .selectable-list-container {
     position: fixed;
-    top: var(--navbar-height);
+    top: calc(var(--navbar-height) + 20px);
     bottom: 0;
-    
     /* AJUSTE: Ocultamos la mayoría del ancho (260px) pero dejamos un margen visual */
     left: -245px; 
     width: 290px;
@@ -11,9 +10,17 @@
     align-items: flex-start;
     transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efecto rebote */
     z-index: 900;
-    height: calc(100vh - var(--navbar-height));
+    height: calc(100vh - var(--navbar-height)-20px);
+
    
 }
+
+.navbar--scrolled ~ .selectable-list-container{
+    top: 70px;
+    height: calc(100vh - 70px);
+}
+
+
 
 /* Al pasar el mouse, "sale" hacia la derecha dejando un espacio del borde */
 .selectable-list-container:hover {
@@ -56,8 +63,8 @@
     text-orientation: mixed;
     color: #f8e8cf;
     font-weight: bold;
-    font-size: 12px;
-    letter-spacing: 2px;
+    font-size: 25px;
+    letter-spacing: 4px;
     text-transform: uppercase;
     user-select: none;
 }
@@ -71,7 +78,7 @@
     text-decoration: none;
     color: #4a2522;
     font-weight: 700;
-    font-size: 0.9rem;
+    font-size: 1.3rem;/*Tamaño listado*/
     display: block;
     padding: 12px 15px;
     border-radius: 8px;
