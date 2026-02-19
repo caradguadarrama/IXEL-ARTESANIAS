@@ -1,5 +1,3 @@
-
-
 /* Contenedor Principal */
 .selectable-list-container {
     width: 100%;
@@ -7,40 +5,41 @@
     position: relative;
     display: flex;
     justify-content: center;
-    overflow: hidden;
+    align-items: center;
+    background: #ffffff; /* Color de fondo */
 }
 
-/* Efecto de desvanecimiento y Flechas (Contenido dinámico en móvil) */
-.selectable-list-container::before,
-.selectable-list-container::after {
-    content: ''; 
+/* --- FLECHAS CORREGIDAS --- */
+.nav-arrow {
     position: absolute;
-    top: 0;
-    width: 60px;
-    height: 100%;
-    z-index: 5;
-    pointer-events: none;
-    transition: opacity 0.3s;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 45px;
+    height: 45px;
+    border: none;
+    background: #ffffff; /* Fondo sólido para que no se pierdan */
+    color: #A0191E;      /* Tu Rojo */
+    font-size: 24px;     /* Tamaño grande */
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 999;        /* Máxima prioridad */
     display: flex;
     align-items: center;
-    color: #A0191E; /* Color de las flechas */
-    font-size: 1.2rem;
+    justify-content: center;
+    border-radius: 50%;  /* Forma circular sutil */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Sombra para que "salten" a la vista */
+    transition: all 0.3s ease;
 }
 
-.selectable-list-container::before {
-    left: 0;
-    background: linear-gradient(to right, #ffffff, transparent); /* Ajusta al color de fondo */
-    padding-left: 10px;
+.left-arrow { left: 10px; }
+.right-arrow { right: 10px; }
+
+.nav-arrow:hover {
+    background: #F9E8CF; /* Tu crema al pasar el mouse */
+    color: #683531;
 }
 
-.selectable-list-container::after {
-    right: 0;
-    background: linear-gradient(to left, #ffffff, transparent);
-    justify-content: flex-end;
-    padding-right: 10px;
-}
-
-/* La Lista Flexible y centrada */
+/* La Lista */
 .selectable-list {
     display: flex;
     list-style: none;
@@ -50,23 +49,13 @@
     overflow-x: auto;
     scrollbar-width: none;
     scroll-behavior: smooth;
-    justify-content: flex-start; 
-    width: auto;
-    max-width: 100%;
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
 }
 
-/* Oculta scroll en navegador */
-.selectable-list::-webkit-scrollbar {
-    display: none;
-}
+.selectable-list::-webkit-scrollbar { display: none; }
 
-/* Items de la Lista */
-.selectable-list li {
-    flex: 0 0 auto;
-    position: relative;
-}
-
-/* Enlaces: Estética Editorial */
+/* Enlaces (Tu estilo original) */
 .selectable-list a {
     text-decoration: none;
     color: #683531;
@@ -75,109 +64,14 @@
     text-transform: uppercase;
     letter-spacing: 3px;
     padding: 12px 0;
-    position: relative;
-    display: inline-block;
-    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-    opacity: 0.8;
+    white-space: nowrap; /* Evita que el texto se rompa */
 }
 
-/* Animación de de subrrallado */
-.selectable-list a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 0;
-    height: 2px;
-    background-color: #A0191E;
-    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-    transform: translateX(-50%);
-}
-
-.selectable-list a:hover, .selectable-list a.active {
-    color: #A0191E;
-    opacity: 1;
-}
-
-.selectable-list a:hover::after, .selectable-list a.active::after {
-    width: 100%;
-}
-
-/* Animación de Entrada */
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.selectable-list li {
-    animation: fadeInUp 0.8s ease forwards;
-}
-
-/* Delay de cascada */
-.selectable-list li:nth-child(1) { animation-delay: 0.1s; }
-.selectable-list li:nth-child(2) { animation-delay: 0.2s; }
-.selectable-list li:nth-child(3) { animation-delay: 0.3s; }
-.selectable-list li:nth-child(n+4) { animation-delay: 0.4s; }
-
-/*Dots Experimentales */
-.scroll-dots-container {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-top: -15px;
-    margin-bottom: 40px;
-}
-
-.dot {
-    width: 6px;
-    height: 6px;
-    background-color: #F9E8CF;
-    border: 1px solid #683531;
-    border-radius: 50%;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.dot.active {
-    background-color: #A0191E;
-    border-color: #A0191E;
-    transform: scale(1.5);
-    box-shadow: 0 0 10px rgba(160, 25, 30, 0.3);
-}
-
-/*!AJUSTES RESPONSIVOS (Móvil) */
-
+/* RESPONSIVO */
 @media (max-width: 1023px) {
-    /* Activar flechas visuales en los degradados */
-    .selectable-list-container::before { content: '❮'; }
-    .selectable-list-container::after { content: '❯'; }
-
     .selectable-list {
-        gap: 25px; /* Reducimos espacio para que quepa más texto */
-        padding: 20px 40px;
-        scroll-snap-type: x mandatory; /* Efecto imán */
-    }
-
-    .selectable-list li {
-        scroll-snap-align: center;
-    }
-
-    .selectable-list a {
-        font-size: 0.85rem;
-        letter-spacing: 2px;
+        gap: 25px;
+        padding: 20px 50px;
     }
 }
 
-/* Pantallas grandes Centrado total y ocultar ayudas táctiles */
-@media (min-width: 1024px) {
-    .selectable-list {
-        justify-content: center;
-    }
-    .scroll-dots-container {
-        display: none; 
-    }
-    /* Ocultar flechas si no hay desbordamiento */
-    .selectable-list-container::before,
-    .selectable-list-container::after {
-        display: none;
-    }
-}
