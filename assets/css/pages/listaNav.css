@@ -1,15 +1,19 @@
-/* Contenedor Principal */
+/* =============================================================
+   BARRA DE NAVEGACIÓN ARTESANAL - VERSIÓN FINAL CENTRADA
+   ============================================================= */
+
+/* 1. Contenedor Principal */
 .selectable-list-container {
     width: 100%;
     margin: 40px 0 60px 0;
     position: relative;
     display: flex;
-    justify-content: center;
+    justify-content: center; /* Centra el bloque de la lista en la pantalla */
     align-items: center;
-    background: #ffffff; /* Color de fondo */
+    background: #ffffff;    /* Color de fondo */
 }
 
-/* --- FLECHAS CORREGIDAS --- */
+/* 2. Flechas de Navegación */
 .nav-arrow {
     position: absolute;
     top: 50%;
@@ -17,17 +21,17 @@
     width: 45px;
     height: 45px;
     border: none;
-    background: #ffffff; /* Fondo sólido para que no se pierdan */
-    color: #A0191E;      /* Tu Rojo */
-    font-size: 24px;     /* Tamaño grande */
+    background: #ffffff;    /* Fondo sólido */
+    color: #A0191E;         /* Rojo Artesanal */
+    font-size: 24px;
     font-weight: bold;
     cursor: pointer;
-    z-index: 999;        /* Máxima prioridad */
+    z-index: 999;           /* Siempre por encima */
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;  /* Forma circular sutil */
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Sombra para que "salten" a la vista */
+    border-radius: 50%;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     transition: all 0.3s ease;
 }
 
@@ -35,27 +39,41 @@
 .right-arrow { right: 10px; }
 
 .nav-arrow:hover {
-    background: #F9E8CF; /* Tu crema al pasar el mouse */
-    color: #683531;
+    background: #F9E8CF;    /* Color Crema */
+    color: #683531;         /* Color Marrón */
+    transform: translateY(-50%) scale(1.1);
 }
 
-/* La Lista */
+/* 3. La Lista (Ajuste de Centrado Dinámico) */
 .selectable-list {
     display: flex;
     list-style: none;
-    margin: 0;
+    margin: 0 auto;
     padding: 20px 60px;
     gap: 40px;
     overflow-x: auto;
-    scrollbar-width: none;
+    scrollbar-width: none;  /* Oculta scroll en Firefox */
     scroll-behavior: smooth;
     width: 100%;
-    -webkit-overflow-scrolling: touch;
+    -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
+
+    /* SOLUCIÓN AL CENTRADO: 
+       'safe center' centra si cabe, y permite scroll si no cabe. */
+    justify-content: safe center; 
 }
 
-.selectable-list::-webkit-scrollbar { display: none; }
+/* Oculta scroll en Chrome/Safari */
+.selectable-list::-webkit-scrollbar {
+    display: none;
+}
 
-/* Enlaces (Tu estilo original) */
+/* 4. Items de la Lista */
+.selectable-list li {
+    flex: 0 0 auto; /* Evita que el texto se comprima */
+    position: relative;
+}
+
+/* 5. Enlaces (Estilo Editorial) */
 .selectable-list a {
     text-decoration: none;
     color: #683531;
@@ -64,14 +82,49 @@
     text-transform: uppercase;
     letter-spacing: 3px;
     padding: 12px 0;
-    white-space: nowrap; /* Evita que el texto se rompa */
+    white-space: nowrap; /* Mantiene el texto en una sola línea */
+    position: relative;
+    display: inline-block;
+    transition: all 0.4s ease;
+    opacity: 0.8;
 }
 
-/* RESPONSIVO */
+/* 6. Animación de Subrayado Centrada */
+.selectable-list a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: #A0191E;
+    transition: all 0.4s ease;
+    transform: translateX(-50%);
+}
+
+.selectable-list a:hover, 
+.selectable-list a.active {
+    color: #A0191E;
+    opacity: 1;
+}
+
+.selectable-list a:hover::after, 
+.selectable-list a.active::after {
+    width: 100%;
+}
+
+/* 7. Ajustes Responsivos (Móvil) */
 @media (max-width: 1023px) {
     .selectable-list {
         gap: 25px;
         padding: 20px 50px;
+        /* En móviles pequeños aseguramos que el centrado no bloquee el inicio */
+        justify-content: safe center;
+    }
+
+    .nav-arrow {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
     }
 }
-

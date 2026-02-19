@@ -214,5 +214,10 @@ document.addEventListener('DOMContentLoaded', () => {
         btnLeft.onclick = () => {
             list.scrollBy({ left: -250, behavior: 'smooth' });
         };
+
+
+        
     }
 });
+
+
