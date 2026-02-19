@@ -1,93 +1,183 @@
-/* Contenedor principal: Lo posicionamos fuera del borde izquierdo */
+
+
+/* Contenedor Principal */
 .selectable-list-container {
-    position: fixed;
-    top: calc(var(--navbar-height) + 20px);
-    bottom: 0;
-    /* AJUSTE: Ocultamos la mayoría del ancho (260px) pero dejamos un margen visual */
-    left: -245px; 
-    width: 290px;
-    display: flex;
-    align-items: flex-start;
-    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efecto rebote */
-    z-index: 900;
-    height: calc(100vh - var(--navbar-height)-20px);
-
-   
-}
-
-.navbar--scrolled ~ .selectable-list-container{
-    top: 70px;
-    height: calc(100vh - 70px);
-}
-
-
-
-/* Al pasar el mouse, "sale" hacia la derecha dejando un espacio del borde */
-.selectable-list-container:hover {
-    left: 0px; /* Se separa 20px de la pared izquierda al abrirse */
-    width: 30vh;
-
-}
-
-/* El cuerpo de la lista */
-.selectable-list {
     width: 100%;
-    background: #F8E8CF; 
-    padding: 25px 15px;
-    margin: 0;
-    list-style: none;
-    border-radius: 12px; /* Redondeado completo para que no parezca pegada */
-    border: .5px solid #68353141;
-    box-shadow: 8px 8px 25px rgba(104, 53, 49, 0.089);
+    margin: 40px 0 60px 0;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
 }
 
-/* LA PESTAÑA: El "tirador" que siempre es visible */
-.list-tab {
+/* Efecto de desvanecimiento y Flechas (Contenido dinámico en móvil) */
+.selectable-list-container::before,
+.selectable-list-container::after {
+    content: ''; 
     position: absolute;
-    top: 30px; /* Un poco más abajo del inicio de la lista */
-    right: -38px; /*! distancia del lista ras de la pagina */
-    width: 38px;
-    height: 280px;
-    background: #a0191e;
+    top: 0;
+    width: 60px;
+    height: 100%;
+    z-index: 5;
+    pointer-events: none;
+    transition: opacity 0.3s;
     display: flex;
     align-items: center;
-    justify-content: center;
-    border-radius: 0 10px 10px 0; /* Solo redondeado del lado exterior */
-    cursor: pointer;
-    box-shadow: 4px 0 10px rgba(0,0,0,0.15);
+    color: #A0191E; /* Color de las flechas */
+    font-size: 1.2rem;
 }
 
-/* Texto vertical de la pestaña */
-.list-tab span {
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
-    color: #f8e8cf;
-    font-weight: bold;
-    font-size: 25px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    user-select: none;
+.selectable-list-container::before {
+    left: 0;
+    background: linear-gradient(to right, #ffffff, transparent); /* Ajusta al color de fondo */
+    padding-left: 10px;
 }
 
-/* Estilos de los links internos */
+.selectable-list-container::after {
+    right: 0;
+    background: linear-gradient(to left, #ffffff, transparent);
+    justify-content: flex-end;
+    padding-right: 10px;
+}
+
+/* La Lista Flexible y centrada */
+.selectable-list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 20px 60px;
+    gap: 40px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+    justify-content: flex-start; 
+    width: auto;
+    max-width: 100%;
+}
+
+/* Oculta scroll en navegador */
+.selectable-list::-webkit-scrollbar {
+    display: none;
+}
+
+/* Items de la Lista */
 .selectable-list li {
-    margin-bottom: 5px;
+    flex: 0 0 auto;
+    position: relative;
 }
 
+/* Enlaces: Estética Editorial */
 .selectable-list a {
     text-decoration: none;
-    color: #4a2522;
+    color: #683531;
+    font-size: 0.95rem;
     font-weight: 700;
-    font-size: 1.3rem;/*Tamaño listado*/
-    display: block;
-    padding: 12px 15px;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    white-space: nowrap; /* Evita que el texto se rompa cuando se está asomando */
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    padding: 12px 0;
+    position: relative;
+    display: inline-block;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    opacity: 0.8;
 }
 
-.selectable-list a:hover {
-    background: #992025;
-    color: #fdf6ec;
-    transform: translateX(8px); /* Pequeño salto a la derecha al señalar */
+/* Animación de de subrrallado */
+.selectable-list a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: #A0191E;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    transform: translateX(-50%);
+}
+
+.selectable-list a:hover, .selectable-list a.active {
+    color: #A0191E;
+    opacity: 1;
+}
+
+.selectable-list a:hover::after, .selectable-list a.active::after {
+    width: 100%;
+}
+
+/* Animación de Entrada */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.selectable-list li {
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+/* Delay de cascada */
+.selectable-list li:nth-child(1) { animation-delay: 0.1s; }
+.selectable-list li:nth-child(2) { animation-delay: 0.2s; }
+.selectable-list li:nth-child(3) { animation-delay: 0.3s; }
+.selectable-list li:nth-child(n+4) { animation-delay: 0.4s; }
+
+/*Dots Experimentales */
+.scroll-dots-container {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: -15px;
+    margin-bottom: 40px;
+}
+
+.dot {
+    width: 6px;
+    height: 6px;
+    background-color: #F9E8CF;
+    border: 1px solid #683531;
+    border-radius: 50%;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.dot.active {
+    background-color: #A0191E;
+    border-color: #A0191E;
+    transform: scale(1.5);
+    box-shadow: 0 0 10px rgba(160, 25, 30, 0.3);
+}
+
+/*!AJUSTES RESPONSIVOS (Móvil) */
+
+@media (max-width: 1023px) {
+    /* Activar flechas visuales en los degradados */
+    .selectable-list-container::before { content: '❮'; }
+    .selectable-list-container::after { content: '❯'; }
+
+    .selectable-list {
+        gap: 25px; /* Reducimos espacio para que quepa más texto */
+        padding: 20px 40px;
+        scroll-snap-type: x mandatory; /* Efecto imán */
+    }
+
+    .selectable-list li {
+        scroll-snap-align: center;
+    }
+
+    .selectable-list a {
+        font-size: 0.85rem;
+        letter-spacing: 2px;
+    }
+}
+
+/* Pantallas grandes Centrado total y ocultar ayudas táctiles */
+@media (min-width: 1024px) {
+    .selectable-list {
+        justify-content: center;
+    }
+    .scroll-dots-container {
+        display: none; 
+    }
+    /* Ocultar flechas si no hay desbordamiento */
+    .selectable-list-container::before,
+    .selectable-list-container::after {
+        display: none;
+    }
 }
