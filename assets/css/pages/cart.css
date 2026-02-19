@@ -58,12 +58,7 @@
     line-height: 1.1;
 }
 
-.category-year {
-    color: rgba(253, 246, 236, 0.7);
-    font-size: 0.85rem;
-    transform: translateY(15px);
-    transition: transform 0.4s ease 0.1s;
-}
+
 
 /* --- HOVER SOLO PARA PC --- */
 @media (min-width: 992px) {
@@ -106,10 +101,7 @@
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     }
 
-    .category-year {
-        font-size: 0.75rem;
-        transform: translateY(0);
-    }
+ 
 
     /* Efecto de pulsación al tocar la tarjeta */
     .category-card:active {

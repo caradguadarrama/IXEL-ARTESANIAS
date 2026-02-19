@@ -46,7 +46,6 @@
                             <img src="../../assets/img/products/onilala.png" alt="Olinalá">
                             <div class="category-overlay">
                                 <span class="category-name">Olinalá</span>
-                                <span class="category-year">2026</span>
                             </div>
                         </div>
                     </div>
@@ -58,7 +57,6 @@
                             <img class="img-fluid" src="../../assets/img/products/martina.png" alt="Martina">
                             <div class="category-overlay">
                                 <span class="category-name">Martina</span>
-                                <span class="category-year">2026</span>
                             </div>
                         </div>
                     </div>
@@ -70,7 +68,6 @@
                             <img src="../../assets/img/products/jaguares.png" alt="Jaguares">
                             <div class="category-overlay">
                                 <span class="category-name">Jaguares</span>
-                                <span class="category-year">2026</span>
                             </div>
                         </div>
                     </div>
@@ -79,10 +76,9 @@
                 <div class="col-6 col-md-3 category" data-category="Panal">
                     <div class="category-card">
                         <div class="category-image-container">
-                            <img src="../../assets/img/products/Tortillero Panal.png" alt="Panal">
+                            <img src="../../assets/img/products/panalbueno.jpeg" alt="Panal">
                             <div class="category-overlay">
                                 <span class="category-name">Panal</span>
-                                <span class="category-year">2026</span>
                             </div>
                         </div>
                     </div>
@@ -92,15 +88,12 @@
 
 
         <section id="products" class="products-section my-5">
-                <h2 class="section-titlee text-center">Productos</h2>
-            <div class="row g-3" id="cards">
+            <h2 class="section-titlee text-center">Productos</h2>
+            <div class="selectable-list-container">
+                <button class="nav-arrow left-arrow" id="prevBtn" type="button">❮</button>
 
-            </div>
-            <!-- PESTAÑA DEL MENÚ (fuera de la lista); subcategory debe matchear con las subcategorias de los productos para poder filtrar -->
-            <div >
-                <div class="selectable-list-container">
-                    <ul class="selectable-list">
-                    <li><a href="#" data-subcategory="Originales">Originales</a></li>
+                <ul class="selectable-list" id="subCategoryList">
+                    <li><a href="#" class="active" data-subcategory="Originales">Originales</a></li>
                     <li><a href="#" data-subcategory="Tortilleros">Tortilleros</a></li>
                     <li><a href="#" data-subcategory="Cajas">Cajas</a></li>
                     <li><a href="#" data-subcategory="Servilleteros">Servilleteros</a></li>
@@ -110,11 +103,11 @@
                     <li><a href="#" data-subcategory="Molcajetes">Molcajetes</a></li>
                     <li><a href="#" data-subcategory="Vajilla">Vajillas</a></li>
                     <li><a href="#" data-subcategory="Mezcaleros/Tequileros">Mezcaleros/Tequileros</a></li>
-                    </ul>
-                    <div class="list-tab">
-                        <span>Secciones</span>
-                    </div>
-                </div>
+                </ul>
+
+                <button class="nav-arrow right-arrow" id="nextBtn" type="button">❯</button>
+            </div>
+            <div class="row g-3" id="cards">
             </div>
 
             <button id="loadMore" class="btn btn-outline-dark mt-4 boton-ixel-rojo">Cargar más</button>
