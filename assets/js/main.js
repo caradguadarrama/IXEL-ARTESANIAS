@@ -65,25 +65,3 @@ window.addEventListener('storage', (event) => {
   }
 });
 
-//LANDING PAGE
-const hero = document.querySelector('.hero');
-const button = document.querySelector('.btn-ver-mas');
-
-window.addEventListener('scroll', () => {
-    const heroRect = hero.getBoundingClientRect();
-    const heroHeight = hero.offsetHeight;
-
-    // If hero is in viewport
-    if (heroRect.top <= 0 && heroRect.bottom >= 0) {
-
-        // how much we scrolled inside hero
-        const scrollInsideHero = Math.abs(heroRect.top);
-
-        // limit movement so it stops before hero ends
-        const maxMove = heroHeight * 0.4; 
-
-        const move = Math.min(scrollInsideHero * 0.3, maxMove);
-
-        button.style.transform = `translateY(-${move}px)`;
-    }
-});
