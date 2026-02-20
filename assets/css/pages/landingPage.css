@@ -1,0 +1,26 @@
+.hero {
+    height: 90vh;
+    background-image: url('../../img/background-pattern.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+}
+
+.hero-content {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.btn-ver-mas {
+    position: sticky;
+    top: 50vh; /* starts centered */
+    transform: translateY(-50%);
+    margin-right: clamp(16px, 5vw, 80px);
+}
+
