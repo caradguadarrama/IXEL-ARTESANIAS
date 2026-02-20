@@ -3,7 +3,7 @@
 // ========================================
 
 document.addEventListener('DOMContentLoaded', () => {
-    
+
     // 1. Obtener datos de localStorage
     let listCarts = JSON.parse(localStorage.getItem('cart')) || [];
     let allProducts = JSON.parse(localStorage.getItem('products')) || [];
@@ -76,24 +76,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
                         <div class="d-flex mb-4 justify-content-center" style="max-width: 300px">
-                            <button class="btn btn-outline-secondary px-3 me-2 qty-minus" 
+                           <i class="bi bi-dash"> 
+                                <button class="btn btn-outline-secondary px-3 me-2 qty-minus" 
                                     data-id="${product.id}">
-                                <i class="bi bi-dash"></i>
-                            </button>
-
+                                
+                                </button>
+                            </i>
                             <div class="form-outline">
                                 <input type="number" 
                                        min="1" 
                                        value="${item.quantity}" 
                                        class="form-control text-center qty-input" 
                                        data-id="${product.id}"
-                                       style="width: 70px;" />
+                                       style="width: 70px;" readonly />
                             </div>
-
-                            <button class="btn btn-outline-secondary px-3 ms-2 qty-plus" 
+                            <i class="bi bi-plus-lg">
+                                <button class="btn btn-outline-secondary px-3 ms-2 qty-plus" 
                                     data-id="${product.id}">
-                                <i class="bi bi-plus"></i>
-                            </button>
+                                
+                                </button>
+                            </i>    
                         </div>
 
                         <p class="text-start text-md-center">
@@ -254,7 +256,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 9. ELIMINAR PRODUCTO
     // ========================================
     function removeProduct(productId) {
-        
+
         listCarts = listCarts.filter(item => item.productId !== productId);
         saveCart();
         renderCart();

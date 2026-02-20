@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         //  Botón de pagar con enlace a car.html
         total.innerHTML = `
-            <a class="button-ixel-beige" href="car.html">
+            <a href="car.html">
                 PAGAR: $${totalPrice.toFixed(2)}
             </a>
         `;

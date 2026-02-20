@@ -58,6 +58,14 @@
     line-height: 1.1;
 }
 
+input.qty-input[readonly] {
+    background-color: #f8f9fa; /* Fondo gris claro */
+    cursor: default;
+    pointer-events: none; /* No se puede hacer clic */
+    user-select: none; /* No se puede seleccionar el texto */
+    border: 1px solid #dee2e6;
+}
+
 .category-year {
     color: rgba(253, 246, 236, 0.7);
     font-size: 0.85rem;

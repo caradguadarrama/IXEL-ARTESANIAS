@@ -97,18 +97,28 @@
 }
 
 .cart .checkout div{
-  background-color: #683531;
+  background-color: #F8E8CF;
   height: 70px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: bold;
   cursor: pointer;
-  color: #ffffff;
+  color: #683531;
+}
+
+.cart .checkout div:hover{
+    background-color: #F8E8CF;
+    /* Un tono ligeramente más claro */
+    border-color: #F8E8CF;
+    transform: translateY(-3px);
+    /* El botón "flota" hacia arriba */
+    box-shadow: 0 8px 15px rgba(104, 53, 49, 0.3);
+    /* La sombra crece */
 }
 
 .cart .checkout div:nth-child(2){
-  background-color: #683531;
+  background-color: #A0191E;
   color: #ffffff;
 }
 
