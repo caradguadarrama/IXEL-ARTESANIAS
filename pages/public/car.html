@@ -13,6 +13,7 @@
 
     <!--JS FUNCIONALIDAD-->
     <script defer type="module" src="/assets/js/main.js"></script>
+    <script defer src="../../assets/js/components/pages/cart.js"></script>
 </head>
 
 <body>
@@ -35,91 +36,17 @@
                                 <h5 class="mb-0 fw-bold">Carrito (2 productos)</h5>
                             </div>
 
-                            <div class="card-body">
 
-                                <div class="row align-items-center">
-                                    <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
-                                        <div class="bg-image hover-overlay hover-zoom ripple rounded"
-                                            data-mdb-ripple-color="light">
-                                            <img src="/assets/img/tu-producto-1.jpg" class="w-100 rounded"
-                                                alt="Artesanía" />
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
-                                        <p class="fw-bold mb-1">Jarrón de Barro Negro</p>
-                                        <p class="text-muted small mb-2">Vendido por IXEL Artesanías</p>
-                                        <p class="text-success small mb-0"><i class="bi bi-truck"></i> Envío gratis</p>
-
-                                        <div class="mt-3">
-                                            <button type="button"
-                                                class="btn btn-link px-0 me-2 text-decoration-none text-muted small">Eliminar</button>
-                                            <button type="button"
-                                                class="btn btn-link px-0 text-decoration-none text-primary small">Guardar
-                                                para después</button>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-                                        <div class="d-flex mb-4" style="max-width: 300px">
-                                            <button class="btn btn-outline-secondary px-3 me-2"
-                                                onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                                <i class="bi bi-dash"></i>
-                                            </button>
-
-                                            <div class="form-outline">
-                                                <input id="form1" min="0" name="quantity" value="1" type="number"
-                                                    class="form-control text-center" />
-                                            </div>
-
-                                            <button class="btn btn-outline-secondary px-3 ms-2"
-                                                onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                                <i class="bi bi-plus"></i>
-                                            </button>
-                                        </div>
-
-                                        <p class="text-start text-md-center">
-                                            <strong class="fs-5">$850.00</strong>
-                                        </p>
-                                    </div>
-                                </div>
-                                <hr class="my-4" />
-
-                                <div class="row align-items-center">
-                                    <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
-                                        <img src="/assets/img/kiji.jpg" class="w-100 rounded" alt="Artesanía" />
-                                    </div>
-
-                                    <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
-                                        <p class="fw-bold mb-1">Alebrije Oaxaqueño</p>
-                                        <p class="text-muted small mb-2">Pieza única</p>
-
-                                        <div class="mt-3">
-                                            <button type="button"
-                                                class="btn btn-link px-0 me-2 text-decoration-none text-muted small">Eliminar</button>
-                                            <button type="button"
-                                                class="btn btn-link px-0 text-decoration-none text-primary small">Guardar
-                                                para después</button>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-                                        <div class="d-flex mb-4" style="max-width: 300px">
-                                            <input type="number" class="form-control text-center w-50 mx-auto"
-                                                value="1">
-                                        </div>
-                                        <p class="text-start text-md-center">
-                                            <strong class="fs-5">$1,200.00</strong>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
 
                         <div class="card mb-4 border-0 shadow-sm">
                             <div class="card-body">
                                 <p class="mb-0 fw-bold text-primary">Agregar más productos para envío full</p>
                             </div>
+
+                        </div>
+                        <div class="d-flex">
+                            <a class="button-ixel-cafe text-center w-100" href="../../pages/public/products.html">Continuar comprando</a>
                         </div>
                     </div>
 
@@ -131,18 +58,17 @@
                             </div>
                             <div class="card-body">
                                 <ul class="list-group list-group-flush">
-                                    <li
-                                        class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
-                                        Productos (2)
-                                        <span>$2,050.00</span>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0"
+                                        id="products-info">
+
                                     </li>
                                     <li
                                         class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 text-success">
                                         Envío
                                         <span>Gratis</span>
                                     </li>
-                                    <li
-                                        class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3"
+                                        id="products-total">
                                         <div>
                                             <strong>Total</strong>
                                         </div>
@@ -159,6 +85,8 @@
 
                 </div>
             </div>
+
+
         </section>
 
 

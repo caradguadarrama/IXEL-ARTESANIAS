@@ -47,9 +47,8 @@ function renderProducts(list, count) {
         <div class="product-image favorite">
           <img src="${product.imagen}" alt="${product.name}">
         </div>
-        <h5 class="product-name">${product.name}</h5>
-        <p class="product-price">$${product.price}</p>
-      <!--<p class="product-description">${product.description}</p>-->
+        <h5 class="product-name text-center">${product.name}</h5>
+        <p class="product-price">$${product.price.toFixed(2)}</p>
         <button class="button-ixel-products addCart" data-id=${product.id}>
           +
         </button>
