@@ -194,3 +194,30 @@ document.querySelectorAll(".selectable-list a").forEach(link => {
     applyFilters();
   });
 });
+
+
+
+
+//!funcionalidad de flechas de seccion de productos
+document.addEventListener('DOMContentLoaded', () => {
+    const list = document.getElementById('subCategoryList');
+    const btnLeft = document.getElementById('prevBtn');
+    const btnRight = document.getElementById('nextBtn');
+
+    if (list && btnLeft && btnRight) {
+        // Desplaza 200px hacia la derecha
+        btnRight.onclick = () => {
+            list.scrollBy({ left: 250, behavior: 'smooth' });
+        };
+
+        // Desplaza 200px hacia la izquierda
+        btnLeft.onclick = () => {
+            list.scrollBy({ left: -250, behavior: 'smooth' });
+        };
+
+
+        
+    }
+});
+
+
