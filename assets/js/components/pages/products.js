@@ -49,7 +49,7 @@ function renderProducts(list, count) {
       <div class="product-card ${!hasStock ? 'out-of-stock' : ''}">
         <div class="product-image favorite">
           <img src="${product.imagen}" alt="${product.name}">
-          ${!hasStock ? '<div class="no-stock-tag">Sin Existencias</div>' : ''}
+          ${!hasStock ? '<div class="no-stock-tag"></div>' : ''}
         </div>
         <h5 class="product-name">${product.name}</h5>
         <p class="product-price">$${product.price}</p>
@@ -64,7 +64,6 @@ function renderProducts(list, count) {
 
   if(loadMoreBtn) loadMoreBtn.style.display = count >= list.length ? "none" : "block";
 }
-
 
 // ===============================
 // Filtros

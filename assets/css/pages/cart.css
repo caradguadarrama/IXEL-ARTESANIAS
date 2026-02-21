@@ -280,69 +280,97 @@
 
 /*!estilos para productos agotados */
 
-/* --- evita que la cinta se salga de la imagen --- */
-.product-image {
+/* --- CONTENEDOR DE IMAGEN --- */
+/* .product-image {
     position: relative;
-    overflow: hidden; /* Corta los sobrantes de la cinta */
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-}
+    background-color: #f4f1ea; 
+} */
 
-/* -ESTADO AGOTADO  */
+/* ESTADO AGOTADO Imagen*/
 .product-card.out-of-stock .product-image img {
-    filter: grayscale(0.5) brightness(0.7); 
-    opacity: 0.8;
-    transition: filter 0.3s ease;
+    filter: grayscale(0.2) contrast(0.8) brightness(0.7);
+    opacity: 0.6;
+    transition: all 0.3s ease;
 }
 
-/*  LA CINTA DIAGONAL */
+/*  RECTÁNGULO  */
 .no-stock-tag {
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
-    /* Centrado y rotado */
-    transform: translate(-50%, -50%) rotate(-45deg);
-    
-    width: 150%; /* Más ancha que el contenedor para que cubra la diagonal */
-    
-    /* Rojo Institucional con transparencia (Glassmorphism) */
-    background: rgba(160, 25, 30, 0.85); 
-    backdrop-filter: blur(4px); /* Desenfoca levemente lo que hay detrás */
-    
-    color: #ffffff;
-    text-align: center;
-    padding: 12px 0;
-    
-    /* Tipografía */
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 700;
-    font-size: 1.1rem;
-    text-transform: uppercase;
-    letter-spacing: 5px; /* Elegancia en el espaciado */
-    
-    /* Sombra proyectada para dar volumen */
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
-    
-    /* Bordes finos dorados o blancos para el toque artesanal */
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    
+    transform: translate(-50%, -50%) rotate(-3deg); 
+    width: 220px;
+    height: auto;
+    padding: 15px;
+    background-color: #fdfaf5; 
+    border: 1px solid #A0191E;
+    outline: 3px solid #A0191E;
+    outline-offset: -8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     z-index: 10;
-    pointer-events: none; /* No bloquea el mouse */
+    box-shadow: 6px 6px 0px rgba(160, 25, 30, 0.2), 10px 10px 20px rgba(0,0,0,0.2);
+    pointer-events: none;
 }
 
-/*  se desabilita boton agragar carrito*/
+.no-stock-tag::after {
+    content: 'PRODUCTO\A AGOTADO';
+    white-space: pre;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 900;
+    font-size: .9rem;
+    color: #A0191E;
+    letter-spacing: 4px;
+    line-height: 1.2;
+    text-align: center;
+    border-top: 1px solid rgba(160, 25, 30, 0.3);
+    border-bottom: 1px solid rgba(160, 25, 30, 0.3);
+    padding: 8px 0;
+    margin-top: 5px;
+    width: 100%;
+}
+
+.no-stock-tag::before {
+    content: '';
+    width: 12px;
+    height: 12px;
+    background: #A0191E;
+    border-radius: 50%;
+    margin-bottom: 5px;
+}
+
+/* BOTÓN DESHABILITADO */
 .product-card.out-of-stock .button-ixel-products:disabled {
-    background-color: transparent !important;
-    color: #A0191E !important;
-    border: 1px solid rgba(160, 25, 30, 0.3) !important;
+    /* Eliminamos el aspecto de botón */
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    opacity: 1 !important;
     cursor: not-allowed;
-    opacity: 0.6;
-    font-weight: bold;
+    display: block;
+    width: 100%;
+    text-align: center;
+
+    /*? personalizacion boton desactivado Agotado */
+    color: #9d0000 !important;    
+    font-size: .9rem !important;  
+    font-weight: 800 !important;   
+    letter-spacing: .1px;           
+    text-transform: uppercase;     
+    left: 6pc;
+    
+    /* Margen para separarlo del precio */
+    margin-top: 15px; 
 }
 
-/* Desactivar zoom para que la cinta se vea estable */
-.product-card.out-of-stock:hover .product-image img {
-    transform: scale(1.05) !important;
+/* Efecto Hover en la tarjeta */
+.product-card.out-of-stock:hover .no-stock-tag {
+    transform: translate(-50%, -50%) rotate(0deg);
+    transition: transform 0.3s ease;
 }
