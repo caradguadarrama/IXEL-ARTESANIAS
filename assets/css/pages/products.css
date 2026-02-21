@@ -1,55 +1,243 @@
-body {
-    background-color: #ffffff;
-    font-family: "DM Sans", sans-serif;
-    color: #683531;
-}
+/* assets/css/pages/products.css
+   ─────────────────────────────────────────────────────
+   Estilos de la página de catálogo.
+   Variables globales viven en main.css — no se repiten aquí.
+   ───────────────────────────────────────────────────── */
 
-
-/*! formato de texto 1 TheFarmerTextured*/
+/* ─── FUENTE ─────────────────────────────────────────── */
 
 @font-face {
-    font-family: 'TheFarmerTextured';
-    src: url('../../../assets/fonts/TheFarmerTextured.otf') format('opentype');
-    font-weight: normal;
-    font-style: normal;
-
+  font-family: 'TheFarmerTextured';
+  src: url('../../fonts/TheFarmerTextured.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
 }
 
-h2 {
-    font-family: 'TheFarmerTextured', serif;
-    font-size: 3.5rem
+/* ─── TÍTULOS DE SECCIÓN ─────────────────────────────── */
+
+.section-title,
+.section-titlee {
+  font-family: 'TheFarmerTextured', serif;
+  font-size: clamp(2.5rem, 7vw, 5rem); /* 90px era fijo y rompía en móvil */
+  text-align: center;
+  color: var(--color-primary);
+  margin-bottom: 2rem;
 }
 
-.section-title {
-      font-size: 90px;
-        font-family: 'TheFarmerTextured', serif;
-        text-align: center;
-}
-.section-titlee { /*h2 de productos*/
-    font-size: 90px; /* Cambia el valor al tamaño que quieras */
+/* ─── TARJETAS DE COLECCIÓN ──────────────────────────── */
+
+.category-card {
+  border: none;
+  background: transparent;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease;
 }
 
-.selectable-list {
-    font-family: "DM Sans", sans-serif;
-    font-size: 1.5rem
+.category-image-container {
+  background-color: #f6f3eb;
+  border-radius: 16px;
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.category-image-container img {
+  width: 90%;
+  height: 90%;
+  object-fit: contain;
+  transition: transform 0.5s ease;
+}
+
+.category-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(104, 53, 49, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  padding: 1rem;
+  text-align: center;
 }
 
 .category-name {
-    font-family: "DM Sans Black", sans-serif;
-    font-weight: 1500;
-    font-size: 30rem;
+  color: #fdf6ec;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.2rem, 2.5vw, 2rem); /* Corregido de 30rem */
+  text-transform: uppercase;
+  line-height: 1.2;
 }
 
-/*borde de coleccion activa*/
-.category.active {
-    outline: 2px solid #A0191E;
-    border-radius: 5%;
+/* Hover desktop */
+@media (min-width: 992px) {
+  .category-card:hover .category-overlay  { opacity: 1; }
+  .category-card:hover img                { transform: scale(1.08); }
 }
 
-/*para filtro de barra lateral*/
+/* Móvil: overlay visible como gradiente */
+@media (max-width: 991px) {
+  .category-image-container {
+    aspect-ratio: 3 / 4;
+    border-radius: 12px;
+  }
+
+  .category-overlay {
+    opacity: 1;
+    background: linear-gradient(to top, rgba(104, 53, 49, 0.9) 0%, transparent 55%);
+    align-items: flex-end;
+    padding-bottom: 1rem;
+  }
+
+  .category-name { font-size: 1.1rem; }
+
+  .category-card:active { transform: scale(0.97); }
+}
+
+/* Colección activa */
+.category.active .category-image-container {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 16px;
+}
+
+/* ─── TARJETA DE PRODUCTO (BEM) ──────────────────────── */
+
+.product-card {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(104, 53, 49, 0.1);
+  border-radius: 14px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+.product-card__image-link {
+  display: block;
+  text-decoration: none;
+}
+
+.product-card__img-wrapper {
+  aspect-ratio: 1 / 1;
+  background-color: #f6f3eb;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.75rem;
+}
+
+.product-card__img {
+  width: 75%;
+  height: 75%;
+  object-fit: contain;
+  transition: transform 0.4s ease;
+  display: block;
+}
+
+.product-card__img-wrapper:hover .product-card__img {
+  transform: scale(1.08);
+}
+
+.product-card__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.product-card__title-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.product-card__title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  margin: 0;
+  line-height: 1.3;
+  transition: color 0.2s ease;
+}
+
+.product-card__title-link:hover .product-card__title {
+  color: var(--color-accent);
+}
+
+.product-card__price {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: var(--color-text-dark);
+  margin: 0;
+}
+
+/* ─── BOTÓN AGREGAR AL CARRITO ───────────────────────── */
+
+.product-card__add-btn {
+  width: 100%;
+  padding: 0.6rem;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+  border-radius: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.25s ease, transform 0.15s ease;
+  margin-top: auto;
+}
+
+.product-card__add-btn:hover:not(:disabled) {
+  background-color: var(--color-primary-hover);
+  transform: translateY(-1px);
+}
+
+.product-card__add-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* Estado agotado */
+.product-card__add-btn--disabled {
+  background-color: rgba(104, 53, 49, 0.25);
+  cursor: not-allowed;
+  color: rgba(104, 53, 49, 0.5);
+}
+
+/* Feedback al agregar */
+.product-card__add-btn--added {
+  background-color: #2d7a4a;
+}
+
+/* ─── ERROR STATE ────────────────────────────────────── */
+
+.products__error {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--color-accent);
+  font-size: 1.1rem;
+}
+
+/* ─── SIDEBAR: FILTRO ACTIVO ─────────────────────────── */
+
 .selectable-list a.active {
-    font-weight: bold;
-    text-decoration: underline;
+  color: var(--color-accent);
+  font-weight: 700;
 }
-
-
