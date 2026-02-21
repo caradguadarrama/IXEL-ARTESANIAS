@@ -9,20 +9,22 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <!--Estilos generales-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../../assets/css/main.css">
 
     <!--JS FUNCIONALIDAD-->
     <script defer type="module" src="/assets/js/main.js"></script>
     <script defer src="../../assets/js/components/pages/cart.js"></script>
-    
+    <script defer src="../../assets/js/components/pages/products-carrousel.js"></script>
+
 </head>
 
 <body>
     <div id="navbar-container"></div>
 
     <main>
-        <div>
-            <h1>Carrito de Compras</h1>
+        <div class="card-header py-3 bg-white border-bottom-0">
+            <h1 class="mb-0 fw-bold">Carrito de Compras</h1>
             <p>Revisa que llevas todo lo que necesitas</p>
         </div>
 
@@ -47,7 +49,8 @@
 
                         </div>
                         <div class="d-flex">
-                            <a class="button-ixel-cafe text-center w-100" href="../../pages/public/products.html">Continuar comprando</a>
+                            <a class="button-ixel-cafe text-center w-100"
+                                href="../../pages/public/products.html">Continuar comprando</a>
                         </div>
                     </div>
 
@@ -77,8 +80,9 @@
                                     </li>
                                 </ul>
 
-                                <button type="button" class="button-ixel-cafe w-100 btn-lg text-uppercase">
-                                    Continuar compra
+                                <button id="finalizar-compra" type="button"
+                                    class="button-ixel-cafe w-100 btn-lg text-uppercase">
+                                    Finalizar Compra
                                 </button>
                             </div>
                         </div>
@@ -89,7 +93,6 @@
 
 
         </section>
-
 
 
     </main>

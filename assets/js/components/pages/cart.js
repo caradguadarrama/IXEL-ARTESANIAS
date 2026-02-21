@@ -11,10 +11,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2. Elementos del DOM
     const cartHeader = document.querySelector('.card-header h5'); // "Carrito (X productos)"
     const cartBody = document.querySelector('.card-body'); // Contenedor de productos
-    const productCountElement = document.getElementById('#products-info)'); // "Productos (X)"
+    const productCountElement = document.getElementById('products-info'); // "Productos (X)"
     const subtotalElement = document.querySelector('.list-group-item:nth-child(1) span'); // Precio subtotal
     const totalElement = document.querySelector('.list-group-item:nth-child(3) span strong'); // Total
-    const checkoutBtn = document.querySelector('.button-ixel-cafe'); // Botón "Continuar compra"
+    const checkoutBtn = document.getElementById('finalizar-compra'); // Botón "Continuar compra"
 
     // ========================================
     // 3. FUNCIÓN PRINCIPAL - RENDERIZAR CARRITO
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <button type="button" 
                                     class="btn btn-link px-0 me-2 text-decoration-none text-muted small btn-remove"
                                     data-id="${product.id}">
-                                Eliminar
+                                <p class="text-danger">Eliminar</p>
                             </button>
                             
                         </div>
@@ -76,12 +76,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
                         <div class="d-flex mb-4 justify-content-center" style="max-width: 300px">
-                           <i class="bi bi-dash"> 
+                            
                                 <button class="btn btn-outline-secondary px-3 me-2 qty-minus" 
-                                    data-id="${product.id}">
-                                
+                                    data-id="${product.id}"
+                                    ${item.quantity === 1 ? 'disabled' : ''}>
+                                    <i class="bi bi-dash fs-5"></i>
                                 </button>
-                            </i>
+                            
                             <div class="form-outline">
                                 <input type="number" 
                                        min="1" 
@@ -90,12 +91,13 @@ document.addEventListener('DOMContentLoaded', () => {
                                        data-id="${product.id}"
                                        style="width: 70px;" readonly />
                             </div>
-                            <i class="bi bi-plus-lg">
+                            
                                 <button class="btn btn-outline-secondary px-3 ms-2 qty-plus" 
                                     data-id="${product.id}">
-                                
+                                <i class="bi bi-plus-lg">
+                                </i>
                                 </button>
-                            </i>    
+                                
                         </div>
 
                         <p class="text-start text-md-center">
