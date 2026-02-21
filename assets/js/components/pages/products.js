@@ -39,19 +39,22 @@ function renderProducts(list, count) {
   container.innerHTML = "";
 
   list.slice(0, count).forEach(product => {
+    
+    const hasStock = product.stock > 0;
+
     const col = document.createElement("div");
     col.className = "col-12 col-md-4";
 
     col.innerHTML = `
-      <div class="product-card">
+      <div class="product-card ${!hasStock ? 'out-of-stock' : ''}">
         <div class="product-image favorite">
           <img src="${product.imagen}" alt="${product.name}">
+          ${!hasStock ? '<div class="no-stock-tag">Sin Existencias</div>' : ''}
         </div>
         <h5 class="product-name">${product.name}</h5>
         <p class="product-price">$${product.price}</p>
-      <!--<p class="product-description">${product.description}</p>-->
-        <button class="button-ixel-products addCart" data-id=${product.id}>
-          +
+        <button class="button-ixel-products addCart" data-id=${product.id} ${!hasStock ? 'disabled' : ''}>
+          ${!hasStock ? 'Agotado' : '+'}
         </button>
       </div>
     `;
@@ -59,8 +62,7 @@ function renderProducts(list, count) {
     container.appendChild(col);
   });
 
-  loadMoreBtn.style.display =
-    count >= list.length ? "none" : "block";
+  if(loadMoreBtn) loadMoreBtn.style.display = count >= list.length ? "none" : "block";
 }
 
 

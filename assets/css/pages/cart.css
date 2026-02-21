@@ -277,3 +277,72 @@
 }
 
 /* *aqui termina el card  product*/
+
+/*!estilos para productos agotados */
+
+/* --- evita que la cinta se salga de la imagen --- */
+.product-image {
+    position: relative;
+    overflow: hidden; /* Corta los sobrantes de la cinta */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* -ESTADO AGOTADO  */
+.product-card.out-of-stock .product-image img {
+    filter: grayscale(0.5) brightness(0.7); 
+    opacity: 0.8;
+    transition: filter 0.3s ease;
+}
+
+/*  LA CINTA DIAGONAL */
+.no-stock-tag {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* Centrado y rotado */
+    transform: translate(-50%, -50%) rotate(-45deg);
+    
+    width: 150%; /* Más ancha que el contenedor para que cubra la diagonal */
+    
+    /* Rojo Institucional con transparencia (Glassmorphism) */
+    background: rgba(160, 25, 30, 0.85); 
+    backdrop-filter: blur(4px); /* Desenfoca levemente lo que hay detrás */
+    
+    color: #ffffff;
+    text-align: center;
+    padding: 12px 0;
+    
+    /* Tipografía */
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 5px; /* Elegancia en el espaciado */
+    
+    /* Sombra proyectada para dar volumen */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+    
+    /* Bordes finos dorados o blancos para el toque artesanal */
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    
+    z-index: 10;
+    pointer-events: none; /* No bloquea el mouse */
+}
+
+/*  se desabilita boton agragar carrito*/
+.product-card.out-of-stock .button-ixel-products:disabled {
+    background-color: transparent !important;
+    color: #A0191E !important;
+    border: 1px solid rgba(160, 25, 30, 0.3) !important;
+    cursor: not-allowed;
+    opacity: 0.6;
+    font-weight: bold;
+}
+
+/* Desactivar zoom para que la cinta se vea estable */
+.product-card.out-of-stock:hover .product-image img {
+    transform: scale(1.05) !important;
+}

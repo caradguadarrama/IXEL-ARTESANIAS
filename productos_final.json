@@ -17,7 +17,7 @@
         "collection": "Jaguar",
         "description": "Tortillero Jaguar minimalista. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
         "imagen": "/assets/img/products/Tortillero Jaguar Minimalista.png",
-        "stock": 13
+        "stock": 0
     },
     {
         "id": 3,
@@ -67,7 +67,7 @@
         "collection": "Olinala",
         "description": "Tortillero Olinala. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
         "imagen": "/assets/img/products/Tortillero Olinala.png",
-        "stock": 8
+        "stock": 9
     },
     {
         "id": 8,
@@ -327,7 +327,7 @@
         "collection": "Martina",
         "description": "Tablas esquina pintada 25x25 Martina. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
         "imagen": "/assets/img/products/Tablas esquina pintada 25x25 Martina.png",
-        "stock": 14
+        "stock": 0
     },
     {
         "id": 34,
@@ -777,7 +777,7 @@
         "collection": "Olinala",
         "description": "Caja chica base olinala linaloe. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
         "imagen": "/assets/img/products/Caja chica base olinala linaloe.png",
-        "stock": 10
+        "stock": 9
     },
     {
         "id": 79,
@@ -787,7 +787,7 @@
         "collection": "Olinala",
         "description": "Caja base Olinala Linaloe. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
         "imagen": "/assets/img/products/Caja base olinala linaloe.png",
-        "stock": 13
+        "stock": 0
     },
     {
         "id": 80,
