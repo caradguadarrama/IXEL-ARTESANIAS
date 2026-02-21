@@ -205,18 +205,35 @@
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
 }
 
+
+/* .product-image {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f4f1ea; 
+} */
+
 .product-image {
     aspect-ratio: 1 / 1;
     margin-bottom: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
+    border-radius: 8px;
 }
 
+
 .product-image img {
-    width: 65%;
-    height: 65%;
+
+    width: 100%;
+    height: auto;
+    transition: transform 0.4s ease;
+    display: block;
     object-fit: contain;
+
 }
 
 .product-name {
@@ -237,32 +254,7 @@
     text-align: left;
 }
 
-/* Descripción del producto 
-.product-description {
-    font-size: 0.9rem;
-    color: #666;
-    margin-bottom: 12px; 
-    } */
 
-/* clase product-card */
-
-
-/* Contenedor de la imagen: recorta cualquier desbordamiento */
-.product-image {
-    overflow: hidden;
-    border-radius: 8px;
-    /* opcional, bordes redondeados */
-}
-
-/* imagenes grandes con zoom */
-/* Imagen: transición suave y zoom al hover */
-.product-image img {
-
-    width: 100%;
-    height: auto;
-    transition: transform 0.4s ease;
-    display: block;
-}
 
 /* Zoom al pasar el mouse */
 .product-image:hover img {
@@ -280,15 +272,6 @@
 
 /*!estilos para productos agotados */
 
-/* --- CONTENEDOR DE IMAGEN --- */
-/* .product-image {
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #f4f1ea; 
-} */
 
 /* ESTADO AGOTADO Imagen*/
 .product-card.out-of-stock .product-image img {
@@ -302,11 +285,11 @@
     position: absolute;
     top: 40%;
     left: 50%;
-    transform: translate(-50%, -50%) rotate(-3deg); 
+    transform: translate(-50%, -50%) rotate(-3deg);
     width: 220px;
     height: auto;
     padding: 15px;
-    background-color: #fdfaf5; 
+    background-color: #fdfaf5;
     border: 1px solid #A0191E;
     outline: 3px solid #A0191E;
     outline-offset: -8px;
@@ -314,7 +297,7 @@
     flex-direction: column;
     align-items: center;
     z-index: 10;
-    box-shadow: 6px 6px 0px rgba(160, 25, 30, 0.2), 10px 10px 20px rgba(0,0,0,0.2);
+    box-shadow: 6px 6px 0px rgba(160, 25, 30, 0.2), 10px 10px 20px rgba(0, 0, 0, 0.2);
     pointer-events: none;
 }
 
@@ -358,15 +341,15 @@
     text-align: center;
 
     /*? personalizacion boton desactivado Agotado */
-    color: #9d0000 !important;    
-    font-size: .9rem !important;  
-    font-weight: 800 !important;   
-    letter-spacing: .1px;           
-    text-transform: uppercase;     
+    color: #9d0000 !important;
+    font-size: .9rem !important;
+    font-weight: 800 !important;
+    letter-spacing: .1px;
+    text-transform: uppercase;
     left: 6pc;
-    
+
     /* Margen para separarlo del precio */
-    margin-top: 15px; 
+    margin-top: 15px;
 }
 
 /* Efecto Hover en la tarjeta */
