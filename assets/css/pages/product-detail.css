@@ -1,0 +1,698 @@
+/* assets/css/pages/product-detail.css
+   Inspirado en el modelo de referencia (styles.css de Parota).
+   Bloque raíz: .pd
+   Tipografía editorial con EB Garamond en títulos.
+   Sin colisiones con el resto del proyecto.
+   ─────────────────────────────────────────────── */
+
+/* ─── FUENTE ─────────────────────────────────────────── */
+
+@font-face {
+  font-family: 'TheFarmerTextured';
+  src: url('../../fonts/TheFarmerTextured.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* ─── VARIABLES LOCALES ──────────────────────────────── */
+/*
+  Tomadas directamente del sistema de diseño del modelo:
+  --pd-font-display: EB Garamond (editorial, serifada)
+  --pd-warm:         #F8E8CF (mismo beige que el modelo usa como fondo de sección)
+  --pd-divider:      rgba(104, 53, 49, 0.12)
+  El resto hereda de main.css (--color-primary, --color-accent, etc.)
+*/
+
+:root {
+  --pd-font-display: 'EB Garamond', 'Times New Roman', serif;
+  --pd-warm:         #F8E8CF;
+  --pd-muted:        rgba(104, 53, 49, 0.65);
+  --pd-divider:      rgba(104, 53, 49, 0.12);
+  --pd-transition:   350ms cubic-bezier(0.4, 0, 0.2, 1);
+  --pd-container:    1400px;
+  --pd-padding:      2rem;
+}
+
+/* ─── BODY OVERRIDE (solo para esta página) ─────────── */
+/* La página de detalle usa EB Garamond como fuente base
+   para conseguir el feel editorial del modelo.
+   La clase .pd-page evita que afecte a otras páginas. */
+
+.pd-page body,
+body.pd-page {
+  font-family: var(--pd-font-display);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── MIGAS DE PAN ───────────────────────────────────── */
+
+.pd__breadcrumb {
+  border-bottom: 1px solid var(--pd-divider);
+  padding: 1rem 0;
+}
+
+.pd__breadcrumb-inner {
+  max-width: var(--pd-container);
+  margin: 0 auto;
+  padding: 0 var(--pd-padding);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.pd__breadcrumb-link {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--pd-muted);
+  text-decoration: none;
+  transition: color var(--pd-transition);
+}
+
+.pd__breadcrumb-link:hover { color: var(--color-accent); }
+
+.pd__breadcrumb-sep     { color: var(--pd-muted); font-size: 0.75rem; }
+
+.pd__breadcrumb-current {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+/* ─── HERO ───────────────────────────────────────────── */
+
+.pd__hero {
+  padding: 5rem 0;
+}
+
+.pd__hero-container {
+  max-width: var(--pd-container);
+  margin: 0 auto;
+  padding: 0 var(--pd-padding);
+  display: grid;
+  /* 60% imagen | 40% info — igual que el modelo */
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 6rem;
+  align-items: start;
+}
+
+/* ─── GALERÍA ─────────────────────────────────────────── */
+/*
+  El modelo tiene thumbnails verticales + imagen principal.
+  El JSON de Ixel tiene una sola imagen por producto,
+  así que no hay thumbnails. La galería es solo la imagen grande.
+  El contenedor es sticky para que acompañe el scroll de la info.
+*/
+
+.pd__gallery {
+  position: sticky;
+  top: calc(var(--navbar-height, 115px) + 2rem);
+}
+
+.pd__gallery-main {
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background-color: var(--pd-warm);
+}
+
+.pd__gallery-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.5s ease;
+  display: block;
+  padding: 2.5rem; /* respira igual que el modelo */
+}
+
+.pd__gallery-main:hover .pd__gallery-image {
+  transform: scale(1.03);
+}
+
+/* ─── INFO ───────────────────────────────────────────── */
+
+.pd__info {
+  padding-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.pd__info-collection {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin: 0 0 1.25rem;
+  font-weight: 500;
+}
+
+.pd__info-title {
+  font-family: var(--pd-font-display);
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--color-primary);
+  margin: 0 0 1.5rem;
+}
+
+.pd__info-price {
+  font-family: var(--pd-font-display);
+  font-size: 1.75rem;
+  color: var(--color-primary);
+  margin: 0 0 2rem;
+  font-weight: 400;
+}
+
+/* Separador editorial (60px rojo — del modelo exacto) */
+.pd__info-divider {
+  width: 60px;
+  height: 1px;
+  background-color: var(--color-accent);
+  margin: 0 0 2rem;
+}
+
+.pd__info-description {
+  font-family: var(--pd-font-display);
+  font-size: 1.1rem;
+  line-height: 1.85;
+  color: var(--color-primary);
+  margin: 0 0 2rem;
+  max-width: 540px;
+}
+
+/* ─── CARACTERÍSTICAS ─────────────────────────────────── */
+
+.pd__features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.pd__features-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.875rem;
+  letter-spacing: 0.02em;
+  color: var(--color-primary);
+}
+
+.pd__features-icon {
+  color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+/* ─── CANTIDAD ────────────────────────────────────────── */
+
+.pd__quantity-row {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.pd__quantity-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.pd__quantity-controls {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--pd-divider);
+}
+
+.pd__quantity-btn {
+  width: 38px;
+  height: 38px;
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: var(--color-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--pd-transition);
+}
+
+.pd__quantity-btn:hover { background-color: var(--pd-warm); }
+
+.pd__quantity-input {
+  width: 50px;
+  border: none;
+  border-left: 1px solid var(--pd-divider);
+  border-right: 1px solid var(--pd-divider);
+  text-align: center;
+  font-family: var(--pd-font-display);
+  font-size: 1rem;
+  color: var(--color-primary);
+  padding: 0.5rem 0;
+  outline: none;
+  -moz-appearance: textfield;
+}
+
+.pd__quantity-input::-webkit-outer-spin-button,
+.pd__quantity-input::-webkit-inner-spin-button { -webkit-appearance: none; }
+
+/* ─── BOTÓN CTA ───────────────────────────────────────── */
+/* Idéntico al .product-cta del modelo: fondo dark, sin border-radius,
+   uppercase, hover rojo con sombra. */
+
+.pd__add-btn {
+  width: 100%;
+  padding: 1.25rem 2rem;
+  background-color: var(--color-primary);
+  color: #fff;
+  border: none;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color var(--pd-transition),
+              transform       var(--pd-transition),
+              box-shadow      var(--pd-transition);
+  margin-bottom: 1.25rem;
+}
+
+.pd__add-btn:hover:not(:disabled) {
+  background-color: var(--color-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(160, 25, 30, 0.2);
+}
+
+.pd__add-btn:active:not(:disabled) { transform: translateY(0); }
+
+.pd__add-btn--disabled {
+  background-color: var(--pd-divider);
+  color: var(--pd-muted);
+  cursor: not-allowed;
+}
+
+.pd__add-btn--added {
+  background-color: #2d7a4a;
+  box-shadow: none;
+  transform: none;
+}
+
+/* Nota pequeña debajo del botón */
+.pd__info-note {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.72rem;
+  color: var(--pd-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ─── SECCIÓN DETALLES (FONDO BEIGE) ─────────────────── */
+/*
+  El modelo usa #F8E8CF como fondo de esta sección.
+  Grid 2 columnas: narrativa (izq) | especificaciones (der).
+  Cuidados van a la narrativa directamente (bloque 03).
+*/
+
+.pd__details {
+  padding: 8rem 0;
+  background-color: var(--pd-warm);
+}
+
+.pd__details-container {
+  max-width: var(--pd-container);
+  margin: 0 auto;
+  padding: 0 var(--pd-padding);
+}
+
+.pd__details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+}
+
+/* ─── NARRATIVA ───────────────────────────────────────── */
+
+.pd__narrative {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.pd__narrative-number {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.7rem;
+  color: var(--color-accent);
+  letter-spacing: 0.2em;
+  display: block;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.pd__narrative-title {
+  font-family: var(--pd-font-display);
+  font-size: 1.5rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.pd__narrative-text {
+  font-family: var(--pd-font-display);
+  font-size: 1rem;
+  line-height: 1.85;
+  color: var(--color-primary);
+  margin: 0;
+}
+
+/* ─── ESPECIFICACIONES ────────────────────────────────── */
+
+.pd__specs-title {
+  font-family: var(--pd-font-display);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--color-primary);
+  margin-bottom: 2.5rem;
+}
+
+.pd__specs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.pd__spec-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--pd-divider);
+}
+
+.pd__spec-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--pd-muted);
+  font-weight: 500;
+}
+
+.pd__spec-value {
+  font-family: var(--pd-font-display);
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--color-primary);
+}
+
+/* ─── RELACIONADOS ────────────────────────────────────── */
+/*
+  El modelo usa grid de 4 columnas con hover elegante.
+  Aquí reutilizamos createProductCard() de ProductCard.js
+  para las tarjetas, pero el layout es el del modelo.
+*/
+
+.pd__related {
+  padding: 8rem 0;
+}
+
+.pd__related-container {
+  max-width: var(--pd-container);
+  margin: 0 auto;
+  padding: 0 var(--pd-padding);
+}
+
+.pd__related-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 4rem;
+}
+
+.pd__related-title {
+  font-family: var(--pd-font-display);
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--color-primary);
+}
+
+.pd__related-link {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: gap var(--pd-transition), color var(--pd-transition);
+}
+
+.pd__related-link:hover {
+  gap: 0.75rem;
+  color: var(--color-accent);
+}
+
+/* Grid de 4 columnas (como el modelo) */
+.pd__related-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+/* ─── OVERRIDE DE TARJETA EN DETALLE ─────────────────── */
+/*
+  Las tarjetas generadas por createProductCard() tienen sus propios
+  estilos en products.css (border-radius, sombra, etc.).
+  Aquí las reseteamos al estilo del modelo: sin border-radius,
+  imagen 3/4, hover con escala sutil.
+*/
+
+.pd__related-grid .product-card {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  transition: transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pd__related-grid .product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: none;
+}
+
+.pd__related-grid .product-card__img-wrapper {
+  aspect-ratio: 3 / 4;
+  border-radius: 0;
+  background-color: var(--pd-warm);
+  margin-bottom: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Overlay sutil en hover — del modelo exacto */
+.pd__related-grid .product-card__img-wrapper::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: rgba(104, 53, 49, 0.05);
+  opacity: 0;
+  transition: opacity 350ms ease;
+}
+
+.pd__related-grid .product-card:hover .product-card__img-wrapper::after {
+  opacity: 1;
+}
+
+.pd__related-grid .product-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 1.5rem;
+}
+
+.pd__related-grid .product-card__content {
+  text-align: center;
+}
+
+.pd__related-grid .product-card__title {
+  font-family: var(--pd-font-display);
+  font-size: 1rem;
+  font-weight: 400;
+  transition: color 350ms ease;
+}
+
+.pd__related-grid .product-card:hover .product-card__title {
+  color: var(--color-accent);
+}
+
+.pd__related-grid .product-card__price {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.875rem;
+  color: var(--pd-muted);
+}
+
+.pd__related-grid .product-card__category {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+}
+
+.pd__related-grid .product-card__add-btn {
+  border-radius: 0;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  margin-top: 0.75rem;
+  background-color: var(--color-primary);
+  transition: background-color 350ms ease;
+}
+
+.pd__related-grid .product-card__add-btn:hover:not(:disabled) {
+  background-color: var(--color-accent);
+  transform: none;
+}
+
+/* ─── ERROR ───────────────────────────────────────────── */
+
+.pd__error {
+  text-align: center;
+  padding: 8rem 2rem;
+}
+
+.pd__error-msg {
+  font-family: var(--pd-font-display);
+  font-size: 1.25rem;
+  color: var(--pd-muted);
+  margin-bottom: 1.5rem;
+}
+
+.pd__error-link {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.pd__error-link:hover { text-decoration: underline; }
+
+/* ─── RESPONSIVE ──────────────────────────────────────── */
+
+@media (max-width: 1200px) {
+  .pd__hero-container  { gap: 4rem; }
+  .pd__details-grid    { gap: 4rem; }
+}
+
+@media (max-width: 1024px) {
+  .pd__hero-container {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .pd__gallery  { position: static; }
+
+  .pd__gallery-main { aspect-ratio: 4 / 3; }
+
+  .pd__details-grid { grid-template-columns: 1fr; }
+
+  .pd__related-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .pd__related-header { flex-direction: column; gap: 1rem; }
+}
+
+@media (max-width: 600px) {
+  .pd__hero          { padding: 3rem 0; }
+  .pd__details       { padding: 5rem 0; }
+  .pd__related       { padding: 5rem 0; }
+
+  .pd__info-title    { font-size: 2rem; }
+
+  .pd__add-btn       { padding: 1rem; }
+
+  .pd__related-grid  { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pd__gallery-image,
+  .pd__add-btn,
+  .pd__related-grid .product-card {
+    transition: none;
+  }
+}
+
+/* ─── ANIMACIONES DE ENTRADA (IntersectionObserver) ──── */
+/* Las transiciones se aplican via JS en initScrollAnimations().
+   Este bloque asegura que prefers-reduced-motion las deshabilite
+   incluso si JS ya inyectó el style inline. */
+
+@media (prefers-reduced-motion: reduce) {
+  .pd__narrative-block,
+  .pd__spec-item,
+  .pd__related-grid .product-card {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* ─── THUMBNAILS (preparado para múltiples imágenes) ──── */
+/* Inactivos por ahora — se activarán cuando el backend
+   devuelva product.images[]. Sin display:none para no
+   romper si se añaden dinámicamente. */
+
+.pd__gallery-thumbnails {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.pd__thumbnail {
+  width: 72px;
+  height: 72px;
+  overflow: hidden;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: border-color var(--pd-transition);
+  background: none;
+  padding: 0;
+}
+
+.pd__thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.5;
+  transition: opacity var(--pd-transition);
+}
+
+.pd__thumbnail:hover img,
+.pd__thumbnail--active img { opacity: 1; }
+
+.pd__thumbnail--active { border-color: var(--color-primary); }
+
+/* Cuando haya thumbnails, el gallery cambia a grid 2 columnas */
+.pd__gallery:has(.pd__thumbnail) {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 1.25rem;
+}

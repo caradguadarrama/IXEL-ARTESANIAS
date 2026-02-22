@@ -1,6 +1,17 @@
 /* !class="category-card"*/
 /* !Tarjetas de Categoría usa la clase para usar este card category-card*/
 
+/* Estilo escritorio*/
+.qty-minus:hover {
+    background-color: #F8E8CF;
+    color: #000;
+}
+
+.qty-plus:hover {
+    background-color: #F8E8CF;
+    color: #000;
+}
+
 
 .category-card {
     border: none;
@@ -62,32 +73,24 @@
     line-height: 1.1;
 }
 
-
-
-/* Al estar seleccionado, activamos el overlay interno */
-.category.selected .category-overlay {
-    opacity: 1 !important;
+input.qty-input[readonly] {
+    background-color: #f8f9fa;
+    /* Fondo gris claro */
+    cursor: default;
+    pointer-events: none;
+    user-select: none;
+    /* No se puede seleccionar el texto */
+    border: 1px solid #dee2e6;
 }
 
-.category.selected .category-name {
-    transform: translateY(0) !important;
+.category-year {
+    color: rgba(253, 246, 236, 0.7);
+    font-size: 0.85rem;
+    transform: translateY(15px);
+    transition: transform 0.4s ease 0.1s;
 }
 
-.category.selected .category-image-container img {
-    transform: scale(1.1);
-}
-
-/* Limpieza total de cualquier cuadro o sombra exterior al seleccionar */
-.category.selected .category-card,
-.category.selected .category-image-container {
-    box-shadow: none !important;
-    outline: none !important;
-    border: none !important;
-    -webkit-tap-highlight-color: transparent;
-    /* Quita el destello azul en móviles */
-}
-
-/*  EFECTOS HOVER (PC) */
+/* --- HOVER SOLO PARA PC --- */
 @media (min-width: 992px) {
     .category-card:hover .category-overlay {
         opacity: 1;

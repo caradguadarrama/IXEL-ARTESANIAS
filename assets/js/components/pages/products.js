@@ -1,238 +1,218 @@
-let allProducts = [];
+// assets/js/components/pages/products.js — ES Module
+//
+// CAMBIO vs archivo subido:
+//   products.js ya disparaba StorageEvent({key:'cart'}) tras addToCart().
+//   slidingCart.js ahora escucha ese mismo evento y se abre automáticamente.
+//   No se necesita ninguna importación cruzada entre los dos módulos.
+//   El único ajuste: el evento sigue siendo StorageEvent (no Event genérico)
+//   para que main.js y slidingCart.js filtren por e.key === 'cart'.
+
+import { getProducts }       from '../../services/product.service.js';
+import { createProductCard } from '../ui/ProductCard.js';
+import { addToCart }         from '../../utils/storage.js';
+
+// ─── ESTADO ───────────────────────────────────────────────────
+
+let allProducts      = [];
 let filteredProducts = [];
-let visibleCount = 6;
-const PAGE_SIZE = 6;
+let visibleCount     = 6;
+const PAGE_SIZE      = 6;
+let activeCollection = null;
+let activeCategory   = null;
 
-let activeCollection = null; // cards grandes
-let activeCategory = null;   // sidebar (subcategory en HTML)
+// ─── DOM ─────────────────────────────────────────────────────
 
-const container = document.querySelector("#cards");
-const loadMoreBtn = document.querySelector("#loadMore");
+const cardsContainer = document.querySelector('#cards');
+const loadMoreBtn    = document.querySelector('#loadMore');
 
+// ─── INIT ────────────────────────────────────────────────────
 
-// ===============================
-// Carga de datos
-// ===============================
-async function loadProductsData() {
+async function init() {
   try {
-    const response = await fetch("../../../../productos_final.json");
-    if (!response.ok) throw new Error("No se pudo cargar el archivo JSON");
-
-    allProducts = await response.json();
-
+    allProducts      = await getProducts();
     filteredProducts = [...allProducts];
-    renderProducts(filteredProducts, visibleCount);
-    updateCategorySidebar();
-
-  } catch (error) {
-    console.error("Error al cargar productos:", error);
-    container.innerHTML =
-      `<p class="text-danger">Error al cargar productos.</p>`;
+    renderProducts();
+    updateSidebar();
+  } catch (err) {
+    console.error('[products] init:', err);
+    if (cardsContainer) {
+      cardsContainer.innerHTML =
+        '<p class="products__error">Error al cargar productos.</p>';
+    }
   }
 }
 
+// ─── RENDER ───────────────────────────────────────────────────
 
-// ===============================
-// Renderizado
-// ===============================
-function renderProducts(list, count) {
-  container.innerHTML = "";
+function renderProducts() {
+  if (!cardsContainer) return;
+  cardsContainer.innerHTML = '';
 
-  list.slice(0, count).forEach(product => {
-    const col = document.createElement("div");
-    col.className = "col-12 col-md-4";
+  const fragment = document.createDocumentFragment();
 
-    col.innerHTML = `
-      <div class="product-card">
-        <div class="product-image favorite">
-          <img src="${product.imagen}" alt="${product.name}">
-        </div>
-        <h5 class="product-name">${product.name}</h5>
-        <p class="product-price">$${product.price}</p>
-      <!--<p class="product-description">${product.description}</p>-->
-        <button class="button-ixel-products addCart" data-id=${product.id}>
-          +
-        </button>
-      </div>
-    `;
-
-    container.appendChild(col);
+  filteredProducts.slice(0, visibleCount).forEach(product => {
+    const col = document.createElement('div');
+    col.className = 'col-12 col-md-4';
+    col.appendChild(createProductCard(product));
+    fragment.appendChild(col);
   });
 
-  loadMoreBtn.style.display =
-    count >= list.length ? "none" : "block";
+  cardsContainer.appendChild(fragment);
+
+  if (loadMoreBtn) {
+    loadMoreBtn.style.display =
+      visibleCount >= filteredProducts.length ? 'none' : 'block';
+  }
 }
 
+// ─── FILTROS ─────────────────────────────────────────────────
 
-// ===============================
-// Filtros
-// ===============================
 function applyFilters() {
-  console.log("activeCollection:", activeCollection);
-  console.log("activeCategory:", activeCategory);
-
   filteredProducts = allProducts.filter(p => {
-    console.log("Producto:", p);
-
-    const matchCollection =
-      !activeCollection || p.collection === activeCollection;
-
-    const matchCategory =
-      !activeCategory || p.category === activeCategory;
-
-    console.log(
-      "matchCollection:", matchCollection,
-      "matchCategory:", matchCategory
-    );
-
-    return matchCollection && matchCategory;
+    const matchCol = !activeCollection || p.collection === activeCollection;
+    const matchCat = !activeCategory   || p.category   === activeCategory;
+    return matchCol && matchCat;
   });
-
-  console.log("Resultado filtrado:", filteredProducts);
-
   visibleCount = PAGE_SIZE;
-  renderProducts(filteredProducts, visibleCount);
+  renderProducts();
 }
 
+// ─── SIDEBAR ─────────────────────────────────────────────────
 
-
-// ===============================
-// Sidebar por colección
-// ===============================
-function updateCategorySidebar() {
-  const links = document.querySelectorAll(".selectable-list a");
+function updateSidebar() {
+  const links = document.querySelectorAll('.selectable-list a');
 
   if (!activeCollection) {
-    links.forEach(link => {
-      link.parentElement.style.display = "list-item";
-    });
+    links.forEach(l => l.closest('li').style.display = 'list-item');
     return;
   }
 
-  const validCategories = new Set(
+  const validCats = new Set(
     allProducts
       .filter(p => p.collection === activeCollection)
       .map(p => p.category)
   );
 
   links.forEach(link => {
-    const category = link.dataset.subcategory; // 🔥 FIX
-
-    if (validCategories.has(category)) {
-      link.parentElement.style.display = "list-item";
+    const cat = link.dataset.subcategory;
+    const li  = link.closest('li');
+    if (validCats.has(cat)) {
+      li.style.display = 'list-item';
     } else {
-      link.parentElement.style.display = "none";
-      link.classList.remove("active");
-
-      if (activeCategory === category) {
-        activeCategory = null;
-      }
+      li.style.display = 'none';
+      link.classList.remove('active');
+      if (activeCategory === cat) activeCategory = null;
     }
   });
 }
 
+// ─── DELEGACIÓN PRINCIPAL ────────────────────────────────────
+//
+// Un listener en #cards cubre dos casos:
+//   → .product-card__add-btn → addToCart + StorageEvent → slidingCart abre
+//   → .product-card (resto)  → navegar al detalle
 
-// ===============================
-// Eventos
-// ===============================
-document.addEventListener("DOMContentLoaded", loadProductsData);
+if (cardsContainer) {
+  cardsContainer.addEventListener('click', e => {
 
-// Load more
-loadMoreBtn.addEventListener("click", () => {
-  visibleCount += PAGE_SIZE;
-  renderProducts(filteredProducts, visibleCount);
-});
+    // Caso 1: agregar al carrito
+    const btn = e.target.closest('.product-card__add-btn');
+    if (btn) {
+      if (btn.disabled) return;
 
-// Cards grandes (colecciones)
-document.querySelectorAll(".category").forEach(card => {
-  card.addEventListener("click", () => {
-    const collection = card.dataset.category;
+      const rawId   = btn.dataset.id;
+      const product = allProducts.find(p => String(p.id) === String(rawId));
+      if (!product) {
+        console.warn('[products] Producto no encontrado:', rawId);
+        return;
+      }
 
-    if (activeCollection === collection) {
+      addToCart(product);
+
+      // StorageEvent con key:'cart' → lo escuchan main.js (badge)
+      // y slidingCart.js (render + apertura automática)
+      window.dispatchEvent(new StorageEvent('storage', { key: 'cart' }));
+
+      // Feedback visual
+      btn.textContent = '✓';
+      btn.classList.add('product-card__add-btn--added');
+      setTimeout(() => {
+        btn.textContent = '+';
+        btn.classList.remove('product-card__add-btn--added');
+      }, 1000);
+
+      return;
+    }
+
+    // Caso 2: navegar al detalle
+    const card = e.target.closest('.product-card');
+    if (card?.dataset.href) {
+      window.location.href = card.dataset.href;
+    }
+  });
+}
+
+// ─── COLECCIONES ─────────────────────────────────────────────
+
+document.querySelectorAll('.category').forEach(banner => {
+  banner.addEventListener('click', () => {
+    const col = banner.dataset.category;
+
+    if (activeCollection === col) {
       activeCollection = null;
-      card.classList.remove("active");
+      banner.classList.remove('active');
     } else {
-      activeCollection = collection;
-
-      document
-        .querySelectorAll(".category") // 🔥 FIX
-        .forEach(c => c.classList.remove("active"));
-
-      card.classList.add("active");
+      activeCollection = col;
+      document.querySelectorAll('.category').forEach(b => b.classList.remove('active'));
+      banner.classList.add('active');
     }
 
     activeCategory = null;
-    document
-      .querySelectorAll(".selectable-list a")
-      .forEach(l => l.classList.remove("active"));
+    document.querySelectorAll('.selectable-list a').forEach(l => l.classList.remove('active'));
 
-    updateCategorySidebar();
+    updateSidebar();
     applyFilters();
   });
 });
 
-// Sidebar categorías FILTRAR CATEGORIAS DEPENDIENDO DEL CASO
-document.querySelectorAll(".selectable-list a").forEach(link => {
-  link.addEventListener("click", e => {
+// ─── SIDEBAR CATEGORÍAS ──────────────────────────────────────
+
+document.querySelectorAll('.selectable-list a').forEach(link => {
+  link.addEventListener('click', e => {
     e.preventDefault();
+    const cat = link.dataset.subcategory;
 
-    const category = link.dataset.subcategory; //FIX
-
-    if (activeCategory === category) {
+    if (activeCategory === cat) {
       activeCategory = null;
-      link.classList.remove("active");
+      link.classList.remove('active');
     } else {
-      activeCategory = category;
-
-      document
-        .querySelectorAll(".selectable-list a")
-        .forEach(l => l.classList.remove("active"));
-
-      link.classList.add("active");
+      activeCategory = cat;
+      document.querySelectorAll('.selectable-list a').forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
     }
 
     applyFilters();
   });
 });
 
+// ─── FLECHAS ─────────────────────────────────────────────────
 
+const listNav  = document.getElementById('subCategoryList');
+const btnLeft  = document.getElementById('prevBtn');
+const btnRight = document.getElementById('nextBtn');
 
+if (listNav && btnLeft && btnRight) {
+  btnRight.addEventListener('click', () => listNav.scrollBy({ left: 250, behavior: 'smooth' }));
+  btnLeft.addEventListener('click',  () => listNav.scrollBy({ left: -250, behavior: 'smooth' }));
+}
 
-//!funcionalidad de flechas de seccion de productos
-document.addEventListener('DOMContentLoaded', () => {
-  const list = document.getElementById('subCategoryList');
-  const btnLeft = document.getElementById('prevBtn');
-  const btnRight = document.getElementById('nextBtn');
+// ─── CARGAR MÁS ──────────────────────────────────────────────
 
-  if (list && btnLeft && btnRight) {
-    // Desplaza 200px hacia la derecha
-    btnRight.onclick = () => {
-      list.scrollBy({ left: 250, behavior: 'smooth' });
-    };
-
-    // Desplaza 200px hacia la izquierda
-    btnLeft.onclick = () => {
-      list.scrollBy({ left: -250, behavior: 'smooth' });
-    };
-
-
-
-  }
+loadMoreBtn?.addEventListener('click', () => {
+  visibleCount += PAGE_SIZE;
+  renderProducts();
 });
 
+// ─── PUNTO DE ENTRADA ────────────────────────────────────────
 
-//! dejar fijo el hover de catedoria y funcion para seleccionar y deselecionar 
-document.addEventListener('click', (e) => {
-  const card = e.target.closest('.category');
-
-  if (card) {
-    const isAlreadySelected = card.classList.contains('selected');
-
-    document.querySelectorAll('.category').forEach(c => c.classList.remove('selected'));
-
-
-    if (!isAlreadySelected) {
-      card.classList.add('selected');
-    }
-  }
-});
+document.addEventListener('DOMContentLoaded', init);
