@@ -48,24 +48,32 @@ function renderProducts() {
   if (!cardsContainer) return;
   cardsContainer.innerHTML = '';
 
-  const fragment = document.createDocumentFragment();
+  list.slice(0, count).forEach(product => {
+    
+    const hasStock = product.stock > 0;
 
-  filteredProducts.slice(0, visibleCount).forEach(product => {
-    const col = document.createElement('div');
-    col.className = 'col-12 col-md-4';
-    col.appendChild(createProductCard(product));
-    fragment.appendChild(col);
+    const col = document.createElement("div");
+    col.className = "col-12 col-md-4";
+
+    col.innerHTML = `
+      <div class="product-card ${!hasStock ? 'out-of-stock' : ''}">
+        <div class="product-image favorite">
+          <img src="${product.imagen}" alt="${product.name}">
+          ${!hasStock ? '<div class="no-stock-tag"></div>' : ''}
+        </div>
+        <h5 class="product-name">${product.name}</h5>
+        <p class="product-price">$${product.price}</p>
+        <button class="button-ixel-products addCart" data-id=${product.id} ${!hasStock ? 'disabled' : ''}>
+          ${!hasStock ? 'Agotado' : '+'}
+        </button>
+      </div>
+    `;
+
+    container.appendChild(col);
   });
 
-  cardsContainer.appendChild(fragment);
-
-  if (loadMoreBtn) {
-    loadMoreBtn.style.display =
-      visibleCount >= filteredProducts.length ? 'none' : 'block';
-  }
+  if(loadMoreBtn) loadMoreBtn.style.display = count >= list.length ? "none" : "block";
 }
-
-// ─── FILTROS ─────────────────────────────────────────────────
 
 function applyFilters() {
   filteredProducts = allProducts.filter(p => {
