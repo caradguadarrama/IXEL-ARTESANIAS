@@ -23,100 +23,165 @@ document.addEventListener('DOMContentLoaded', () => {
   const totalEl       = document.querySelector('.total');
   const quantityBadge = document.querySelector('.quantity');
 
-  // ─── ABRIR / CERRAR ─────────────────────────────────────────
+    let allProducts = [];
+    let listCarts = [];
 
-  function openCart()  { cartDrawer?.classList.add('active'); }
-  function closeCart() { cartDrawer?.classList.remove('active'); }
-
-  openBtn?.addEventListener('click',  e => { e.preventDefault(); openCart(); });
-  closeBtn?.addEventListener('click', closeCart);
-
-  // ─── RENDER ──────────────────────────────────────────────────
-  // Lee getCart() en cada llamada — fuente única de verdad.
-  // Usa product.imagen (campo real del JSON, no image ni img).
-
-  function renderCart() {
-    const cart = getCart();
-
-    if (!listCartEl || !totalEl) return;
-
-    listCartEl.innerHTML = '';
-
-    if (!cart.length) {
-      listCartEl.innerHTML = '<li class="cart__empty">Tu carrito está vacío</li>';
-      totalEl.textContent  = 'Total: $0';
-      if (quantityBadge) quantityBadge.textContent = '0';
-      return;
+    // ========================================
+    // 1. CARGAR PRODUCTOS DESDE JSON
+    // ========================================
+    async function loadProductsData() {
+        const response = await fetch("../../../../productos_final.json");
+        if (!response.ok) throw new Error("JSON error");
+        allProducts = await response.json();
+        
+        //GUARDAR productos en localStorage para usarlos en car.html
+        localStorage.setItem('products', JSON.stringify(allProducts));
     }
 
-    let totalPrice = 0;
-    let totalCount = 0;
+    await loadProductsData();
 
-    cart.forEach(item => {
-      totalPrice += (item.price    || 0) * (item.quantity || 1);
-      totalCount += (item.quantity || 1);
+    // ========================================
+    // 2. CARGAR CARRITO DESDE LOCALSTORAGE
+    // ========================================
+    function loadCart() {
+        const savedCart = localStorage.getItem('cart');
+        if (savedCart) {
+            listCarts = JSON.parse(savedCart);
+            reloadCart(); // Actualizar UI con los datos guardados
+        }
+    }
 
-      const li = document.createElement('li');
-      li.className = 'cart__item';
-      li.innerHTML = `
-        <img
-          class="cart__item-img"
-          src="${item.imagen || ''}"
-          alt="${item.name  || 'Producto'}"
-          onerror="this.src='/assets/img/products/Tortillero Martina Grises.png';this.onerror=null"
-        >
-        <div class="cart__item-info">
-          <p class="cart__item-name">${item.name  || '—'}</p>
-          <p class="cart__item-price">$${(item.price || 0).toLocaleString('es-MX')}</p>
-        </div>
-        <div class="cart__item-controls">
-          <button class="cart__qty-btn cart__qty-btn--minus" data-id="${item.id}" type="button" aria-label="Reducir cantidad">−</button>
-          <span class="cart__qty-count">${item.quantity || 1}</span>
-          <button class="cart__qty-btn cart__qty-btn--plus"  data-id="${item.id}" type="button" aria-label="Aumentar cantidad">+</button>
-        </div>
-      `;
-      listCartEl.appendChild(li);
+    //  Cargar el carrito al iniciar
+    loadCart();
+
+    // ========================================
+    // 3. GUARDAR CARRITO EN LOCALSTORAGE
+    // ========================================
+    function saveCart() {
+        localStorage.setItem('cart', JSON.stringify(listCarts));
+    }
+
+    // ========================================
+    // 4. EVENTOS DE ABRIR/CERRAR CARRITO
+    // ========================================
+    openShopping.addEventListener('click', e => {
+        e.preventDefault();
+        document.querySelector('.cart').classList.add('active');
     });
 
-    totalEl.textContent = `Pagar: $${totalPrice.toLocaleString('es-MX')}`;
-    if (quantityBadge) quantityBadge.textContent = String(totalCount);
-  }
+    closeShopping.addEventListener('click', () => {
+        document.querySelector('.cart').classList.remove('active');
+    });
 
-  // ─── CONTROLES DE CANTIDAD ───────────────────────────────────
-  // Delegación en .listCart — un solo listener para todos los botones.
+    // ========================================
+    // 5. AGREGAR AL CARRITO
+    // ========================================
+    document.addEventListener('click', e => {
+        const addCartBtn = e.target.closest('.addCart');
+        if (!addCartBtn) return;
 
-  listCartEl?.addEventListener('click', e => {
-    const btn = e.target.closest('.cart__qty-btn');
-    if (!btn) return;
+        const productId = Number(addCartBtn.dataset.id);
+        if (!productId) return;
 
-    const rawId = btn.dataset.id;
-    const cart  = getCart();
-    const index = cart.findIndex(item => String(item.id) === String(rawId));
-    if (index < 0) return;
+        addToCart(productId);
+    });
 
-    if (btn.classList.contains('cart__qty-btn--plus')) {
-      cart[index].quantity += 1;
-    } else {
-      cart[index].quantity -= 1;
-      if (cart[index].quantity <= 0) cart.splice(index, 1);
+    function addToCart(productId) {
+        let position = listCarts.findIndex(v => v.productId === productId);
+
+        if (position < 0) {
+            listCarts.push({ productId, quantity: 1 });
+        } else {
+            listCarts[position].quantity += 1;
+        }
+
+        // ✅ GUARDAR en localStorage cada vez que se agrega
+        saveCart();
+        reloadCart();
+        document.querySelector('.cart').classList.add('active');
     }
 
-    saveCart(cart);
-    window.dispatchEvent(new StorageEvent('storage', { key: 'cart' }));
-    renderCart();
-  });
+    // ========================================
+    // 6. RENDERIZAR CARRITO
+    // ========================================
+    function reloadCart() {
+        let count = 0;
+        let totalPrice = 0;
 
-  // ─── SINCRONIZACIÓN ──────────────────────────────────────────
-  // Escucha el StorageEvent que products.js dispara tras addToCart().
-  // Abre el drawer automáticamente al agregar.
+        if (!listCart || !total) return;
 
-  window.addEventListener('storage', e => {
-    if (e.key !== 'cart') return;
-    renderCart();
-    openCart();
-  });
+        listCart.innerHTML = '';
 
-  // ─── INIT ────────────────────────────────────────────────────
-  renderCart();
+        // Si el carrito está vacío
+        if (listCarts.length === 0) {
+            listCart.innerHTML = `
+                <li style="text-align: center; padding: 40px 20px; color: #999;">
+                    <p>Tu carrito está vacío</p>
+                    <small>Agrega productos para continuar</small>
+                </li>
+            `;
+            total.innerHTML = `
+                <button class="button-ixel-beige" disabled style="opacity: 0.5;">
+                    PAGAR: $0.00
+                </button>
+            `;
+            quantity.innerText = 0;
+            return;
+        }
 
-}); // fin DOMContentLoaded
+        // Renderizar productos
+        listCarts.forEach(item => {
+            const product = allProducts.find(p => p.id === item.productId);
+            if (!product) return;
+
+            totalPrice += product.price * item.quantity;
+            count += item.quantity;
+
+            const li = document.createElement('li');
+            li.innerHTML = `
+                <img src="${product.imagen}" alt="${product.name}">
+                <div>${product.name}</div>
+                <div class="price">$${product.price.toFixed(2)}</div>
+                <div>
+                    <button data-id="${product.id}" class="qty-minus">-</button>
+                    <div class="count">${item.quantity}</div>
+                    <button data-id="${product.id}" class="qty-plus">+</button>
+                </div>
+            `;
+            listCart.appendChild(li);
+        });
+
+        //  Botón de pagar con enlace a car.html
+        total.innerHTML = `
+            <a href="car.html">
+                PAGAR: $${totalPrice.toFixed(2)}
+            </a>
+        `;
+        quantity.innerText = count;
+    }
+
+    // ========================================
+    // 7. INCREMENTAR/DECREMENTAR CANTIDAD
+    // ========================================
+    document.addEventListener('click', e => {
+        if (!e.target.matches('.qty-plus, .qty-minus')) return;
+
+        const productId = Number(e.target.dataset.id);
+        const value = e.target.classList.contains('qty-plus') ? 1 : -1;
+
+        let pos = listCarts.findIndex(v => v.productId === productId);
+        if (pos >= 0) {
+            listCarts[pos].quantity += value;
+            
+            // Si la cantidad llega a 0, eliminar del carrito
+            if (listCarts[pos].quantity <= 0) {
+                listCarts.splice(pos, 1);
+            }
+            
+            // ✅ GUARDAR en localStorage cada vez que se modifica
+            saveCart();
+            reloadCart();
+        }
+    });
+
+});
