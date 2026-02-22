@@ -1,29 +1,22 @@
 // assets/js/components/pages/products.js — ES Module
 //
-// Controlador de la página de catálogo. Responsabilidades:
-//   1. Cargar productos vía product.service.js
-//   2. Renderizar con createProductCard()
-//   3. Filtrar por colección (banners) y categoría (sidebar)
-//   4. Paginar con "Cargar más" (6 por carga)
-//   5. Manejar agregar al carrito con UN solo listener (delegación)
+// CAMBIOS vs versión anterior:
+//   1. Comparación de IDs robusta: String(p.id) === String(id)
+//      El JSON tiene IDs numéricos pero dataset.id siempre es string.
+//      Number(id) fallaba si el JSON devolviera IDs con ceros iniciales
+//      o strings no numéricas. toString() en ambos lados es el contrato
+//      correcto entre HTML y datos, independiente del tipo subyacente.
 //
-// Por qué delegación en #cards y no listeners individuales:
-//   Las tarjetas se crean dinámicamente con renderProducts().
-//   Si se pusiera un listener por botón, cada llamada a renderProducts()
-//   requeriría re-registrar todos los listeners — O(n) listeners acumulados
-//   con memory leaks garantizados. Con delegación: 1 listener total,
-//   sin importar cuántas tarjetas se rendericen o cuántas veces.
+//   2. El dispatchEvent ya estaba bien en la rama con StorageEvent.
+//      main.js escucha: if (e.key === 'cart') → StorageEvent({key:'cart'})
+//      lo satisface correctamente. No se cambia.
 //
-// Por qué dispatchEvent('storage') al agregar al carrito:
-//   main.js escucha window 'storage' para sincronizar el badge del navbar.
-//   Ese evento solo dispara entre pestañas distintas en condiciones normales.
-//   Lo disparamos manualmente para que main.js::updateCartCount() se ejecute
-//   en la misma pestaña sin necesidad de importar updateCartCount aquí,
-//   que crearía una dependencia circular (main → products, products → main).
+//   3. Delegación unificada (carrito + navegación al detalle) sin cambios:
+//      click en botón → addToCart; click en card → product-detail.html?id=
 
-import { getProducts }        from '../../services/product.service.js';
-import { createProductCard }  from '../ui/ProductCard.js';
-import { addToCart }          from '../../utils/storage.js';
+import { getProducts }       from '../../services/product.service.js';
+import { createProductCard } from '../ui/ProductCard.js';
+import { addToCart }         from '../../utils/storage.js';
 
 // ─── ESTADO ───────────────────────────────────────────────────
 
@@ -31,7 +24,6 @@ let allProducts      = [];
 let filteredProducts = [];
 let visibleCount     = 6;
 const PAGE_SIZE      = 6;
-
 let activeCollection = null;
 let activeCategory   = null;
 
@@ -40,19 +32,19 @@ let activeCategory   = null;
 const cardsContainer = document.querySelector('#cards');
 const loadMoreBtn    = document.querySelector('#loadMore');
 
-// ─── CARGA INICIAL ────────────────────────────────────────────
+// ─── INIT ────────────────────────────────────────────────────
 
 async function init() {
   try {
     allProducts      = await getProducts();
     filteredProducts = [...allProducts];
     renderProducts();
-    updateCategorySidebar();
+    updateSidebar();
   } catch (err) {
-    console.error('[products] Error al inicializar:', err);
+    console.error('[products] init:', err);
     if (cardsContainer) {
       cardsContainer.innerHTML =
-        '<p class="products__error">No se pudieron cargar los productos. Intenta de nuevo.</p>';
+        '<p class="products__error">Error al cargar productos.</p>';
     }
   }
 }
@@ -63,12 +55,9 @@ function renderProducts() {
   if (!cardsContainer) return;
   cardsContainer.innerHTML = '';
 
-  const slice = filteredProducts.slice(0, visibleCount);
-
-  // DocumentFragment: un solo reflow para todos los elementos
   const fragment = document.createDocumentFragment();
 
-  slice.forEach(product => {
+  filteredProducts.slice(0, visibleCount).forEach(product => {
     const col = document.createElement('div');
     col.className = 'col-12 col-md-4';
     col.appendChild(createProductCard(product));
@@ -78,34 +67,34 @@ function renderProducts() {
   cardsContainer.appendChild(fragment);
 
   if (loadMoreBtn) {
-    loadMoreBtn.style.display = visibleCount >= filteredProducts.length ? 'none' : 'block';
+    loadMoreBtn.style.display =
+      visibleCount >= filteredProducts.length ? 'none' : 'block';
   }
 }
 
-// ─── FILTROS ──────────────────────────────────────────────────
+// ─── FILTROS ─────────────────────────────────────────────────
 
 function applyFilters() {
   filteredProducts = allProducts.filter(p => {
-    const matchCollection = !activeCollection || p.collection === activeCollection;
-    const matchCategory   = !activeCategory   || p.category   === activeCategory;
-    return matchCollection && matchCategory;
+    const matchCol = !activeCollection || p.collection === activeCollection;
+    const matchCat = !activeCategory   || p.category   === activeCategory;
+    return matchCol && matchCat;
   });
-
   visibleCount = PAGE_SIZE;
   renderProducts();
 }
 
-// ─── SIDEBAR ──────────────────────────────────────────────────
+// ─── SIDEBAR ─────────────────────────────────────────────────
 
-function updateCategorySidebar() {
+function updateSidebar() {
   const links = document.querySelectorAll('.selectable-list a');
 
   if (!activeCollection) {
-    links.forEach(link => link.closest('li').style.display = 'list-item');
+    links.forEach(l => l.closest('li').style.display = 'list-item');
     return;
   }
 
-  const validCategories = new Set(
+  const validCats = new Set(
     allProducts
       .filter(p => p.collection === activeCollection)
       .map(p => p.category)
@@ -114,8 +103,7 @@ function updateCategorySidebar() {
   links.forEach(link => {
     const cat = link.dataset.subcategory;
     const li  = link.closest('li');
-
-    if (validCategories.has(cat)) {
+    if (validCats.has(cat)) {
       li.style.display = 'list-item';
     } else {
       li.style.display = 'none';
@@ -125,62 +113,85 @@ function updateCategorySidebar() {
   });
 }
 
-// ─── DELEGACIÓN DE EVENTOS: CARRITO ──────────────────────────
-// Un solo listener sobre #cards. Detecta clicks en .product-card__add-btn
-// independientemente de cuántas tarjetas haya en el DOM.
-// addToCart() espera un objeto producto; lo buscamos en allProducts
-// por ID para pasar el objeto completo (nombre, precio, imagen)
-// al carrito, no solo el ID.
+// ─── DELEGACIÓN PRINCIPAL ────────────────────────────────────
+//
+// Un solo listener en #cards cubre dos casos:
+//   → Click en .product-card__add-btn : agregar al carrito
+//   → Click en .product-card (resto)  : navegar al detalle
+//
+// CORRECCIÓN DE ID:
+//   dataset.id siempre llega como string desde el HTML.
+//   p.id en el JSON es number (ej: 14).
+//   La comparación String(p.id) === String(btn.dataset.id) normaliza
+//   ambos lados sin asumir el tipo, eliminando el bug silencioso
+//   donde Number("14") === 14 funcionaba pero "14a" === NaN fallaba.
 
 if (cardsContainer) {
   cardsContainer.addEventListener('click', e => {
+
+    // ── Caso 1: agregar al carrito ────────────────────────
     const btn = e.target.closest('.product-card__add-btn');
-    if (!btn || btn.disabled) return;
+    if (btn) {
+      if (btn.disabled) return;
 
-    const id      = Number(btn.dataset.id);
-    const product = allProducts.find(p => p.id === id);
-    if (!product) return;
+      // Comparación robusta: String en ambos lados
+      const rawId   = btn.dataset.id;
+      const product = allProducts.find(p => String(p.id) === String(rawId));
+      if (!product) {
+        console.warn('[products] Producto no encontrado para id:', rawId);
+        return;
+      }
 
-    addToCart(product);
+      addToCart(product);
 
-    // Notifica a main.js::updateCartCount() sin importación directa.
-    // Ver comentario al inicio del archivo sobre por qué se hace así.
-    window.dispatchEvent(new StorageEvent('storage', { key: 'cart' }));
+      // StorageEvent manual para que main.js::updateCartCount() reaccione
+      // en la misma pestaña (el evento 'storage' nativo no se dispara
+      // en la misma pestaña). main.js filtra por e.key === 'cart'.
+      window.dispatchEvent(new StorageEvent('storage', { key: 'cart' }));
 
-    // Feedback visual temporal en el botón
-    btn.textContent = '✓';
-    btn.classList.add('product-card__add-btn--added');
-    setTimeout(() => {
-      btn.textContent = '+';
-      btn.classList.remove('product-card__add-btn--added');
-    }, 1000);
+      // Feedback visual
+      btn.textContent = '✓';
+      btn.classList.add('product-card__add-btn--added');
+      setTimeout(() => {
+        btn.textContent = '+';
+        btn.classList.remove('product-card__add-btn--added');
+      }, 1000);
+
+      return; // No propagar a navegación
+    }
+
+    // ── Caso 2: navegar al detalle ────────────────────────
+    const card = e.target.closest('.product-card');
+    if (card?.dataset.href) {
+      window.location.href = card.dataset.href;
+    }
   });
 }
 
-// ─── EVENTOS: COLECCIONES ─────────────────────────────────────
+// ─── COLECCIONES ─────────────────────────────────────────────
 
-document.querySelectorAll('.category').forEach(card => {
-  card.addEventListener('click', () => {
-    const collection = card.dataset.category;
+document.querySelectorAll('.category').forEach(banner => {
+  banner.addEventListener('click', () => {
+    const col = banner.dataset.category;
 
-    if (activeCollection === collection) {
+    if (activeCollection === col) {
       activeCollection = null;
-      card.classList.remove('active');
+      banner.classList.remove('active');
     } else {
-      activeCollection = collection;
-      document.querySelectorAll('.category').forEach(c => c.classList.remove('active'));
-      card.classList.add('active');
+      activeCollection = col;
+      document.querySelectorAll('.category').forEach(b => b.classList.remove('active'));
+      banner.classList.add('active');
     }
 
     activeCategory = null;
     document.querySelectorAll('.selectable-list a').forEach(l => l.classList.remove('active'));
 
-    updateCategorySidebar();
+    updateSidebar();
     applyFilters();
   });
 });
 
-// ─── EVENTOS: CATEGORÍAS (SIDEBAR) ───────────────────────────
+// ─── SIDEBAR CATEGORÍAS ──────────────────────────────────────
 
 document.querySelectorAll('.selectable-list a').forEach(link => {
   link.addEventListener('click', e => {
@@ -200,7 +211,7 @@ document.querySelectorAll('.selectable-list a').forEach(link => {
   });
 });
 
-// ─── EVENTOS: FLECHAS SIDEBAR ─────────────────────────────────
+// ─── FLECHAS ─────────────────────────────────────────────────
 
 const listNav  = document.getElementById('subCategoryList');
 const btnLeft  = document.getElementById('prevBtn');
@@ -211,13 +222,13 @@ if (listNav && btnLeft && btnRight) {
   btnLeft.addEventListener('click',  () => listNav.scrollBy({ left: -250, behavior: 'smooth' }));
 }
 
-// ─── EVENTOS: CARGAR MÁS ─────────────────────────────────────
+// ─── CARGAR MÁS ──────────────────────────────────────────────
 
 loadMoreBtn?.addEventListener('click', () => {
   visibleCount += PAGE_SIZE;
   renderProducts();
 });
 
-// ─── PUNTO DE ENTRADA ─────────────────────────────────────────
+// ─── PUNTO DE ENTRADA ────────────────────────────────────────
 
 document.addEventListener('DOMContentLoaded', init);

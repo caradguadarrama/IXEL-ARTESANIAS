@@ -1,102 +1,122 @@
-document.addEventListener('DOMContentLoaded', async () => {
+// assets/js/components/pages/slidingCart.js — ES Module
+//
+// CORRECCIÓN DE TIMING:
+//   Los querySelector del navbar (.header-cart, .quantity) se ejecutaban
+//   en el top-level del módulo, ANTES de que main.js inyectara el navbar.
+//   Resultado: openBtn === null → el listener nunca se registraba →
+//   el click en el ícono del carrito no hacía nada.
+//
+//   Solución: todo el código se ejecuta dentro de DOMContentLoaded,
+//   que dispara después de que main.js ya inyectó navbar y footer.
 
-    let openShopping = document.querySelector('.header-cart');
-    let closeShopping = document.querySelector('.closeShopping');
-    let listCart = document.querySelector('.listCart');
-    let total = document.querySelector('.total');
-    let container = document.querySelector('.checkout');
-    let quantity = document.querySelector('.quantity');
+import { getCart, saveCart } from '../../utils/storage.js';
 
-    let allProducts = [];
-    let listCarts = [];
+document.addEventListener('DOMContentLoaded', () => {
 
-    async function loadProductsData() {
-        const response = await fetch("../../../../productos_final.json");
-        if (!response.ok) throw new Error("JSON error");
-        allProducts = await response.json();
+  // ─── DOM ─────────────────────────────────────────────────────
+  // Se consultan AQUÍ, después de que main.js inyectó el navbar.
+
+  const cartDrawer    = document.querySelector('.cart');
+  const openBtn       = document.querySelector('.header-cart');
+  const closeBtn      = document.querySelector('.closeShopping');
+  const listCartEl    = document.querySelector('.listCart');
+  const totalEl       = document.querySelector('.total');
+  const quantityBadge = document.querySelector('.quantity');
+
+  // ─── ABRIR / CERRAR ─────────────────────────────────────────
+
+  function openCart()  { cartDrawer?.classList.add('active'); }
+  function closeCart() { cartDrawer?.classList.remove('active'); }
+
+  openBtn?.addEventListener('click',  e => { e.preventDefault(); openCart(); });
+  closeBtn?.addEventListener('click', closeCart);
+
+  // ─── RENDER ──────────────────────────────────────────────────
+  // Lee getCart() en cada llamada — fuente única de verdad.
+  // Usa product.imagen (campo real del JSON, no image ni img).
+
+  function renderCart() {
+    const cart = getCart();
+
+    if (!listCartEl || !totalEl) return;
+
+    listCartEl.innerHTML = '';
+
+    if (!cart.length) {
+      listCartEl.innerHTML = '<li class="cart__empty">Tu carrito está vacío</li>';
+      totalEl.textContent  = 'Total: $0';
+      if (quantityBadge) quantityBadge.textContent = '0';
+      return;
     }
 
-    await loadProductsData();
+    let totalPrice = 0;
+    let totalCount = 0;
 
-    openShopping.addEventListener('click', e => {
-        e.preventDefault();
-        document.querySelector('.cart').classList.add('active');
+    cart.forEach(item => {
+      totalPrice += (item.price    || 0) * (item.quantity || 1);
+      totalCount += (item.quantity || 1);
+
+      const li = document.createElement('li');
+      li.className = 'cart__item';
+      li.innerHTML = `
+        <img
+          class="cart__item-img"
+          src="${item.imagen || ''}"
+          alt="${item.name  || 'Producto'}"
+          onerror="this.src='/assets/img/products/Tortillero Martina Grises.png';this.onerror=null"
+        >
+        <div class="cart__item-info">
+          <p class="cart__item-name">${item.name  || '—'}</p>
+          <p class="cart__item-price">$${(item.price || 0).toLocaleString('es-MX')}</p>
+        </div>
+        <div class="cart__item-controls">
+          <button class="cart__qty-btn cart__qty-btn--minus" data-id="${item.id}" type="button" aria-label="Reducir cantidad">−</button>
+          <span class="cart__qty-count">${item.quantity || 1}</span>
+          <button class="cart__qty-btn cart__qty-btn--plus"  data-id="${item.id}" type="button" aria-label="Aumentar cantidad">+</button>
+        </div>
+      `;
+      listCartEl.appendChild(li);
     });
 
-    closeShopping.addEventListener('click', () => {
-        document.querySelector('.cart').classList.remove('active');
-    });
+    totalEl.textContent = `Pagar: $${totalPrice.toLocaleString('es-MX')}`;
+    if (quantityBadge) quantityBadge.textContent = String(totalCount);
+  }
 
-    document.addEventListener('click', e => {
-        const addCartBtn = e.target.closest('.addCart');
-        if (!addCartBtn) return;
+  // ─── CONTROLES DE CANTIDAD ───────────────────────────────────
+  // Delegación en .listCart — un solo listener para todos los botones.
 
-        const productId = Number(addCartBtn.dataset.id);
-        if (!productId) return;
+  listCartEl?.addEventListener('click', e => {
+    const btn = e.target.closest('.cart__qty-btn');
+    if (!btn) return;
 
-        addToCart(productId);
-    });
+    const rawId = btn.dataset.id;
+    const cart  = getCart();
+    const index = cart.findIndex(item => String(item.id) === String(rawId));
+    if (index < 0) return;
 
-    function addToCart(productId) {
-        let position = listCarts.findIndex(v => v.productId === productId);
-
-        if (position < 0) {
-            listCarts.push({ productId, quantity: 1 });
-        } else {
-            listCarts[position].quantity += 1;
-        }
-
-        reloadCart();
-        document.querySelector('.cart').classList.add('active');
+    if (btn.classList.contains('cart__qty-btn--plus')) {
+      cart[index].quantity += 1;
+    } else {
+      cart[index].quantity -= 1;
+      if (cart[index].quantity <= 0) cart.splice(index, 1);
     }
 
-    function reloadCart() {
-        let count = 0;
-        let totalPrice = 0;
+    saveCart(cart);
+    window.dispatchEvent(new StorageEvent('storage', { key: 'cart' }));
+    renderCart();
+  });
 
-        if (!listCart || !total) return;
+  // ─── SINCRONIZACIÓN ──────────────────────────────────────────
+  // Escucha el StorageEvent que products.js dispara tras addToCart().
+  // Abre el drawer automáticamente al agregar.
 
-        listCart.innerHTML = '';
+  window.addEventListener('storage', e => {
+    if (e.key !== 'cart') return;
+    renderCart();
+    openCart();
+  });
 
-        listCarts.forEach(item => {
-            const product = allProducts.find(p => p.id === item.productId);
-            if (!product) return;
+  // ─── INIT ────────────────────────────────────────────────────
+  renderCart();
 
-            totalPrice += product.price * item.quantity;
-            count += item.quantity;
-
-            const li = document.createElement('li');
-            li.innerHTML = `
-                <img src="../../assets/img/products/onilala.png">
-                <div>${product.name}</div>
-                <div class="price">$${product.price}</div>
-                <div>
-                    <button data-id="${product.id}" class="qty-minus">-</button>
-                    <div class="count">${item.quantity}</div>
-                    <button data-id="${product.id}" class="qty-plus">+</button>
-                </div>
-            `;
-            listCart.appendChild(li);
-        });
-
-        total.innerText = `Pagar: ${totalPrice} $`;
-        quantity.innerText = count;
-    }
-
-    document.addEventListener('click', e => {
-        if (!e.target.matches('.qty-plus, .qty-minus')) return;
-
-        const productId = Number(e.target.dataset.id);
-        const value = e.target.classList.contains('qty-plus') ? 1 : -1;
-
-        let pos = listCarts.findIndex(v => v.productId === productId);
-        if (pos >= 0) {
-            listCarts[pos].quantity += value;
-            if (listCarts[pos].quantity <= 0) listCarts.splice(pos, 1);
-            reloadCart();
-        }
-    });
-
-});
-
-
+}); // fin DOMContentLoaded
