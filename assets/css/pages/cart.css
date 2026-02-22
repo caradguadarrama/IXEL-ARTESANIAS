@@ -1,7 +1,6 @@
 /* !class="category-card"*/
 /* !Tarjetas de Categoría usa la clase para usar este card category-card*/
 
-/* Estilo escritorio*/
 
 .category-card {
     border: none;
@@ -9,18 +8,22 @@
     overflow: hidden;
     cursor: pointer;
     transition: transform 0.3s ease;
+    /* Elimina el recuadro de enfoque que ponen algunos navegadores al hacer clic */
+    outline: none !important;
 }
 
 .category-image-container {
     background-color: #f6f3eb;
     border-radius: 16px;
     aspect-ratio: 4 / 3;
-    /* Proporción horizontal en PC */
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
     position: relative;
+    /* Aseguramos que no haya sombras por defecto */
+    box-shadow: none !important;
+    outline: none !important;
 }
 
 .category-image-container img {
@@ -42,10 +45,11 @@
     align-items: center;
     justify-content: center;
     opacity: 0;
-    /* Oculto en PC por defecto */
+    /* Oculto por defecto */
     transition: all 0.4s ease-in-out;
     padding: 15px;
     text-align: center;
+    z-index: 2;
 }
 
 .category-name {
@@ -60,14 +64,36 @@
 
 
 
-/* --- HOVER SOLO PARA PC --- */
+/* Al estar seleccionado, activamos el overlay interno */
+.category.selected .category-overlay {
+    opacity: 1 !important;
+}
+
+.category.selected .category-name {
+    transform: translateY(0) !important;
+}
+
+.category.selected .category-image-container img {
+    transform: scale(1.1);
+}
+
+/* Limpieza total de cualquier cuadro o sombra exterior al seleccionar */
+.category.selected .category-card,
+.category.selected .category-image-container {
+    box-shadow: none !important;
+    outline: none !important;
+    border: none !important;
+    -webkit-tap-highlight-color: transparent;
+    /* Quita el destello azul en móviles */
+}
+
+/*  EFECTOS HOVER (PC) */
 @media (min-width: 992px) {
     .category-card:hover .category-overlay {
         opacity: 1;
     }
 
-    .category-card:hover .category-name,
-    .category-card:hover .category-year {
+    .category-card:hover .category-name {
         transform: translateY(0);
     }
 
@@ -76,55 +102,85 @@
     }
 }
 
-/* 
-   MI VERSIÓN RESPONSIVA (Creativa y Rectangular) */
-
+/* VERSIÓN RESPONSIVA (Móvil) */
 @media (max-width: 991px) {
     .category-image-container {
-        /* Cambio a Proporción Rectangular Vertical (Editorial) */
         aspect-ratio: 3 / 4;
         border-radius: 12px;
     }
 
     .category-overlay {
-        /* En móvil el overlay no es un cuadro sólido que tapa,  sino un degradado elegante en la base para legibilidad */
         opacity: 1;
         background: linear-gradient(to top, rgba(104, 53, 49, 0.9) 0%, transparent 60%);
         justify-content: flex-end;
         padding-bottom: 20px;
     }
 
+    /* Al seleccionar en móvil, el fondo se vuelve sólido */
+    .category.selected .category-overlay {
+        background: rgba(104, 53, 49, 0.95) !important;
+        justify-content: center;
+    }
+
     .category-name {
         font-size: 1.4rem;
-        /* Ajuste para que quepa en 2 columnas */
         transform: translateY(0);
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     }
 
- 
-
-    /* Efecto de pulsación al tocar la tarjeta */
     .category-card:active {
         transform: scale(0.96);
+        outline: none !important;
     }
 
     .category-image-container img {
         width: 80%;
-        /* Un poco más pequeña para lucir el fondo */
         transform: translateY(-10%);
-        /* Sube un poco la imagen para dejar aire al texto */
     }
 }
 
-/* Ajuste fino para celulares muy pequeños */
+/* Ajuste para celulares  pequeños */
 @media (max-width: 400px) {
     .category-name {
         font-size: 1.1rem;
     }
+}
 
-    .category-overlay {
-        padding-bottom: 12px;
-    }
+
+/*? ELIMINACIÓN TOTAL DE BORDES NO TOCAR LO SIGUIENTE POR USO DE BOOSTRAP SE REQUIERE PARA PODER ELIMINAR BORDES */
+
+/* estados posibles del card y sus contenedores */
+.category,
+.category-card,
+.category-image-container,
+.category-card *,
+.category-card:focus,
+.category-card:active,
+.category-card:visited {
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important;
+    /* Para móviles */
+    -webkit-tap-highlight-color: transparent !important;
+    /* Para móviles */
+}
+
+.category-card:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.category.selected .category-image-container,
+.category.selected .category-card {
+    outline: 0 !important;
+    box-shadow: none !important;
+    border: 0 !important;
+}
+
+.category {
+    border: none !important;
+    box-shadow: none !important;
 }
 
 /* !Tarjetas de Categoría */

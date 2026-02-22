@@ -11,19 +11,29 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Estilos -->
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/pages/landingPage.css">
-    <link rel="stylesheet" href="assets/css/pages/buttons.css">
-    
+
     <!-- JavaScript -->
     <script defer type="module" src="assets/js/main.js"></script>
+    <script defer type="module" src="assets/js/components/pages/landingPage.js"></script>
+    <script defer type="module" src="assets/js/components/pages/slidingCart.js"></script>
 </head>
 
 <body>
     <!-- Navbar se inyecta aquí -->
     <div id="navbar-container"></div>
+
+<div class="cart">
+        <h1>Carrito</h1>
+        <ul class="listCart"></ul>
+        <div class="checkout">
+            <div class="total" href="../user/cart.html"></div>
+            <div class="closeShopping">Cerrar</div>
+        </div>
+    </div>
 
     <!-- Contenido principal -->
     <main>
@@ -32,7 +42,48 @@
             <button href="#" class="btn-ver-mas btn mt-4 button-ixel-rojo">Ver colección</button>
         </div>
     </section>
-</main>
+   <section class="top-cards-section">
+    <div class="top-carousel-container">
+        <div class="top-carousel-track">
+
+            <div class="top-card">
+                <div class="top-card-inner">
+                    <div class="top-card-front">Producto 1</div>
+                    <div class="top-card-back">Descripción 1</div>
+                </div>
+            </div>
+
+            <div class="top-card">
+                <div class="top-card-inner">
+                    <div class="top-card-front">Producto 2</div>
+                    <div class="top-card-back">Descripción 2</div>
+                </div>
+            </div>
+
+            <div class="top-card">
+                <div class="top-card-inner">
+                    <div class="top-card-front">Producto 3</div>
+                    <div class="top-card-back">Descripción 3</div>
+                </div>
+            </div>
+
+            <div class="top-card">
+                <div class="top-card-inner">
+                    <div class="top-card-front">Producto 4</div>
+                    <div class="top-card-back">Descripción 4</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+    <section id="products" class="products-section my-5">
+  <h2 class="section-titlee text-center">Productos</h2>
+  <div class="container">
+    <div class="row g-3" id="cards"></div>
+  </div>
+</section>
+    </main>
 
 
     <!-- Footer se inyecta aquí -->
