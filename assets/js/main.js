@@ -4,6 +4,7 @@
 import { createNavbar, initNavbar } from './components/navbar.js';
 import { createFooter }             from './components/footer.js';
 import { getCart }                  from './utils/storage.js';
+import { initSlidingCart }          from './components/pages/cart.js';
 
 // ─── INYECCIÓN ────────────────────────────────────────────────
 
@@ -12,6 +13,8 @@ function injectNavbar() {
   if (!container) return;
   container.innerHTML = createNavbar();
   initNavbar();
+  initSlidingCart();
+  updateCartCount();
 }
 
 function injectFooter() {

@@ -1,18 +1,11 @@
 // assets/js/components/pages/products.js — ES Module
 //
-// CAMBIOS vs versión anterior:
-//   1. Comparación de IDs robusta: String(p.id) === String(id)
-//      El JSON tiene IDs numéricos pero dataset.id siempre es string.
-//      Number(id) fallaba si el JSON devolviera IDs con ceros iniciales
-//      o strings no numéricas. toString() en ambos lados es el contrato
-//      correcto entre HTML y datos, independiente del tipo subyacente.
-//
-//   2. El dispatchEvent ya estaba bien en la rama con StorageEvent.
-//      main.js escucha: if (e.key === 'cart') → StorageEvent({key:'cart'})
-//      lo satisface correctamente. No se cambia.
-//
-//   3. Delegación unificada (carrito + navegación al detalle) sin cambios:
-//      click en botón → addToCart; click en card → product-detail.html?id=
+// CAMBIO vs archivo subido:
+//   products.js ya disparaba StorageEvent({key:'cart'}) tras addToCart().
+//   slidingCart.js ahora escucha ese mismo evento y se abre automáticamente.
+//   No se necesita ninguna importación cruzada entre los dos módulos.
+//   El único ajuste: el evento sigue siendo StorageEvent (no Event genérico)
+//   para que main.js y slidingCart.js filtren por e.key === 'cart'.
 
 import { getProducts }       from '../../services/product.service.js';
 import { createProductCard } from '../ui/ProductCard.js';
@@ -115,38 +108,29 @@ function updateSidebar() {
 
 // ─── DELEGACIÓN PRINCIPAL ────────────────────────────────────
 //
-// Un solo listener en #cards cubre dos casos:
-//   → Click en .product-card__add-btn : agregar al carrito
-//   → Click en .product-card (resto)  : navegar al detalle
-//
-// CORRECCIÓN DE ID:
-//   dataset.id siempre llega como string desde el HTML.
-//   p.id en el JSON es number (ej: 14).
-//   La comparación String(p.id) === String(btn.dataset.id) normaliza
-//   ambos lados sin asumir el tipo, eliminando el bug silencioso
-//   donde Number("14") === 14 funcionaba pero "14a" === NaN fallaba.
+// Un listener en #cards cubre dos casos:
+//   → .product-card__add-btn → addToCart + StorageEvent → slidingCart abre
+//   → .product-card (resto)  → navegar al detalle
 
 if (cardsContainer) {
   cardsContainer.addEventListener('click', e => {
 
-    // ── Caso 1: agregar al carrito ────────────────────────
+    // Caso 1: agregar al carrito
     const btn = e.target.closest('.product-card__add-btn');
     if (btn) {
       if (btn.disabled) return;
 
-      // Comparación robusta: String en ambos lados
       const rawId   = btn.dataset.id;
       const product = allProducts.find(p => String(p.id) === String(rawId));
       if (!product) {
-        console.warn('[products] Producto no encontrado para id:', rawId);
+        console.warn('[products] Producto no encontrado:', rawId);
         return;
       }
 
       addToCart(product);
 
-      // StorageEvent manual para que main.js::updateCartCount() reaccione
-      // en la misma pestaña (el evento 'storage' nativo no se dispara
-      // en la misma pestaña). main.js filtra por e.key === 'cart'.
+      // StorageEvent con key:'cart' → lo escuchan main.js (badge)
+      // y slidingCart.js (render + apertura automática)
       window.dispatchEvent(new StorageEvent('storage', { key: 'cart' }));
 
       // Feedback visual
@@ -157,10 +141,10 @@ if (cardsContainer) {
         btn.classList.remove('product-card__add-btn--added');
       }, 1000);
 
-      return; // No propagar a navegación
+      return;
     }
 
-    // ── Caso 2: navegar al detalle ────────────────────────
+    // Caso 2: navegar al detalle
     const card = e.target.closest('.product-card');
     if (card?.dataset.href) {
       window.location.href = card.dataset.href;

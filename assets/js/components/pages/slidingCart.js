@@ -1,27 +1,18 @@
 // assets/js/components/pages/slidingCart.js — ES Module
-//
-// CORRECCIÓN DE TIMING:
-//   Los querySelector del navbar (.header-cart, .quantity) se ejecutaban
-//   en el top-level del módulo, ANTES de que main.js inyectara el navbar.
-//   Resultado: openBtn === null → el listener nunca se registraba →
-//   el click en el ícono del carrito no hacía nada.
-//
-//   Solución: todo el código se ejecuta dentro de DOMContentLoaded,
-//   que dispara después de que main.js ya inyectó navbar y footer.
 
-import { getCart, saveCart } from '../../utils/storage.js';
+import { getCart } from '../../utils/storage.js'; // Solo importamos lo necesario
 
-document.addEventListener('DOMContentLoaded', () => {
+// Agregamos ASYNC aquí para poder usar await adentro
+document.addEventListener('DOMContentLoaded', async () => {
 
-  // ─── DOM ─────────────────────────────────────────────────────
-  // Se consultan AQUÍ, después de que main.js inyectó el navbar.
-
-  const cartDrawer    = document.querySelector('.cart');
-  const openBtn       = document.querySelector('.header-cart');
-  const closeBtn      = document.querySelector('.closeShopping');
-  const listCartEl    = document.querySelector('.listCart');
-  const totalEl       = document.querySelector('.total');
-  const quantityBadge = document.querySelector('.quantity');
+    // ─── DOM ─────────────────────────────────────────────────────
+    // Usamos los nombres exactos de las variables para evitar errores
+    const cartDrawer    = document.querySelector('.cart');
+    const openBtn       = document.querySelector('.header-cart');
+    const closeBtn      = document.querySelector('.closeShopping');
+    const listCartEl    = document.querySelector('.listCart');
+    const totalEl       = document.querySelector('.total');
+    const quantityBadge = document.querySelector('.quantity');
 
     let allProducts = [];
     let listCarts = [];
@@ -30,51 +21,56 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. CARGAR PRODUCTOS DESDE JSON
     // ========================================
     async function loadProductsData() {
-        const response = await fetch("../../../../productos_final.json");
-        if (!response.ok) throw new Error("JSON error");
-        allProducts = await response.json();
-        
-        //GUARDAR productos en localStorage para usarlos en car.html
-        localStorage.setItem('products', JSON.stringify(allProducts));
+        try {
+            const response = await fetch("../../../../productos_final.json");
+            if (!response.ok) throw new Error("JSON error");
+            allProducts = await response.json();
+            
+            // Guardar para car.html
+            localStorage.setItem('products', JSON.stringify(allProducts));
+        } catch (error) {
+            console.error("Error cargando productos:", error);
+        }
     }
 
+    // Ahora sí funciona el await porque la función padre es async
     await loadProductsData();
 
     // ========================================
-    // 2. CARGAR CARRITO DESDE LOCALSTORAGE
+    // 2. LÓGICA DE PERSISTENCIA (LOCAL)
     // ========================================
     function loadCart() {
         const savedCart = localStorage.getItem('cart');
         if (savedCart) {
             listCarts = JSON.parse(savedCart);
-            reloadCart(); // Actualizar UI con los datos guardados
+            reloadCart();
         }
     }
 
-    //  Cargar el carrito al iniciar
-    loadCart();
-
-    // ========================================
-    // 3. GUARDAR CARRITO EN LOCALSTORAGE
-    // ========================================
     function saveCart() {
         localStorage.setItem('cart', JSON.stringify(listCarts));
+        // Disparamos evento para que el Navbar se entere (si usa otro script)
+        window.dispatchEvent(new Event('storage'));
     }
 
     // ========================================
-    // 4. EVENTOS DE ABRIR/CERRAR CARRITO
+    // 3. EVENTOS DE ABRIR/CERRAR (CORREGIDO)
     // ========================================
-    openShopping.addEventListener('click', e => {
-        e.preventDefault();
-        document.querySelector('.cart').classList.add('active');
-    });
+    if (openBtn) {
+        openBtn.addEventListener('click', e => {
+            e.preventDefault();
+            cartDrawer?.classList.add('active');
+        });
+    }
 
-    closeShopping.addEventListener('click', () => {
-        document.querySelector('.cart').classList.remove('active');
-    });
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            cartDrawer?.classList.remove('active');
+        });
+    }
 
     // ========================================
-    // 5. AGREGAR AL CARRITO
+    // 4. AGREGAR AL CARRITO (DELEGACIÓN)
     // ========================================
     document.addEventListener('click', e => {
         const addCartBtn = e.target.closest('.addCart');
@@ -95,41 +91,29 @@ document.addEventListener('DOMContentLoaded', () => {
             listCarts[position].quantity += 1;
         }
 
-        // ✅ GUARDAR en localStorage cada vez que se agrega
         saveCart();
         reloadCart();
-        document.querySelector('.cart').classList.add('active');
+        cartDrawer?.classList.add('active'); // Abrir automáticamente
     }
 
     // ========================================
-    // 6. RENDERIZAR CARRITO
+    // 5. RENDERIZAR CARRITO
     // ========================================
     function reloadCart() {
         let count = 0;
         let totalPrice = 0;
 
-        if (!listCart || !total) return;
+        if (!listCartEl || !totalEl) return;
 
-        listCart.innerHTML = '';
+        listCartEl.innerHTML = '';
 
-        // Si el carrito está vacío
         if (listCarts.length === 0) {
-            listCart.innerHTML = `
-                <li style="text-align: center; padding: 40px 20px; color: #999;">
-                    <p>Tu carrito está vacío</p>
-                    <small>Agrega productos para continuar</small>
-                </li>
-            `;
-            total.innerHTML = `
-                <button class="button-ixel-beige" disabled style="opacity: 0.5;">
-                    PAGAR: $0.00
-                </button>
-            `;
-            quantity.innerText = 0;
+            listCartEl.innerHTML = `<li style="text-align: center; padding: 20px; color: #999;">Carrito vacío</li>`;
+            totalEl.innerHTML = `<button class="button-ixel-beige" disabled>PAGAR: $0.00</button>`;
+            if (quantityBadge) quantityBadge.innerText = 0;
             return;
         }
 
-        // Renderizar productos
         listCarts.forEach(item => {
             const product = allProducts.find(p => p.id === item.productId);
             if (!product) return;
@@ -139,29 +123,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const li = document.createElement('li');
             li.innerHTML = `
-                <img src="${product.imagen}" alt="${product.name}">
+                <img src="${product.imagen}" alt="${product.name}" style="width: 50px">
                 <div>${product.name}</div>
                 <div class="price">$${product.price.toFixed(2)}</div>
                 <div>
                     <button data-id="${product.id}" class="qty-minus">-</button>
-                    <div class="count">${item.quantity}</div>
+                    <span class="count">${item.quantity}</span>
                     <button data-id="${product.id}" class="qty-plus">+</button>
                 </div>
             `;
-            listCart.appendChild(li);
+            listCartEl.appendChild(li);
         });
 
-        //  Botón de pagar con enlace a car.html
-        total.innerHTML = `
-            <a href="car.html">
+        totalEl.innerHTML = `
+            <a href="car.html" class="button-ixel-beige" style="text-decoration:none; display:block; text-align:center;">
                 PAGAR: $${totalPrice.toFixed(2)}
             </a>
         `;
-        quantity.innerText = count;
+        if (quantityBadge) quantityBadge.innerText = count;
     }
 
     // ========================================
-    // 7. INCREMENTAR/DECREMENTAR CANTIDAD
+    // 6. CONTROL DE CANTIDADES
     // ========================================
     document.addEventListener('click', e => {
         if (!e.target.matches('.qty-plus, .qty-minus')) return;
@@ -172,16 +155,14 @@ document.addEventListener('DOMContentLoaded', () => {
         let pos = listCarts.findIndex(v => v.productId === productId);
         if (pos >= 0) {
             listCarts[pos].quantity += value;
+            if (listCarts[pos].quantity <= 0) listCarts.splice(pos, 1);
             
-            // Si la cantidad llega a 0, eliminar del carrito
-            if (listCarts[pos].quantity <= 0) {
-                listCarts.splice(pos, 1);
-            }
-            
-            // ✅ GUARDAR en localStorage cada vez que se modifica
             saveCart();
             reloadCart();
         }
     });
+
+    // Iniciar el carrito al cargar la página
+    loadCart();
 
 });

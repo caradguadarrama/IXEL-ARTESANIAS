@@ -1,309 +1,146 @@
-// ========================================
-// CART-PAGE.JS - Página completa del carrito (car.html)
-// ========================================
+// assets/js/components/pages/cart.js — ES Module
+//
+// BUGS CORREGIDOS (persisten del turno anterior):
+//
+//   BUG 1 — DOMContentLoaded anidado (raíz del problema en about/contact/todas las páginas):
+//     initSlidingCart() es invocada por injectNavbar() en main.js, que ya corre
+//     dentro del DOMContentLoaded de main.js. Al registrar OTRO DOMContentLoaded
+//     aquí adentro, ese evento ya disparó — el callback nunca se ejecuta,
+//     openBtn queda null, ningún listener se registra → el carrito no abre
+//     en ninguna página (index, about, contact, products, todas).
+//     FIX: eliminar completamente el DOMContentLoaded interno.
+//     Los querySelector corren directamente al invocar initSlidingCart() —
+//     en ese momento el navbar ya existe porque main.js lo inyectó antes.
+//
+//   BUG 2 — window.location.origin = '...' (botón Pagar no redirigía):
+//     .origin es una propiedad read-only de Location. Asignarle un valor
+//     falla silenciosamente — sin error en consola, sin redirección.
+//     El comentario decía .href pero el código usaba .origin.
+//     FIX: window.location.href = '/pages/public/car.html'
 
-document.addEventListener('DOMContentLoaded', () => {
+import { getCart, saveCart } from '../../utils/storage.js';
 
-    // 1. Obtener datos de localStorage
-    let listCarts = JSON.parse(localStorage.getItem('cart')) || [];
-    let allProducts = JSON.parse(localStorage.getItem('products')) || [];
+export function initSlidingCart() {
 
-    // 2. Elementos del DOM
-    const cartHeader = document.querySelector('.card-header h5'); // "Carrito (X productos)"
-    const cartBody = document.querySelector('.card-body'); // Contenedor de productos
-    const productCountElement = document.getElementById('products-info'); // "Productos (X)"
-    const subtotalElement = document.querySelector('.list-group-item:nth-child(1) span'); // Precio subtotal
-    const totalElement = document.querySelector('.list-group-item:nth-child(3) span strong'); // Total
-    const checkoutBtn = document.getElementById('finalizar-compra'); // Botón "Continuar compra"
+  // Todos los querySelector corren aquí — SIN DOMContentLoaded adicional.
+  // Cuando main.js llama initSlidingCart(), el navbar ya fue inyectado:
+  //   DOMContentLoaded → init() → injectNavbar() [inyecta HTML + llama initSlidingCart()]
+  // En este punto .header-cart, .cart, .listCart, etc. ya existen en el DOM.
 
-    // ========================================
-    // 3. FUNCIÓN PRINCIPAL - RENDERIZAR CARRITO
-    // ========================================
-    function renderCart() {
-        if (!cartBody) return;
+  const cartDrawer    = document.querySelector('.cart');
+  const openBtn       = document.querySelector('.header-cart');
+  const closeBtn      = document.querySelector('.closeShopping');
+  const listCartEl    = document.querySelector('.listCart');
+  const totalEl       = document.querySelector('.total');
+  const quantityBadge = document.querySelector('.quantity');
 
-        // Limpiar contenedor
-        cartBody.innerHTML = '';
+  // ─── ABRIR / CERRAR ──────────────────────────────────────────
 
-        // Si el carrito está vacío
-        if (listCarts.length === 0) {
-            cartBody.innerHTML = `
-                <div class="text-center py-5">
-                    <div style="font-size: 80px; color: #ddd;">🛒</div>
-                    <h4 class="mt-4 text-muted">Tu carrito está vacío</h4>
-                    <p class="text-muted">Agrega productos para continuar con tu compra</p>
-                    <a href="../../../pages/public/products.html" class="btn button-ixel-cafe mt-3">
-                        Ver catálogo
-                    </a>
-                </div>
-            `;
-            updateTotals(0, 0);
-            return;
-        }
+  function openCart()  { cartDrawer?.classList.add('active');    }
+  function closeCart() { cartDrawer?.classList.remove('active'); }
 
-        // Renderizar cada producto
-        listCarts.forEach((item, index) => {
-            const product = allProducts.find(p => p.id === item.productId);
-            if (!product) return;
+  openBtn?.addEventListener('click',  e => { e.preventDefault(); openCart(); });
+  closeBtn?.addEventListener('click', closeCart);
 
-            const productHTML = `
-                <div class="row align-items-center product-item" data-product-id="${product.id}">
-                    <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
-                        <div class="bg-image hover-overlay hover-zoom ripple rounded">
-                            <img src="${product.imagen || '/assets/img/products/default.png'}" 
-                                 class="w-100 rounded" 
-                                 alt="${product.name}" 
-                                 style="object-fit: cover; height: 150px;" />
-                        </div>
-                    </div>
+  // ─── RENDER ──────────────────────────────────────────────────
+  // Lee getCart() en cada llamada — sin estado propio.
+  // item.imagen = campo real del JSON (verificado).
 
-                    <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
-                        <p class="fw-bold mb-1">${product.name}</p>
-                        <p class="text-muted small mb-2">${product.description || 'Vendido por IXEL Artesanías'}</p>
-                        <p class="text-success small mb-0">
-                            <i class="bi bi-truck"></i> Envío gratis
-                        </p>
+  function renderCart() {
+    const cart = getCart();
+    if (!listCartEl || !totalEl) return;
 
-                        <div class="mt-3">
-                            <button type="button" 
-                                    class="btn btn-link px-0 me-2 text-decoration-none text-muted small btn-remove"
-                                    data-id="${product.id}">
-                                <p class="text-danger">Eliminar</p>
-                            </button>
-                            
-                        </div>
-                    </div>
+    listCartEl.innerHTML = '';
 
-                    <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-                        <div class="d-flex mb-4 justify-content-center" style="max-width: 300px">
-                            
-                                <button class="btn btn-outline-secondary px-3 me-2 qty-minus" 
-                                    data-id="${product.id}"
-                                    ${item.quantity === 1 ? 'disabled' : ''}>
-                                    <i class="bi bi-dash fs-5"></i>
-                                </button>
-                            
-                            <div class="form-outline">
-                                <input type="number" 
-                                       min="1" 
-                                       value="${item.quantity}" 
-                                       class="form-control text-center qty-input" 
-                                       data-id="${product.id}"
-                                       style="width: 70px;" readonly />
-                            </div>
-                            
-                                <button class="btn btn-outline-secondary px-3 ms-2 qty-plus" 
-                                    data-id="${product.id}">
-                                <i class="bi bi-plus-lg">
-                                </i>
-                                </button>
-                                
-                        </div>
-
-                        <p class="text-start text-md-center">
-                            <strong class="fs-5 product-total" data-id="${product.id}">
-                                $${(product.price * item.quantity).toFixed(2)}
-                            </strong>
-                        </p>
-                    </div>
-                </div>
-                ${index < listCarts.length - 1 ? '<hr class="my-4" />' : ''}
-            `;
-
-            cartBody.insertAdjacentHTML('beforeend', productHTML);
-        });
-
-        // Calcular totales
-        calculateTotals();
-
-        // Agregar eventos a los botones
-        addEventListeners();
+    if (!cart.length) {
+      listCartEl.innerHTML = `
+        <li style="text-align:center;padding:40px 20px;color:#999;">
+          <p>Tu carrito está vacío</p>
+          <small>Agrega productos para continuar</small>
+        </li>
+      `;
+      totalEl.innerHTML = `
+        <div style="opacity:0.5;padding:1rem;text-align:center;">
+          PAGAR: $0.00
+        </div>
+      `;
+      if (quantityBadge) quantityBadge.textContent = '0';
+      return;
     }
 
-    // ========================================
-    // 4. CALCULAR TOTALES
-    // ========================================
-    function calculateTotals() {
-        let count = 0;
-        let subtotal = 0;
+    let totalPrice = 0;
+    let totalCount = 0;
 
-        listCarts.forEach(item => {
-            const product = allProducts.find(p => p.id === item.productId);
-            if (product) {
-                count += item.quantity;
-                subtotal += product.price * item.quantity;
-            }
-        });
+    cart.forEach(item => {
+      totalPrice += (item.price    || 0) * (item.quantity || 1);
+      totalCount += (item.quantity || 1);
 
-        updateTotals(count, subtotal);
+      const li = document.createElement('li');
+      li.innerHTML = `
+        <img
+          src="${item.imagen || ''}"
+          alt="${item.name  || 'Producto'}"
+          onerror="this.src='/assets/img/products/Tortillero Martina Grises.png';this.onerror=null"
+        >
+        <div>${item.name || '—'}</div>
+        <div class="price">$${(item.price || 0).toFixed(2)}</div>
+        <div>
+          <button class="qty-minus" data-id="${item.id}" type="button">−</button>
+          <div class="count">${item.quantity || 1}</div>
+          <button class="qty-plus"  data-id="${item.id}" type="button">+</button>
+        </div>
+      `;
+      listCartEl.appendChild(li);
+    });
+
+    // FIX BUG 2: .href (no .origin — .origin es read-only y no hace nada)
+    totalEl.innerHTML = `
+      <div class="total__pay" data-action="pay" style="cursor:pointer;">
+        PAGAR: $${totalPrice.toFixed(2)}
+      </div>
+    `;
+    totalEl.querySelector('[data-action="pay"]')?.addEventListener('click', () => {
+      window.location.href = '/pages/public/car.html';
+    });
+
+    if (quantityBadge) quantityBadge.textContent = String(totalCount);
+  }
+
+  // ─── CONTROLES +/− ───────────────────────────────────────────
+  // Delegación en listCartEl. String() en ambos lados.
+
+  listCartEl?.addEventListener('click', e => {
+    const btn = e.target.closest('.qty-minus, .qty-plus');
+    if (!btn) return;
+
+    const cart  = getCart();
+    const index = cart.findIndex(
+      item => String(item.id) === String(btn.dataset.id)
+    );
+    if (index < 0) return;
+
+    if (btn.classList.contains('qty-plus')) {
+      cart[index].quantity += 1;
+    } else {
+      cart[index].quantity -= 1;
+      if (cart[index].quantity <= 0) cart.splice(index, 1);
     }
 
-    // ========================================
-    // 5. ACTUALIZAR UI DE TOTALES
-    // ========================================
-    function updateTotals(count, subtotal) {
-        // Actualizar header
-        if (cartHeader) {
-            cartHeader.textContent = `Carrito (${count} producto${count !== 1 ? 's' : ''})`;
-        }
-
-        // Actualizar subtotal en resumen
-        if (productCountElement) {
-            productCountElement.innerHTML = `
-                Productos (${count})
-                <span>$${subtotal.toFixed(2)}</span>
-            `;
-        }
-
-        // Actualizar solo el span del subtotal (si existe un elemento separado)
-        if (subtotalElement && !productCountElement) {
-            subtotalElement.textContent = `$${subtotal.toFixed(2)}`;
-        }
-
-        // Actualizar total
-        if (totalElement) {
-            totalElement.textContent = `$${subtotal.toFixed(2)}`;
-        }
-
-        // Deshabilitar botón si carrito vacío
-        if (checkoutBtn) {
-            if (count === 0) {
-                checkoutBtn.disabled = true;
-                checkoutBtn.style.opacity = '0.5';
-            } else {
-                checkoutBtn.disabled = false;
-                checkoutBtn.style.opacity = '1';
-            }
-        }
-    }
-
-    // ========================================
-    // 6. EVENT LISTENERS
-    // ========================================
-    function addEventListeners() {
-        // Botones de incrementar
-        document.querySelectorAll('.qty-plus').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const productId = parseInt(e.currentTarget.dataset.id);
-                updateQuantity(productId, 1);
-            });
-        });
-
-        // Botones de decrementar
-        document.querySelectorAll('.qty-minus').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const productId = parseInt(e.currentTarget.dataset.id);
-                updateQuantity(productId, -1);
-            });
-        });
-
-        // Inputs de cantidad (cambio manual)
-        document.querySelectorAll('.qty-input').forEach(input => {
-            input.addEventListener('change', (e) => {
-                const productId = parseInt(e.target.dataset.id);
-                const newQty = parseInt(e.target.value);
-
-                if (newQty < 1) {
-                    e.target.value = 1;
-                    return;
-                }
-
-                setQuantity(productId, newQty);
-            });
-        });
-
-        // Botones de eliminar
-        document.querySelectorAll('.btn-remove').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const productId = parseInt(e.currentTarget.dataset.id);
-                removeProduct(productId);
-            });
-        });
-    }
-
-    // ========================================
-    // 7. ACTUALIZAR CANTIDAD
-    // ========================================
-    function updateQuantity(productId, change) {
-        const cartItem = listCarts.find(item => item.productId === productId);
-
-        if (!cartItem) return;
-
-        cartItem.quantity += change;
-
-        // Si llega a 0, eliminar
-        if (cartItem.quantity <= 0) {
-            removeProduct(productId);
-            return;
-        }
-
-        saveCart();
-        renderCart();
-    }
-
-    // ========================================
-    // 8. ESTABLECER CANTIDAD ESPECÍFICA
-    // ========================================
-    function setQuantity(productId, quantity) {
-        const cartItem = listCarts.find(item => item.productId === productId);
-
-        if (!cartItem) return;
-
-        cartItem.quantity = quantity;
-        saveCart();
-        renderCart();
-    }
-
-    // ========================================
-    // 9. ELIMINAR PRODUCTO
-    // ========================================
-    function removeProduct(productId) {
-
-        listCarts = listCarts.filter(item => item.productId !== productId);
-        saveCart();
-        renderCart();
-
-    }
-
-    // ========================================
-    // 10. GUARDAR EN LOCALSTORAGE
-    // ========================================
-    function saveCart() {
-        localStorage.setItem('cart', JSON.stringify(listCarts));
-
-        // Actualizar contador del navbar si existe
-        updateNavbarCounter();
-    }
-
-    // ========================================
-    // 11. ACTUALIZAR CONTADOR DEL NAVBAR
-    // ========================================
-    function updateNavbarCounter() {
-        const navQty = document.querySelector('.quantity');
-        if (navQty) {
-            const totalItems = listCarts.reduce((sum, item) => sum + item.quantity, 0);
-            navQty.textContent = totalItems;
-        }
-    }
-
-    // ========================================
-    // 13. BOTÓN DE CONTINUAR COMPRA
-    // ========================================
-    if (checkoutBtn) {
-        checkoutBtn.addEventListener('click', () => {
-            if (listCarts.length === 0) {
-                alert('Tu carrito está vacío');
-                return;
-            }
-
-            // Redirigir a la página de productos
-            window.location.href = '../../../pages/public/products.html';
-        });
-    }
-
-    // ========================================
-    // INICIALIZAR
-    // ========================================
+    saveCart(cart);
+    window.dispatchEvent(new StorageEvent('storage', { key: 'cart' }));
     renderCart();
-    updateNavbarCounter();
-});
+  });
+
+  // ─── SINCRONIZACIÓN ──────────────────────────────────────────
+  // Escucha StorageEvent({key:'cart'}) que products.js y landingPage.js
+  // disparan tras addToCart(). Re-renderiza y abre el carrito.
+
+  window.addEventListener('storage', e => {
+    if (e.key !== 'cart') return;
+    renderCart();
+    openCart();
+  });
+
+  // Render inicial
+  renderCart();
+}
