@@ -11,105 +11,88 @@
 //
 // El bloque resumen (Envío Gratis / Total / botón Finalizar) ya está en el HTML
 // estático de car.html — no se genera dinámicamente, solo se actualizan sus valores.
-
-import { getCart, saveCart, removeFromCart } from '../../utils/storage.js';
+import { getCart, saveCart } from '/assets/js/utils/storage.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const tableBody = document.querySelector('#cart-table-body');
-    const infoElement = document.querySelector('#products-info');
     const totalElement = document.querySelector('#products-total span strong');
+    const infoElement = document.querySelector('#products-info');
 
     function renderCheckout() {
         const cart = getCart();
         if (!tableBody) return;
 
-        tableBody.innerHTML = '';
+        tableBody.innerHTML = ''; // Limpiamos
         let total = 0;
         let totalItems = 0;
 
         if (cart.length === 0) {
-            tableBody.innerHTML = '<div class="text-center py-5"><h4>Tu carrito está vacío</h4></div>';
-            if (totalElement) totalElement.textContent = '$0.00';
-            if (infoElement) infoElement.innerHTML = '<span>0 productos</span><span>$0.00</span>';
+            tableBody.innerHTML = '<div class="text-center py-4"><p>Tu carrito está vacío.</p></div>';
             return;
         }
 
         cart.forEach(item => {
-            const subtotal = item.price * item.quantity;
+            const subtotal = item.price * (item.quantity || 1);
             total += subtotal;
-            totalItems += item.quantity;
+            totalItems += (item.quantity || 1);
 
-            const row = document.createElement('div');
-            row.className = "row mb-4 d-flex justify-content-between align-items-center border-bottom pb-3";
-            
-            // EL DISEÑO DE ISAAC DENTRO DE TU ESTRUCTURA
-            row.innerHTML = `
-                <div class="col-md-2 col-lg-2 col-xl-2">
-                    <img src="${item.imagen}" class="img-fluid rounded-3" alt="${item.name}" style="max-height: 100px; object-fit: cover;">
+            // Creamos el elemento con el diseño visual de Isaac
+            const productRow = document.createElement('div');
+            productRow.className = "row py-3 border-bottom align-items-center";
+            productRow.innerHTML = `
+                <div class="col-3 col-md-2">
+                    <img src="${item.imagen}" class="img-fluid rounded shadow-sm" alt="${item.name}" style="max-height: 80px; object-fit: cover;">
                 </div>
-                <div class="col-md-4 col-lg-4 col-xl-4">
-                    <h6 class="text-muted mb-1">${item.category || 'Artesanía'}</h6>
-                    <h6 class="text-black mb-1 fw-bold">${item.name}</h6>
-                    <p class="small text-muted mb-0 text-truncate" style="max-width: 250px;">
-                        ${item.description || 'Pieza exclusiva de madera de Parota.'}
-                    </p>
+                <div class="col-9 col-md-4">
+                    <h6 class="mb-0 fw-bold">${item.name}</h6>
+                    <small class="text-muted d-block">${item.description || 'Pieza artesanal de alta calidad.'}</small>
+                    <small class="text-success fw-bold">Envío Gratis</small>
                 </div>
-                <div class="col-md-3 col-lg-3 col-xl-2 d-flex align-items-center">
-                    <button class="btn btn-link px-2 qty-minus" data-id="${item.id}">
-                        <i class="bi bi-dash-circle fs-5 text-secondary"></i>
-                    </button>
-                    <input type="number" value="${item.quantity}" class="form-control form-control-sm text-center fw-bold" readonly style="width: 45px; border: none; background: transparent;"/>
-                    <button class="btn btn-link px-2 qty-plus" data-id="${item.id}">
-                        <i class="bi bi-plus-circle fs-5 text-secondary"></i>
-                    </button>
+                <div class="col-6 col-md-3 d-flex align-items-center justify-content-center mt-2 mt-md-0">
+                    <button class="btn btn-sm btn-outline-secondary qty-minus" data-id="${item.id}">-</button>
+                    <span class="mx-3 fw-bold">${item.quantity}</span>
+                    <button class="btn btn-sm btn-outline-secondary qty-plus" data-id="${item.id}">+</button>
                 </div>
-                <div class="col-md-2 col-lg-2 col-xl-2">
-                    <h6 class="mb-0 fw-bold">$${subtotal.toLocaleString()}</h6>
-                    <small class="text-success" style="font-size: 0.7rem;">Envío Gratis</small>
-                </div>
-                <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                    <button class="btn btn-sm remove-item" data-id="${item.id}">
-                        <i class="bi bi-trash3 text-danger"></i>
+                <div class="col-6 col-md-3 text-end mt-2 mt-md-0">
+                    <div class="fw-bold fs-5">$${subtotal.toLocaleString()}</div>
+                    <button class="btn btn-sm text-danger remove-item" data-id="${item.id}">
+                        <i class="bi bi-trash"></i> Eliminar
                     </button>
                 </div>
             `;
-            tableBody.appendChild(row);
+            tableBody.appendChild(productRow);
         });
 
-        // Actualizar Resumen Lateral
+        // Actualizamos los números del resumen lateral (Isaac style)
         if (infoElement) {
-            infoElement.innerHTML = `
-                <span>${totalItems} ${totalItems === 1 ? 'producto' : 'productos'}</span>
-                <span>$${total.toLocaleString()}</span>
-            `;
+            infoElement.innerHTML = `<span>${totalItems} productos</span> <span>$${total.toLocaleString()}</span>`;
         }
         if (totalElement) {
             totalElement.textContent = `$${total.toLocaleString()}`;
         }
     }
 
-    // Listener de clicks (Idéntico a tu lógica anterior para no romper nada)
+    // Listener de eventos (Copia y pega este bloque tal cual)
     document.addEventListener('click', (e) => {
-        const id = e.target.closest('[data-id]')?.dataset.id;
-        if (!id) return;
-
+        const btn = e.target.closest('[data-id]');
+        if (!btn) return;
+        
+        const id = btn.dataset.id;
         let cart = getCart();
-        const index = cart.findIndex(item => String(item.id) === String(id));
+        const index = cart.findIndex(i => String(i.id) === String(id));
 
         if (e.target.closest('.qty-plus')) {
             cart[index].quantity++;
-            saveCart(cart);
         } else if (e.target.closest('.qty-minus')) {
             if (cart[index].quantity > 1) cart[index].quantity--;
             else cart.splice(index, 1);
-            saveCart(cart);
         } else if (e.target.closest('.remove-item')) {
             cart.splice(index, 1);
-            saveCart(cart);
         }
 
+        saveCart(cart);
         renderCheckout();
-        // Notificar al Navbar y Carrito Lateral
+        // Notifica al resto del sistema (Navbar y Sliding Cart)
         window.dispatchEvent(new StorageEvent('storage', { key: 'cart' }));
     });
 
