@@ -64,3 +64,15 @@ window.addEventListener('storage', (event) => {
     updateCartCount();
   }
 });
+
+// Agrega esto a tu función initInteractions()
+const cards = document.querySelectorAll('.origenes-card');
+
+cards.forEach(card => {
+    card.addEventListener('click', function() {
+        // Opcional: Cerrar otras tarjetas antes de abrir esta
+        // cards.forEach(c => { if(c !== card) c.classList.remove('is-flipped'); });
+        
+        this.classList.toggle('is-flipped');
+    });
+});
