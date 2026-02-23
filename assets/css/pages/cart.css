@@ -276,4 +276,80 @@
     transition: box-shadow 0.4s ease;
 }
 
+/* --- ETIQUETA "GRAN FORMATO" (ESTILO JORDI REFINADO) --- */
+
+.product-card.out-of-stock {
+  position: relative;
+  /* Permitimos que la etiqueta sobresalga un poco para dar realismo */
+  overflow: visible; 
+}
+
+.product-card.out-of-stock .product-card__img {
+  filter: grayscale(1) opacity(0.4); /* Un poco más de transparencia */
+}
+
+.no-stock-tag {
+  position: absolute;
+  top: 10px;
+  right: -5px; /* La sacamos un poquito del borde para el efecto colgante */
+  z-index: 30;
+  
+  /* --- NUEVAS DIMENSIONES (MÁS ANCHA) --- */
+  width: 140px;         /* Ancho suficiente para que el texto no se descuadre */
+  padding: 35px 10px 20px 10px; /* Espacio superior para el remache */
+  background: #FFFDFA;
+  border: 2px solid #A0191E;
+  box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.25);
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+
+  /* --- INCLINACIÓN --- */
+  transform: rotate(12deg); 
+  transform-origin: top center;
+}
+
+/* El punto rojo (remache de Jordi) */
+.no-stock-tag::before {
+  content: '';
+  position: absolute;
+  top: 12px;           /* Posición fija arriba */
+  width: 16px;
+  height: 16px;
+  background: #A0191E;
+  border-radius: 50%;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+}
+
+/* El texto vertical (Dos líneas) */
+.no-stock-tag::after {
+  content: 'PRODUCTO\A AGOTADO';
+  white-space: pre;    /* Crucial para el salto de línea \A */
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 900;
+  font-size: 0.9rem;   /* Fuente más legible */
+  color: #A0191E;
+  letter-spacing: 3px; /* Estilo elegante de Jordi */
+  line-height: 1.4;
+  text-align: center;
+  
+  /* Separadores visuales internos */
+  border-top: 1px solid rgba(160, 25, 30, 0.2);
+  border-bottom: 1px solid rgba(160, 25, 30, 0.2);
+  padding: 10px 0;
+  width: 100%;
+  margin-top: 15px;    /* Distancia segura del remache */
+}
+
+/* Ajuste del botón para que no compita visualmente */
+.product-card.out-of-stock .product-card__add-btn:disabled {
+  background-color: #f0f0f0 !important;
+  color: #aaa !important;
+  border: 1px solid #ddd !important;
+  cursor: not-allowed;
+  font-weight: 400;
+}
 /* *aqui termina el card  product*/

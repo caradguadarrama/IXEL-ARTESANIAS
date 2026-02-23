@@ -1,17 +1,5 @@
-// assets/js/components/pages/products.js — ES Module
-//
-// CAMBIO vs archivo subido:
-//   products.js ya disparaba StorageEvent({key:'cart'}) tras addToCart().
-//   slidingCart.js ahora escucha ese mismo evento y se abre automáticamente.
-//   No se necesita ninguna importación cruzada entre los dos módulos.
-//   El único ajuste: el evento sigue siendo StorageEvent (no Event genérico)
-//   para que main.js y slidingCart.js filtren por e.key === 'cart'.
-
 import { getProducts }       from '../../services/product.service.js';
 import { createProductCard } from '../ui/ProductCard.js';
-import { addToCart }         from '../../utils/storage.js';
-
-// ─── ESTADO ───────────────────────────────────────────────────
 
 let allProducts      = [];
 let filteredProducts = [];
@@ -20,207 +8,226 @@ const PAGE_SIZE      = 6;
 let activeCollection = null;
 let activeCategory   = null;
 
-// ─── DOM ─────────────────────────────────────────────────────
-
 const cardsContainer = document.querySelector('#cards');
 const loadMoreBtn    = document.querySelector('#loadMore');
 
-// ─── INIT ────────────────────────────────────────────────────
 
-async function init() {
+// ===============================
+// Carga de datos
+// ===============================
+async function loadProductsData() {
   try {
-    allProducts      = await getProducts();
+    allProducts = await getProducts();
     filteredProducts = [...allProducts];
-    renderProducts();
-    updateSidebar();
-  } catch (err) {
-    console.error('[products] init:', err);
-    if (cardsContainer) {
-      cardsContainer.innerHTML =
-        '<p class="products__error">Error al cargar productos.</p>';
-    }
+    renderProducts(); // Ya no necesita pasarle parámetros si usamos las globales
+  } catch (error) {
+    console.error("Error al cargar productos:", error);
+    if (cardsContainer) cardsContainer.innerHTML = `<p class="text-danger">Error al cargar productos.</p>`;
   }
 }
 
-// ─── RENDER ───────────────────────────────────────────────────
 
+// ===============================
+// Renderizado
+// ===============================
 function renderProducts() {
   if (!cardsContainer) return;
-  cardsContainer.innerHTML = '';
+  cardsContainer.innerHTML = "";
 
-  list.slice(0, count).forEach(product => {
+  const toRender = filteredProducts.slice(0, visibleCount);
+
+  toRender.forEach(product => {
+    // IMPORTANTE: Usamos el componente para que el HTML sea el mismo siempre
+    const cardElement = createProductCard(product);
     
-    const hasStock = product.stock > 0;
-
+    // Creamos la columna de Bootstrap
     const col = document.createElement("div");
-    col.className = "col-12 col-md-4";
-
-    col.innerHTML = `
-      <div class="product-card ${!hasStock ? 'out-of-stock' : ''}">
-        <div class="product-image favorite">
-          <img src="${product.imagen}" alt="${product.name}">
-          ${!hasStock ? '<div class="no-stock-tag"></div>' : ''}
-        </div>
-        <h5 class="product-name">${product.name}</h5>
-        <p class="product-price">$${product.price}</p>
-        <button class="button-ixel-products addCart" data-id=${product.id} ${!hasStock ? 'disabled' : ''}>
-          ${!hasStock ? 'Agotado' : '+'}
-        </button>
-      </div>
-    `;
-
-    container.appendChild(col);
+    col.className = "col-12 col-md-6 col-lg-4";
+    col.appendChild(cardElement);
+    
+    cardsContainer.appendChild(col);
   });
-
-  if(loadMoreBtn) loadMoreBtn.style.display = count >= list.length ? "none" : "block";
+  // Control del botón Cargar más
+  if (visibleCount >= filteredProducts.length) {
+    if (loadMoreBtn) loadMoreBtn.style.display = 'none';
+  } else {
+    if (loadMoreBtn) loadMoreBtn.style.display = 'block';
+  }
 }
 
+// Inicializar
+loadProductsData();
+
+
+// ===============================
+// Filtros
+// ===============================
 function applyFilters() {
+  console.log("activeCollection:", activeCollection);
+  console.log("activeCategory:", activeCategory);
+
   filteredProducts = allProducts.filter(p => {
-    const matchCol = !activeCollection || p.collection === activeCollection;
-    const matchCat = !activeCategory   || p.category   === activeCategory;
-    return matchCol && matchCat;
+    console.log("Producto:", p);
+
+    const matchCollection =
+      !activeCollection || p.collection === activeCollection;
+
+    const matchCategory =
+      !activeCategory || p.category === activeCategory;
+
+    console.log(
+      "matchCollection:", matchCollection,
+      "matchCategory:", matchCategory
+    );
+
+    return matchCollection && matchCategory;
   });
+
+  console.log("Resultado filtrado:", filteredProducts);
+
   visibleCount = PAGE_SIZE;
-  renderProducts();
+  renderProducts(filteredProducts, visibleCount);
 }
 
-// ─── SIDEBAR ─────────────────────────────────────────────────
 
-function updateSidebar() {
-  const links = document.querySelectorAll('.selectable-list a');
+
+// ===============================
+// Sidebar por colección
+// ===============================
+function updateCategorySidebar() {
+  const links = document.querySelectorAll(".selectable-list a");
 
   if (!activeCollection) {
-    links.forEach(l => l.closest('li').style.display = 'list-item');
+    links.forEach(link => {
+      link.parentElement.style.display = "list-item";
+    });
     return;
   }
 
-  const validCats = new Set(
+  const validCategories = new Set(
     allProducts
       .filter(p => p.collection === activeCollection)
       .map(p => p.category)
   );
 
   links.forEach(link => {
-    const cat = link.dataset.subcategory;
-    const li  = link.closest('li');
-    if (validCats.has(cat)) {
-      li.style.display = 'list-item';
+    const category = link.dataset.subcategory; // 🔥 FIX
+
+    if (validCategories.has(category)) {
+      link.parentElement.style.display = "list-item";
     } else {
-      li.style.display = 'none';
-      link.classList.remove('active');
-      if (activeCategory === cat) activeCategory = null;
-    }
-  });
-}
+      link.parentElement.style.display = "none";
+      link.classList.remove("active");
 
-// ─── DELEGACIÓN PRINCIPAL ────────────────────────────────────
-//
-// Un listener en #cards cubre dos casos:
-//   → .product-card__add-btn → addToCart + StorageEvent → slidingCart abre
-//   → .product-card (resto)  → navegar al detalle
-
-if (cardsContainer) {
-  cardsContainer.addEventListener('click', e => {
-
-    // Caso 1: agregar al carrito
-    const btn = e.target.closest('.product-card__add-btn');
-    if (btn) {
-      if (btn.disabled) return;
-
-      const rawId   = btn.dataset.id;
-      const product = allProducts.find(p => String(p.id) === String(rawId));
-      if (!product) {
-        console.warn('[products] Producto no encontrado:', rawId);
-        return;
+      if (activeCategory === category) {
+        activeCategory = null;
       }
-
-      addToCart(product);
-
-      // StorageEvent con key:'cart' → lo escuchan main.js (badge)
-      // y slidingCart.js (render + apertura automática)
-      window.dispatchEvent(new StorageEvent('storage', { key: 'cart' }));
-
-      // Feedback visual
-      btn.textContent = '✓';
-      btn.classList.add('product-card__add-btn--added');
-      setTimeout(() => {
-        btn.textContent = '+';
-        btn.classList.remove('product-card__add-btn--added');
-      }, 1000);
-
-      return;
-    }
-
-    // Caso 2: navegar al detalle
-    const card = e.target.closest('.product-card');
-    if (card?.dataset.href) {
-      window.location.href = card.dataset.href;
     }
   });
 }
 
-// ─── COLECCIONES ─────────────────────────────────────────────
 
-document.querySelectorAll('.category').forEach(banner => {
-  banner.addEventListener('click', () => {
-    const col = banner.dataset.category;
+// ===============================
+// Eventos
+// ===============================
+document.addEventListener("DOMContentLoaded", loadProductsData);
 
-    if (activeCollection === col) {
+// Load more
+loadMoreBtn.addEventListener("click", () => {
+  visibleCount += PAGE_SIZE;
+  renderProducts(filteredProducts, visibleCount);
+});
+
+// Cards grandes (colecciones)
+document.querySelectorAll(".category").forEach(card => {
+  card.addEventListener("click", () => {
+    const collection = card.dataset.category;
+
+    if (activeCollection === collection) {
       activeCollection = null;
-      banner.classList.remove('active');
+      card.classList.remove("active");
     } else {
-      activeCollection = col;
-      document.querySelectorAll('.category').forEach(b => b.classList.remove('active'));
-      banner.classList.add('active');
+      activeCollection = collection;
+
+      document
+        .querySelectorAll(".category") // 🔥 FIX
+        .forEach(c => c.classList.remove("active"));
+
+      card.classList.add("active");
     }
 
     activeCategory = null;
-    document.querySelectorAll('.selectable-list a').forEach(l => l.classList.remove('active'));
+    document
+      .querySelectorAll(".selectable-list a")
+      .forEach(l => l.classList.remove("active"));
 
-    updateSidebar();
+    updateCategorySidebar();
     applyFilters();
   });
 });
 
-// ─── SIDEBAR CATEGORÍAS ──────────────────────────────────────
-
-document.querySelectorAll('.selectable-list a').forEach(link => {
-  link.addEventListener('click', e => {
+// Sidebar categorías FILTRAR CATEGORIAS DEPENDIENDO DEL CASO
+document.querySelectorAll(".selectable-list a").forEach(link => {
+  link.addEventListener("click", e => {
     e.preventDefault();
-    const cat = link.dataset.subcategory;
 
-    if (activeCategory === cat) {
+    const category = link.dataset.subcategory; //FIX
+
+    if (activeCategory === category) {
       activeCategory = null;
-      link.classList.remove('active');
+      link.classList.remove("active");
     } else {
-      activeCategory = cat;
-      document.querySelectorAll('.selectable-list a').forEach(l => l.classList.remove('active'));
-      link.classList.add('active');
+      activeCategory = category;
+
+      document
+        .querySelectorAll(".selectable-list a")
+        .forEach(l => l.classList.remove("active"));
+
+      link.classList.add("active");
     }
 
     applyFilters();
   });
 });
 
-// ─── FLECHAS ─────────────────────────────────────────────────
 
-const listNav  = document.getElementById('subCategoryList');
-const btnLeft  = document.getElementById('prevBtn');
-const btnRight = document.getElementById('nextBtn');
 
-if (listNav && btnLeft && btnRight) {
-  btnRight.addEventListener('click', () => listNav.scrollBy({ left: 250, behavior: 'smooth' }));
-  btnLeft.addEventListener('click',  () => listNav.scrollBy({ left: -250, behavior: 'smooth' }));
-}
 
-// ─── CARGAR MÁS ──────────────────────────────────────────────
+//!funcionalidad de flechas de seccion de productos
+document.addEventListener('DOMContentLoaded', () => {
+  const list = document.getElementById('subCategoryList');
+  const btnLeft = document.getElementById('prevBtn');
+  const btnRight = document.getElementById('nextBtn');
 
-loadMoreBtn?.addEventListener('click', () => {
-  visibleCount += PAGE_SIZE;
-  renderProducts();
+  if (list && btnLeft && btnRight) {
+    // Desplaza 200px hacia la derecha
+    btnRight.onclick = () => {
+      list.scrollBy({ left: 250, behavior: 'smooth' });
+    };
+
+    // Desplaza 200px hacia la izquierda
+    btnLeft.onclick = () => {
+      list.scrollBy({ left: -250, behavior: 'smooth' });
+    };
+
+
+
+  }
 });
 
-// ─── PUNTO DE ENTRADA ────────────────────────────────────────
 
-document.addEventListener('DOMContentLoaded', init);
+//! dejar fijo el hover de catedoria y funcion para seleccionar y deselecionar 
+document.addEventListener('click', (e) => {
+  const card = e.target.closest('.category');
+
+  if (card) {
+    const isAlreadySelected = card.classList.contains('selected');
+
+    document.querySelectorAll('.category').forEach(c => c.classList.remove('selected'));
+
+
+    if (!isAlreadySelected) {
+      card.classList.add('selected');
+    }
+  }
+});
