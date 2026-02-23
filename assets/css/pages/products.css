@@ -1,30 +1,76 @@
-/* assets/css/pages/products.css
-   ─────────────────────────────────────────────────────
-   Estilos de la página de catálogo.
-   Variables globales viven en main.css — no se repiten aquí.
-   ───────────────────────────────────────────────────── */
+/* =============================================================
+   assets/css/pages/products.css
+   Fusión de products.css + cart.css — sesión 2025-02-22
+   
+   DECISIONES DE FUSIÓN:
+   · Conflictos .category-card/.category-name: gana products.css
+     (BEM, clamp(), sin !important innecesarios)
+   · .category.selected: migrado desde cart.css (products.css no lo tenía)
+   · Bloque "eliminación de bordes" de cart.css: conservado íntegro
+     — es un fix técnico de Bootstrap, tiene propósito real
+   · .product-image / .product-name / .product-price (cart.css, legacy):
+     descartados — products.css ya tiene sus equivalentes BEM
+   · .product-card duplicado: gana products.css (BEM correcto)
+   · .no-stock-tag: se conserva la versión refinada de products.css
+     (rotate 12deg, width 140px, right -5px)
+   ============================================================= */
 
-/* ─── FUENTE ─────────────────────────────────────────── */
+
+/* =========================
+   Variables
+========================= */
+
+/*
+  Los tokens de color y tipografía globales viven en main.css.
+  Solo se declara aquí la fuente decorativa exclusiva de esta
+  página — no la comparte ningún otro módulo.
+*/
 
 @font-face {
   font-family: 'TheFarmerTextured';
   src: url('../../fonts/TheFarmerTextured.otf') format('opentype');
+  /* Ruta relativa válida desde assets/css/pages/ → assets/fonts/ ✓ */
   font-weight: normal;
   font-style: normal;
 }
 
-/* ─── TÍTULOS DE SECCIÓN ─────────────────────────────── */
+
+/* =========================
+   Layout de Página
+========================= */
+
+/* ── Títulos de sección ──────────────────────────────── */
 
 .section-title,
 .section-titlee {
   font-family: 'TheFarmerTextured', serif;
-  font-size: clamp(2.5rem, 7vw, 5rem); /* 90px era fijo y rompía en móvil */
+  font-size: clamp(2.5rem, 7vw, 5rem);
   text-align: center;
   color: var(--color-primary);
   margin-bottom: 2rem;
 }
 
-/* ─── TARJETAS DE COLECCIÓN ──────────────────────────── */
+/* ── Sidebar: lista de filtros (ver bloque listaNav más abajo) ──────── */
+
+/* ── Estado de error al cargar el catálogo ───────────── */
+
+.products__error {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--color-accent);
+  font-size: 1.1rem;
+}
+
+/* ── Banners de colección ────────────────────────────── */
+/*
+  Nota BEM: el bloque semántico correcto sería .collection-card.
+  Se conserva .category-card porque el HTML ya lo usa — renombrarlo
+  aquí sin tocar el HTML rompería el layout. Pendiente de migración.
+
+  Versión ganadora: products.css (sin !important superfluos, clamp en
+  .category-name). Los estados .selected de cart.css se migran aquí
+  porque products.css no los tenía.
+*/
 
 .category-card {
   border: none;
@@ -69,18 +115,31 @@
   color: #fdf6ec;
   font-family: 'DM Sans', sans-serif;
   font-weight: 700;
-  font-size: clamp(1.2rem, 2.5vw, 2rem); /* Corregido de 30rem */
+  font-size: clamp(1.2rem, 2.5vw, 2rem);
   text-transform: uppercase;
   line-height: 1.2;
 }
 
-/* Hover desktop */
-@media (min-width: 992px) {
-  .category-card:hover .category-overlay  { opacity: 1; }
-  .category-card:hover img                { transform: scale(1.08); }
+/* Estado seleccionado — migrado desde cart.css (no existía aquí) */
+.category.selected .category-overlay {
+  opacity: 1;
 }
 
-/* Móvil: overlay visible como gradiente */
+.category.selected .category-name {
+  transform: translateY(0);
+}
+
+.category.selected .category-image-container img {
+  transform: scale(1.1);
+}
+
+/* Hover — solo desktop */
+@media (min-width: 992px) {
+  .category-card:hover .category-overlay { opacity: 1; }
+  .category-card:hover img               { transform: scale(1.08); }
+}
+
+/* Móvil: overlay visible como gradiente inferior */
 @media (max-width: 991px) {
   .category-image-container {
     aspect-ratio: 3 / 4;
@@ -94,19 +153,218 @@
     padding-bottom: 1rem;
   }
 
-  .category-name { font-size: 1.1rem; }
+  /* Seleccionado en móvil: fondo sólido — migrado desde cart.css */
+  .category.selected .category-overlay {
+    background: rgba(104, 53, 49, 0.95);
+    justify-content: center;
+  }
 
+  .category-name        { font-size: 1.1rem; }
   .category-card:active { transform: scale(0.97); }
 }
 
-/* Colección activa */
+@media (max-width: 400px) {
+  .category-name { font-size: 1.1rem; }
+}
+
+/* Colección activa — borde de selección */
 .category.active .category-image-container {
   outline: 3px solid var(--color-accent);
   outline-offset: 3px;
   border-radius: 16px;
 }
 
-/* ─── TARJETA DE PRODUCTO (BEM) ──────────────────────── */
+/*
+  BLOQUE: Eliminación total de bordes Bootstrap
+  ────────────────────────────────────────────────
+  Migrado íntegro desde cart.css — NO modificar.
+  Es un fix técnico para suprimir los estilos de foco/borde/sombra
+  que Bootstrap inyecta en elementos interactivos al hacer click.
+  Sin este bloque, las tarjetas muestran un recuadro azul al seleccionar.
+*/
+
+.category,
+.category-card,
+.category-image-container,
+.category-card *,
+.category-card:focus,
+.category-card:active,
+.category-card:visited {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+.category-card:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.category.selected .category-image-container,
+.category.selected .category-card {
+  outline: 0 !important;
+  box-shadow: none !important;
+  border: 0 !important;
+}
+
+.category {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+
+
+
+/* ─── SIDEBAR / FILTROS (listaNav.css integrado) ────────────
+   Contenedor, flechas de navegación y lista de subcategorías.
+   Estos estilos pertenecen exclusivamente a products.html —
+   por eso se integran aquí en lugar de permanecer en main.css.
+   ─────────────────────────────────────────────────────────── */
+
+/* Contenedor principal de la barra de filtros */
+.selectable-list-container {
+    width: 100%;
+    margin: 40px 0 60px 0;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #ffffff;
+}
+
+/* Flechas de navegación lateral */
+.nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 45px;
+    height: 45px;
+    border: none;
+    background: #ffffff;
+    color: #a0191e;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.left-arrow  { left: 10px; }
+.right-arrow { right: 10px; }
+
+.nav-arrow:hover {
+    background: #f9e8cf;
+    color: #683531;
+    transform: translateY(-50%) scale(1.1);
+}
+
+/* Lista horizontal de subcategorías */
+.selectable-list {
+    display: flex;
+    list-style: none;
+    margin: 0 auto;
+    padding: 20px 60px;
+    gap: 40px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+    justify-content: safe center;
+}
+
+/* Ocultar scrollbar visible — scroll funcional en JS */
+.selectable-list::-webkit-scrollbar { display: none; }
+
+.selectable-list li {
+    flex: 0 0 auto;
+    position: relative;
+}
+
+/* Estilo editorial de los enlaces */
+.selectable-list a {
+    text-decoration: none;
+    color: #683531;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    padding: 12px 0;
+    white-space: nowrap;
+    position: relative;
+    display: inline-block;
+    transition: all 0.4s ease;
+    opacity: 0.8;
+}
+
+/* Subrayado centrado animado */
+.selectable-list a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: #a0191e;
+    transition: all 0.4s ease;
+    transform: translateX(-50%);
+}
+
+/* Estado hover y activo — versión completa (reemplaza el stub anterior) */
+.selectable-list a:hover,
+.selectable-list a.active {
+    color: #a0191e;
+    opacity: 1;
+}
+
+.selectable-list a:hover::after,
+.selectable-list a.active::after {
+    width: 100%;
+}
+
+/* Responsive */
+@media (max-width: 1023px) {
+    .selectable-list {
+        gap: 25px;
+        padding: 20px 50px;
+        justify-content: safe center;
+    }
+
+    .nav-arrow {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+}
+
+/* =========================
+   Product Card - Base
+========================= */
+
+/*
+  BEM — bloque: .product-card
+  Elementos:
+    __image-link    enlace wrapper de la imagen
+    __img-wrapper   contenedor con aspect-ratio cuadrado
+    __img           la imagen del producto
+    __body          área de texto (nombre + precio)
+    __title-link    enlace del nombre
+    __title         h3 del nombre
+    __price         párrafo del precio
+    __add-btn       botón de agregar al carrito
+  Modificadores del botón:
+    --disabled      sin stock (clase aplicada por JS)
+    --added         feedback al agregar (clase temporal de JS)
+  Modificador de la tarjeta:
+    .out-of-stock   producto sin stock — ver sección Estados
+*/
+
+/* ── Bloque raíz ─────────────────────────────────────── */
 
 .product-card {
   background: rgba(255, 255, 255, 0.9);
@@ -125,6 +383,8 @@
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
 }
 
+/* ── Elemento: imagen ────────────────────────────────── */
+
 .product-card__image-link {
   display: block;
   text-decoration: none;
@@ -139,6 +399,7 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 0.75rem;
+  position: relative; /* contexto de apilamiento para .no-stock-tag */
 }
 
 .product-card__img {
@@ -152,6 +413,8 @@
 .product-card__img-wrapper:hover .product-card__img {
   transform: scale(1.08);
 }
+
+/* ── Elemento: cuerpo de texto ───────────────────────── */
 
 .product-card__body {
   flex: 1;
@@ -188,7 +451,7 @@
   margin: 0;
 }
 
-/* ─── BOTÓN AGREGAR AL CARRITO ───────────────────────── */
+/* ── Elemento: botón agregar al carrito ──────────────── */
 
 .product-card__add-btn {
   width: 100%;
@@ -214,30 +477,106 @@
   transform: translateY(0);
 }
 
-/* Estado agotado */
+/* Modificador: clase aplicada por JS cuando no hay stock */
 .product-card__add-btn--disabled {
   background-color: rgba(104, 53, 49, 0.25);
   cursor: not-allowed;
   color: rgba(104, 53, 49, 0.5);
 }
 
-/* Feedback al agregar */
+/* Modificador: feedback visual transitorio al agregar */
 .product-card__add-btn--added {
   background-color: #2d7a4a;
 }
 
-/* ─── ERROR STATE ────────────────────────────────────── */
 
-.products__error {
-  text-align: center;
-  padding: 3rem 1rem;
-  color: var(--color-accent);
-  font-size: 1.1rem;
+/* =========================
+   Estados de la Tarjeta
+========================= */
+
+/*
+  Modificador .out-of-stock aplicado al bloque .product-card.
+  Activa tres efectos:
+    1. overflow:visible para que la etiqueta inclinada sobresalga
+    2. Filtro de desaturación + opacidad sobre .product-card__img
+    3. Etiqueta .no-stock-tag tipo piñata colgante con rotate(12deg)
+  El botón nativo :disabled también recibe estilo propio.
+
+  Versión activa: refinada de products.css
+  (width:140px, rotate:12deg, right:-5px, ::before con position:absolute)
+*/
+
+/* ── 1. Contenedor ───────────────────────────────────── */
+
+.product-card.out-of-stock {
+  position: relative;
+  overflow: visible; /* permite que la etiqueta sobresalga del borde */
 }
 
-/* ─── SIDEBAR: FILTRO ACTIVO ─────────────────────────── */
+/* ── 2. Imagen desaturada ────────────────────────────── */
 
-.selectable-list a.active {
-  color: var(--color-accent);
-  font-weight: 700;
+.product-card.out-of-stock .product-card__img {
+  filter: grayscale(1) opacity(0.4);
+  transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+/* ── 3. Etiqueta colgante ────────────────────────────── */
+
+.no-stock-tag {
+  position: absolute;
+  top: 10px;
+  right: -5px;       /* sobresale ligeramente del borde */
+  z-index: 30;
+  width: 140px;
+  padding: 35px 10px 20px 10px;
+  background: #fffdfa;
+  border: 2px solid #a0191e;
+  box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  transform: rotate(12deg);
+  transform-origin: top center;
+}
+
+/* Remache: punto rojo posicionado en la parte superior */
+.no-stock-tag::before {
+  content: '';
+  position: absolute;
+  top: 12px;
+  width: 16px;
+  height: 16px;
+  background: #a0191e;
+  border-radius: 50%;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Texto: \A produce el salto de línea con white-space: pre */
+.no-stock-tag::after {
+  content: 'PRODUCTO\A AGOTADO';
+  white-space: pre;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 900;
+  font-size: 0.9rem;
+  color: #a0191e;
+  letter-spacing: 3px;
+  line-height: 1.4;
+  text-align: center;
+  border-top: 1px solid rgba(160, 25, 30, 0.2);
+  border-bottom: 1px solid rgba(160, 25, 30, 0.2);
+  padding: 10px 0;
+  width: 100%;
+  margin-top: 15px;
+}
+
+/* ── 4. Botón nativo deshabilitado ───────────────────── */
+
+.product-card.out-of-stock .product-card__add-btn:disabled {
+  background-color: #f0f0f0 !important;
+  color: #aaa !important;
+  border: 1px solid #ddd !important;
+  cursor: not-allowed;
+  font-weight: 400;
 }
