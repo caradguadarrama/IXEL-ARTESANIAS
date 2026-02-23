@@ -1,13 +1,15 @@
-let allProducts = [];
+import { getProducts }       from '../../services/product.service.js';
+import { createProductCard } from '../ui/ProductCard.js';
+
+let allProducts      = [];
 let filteredProducts = [];
-let visibleCount = 6;
-const PAGE_SIZE = 6;
+let visibleCount     = 6;
+const PAGE_SIZE      = 6;
+let activeCollection = null;
+let activeCategory   = null;
 
-let activeCollection = null; // cards grandes
-let activeCategory = null;   // sidebar (subcategory en HTML)
-
-const container = document.querySelector("#cards");
-const loadMoreBtn = document.querySelector("#loadMore");
+const cardsContainer = document.querySelector('#cards');
+const loadMoreBtn    = document.querySelector('#loadMore');
 
 
 // ===============================
@@ -15,19 +17,12 @@ const loadMoreBtn = document.querySelector("#loadMore");
 // ===============================
 async function loadProductsData() {
   try {
-    const response = await fetch("../../../../productos_final.json");
-    if (!response.ok) throw new Error("No se pudo cargar el archivo JSON");
-
-    allProducts = await response.json();
-
+    allProducts = await getProducts();
     filteredProducts = [...allProducts];
-    renderProducts(filteredProducts, visibleCount);
-    updateCategorySidebar();
-
+    renderProducts(); // Ya no necesita pasarle parámetros si usamos las globales
   } catch (error) {
     console.error("Error al cargar productos:", error);
-    container.innerHTML =
-      `<p class="text-danger">Error al cargar productos.</p>`;
+    if (cardsContainer) cardsContainer.innerHTML = `<p class="text-danger">Error al cargar productos.</p>`;
   }
 }
 
@@ -35,33 +30,33 @@ async function loadProductsData() {
 // ===============================
 // Renderizado
 // ===============================
-function renderProducts(list, count) {
-  container.innerHTML = "";
+function renderProducts() {
+  if (!cardsContainer) return;
+  cardsContainer.innerHTML = "";
 
-  list.slice(0, count).forEach(product => {
+  const toRender = filteredProducts.slice(0, visibleCount);
+
+  toRender.forEach(product => {
+    // IMPORTANTE: Usamos el componente para que el HTML sea el mismo siempre
+    const cardElement = createProductCard(product);
+    
+    // Creamos la columna de Bootstrap
     const col = document.createElement("div");
-    col.className = "col-12 col-md-4";
-
-    col.innerHTML = `
-      <div class="product-card">
-        <div class="product-image favorite">
-          <img src="${product.imagen}" alt="${product.name}">
-        </div>
-        <h5 class="product-name">${product.name}</h5>
-        <p class="product-price">$${product.price}</p>
-      <!--<p class="product-description">${product.description}</p>-->
-        <button class="button-ixel-products addCart" data-id=${product.id}>
-          +
-        </button>
-      </div>
-    `;
-
-    container.appendChild(col);
+    col.className = "col-12 col-md-6 col-lg-4";
+    col.appendChild(cardElement);
+    
+    cardsContainer.appendChild(col);
   });
-
-  loadMoreBtn.style.display =
-    count >= list.length ? "none" : "block";
+  // Control del botón Cargar más
+  if (visibleCount >= filteredProducts.length) {
+    if (loadMoreBtn) loadMoreBtn.style.display = 'none';
+  } else {
+    if (loadMoreBtn) loadMoreBtn.style.display = 'block';
+  }
 }
+
+// Inicializar
+loadProductsData();
 
 
 // ===============================
@@ -236,3 +231,40 @@ document.addEventListener('click', (e) => {
     }
   }
 });
+
+// --- DELEGACIÓN DE EVENTOS PARA AGREGAR AL CARRITO ---
+if (cardsContainer) {
+  cardsContainer.addEventListener('click', async (e) => {
+    // Detectamos si se hizo clic en el botón de agregar
+    const btn = e.target.closest('.product-card__add-btn');
+    
+    // Si no es el botón o está deshabilitado (sin stock), no hacemos nada
+    if (!btn || btn.classList.contains('product-card__add-btn--disabled')) return;
+
+    const productId = btn.dataset.id;
+    
+    // Buscamos el producto en nuestra lista global
+    const product = allProducts.find(p => String(p.id) === String(productId));
+
+    if (product) {
+      // 1. Agregamos al storage
+      import('../../utils/storage.js').then(module => {
+        module.addToCart(product);
+
+        // 2. Disparamos evento para que el carrito lateral se actualice/abra
+        window.dispatchEvent(new StorageEvent('storage', { key: 'cart' }));
+
+        // 3. FEEDBACK VISUAL: La palomita (✓)
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '✓'; // Cambiamos el texto a una palomita
+        btn.classList.add('btn-success-anim'); // Opcional: clase para color verde
+
+        // 4. Regresamos al estado original tras 2 segundos
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+          btn.classList.remove('btn-success-anim');
+        }, 2000);
+      });
+    }
+  });
+}

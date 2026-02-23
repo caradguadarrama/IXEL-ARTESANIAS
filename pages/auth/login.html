@@ -7,18 +7,31 @@
     <!--css main y del login-->
     <link rel="stylesheet" href="../../assets/css/main.css">
     <link rel="stylesheet" href="/assets/css/pages/login.css">
-    
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <!--js login-->
-    <script src="/assets/js/components/pages/login.js" defer></script>
-   <!--main js-->
-    <script defer type="module" src="/assets/js/main.js"></script>
 
+    <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <!--js login-->
+    <script defer src="/assets/js/components/pages/login.js"></script>
+    <!--main js-->
+    <script defer type="module" src="/assets/js/main.js"></script>
 
 </head>
 
 <body>
     <div id="navbar-container"></div>
+
+    <!-- Carrito de compras -->
+    <div class="cart">
+        <h1>Carrito</h1>
+        <ul class="listCart"></ul>
+        <div class="checkout">
+            <div class="total">
+            </div>
+            <div class="closeShopping">
+                <a>Cerrar</a>
+            </div>
+        </div>
+    </div>
+
 
     <main>
         <div class="container login-mode" id="container">
@@ -84,7 +97,7 @@
                 </div>
 
                 <div class="input-group">
-                    <input name="password" type="password"pattern="^(?=.*[A-Z])(?=.*[!@#$%^&*]).{7,}$" 
+                    <input name="password" id="password" type="password" pattern="^(?=.*[A-Z])(?=.*[!@#$%^&*]).{7,}$" 
     required 
     title="La contraseña debe tener al menos 7 caracteres, una mayúscula y un carácter especial.">
                     <label>Contraseña</label>
@@ -124,5 +137,3 @@
     
 </body>
 </html>
-
-
