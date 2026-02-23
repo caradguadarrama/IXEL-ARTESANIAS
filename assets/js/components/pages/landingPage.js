@@ -43,65 +43,46 @@ if (hero && button) {
 
 // ─── CARRUSEL DE TOP PRODUCTS ──────────────────────────────────
 
-const cards     = Array.from(document.querySelectorAll('.top-card'));
-let   positions = ['left', 'center', 'right', 'hidden'];
+const topTrack = document.querySelector('.top-carousel-track');
+let topCards = Array.from(document.querySelectorAll('.top-card'));
+
+const totalRealCards = topCards.length;
+const cardWidthPercent = 33.3333;
+
+// Clone first and last TWO cards for stability
+const cards = Array.from(document.querySelectorAll('.top-card'));
+
+let positions = ['left', 'center', 'right', 'hidden'];
 
 function renderCarousel() {
-  cards.forEach((card, i) => {
-    card.classList.remove('left', 'center', 'right', 'hidden');
-    card.classList.add(positions[i % positions.length]);
-  });
+    cards.forEach(card => {
+        card.classList.remove('left', 'center', 'right', 'hidden');
+    });
+
+    if (cards[0]) cards[0].classList.add('left');
+    if (cards[1]) cards[1].classList.add('center');
+    if (cards[2]) cards[2].classList.add('right');
+    if (cards[3]) cards[3].classList.add('hidden');
 }
 
-if (cards.length) {
-  renderCarousel();
-  setInterval(() => {
-    positions.push(positions.shift());
+function rotateCarousel() {
+    const first = cards.shift();   // remove first card
+    cards.push(first);             // move it to the end
     renderCarousel();
-  }, 3000);
 }
+
+renderCarousel();
+setInterval(rotateCarousel, 3000);
 
 // ─── PRODUCTOS DESTACADOS ──────────────────────────────────────
 // Ruta absoluta para que funcione desde cualquier profundidad de URL.
 // Guarda el catálogo en localStorage['products'] para que checkout.js
 // y cart.js puedan cruzar datos de imagen/nombre por ID.
 
-document.addEventListener("DOMContentLoaded", () => {
-  const cardsContainer = document.getElementById("cards");
+document.addEventListener('DOMContentLoaded', () => {
+  const cardsContainer = document.getElementById('cards');
+  if (!cardsContainer) return;
 
-  fetch("productos_final.json")
-    .then(response => response.json())
-    .then(products => {
-
-      // Select specific products
-      const selectedIds = [1, 3, 4];
-      const selectedProducts = products.filter(product =>
-        selectedIds.includes(product.id)
-      );
-
-      // Render them
-      selectedProducts.forEach(product => {
-  const col = document.createElement("div");
-  col.className = "col-12 col-md-4";
-
-  col.innerHTML = `
-    <div class="product-card-landing">
-      <div class="product-image-container favorite">
-        <img src="${product.imagen}" alt="${product.name}">
-      </div>
-      <h5 class="product-name">${product.name}</h5>
-      <p class="product-price">$${product.price}</p>
-       <p class="desc">${product.description}</p>
-      <button class="button-ixel-rojo addCart" data-id="${product.id}">
-        Comprar
-      </button>
-      <a href="#" class="learn-more">→ Learn More</a>
-    </div>
-  `;
-
-  cardsContainer.appendChild(col);
-});
-    });
   fetch('/productos_final.json')
     .then(res => {
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -117,16 +98,18 @@ document.addEventListener("DOMContentLoaded", () => {
         const col = document.createElement('div');
         col.className = 'col-12 col-md-4';
         col.innerHTML = `
-          <div class="product-card">
-            <div class="product-image favorite">
-              <img src="${product.imagen}" alt="${product.name}">
-            </div>
-            <h5 class="product-name">${product.name}</h5>
-            <p class="product-price">$${product.price}</p>
-            <button class="button-ixel-products addCart" data-id="${product.id}" type="button">
-              +
-            </button>
-          </div>
+          <div class="product-card-landing">
+      <div class="product-image-container favorite">
+        <img src="${product.imagen}" alt="${product.name}">
+      </div>
+      <h5 class="product-name">${product.name}</h5>
+      <p class="product-price">$${product.price}</p>
+       <p class="desc">${product.description}</p>
+      <button class="button-ixel-rojo addCart" data-id="${product.id}">
+        Comprar
+      </button>
+      <a href="#" class="learn-more">→ Learn More</a>
+    </div>
         `;
         cardsContainer.appendChild(col);
       });
