@@ -85,7 +85,7 @@ export function initSlidingCart() {
         <div>${item.name || '—'}</div>
         <div class="price">$${(item.price || 0).toFixed(2)}</div>
         <div>
-          <button class="qty-minus" data-id="${item.id}" type="button">−</button>
+          <button class="qty-minus" data-id="${item.id}" type="button" ${item.quantity === 1 ? 'disabled' : ''}>−</button>
           <div class="count">${item.quantity || 1}</div>
           <button class="qty-plus"  data-id="${item.id}" type="button">+</button>
         </div>
@@ -108,6 +108,7 @@ export function initSlidingCart() {
 
   // ─── CONTROLES +/− ───────────────────────────────────────────
   // Delegación en listCartEl. String() en ambos lados.
+  // FIX: No permite que quantity baje de 1
 
   listCartEl?.addEventListener('click', e => {
     const btn = e.target.closest('.qty-minus, .qty-plus');
@@ -121,14 +122,20 @@ export function initSlidingCart() {
 
     if (btn.classList.contains('qty-plus')) {
       cart[index].quantity += 1;
-    } else {
-      cart[index].quantity -= 1;
-      if (cart[index].quantity <= 0) cart.splice(index, 1);
+      saveCart(cart);
+      window.dispatchEvent(new StorageEvent('storage', { key: 'cart' }));
+      renderCart();
+    } else if (btn.classList.contains('qty-minus')) {
+      //  Solo decrementar si quantity > 1
+      // Si quantity === 1, simplemente no hacer nada
+      if (cart[index].quantity > 1) {
+        cart[index].quantity -= 1;
+        saveCart(cart);
+        window.dispatchEvent(new StorageEvent('storage', { key: 'cart' }));
+        renderCart();
+      }
+      // Si quantity === 1, salir sin hacer nada (no guarda, no renderiza)
     }
-
-    saveCart(cart);
-    window.dispatchEvent(new StorageEvent('storage', { key: 'cart' }));
-    renderCart();
   });
 
   // ─── SINCRONIZACIÓN ──────────────────────────────────────────

@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-import { createNavbar } from './components/navbar.js';
-
-// Inyectar el navbar en todas las páginas
-document.addEventListener('DOMContentLoaded', () => {
-  const navbarContainer = document.getElementById('navbar-container');
-  if (navbarContainer) {
-    navbarContainer.innerHTML = createNavbar();
-  }
-=======
 // assets/js/main.js
 // Orquestador global: inyecta navbar/footer, sincroniza carrito, parallax guard.
 
@@ -82,5 +72,4 @@ document.addEventListener('DOMContentLoaded', init);
 
 window.addEventListener('storage', e => {
   if (e.key === 'cart') updateCartCount();
->>>>>>> 5c997e92913b02f3de72f90721a2d202caac865e
 });

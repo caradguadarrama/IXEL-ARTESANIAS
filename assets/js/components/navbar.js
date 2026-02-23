@@ -1,30 +1,3 @@
-<<<<<<< HEAD
-export function createNavbar() {
-
-  return `
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="index.html">Mi Tienda</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="index.html">Inicio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="pages/productos.html">Productos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="pages/carrito.html">Carrito</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-  `;
-=======
 // assets/js/components/navbar.js
 // Puro: retorna HTML string. No toca DOM. No ejecuta código al importar.
 // initNavbar() se llama desde main.js DESPUÉS de inyectar el HTML.
@@ -247,5 +220,4 @@ function highlightActiveLink() {
       : current === linkPath;
     link.classList.toggle('navbar__link--active', isActive);
   });
->>>>>>> 5c997e92913b02f3de72f90721a2d202caac865e
 }
