@@ -66,7 +66,6 @@ if (cards.length) {
 // Guarda el catálogo en localStorage['products'] para que checkout.js
 // y cart.js puedan cruzar datos de imagen/nombre por ID.
 
-<<<<<<< HEAD
 document.addEventListener("DOMContentLoaded", () => {
   const cardsContainer = document.getElementById("cards");
 
@@ -102,11 +101,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   cardsContainer.appendChild(col);
 });
-=======
-document.addEventListener('DOMContentLoaded', () => {
-  const cardsContainer = document.getElementById('cards');
-  if (!cardsContainer) return;
->>>>>>> e0eb9e976d9280386f9de72dbe08cb652a891ad1
 
   fetch('/productos_final.json')
     .then(res => {
