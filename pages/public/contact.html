@@ -27,6 +27,18 @@
     <!-- Navbar -->
     <div id="navbar-container"></div>
     
+    <!-- Carrito lateral: debe existir en TODAS las páginas.
+         initSlidingCart() hace querySelector('.cart') — si este div
+         no existe, openBtn no tiene nada que abrir. -->
+    <div class="cart">
+        <h1>Carrito</h1>
+        <ul class="listCart"></ul>
+        <div class="checkout">
+            <div class="total"></div>
+            <div class="closeShopping"><a>Cerrar</a></div>
+        </div>
+    </div>
+
     <main class="contact">
         
         <!-- HERO SECTION -->

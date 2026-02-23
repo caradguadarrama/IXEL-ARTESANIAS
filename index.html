@@ -12,110 +12,81 @@
     <link
         href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Trocchi&display=swap"
         rel="stylesheet">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Estilos -->
     <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/pages/landingPage.css">
 
     <!-- JavaScript -->
     <script defer type="module" src="assets/js/main.js"></script>
+    <script defer type="module" src="assets/js/components/pages/landingPage.js"></script>
 </head>
 
 <body>
     <!-- Navbar se inyecta aquí -->
     <div id="navbar-container"></div>
 
+<div class="cart">
+        <h1>Carrito</h1>
+        <ul class="listCart"></ul>
+        <div class="checkout">
+            <div class="total" href="/assets/js/components/pages/cart.js"></div>
+            <div class="closeShopping">Cerrar</div>
+        </div>
+    </div>
 
     <!-- Contenido principal -->
-    <main class="main-content">
+    <main>
+    <section class="hero">
+        <div class="hero-content">
+            <button href="#" class="btn-ver-mas btn mt-4 button-ixel-rojo">Ver colección</button>
+        </div>
+    </section>
+   <section class="top-cards-section">
+    <div class="top-carousel-container">
+        <div class="top-carousel-track">
 
-        <!-- Tu contenido va aquí -->
-        <section class="hero-carousel">
-            <div class="carousel-slide active">
-                <img src="assets/img/products/pruba.jpeg" alt="Colección Panal">
-                <button class="btn-buy-hero">Buy</button>
-            </div>
-        </section>
-
-        <section class="origenes-section">
-            <h2 class="section-title">De qué estamos hechos</h2>
-            <div class="origenes-grid">
-
-                <div class="origenes-card">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <img src="assets/img/materials/VERDE.PNG" alt="Barro Verde">
-                        </div>
-                        <div class="card-back">
-                            <h2>Barro Verde</h2>
-                            <p>Técnica ancestral de Santa María Atzompa, Oaxaca.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="origenes-card">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <img src="assets/img/materials/AMARILLO.PNG" alt="Madera Parota">
-                        </div>
-                        <div class="card-back">
-                            <h2>Madera Parota</h2>
-                            <p>Madera sustentable con vetas únicas y gran resistencia.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="origenes-card">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <img src="assets/img/materials/VERDE.PNG" alt="Aluminio">
-                        </div>
-                        <div class="card-back">
-                            <h2>Aluminio</h2>
-                            <p>Detalles contemporáneos fundidos a mano.</p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <section class="imprescindibles-section">
-            <h2 class="section-title">Productos Imprescindibles</h2>
-            <div class="imprescindibles-container">
-                <div class="product-card">
-                    <div class="product-img-container">
-                        <img src="assets/img/products/jaguares.jpeg" alt="Tortillero Jaguar">
-                    </div>
-                    <h3>Tortillero Jaguar</h3>
-                    <p class="price">$ 350.00</p>
-                    <p class="desc">Descripción del producto</p>
-                    <button class="btn-buy">Buy</button>
-                    <a href="#" class="learn-more">→ Learn More</a>
-                </div>
-                <div class="product-card">
-                    <div class="product-img-container">
-                        <img src="assets/img/products/onilala.jpeg" alt="Tortillero Panal">
-                    </div>
-                    <h3>Tortillero Panal</h3>
-                    <p class="price">$ 350.00</p>
-                    <p class="desc">Descripción del producto</p>
-                    <button class="btn-buy">Buy</button>
-                    <a href="#" class="learn-more">→ Learn More</a>
-                </div>
-                <div class="product-card">
-                    <div class="product-img-container">
-                        <img src="assets/img/products/martina.jpeg" alt="Tortillero Martina">
-                    </div>
-                    <h3>Tortillero Martina</h3>
-                    <p class="price">$ 350.00</p>
-                    <p class="desc">Descripción del producto</p>
-                    <button class="btn-buy">Buy</button>
-                    <a href="#" class="learn-more">→ Learn More</a>
+            <div class="top-card">
+                <div class="top-card-inner">
+                    <div class="top-card-front">Producto 1</div>
+                    <div class="top-card-back">Descripción 1</div>
                 </div>
             </div>
-        </section>
+
+            <div class="top-card">
+                <div class="top-card-inner">
+                    <div class="top-card-front">Producto 2</div>
+                    <div class="top-card-back">Descripción 2</div>
+                </div>
+            </div>
+
+            <div class="top-card">
+                <div class="top-card-inner">
+                    <div class="top-card-front">Producto 3</div>
+                    <div class="top-card-back">Descripción 3</div>
+                </div>
+            </div>
+
+            <div class="top-card">
+                <div class="top-card-inner">
+                    <div class="top-card-front">Producto 4</div>
+                    <div class="top-card-back">Descripción 4</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </section>
+        <section id="products" class="products-section my-5">
+        <h2 class="section-titlee text-center">Productos Imprescindibles</h2>
+        <div class="container">
+            <div class="row g-3" id="cards"></div>
+        </div>
+    </section>
     </main>
 
+
+    <!-- Footer se inyecta aquí -->
     <footer id="footer-container"></footer>
 
 </body>

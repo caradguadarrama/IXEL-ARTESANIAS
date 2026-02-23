@@ -6,7 +6,7 @@
         "price": 2137.5,
         "collection": "Jaguar",
         "description": "Tortillero Jaguar. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tortillero-jaguar.jpg",
+        "imagen": "/assets/img/products/Tortillero Jaguar.png",
         "stock": 14
     },
     {
@@ -16,8 +16,8 @@
         "price": 2037.5,
         "collection": "Jaguar",
         "description": "Tortillero Jaguar minimalista. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tortillero-jaguar-minimalista.jpg",
-        "stock": 13
+        "imagen": "/assets/img/products/Tortillero Jaguar Minimalista.png",
+        "stock": 0
     },
     {
         "id": 3,
@@ -26,7 +26,7 @@
         "price": 1887.5,
         "collection": "Panal",
         "description": "Tortillero Panal. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tortillero-panal.jpg",
+        "imagen": "/assets/img/products/Tortillero Panal.png",
         "stock": 18
     },
     {
@@ -36,7 +36,7 @@
         "price": 2037.5,
         "collection": "Martina",
         "description": "Tortillero Martina Grises. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tortillero-martina-grises.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 5
     },
     {
@@ -46,7 +46,7 @@
         "price": 2037.5,
         "collection": "Martina",
         "description": "Tortillero Martina Color. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tortillero-martina-color.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Color.png",
         "stock": 8
     },
     {
@@ -56,7 +56,7 @@
         "price": 1637.5,
         "collection": "Martina",
         "description": "Tortillero Martina Chico. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tortillero-martina-chico.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina chico.png",
         "stock": 18
     },
     {
@@ -66,8 +66,8 @@
         "price": 2237.5,
         "collection": "Olinala",
         "description": "Tortillero Olinala. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tortillero-olinala.jpg",
-        "stock": 8
+        "imagen": "/assets/img/products/Tortillero Olinala.png",
+        "stock": 9
     },
     {
         "id": 8,
@@ -76,467 +76,467 @@
         "price": 1937.5,
         "collection": "General",
         "description": "Tortillero Narda. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tortillero-narda.jpg",
+        "imagen": "/assets/img/products/Tortillero Narda.png",
         "stock": 8
     },
     {
         "id": 9,
-        "category": "Tabla",
-        "name": "Tabla rustica chica",
+        "category": "Tablas",
+        "name": "Tablas rustica chica",
         "price": 737.5,
         "collection": "General",
-        "description": "Tabla rustica chica. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tabla-rustica-chica.jpg",
+        "description": "Tablas rustica chica. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 12
     },
     {
         "id": 10,
-        "category": "Tabla",
-        "name": "Tabla rustica mediano",
+        "category": "Tablas",
+        "name": "Tablas rustica mediano",
         "price": 837.5,
         "collection": "General",
-        "description": "Tabla rustica mediano. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tabla-rustica-mediano.jpg",
+        "description": "Tablas rustica mediano. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 9
     },
     {
         "id": 11,
-        "category": "Tabla",
-        "name": "Tabla rustica grande",
+        "category": "Tablas",
+        "name": "Tablas rustica grande",
         "price": 937.5,
         "collection": "General",
-        "description": "Tabla rustica grande. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tabla-rustica-grande.jpg",
+        "description": "Tablas rustica grande. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 14
     },
     {
         "id": 12,
-        "category": "Tabla",
-        "name": "Tabla rustica pintada 1 mango",
+        "category": "Tablas",
+        "name": "Tablas rustica pintada 1 mango",
         "price": 1287.5,
         "collection": "General",
-        "description": "Tabla rustica pintada 1 mango. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tabla-rustica-pintada-1-mango.jpg",
+        "description": "Tablas rustica pintada 1 mango. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 18
     },
     {
         "id": 13,
-        "category": "Tabla",
-        "name": "Tabla rustica pintada 1 mango 43 X 23",
+        "category": "Tablas",
+        "name": "Tablas rustica pintada 1 mango 43 X 23",
         "price": 1437.5,
         "collection": "General",
-        "description": "Tabla rustica pintada 1 mango 43 X 23. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tabla-rustica-pintada-1-mango-43-x-23.jpg",
+        "description": "Tablas rustica pintada 1 mango 43 X 23. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 11
     },
     {
         "id": 14,
-        "category": "Tabla",
-        "name": "Tabla asado rustica",
+        "category": "Tablas",
+        "name": "Tablas asado rustica",
         "price": 1087.5,
         "collection": "General",
-        "description": "Tabla asado rustica. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tabla-asado-rustica.jpg",
+        "description": "Tablas asado rustica. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 18
     },
     {
         "id": 15,
-        "category": "Tabla",
-        "name": "Tabla rustica XL 60 CM",
+        "category": "Tablas",
+        "name": "Tablas rustica XL 60 CM",
         "price": 1087.5,
         "collection": "General",
-        "description": "Tabla rustica XL 60 CM. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tabla-rustica-xl-60-cm.jpg",
+        "description": "Tablas rustica XL 60 CM. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 6
     },
     {
         "id": 16,
-        "category": "Tabla",
-        "name": "Tabla rustica XL 80 CM",
+        "category": "Tablas",
+        "name": "Tablas rustica XL 80 CM",
         "price": 1187.5,
         "collection": "General",
-        "description": "Tabla rustica XL 80 CM. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tabla-rustica-xl-80-cm.jpg",
+        "description": "Tablas rustica XL 80 CM. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 12
     },
     {
         "id": 17,
-        "category": "Tabla",
-        "name": "Tabla doble asa 70 CM",
+        "category": "Tablas",
+        "name": "Tablas doble asa 70 CM",
         "price": 1087.5,
         "collection": "General",
-        "description": "Tabla doble asa 70 CM. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tabla-doble-asa-70-cm.jpg",
+        "description": "Tablas doble asa 70 CM. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 7
     },
     {
         "id": 18,
-        "category": "Tabla",
-        "name": "Tabla rustica doble asa 100 CM",
+        "category": "Tablas",
+        "name": "Tablas rustica doble asa 100 CM",
         "price": 1537.5,
         "collection": "General",
-        "description": "Tabla rustica doble asa 100 CM. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tabla-rustica-doble-asa-100-cm.jpg",
+        "description": "Tablas rustica doble asa 100 CM. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 15
     },
     {
         "id": 19,
-        "category": "Tabla",
-        "name": "Tabla rustica doble asa 1.10 Mtrs",
+        "category": "Tablas",
+        "name": "Tablas rustica doble asa 1.10 Mtrs",
         "price": 1687.5,
         "collection": "General",
-        "description": "Tabla rustica doble asa 1.10 Mtrs. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tabla-rustica-doble-asa-1.10-mtrs.jpg",
+        "description": "Tablas rustica doble asa 1.10 Mtrs. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 11
     },
     {
         "id": 20,
-        "category": "Tabla",
-        "name": "Tabla chica asado auxiliar",
+        "category": "Tablas",
+        "name": "Tablas chica asado auxiliar",
         "price": 587.5,
         "collection": "General",
-        "description": "Tabla chica asado auxiliar. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tabla-chica-asado-auxiliar.jpg",
+        "description": "Tablas chica asado auxiliar. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 5
     },
     {
         "id": 21,
-        "category": "Tabla",
-        "name": "Tabla asado cuadrada",
+        "category": "Tablas",
+        "name": "Tablas asado cuadrada",
         "price": 737.5,
         "collection": "General",
-        "description": "Tabla asado cuadrada. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tabla-asado-cuadrada.jpg",
+        "description": "Tablas asado cuadrada. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 16
     },
     {
         "id": 22,
-        "category": "Tabla",
-        "name": "Tabla asado plato",
+        "category": "Tablas",
+        "name": "Tablas asado plato",
         "price": 737.5,
         "collection": "General",
-        "description": "Tabla asado plato. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tabla-asado-plato.jpg",
+        "description": "Tablas asado plato. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 14
     },
     {
         "id": 23,
-        "category": "Tabla",
-        "name": "Tabla asado servicio",
+        "category": "Tablas",
+        "name": "Tablas asado servicio",
         "price": 987.5,
         "collection": "General",
-        "description": "Tabla asado servicio. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tabla-asado-servicio.jpg",
+        "description": "Tablas asado servicio. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 19
     },
     {
         "id": 24,
-        "category": "Tabla",
-        "name": "Tabla botanera redonda CH",
+        "category": "Tablas",
+        "name": "Tablas botanera redonda CH",
         "price": 837.5,
         "collection": "General",
-        "description": "Tabla botanera redonda CH. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tabla-botanera-redonda-ch.jpg",
+        "description": "Tablas botanera redonda CH. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 18
     },
     {
         "id": 25,
-        "category": "Tabla",
-        "name": "Tabla botanera redonda grande",
+        "category": "Tablas",
+        "name": "Tablas botanera redonda grande",
         "price": 887.5,
         "collection": "General",
-        "description": "Tabla botanera redonda grande. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tabla-botanera-redonda-grande.jpg",
+        "description": "Tablas botanera redonda grande. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 8
     },
     {
         "id": 26,
-        "category": "Tabla",
-        "name": "Tabla brie",
+        "category": "Tablas",
+        "name": "Tablas brie",
         "price": 537.5,
         "collection": "General",
-        "description": "Tabla brie. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tabla-brie.jpg",
+        "description": "Tablas brie. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 8
     },
     {
         "id": 27,
-        "category": "Tabla",
-        "name": "Tabla doble asa 1.80 M",
+        "category": "Tablas",
+        "name": "Tablas doble asa 1.80 M",
         "price": 2387.5,
         "collection": "General",
-        "description": "Tabla doble asa 1.80 M. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tabla-doble-asa-1.80-m.jpg",
+        "description": "Tablas doble asa 1.80 M. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 16
     },
     {
         "id": 28,
-        "category": "Tabla",
-        "name": "Tabla orillas negras flor",
+        "category": "Tablas",
+        "name": "Tablas orillas negras flor",
         "price": 1137.5,
         "collection": "General",
-        "description": "Tabla orillas negras flor. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tabla-orillas-negras-flor.jpg",
+        "description": "Tablas orillas negras flor. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 15
     },
     {
         "id": 29,
-        "category": "Tabla",
-        "name": "Tabla orillas negras jaguar",
+        "category": "Tablas",
+        "name": "Tablas orillas negras jaguar",
         "price": 1387.5,
         "collection": "Jaguar",
-        "description": "Tabla orillas negras jaguar. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tabla-orillas-negras-jaguar.jpg",
+        "description": "Tablas orillas negras jaguar. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 14
     },
     {
         "id": 30,
-        "category": "Tabla",
-        "name": "Tabla mini cuadrada",
+        "category": "Tablas",
+        "name": "Tablas mini cuadrada",
         "price": 537.5,
         "collection": "General",
-        "description": "Tabla mini cuadrada. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tabla-mini-cuadrada.jpg",
+        "description": "Tablas mini cuadrada. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 6
     },
     {
         "id": 31,
-        "category": "Tabla",
-        "name": "Tabla mini redonda",
+        "category": "Tablas",
+        "name": "Tablas mini redonda",
         "price": 487.5,
         "collection": "General",
-        "description": "Tabla mini redonda. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tabla-mini-redonda.jpg",
+        "description": "Tablas mini redonda. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 16
     },
     {
         "id": 32,
-        "category": "Tabla",
-        "name": "Tabla ovalada chica",
+        "category": "Tablas",
+        "name": "Tablas ovalada chica",
         "price": 587.5,
         "collection": "General",
-        "description": "Tabla ovalada chica. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tabla-ovalada-chica.jpg",
+        "description": "Tablas ovalada chica. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 20
     },
     {
         "id": 33,
-        "category": "Tabla",
-        "name": "Tabla esquina pintada 25x25 Martina",
+        "category": "Tablas",
+        "name": "Tablas esquina pintada 25x25 Martina",
         "price": 1137.5,
         "collection": "Martina",
-        "description": "Tabla esquina pintada 25x25 Martina. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tabla-esquina-pintada-25x25-martina.jpg",
-        "stock": 14
+        "description": "Tablas esquina pintada 25x25 Martina. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
+        "imagen": "/assets/img/products/Tablas esquina pintada 25x25 Martina.png",
+        "stock": 0
     },
     {
         "id": 34,
-        "category": "Tabla",
-        "name": "Tabla esquina pintada 25x33 Martina",
+        "category": "Tablas",
+        "name": "Tablas esquina pintada 25x33 Martina",
         "price": 1287.5,
         "collection": "Martina",
-        "description": "Tabla esquina pintada 25x33 Martina. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tabla-esquina-pintada-25x33-martina.jpg",
+        "description": "Tablas esquina pintada 25x33 Martina. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
+        "imagen": "/assets/img/products/Tablas esquina pintada 25x33 Martina.png",
         "stock": 5
     },
     {
         "id": 35,
-        "category": "Tabla",
-        "name": "Tabla esquina pintada 41x20 Martina",
+        "category": "Tablas",
+        "name": "Tablas esquina pintada 41x20 Martina",
         "price": 1287.5,
         "collection": "Martina",
-        "description": "Tabla esquina pintada 41x20 Martina. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tabla-esquina-pintada-41x20-martina.jpg",
+        "description": "Tablas esquina pintada 41x20 Martina. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
+        "imagen": "/assets/img/products/Tablas esquina pintada 41x20 Martina.png",
         "stock": 5
     },
     {
         "id": 36,
-        "category": "Tabla",
-        "name": "Tabla pintada alebrije grande",
+        "category": "Tablas",
+        "name": "Tablas pintada alebrije grande",
         "price": 1637.5,
         "collection": "General",
-        "description": "Tabla pintada alebrije grande. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tabla-pintada-alebrije-grande.jpg",
+        "description": "Tablas pintada alebrije grande. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 17
     },
     {
         "id": 37,
-        "category": "Tabla",
-        "name": "Tabla pizza chica",
+        "category": "Tablas",
+        "name": "Tablas pizza chica",
         "price": 1087.5,
         "collection": "General",
-        "description": "Tabla pizza chica. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tabla-pizza-chica.jpg",
+        "description": "Tablas pizza chica. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 16
     },
     {
         "id": 38,
-        "category": "Tabla",
-        "name": "Tabla pizza grande",
+        "category": "Tablas",
+        "name": "Tablas pizza grande",
         "price": 1187.5,
         "collection": "General",
-        "description": "Tabla pizza grande. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tabla-pizza-grande.jpg",
+        "description": "Tablas pizza grande. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 11
     },
     {
         "id": 39,
-        "category": "Tabla",
-        "name": "Tabla redonda chica con agarre",
+        "category": "Tablas",
+        "name": "Tablas redonda chica con agarre",
         "price": 687.5,
         "collection": "General",
-        "description": "Tabla redonda chica con agarre. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tabla-redonda-chica-con-agarre.jpg",
+        "description": "Tablas redonda chica con agarre. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 18
     },
     {
         "id": 40,
-        "category": "Tabla",
-        "name": "Tabla terna asado",
+        "category": "Tablas",
+        "name": "Tablas terna asado",
         "price": 1187.5,
         "collection": "General",
-        "description": "Tabla terna asado. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tabla-terna-asado.jpg",
+        "description": "Tablas terna asado. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 5
     },
     {
         "id": 41,
-        "category": "Tabla",
-        "name": "Tabla terna chica",
+        "category": "Tablas",
+        "name": "Tablas terna chica",
         "price": 837.5,
         "collection": "General",
-        "description": "Tabla terna chica. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tabla-terna-chica.jpg",
+        "description": "Tablas terna chica. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 5
     },
     {
         "id": 42,
-        "category": "Tabla",
-        "name": "Tabla terna grande",
+        "category": "Tablas",
+        "name": "Tablas terna grande",
         "price": 937.5,
         "collection": "General",
-        "description": "Tabla terna grande. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tabla-terna-grande.jpg",
+        "description": "Tablas terna grande. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 15
     },
     {
         "id": 43,
-        "category": "Tabla",
-        "name": "Tabla terna grande barro negro",
+        "category": "Tablas",
+        "name": "Tablas terna grande barro negro",
         "price": 1387.5,
         "collection": "General",
-        "description": "Tabla terna grande barro negro. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tabla-terna-grande-barro-negro.jpg",
+        "description": "Tablas terna grande barro negro. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 5
     },
     {
         "id": 44,
-        "category": "Tabla",
-        "name": "Tabla terna pizza chica",
+        "category": "Tablas",
+        "name": "Tablas terna pizza chica",
         "price": 1087.5,
         "collection": "General",
-        "description": "Tabla terna pizza chica. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tabla-terna-pizza-chica.jpg",
+        "description": "Tablas terna pizza chica. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 9
     },
     {
         "id": 45,
-        "category": "Tabla",
-        "name": "Tabla terna pizza grande",
+        "category": "Tablas",
+        "name": "Tablas terna pizza grande",
         "price": 1187.5,
         "collection": "General",
-        "description": "Tabla terna pizza grande. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tabla-terna-pizza-grande.jpg",
+        "description": "Tablas terna pizza grande. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 15
     },
     {
         "id": 46,
-        "category": "Tabla",
-        "name": "Tabla Hoja chica",
+        "category": "Tablas",
+        "name": "Tablas Hoja chica",
         "price": 737.5,
         "collection": "General",
-        "description": "Tabla Hoja chica. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tabla-hoja-chica.jpg",
+        "description": "Tablas Hoja chica. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 17
     },
     {
         "id": 47,
-        "category": "Tabla",
-        "name": "Tabla Hoja mediana",
+        "category": "Tablas",
+        "name": "Tablas Hoja mediana",
         "price": 887.5,
         "collection": "General",
-        "description": "Tabla Hoja mediana. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tabla-hoja-mediana.jpg",
+        "description": "Tablas Hoja mediana. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 15
     },
     {
         "id": 48,
-        "category": "Tabla",
-        "name": "Tabla Hoja grande",
+        "category": "Tablas",
+        "name": "Tablas Hoja grande",
         "price": 1037.5,
         "collection": "General",
-        "description": "Tabla Hoja grande. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tabla-hoja-grande.jpg",
+        "description": "Tablas Hoja grande. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 16
     },
     {
         "id": 49,
-        "category": "Tabla",
-        "name": "Tabla Portacaliente labrado Panal",
+        "category": "Tablas",
+        "name": "Tablas Portacaliente labrado Panal",
         "price": 787.5,
         "collection": "Panal",
-        "description": "Tabla Portacaliente labrado Panal. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tabla-portacaliente-labrado-panal.jpg",
+        "description": "Tablas Portacaliente labrado Panal. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 7
     },
     {
         "id": 50,
-        "category": "Tabla",
-        "name": "Tabla Pez pintado 23 x 80 Martina",
+        "category": "Tablas",
+        "name": "Tablas Pez pintado 23 x 80 Martina",
         "price": 2187.5,
         "collection": "Martina",
-        "description": "Tabla Pez pintado 23 x 80 Martina. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tabla-pez-pintado-23-x-80-martina.jpg",
+        "description": "Tablas Pez pintado 23 x 80 Martina. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 14
     },
     {
         "id": 51,
-        "category": "Tabla",
-        "name": "Tabla Pez pintado 27 x 102 Martina",
+        "category": "Tablas",
+        "name": "Tablas Pez pintado 27 x 102 Martina",
         "price": 2537.5,
         "collection": "Martina",
-        "description": "Tabla Pez pintado 27 x 102 Martina. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tabla-pez-pintado-27-x-102-martina.jpg",
+        "description": "Tablas Pez pintado 27 x 102 Martina. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 16
     },
     {
         "id": 52,
-        "category": "Tabla",
-        "name": "Tabla Pez pintado 32 x 63 Martina",
+        "category": "Tablas",
+        "name": "Tablas Pez pintado 32 x 63 Martina",
         "price": 2337.5,
         "collection": "Martina",
-        "description": "Tabla Pez pintado 32 x 63 Martina. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tabla-pez-pintado-32-x-63-martina.jpg",
+        "description": "Tablas Pez pintado 32 x 63 Martina. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 9
     },
     {
         "id": 53,
-        "category": "Tabla",
-        "name": "Tabla Pez pintado 33 x 90 Martina",
+        "category": "Tablas",
+        "name": "Tablas Pez pintado 33 x 90 Martina",
         "price": 2537.5,
         "collection": "Martina",
-        "description": "Tabla Pez pintado 33 x 90 Martina. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tabla-pez-pintado-33-x-90-martina.jpg",
+        "description": "Tablas Pez pintado 33 x 90 Martina. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 19
     },
     {
         "id": 54,
-        "category": "Tabla",
-        "name": "Tabla Tortuga pintada Martina",
+        "category": "Tablas",
+        "name": "Tablas Tortuga pintada Martina",
         "price": 2337.5,
         "collection": "Martina",
-        "description": "Tabla Tortuga pintada Martina. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tabla-tortuga-pintada-martina.jpg",
+        "description": "Tablas Tortuga pintada Martina. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 10
     },
     {
@@ -546,7 +546,7 @@
         "price": 1887.5,
         "collection": "General",
         "description": "Mezcalero piel flor vidrio. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/mezcalero-piel-flor-vidrio.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 20
     },
     {
@@ -556,7 +556,7 @@
         "price": 2287.5,
         "collection": "General",
         "description": "Mezcalero agave bronce. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/mezcalero-agave-bronce.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 5
     },
     {
@@ -566,7 +566,7 @@
         "price": 1487.5,
         "collection": "General",
         "description": "Mezcalero barro negro mediano. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/mezcalero-barro-negro-mediano.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 14
     },
     {
@@ -576,7 +576,7 @@
         "price": 2287.5,
         "collection": "Jaguar",
         "description": "Mezcalero Jaguar piel redondo. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/mezcalero-jaguar-piel-redondo.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 14
     },
     {
@@ -586,7 +586,7 @@
         "price": 1787.5,
         "collection": "General",
         "description": "Mezcalero mediano vidrio. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/mezcalero-mediano-vidrio.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 6
     },
     {
@@ -596,7 +596,7 @@
         "price": 1487.5,
         "collection": "General",
         "description": "Mezcalero redondo chico vidrio. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/mezcalero-redondo-chico-vidrio.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 14
     },
     {
@@ -606,17 +606,17 @@
         "price": 1787.5,
         "collection": "General",
         "description": "Lazy Susan 55 cm. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/lazy-susan-55-cm.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 10
     },
     {
         "id": 62,
         "category": "Mezcaleros/Tequileros",
-        "name": "Mezcalero tabla una asa mediano 6 objetos",
+        "name": "Mezcalero Tablas una asa mediano 6 objetos",
         "price": 1487.5,
         "collection": "General",
-        "description": "Mezcalero tabla una asa mediano 6 objetos. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/mezcalero-tabla-una-asa-mediano-6-objetos.jpg",
+        "description": "Mezcalero Tablas una asa mediano 6 objetos. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 5
     },
     {
@@ -626,7 +626,7 @@
         "price": 1887.5,
         "collection": "General",
         "description": "Mezcalero vidrio calavera. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/mezcalero-vidrio-calavera.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 5
     },
     {
@@ -636,7 +636,7 @@
         "price": 2087.5,
         "collection": "General",
         "description": "Tequilero agaves barro negro. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tequilero-agaves-barro-negro.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 16
     },
     {
@@ -646,7 +646,7 @@
         "price": 2037.5,
         "collection": "General",
         "description": "Tequilero arte. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tequilero-arte.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 17
     },
     {
@@ -656,7 +656,7 @@
         "price": 2087.5,
         "collection": "General",
         "description": "Tequilero calavera barro negro. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tequilero-calavera-barro-negro.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 11
     },
     {
@@ -666,7 +666,7 @@
         "price": 1437.5,
         "collection": "General",
         "description": "Tequilero domino. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tequilero-domino.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 16
     },
     {
@@ -676,7 +676,7 @@
         "price": 2087.5,
         "collection": "General",
         "description": "Tequilero flor blanca. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tequilero-flor-blanca.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 20
     },
     {
@@ -686,7 +686,7 @@
         "price": 2087.5,
         "collection": "General",
         "description": "Tequilero flores barro negro. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tequilero-flores-barro-negro.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 16
     },
     {
@@ -696,7 +696,7 @@
         "price": 687.5,
         "collection": "General",
         "description": "Tequilero individual barro negro. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tequilero-individual-barro-negro.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 6
     },
     {
@@ -706,7 +706,7 @@
         "price": 887.5,
         "collection": "General",
         "description": "Tequilero individual burbuja. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tequilero-individual-burbuja.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 6
     },
     {
@@ -716,7 +716,7 @@
         "price": 787.5,
         "collection": "General",
         "description": "Tequilero individual piñata. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tequilero-individual-piñata.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 13
     },
     {
@@ -726,7 +726,7 @@
         "price": 2037.5,
         "collection": "General",
         "description": "Tequilero Cabeza calavera. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/tequilero-cabeza-calavera.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 17
     },
     {
@@ -736,7 +736,7 @@
         "price": 1387.5,
         "collection": "Jaguar",
         "description": "Base larga con tequileros jaguar. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/base-larga-con-tequileros-jaguar.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 15
     },
     {
@@ -746,7 +746,7 @@
         "price": 337.5,
         "collection": "General",
         "description": "1 mezcalero barro negro. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/1-mezcalero-barro-negro.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 10
     },
     {
@@ -756,7 +756,7 @@
         "price": 387.5,
         "collection": "General",
         "description": "1 mezcalero piñata. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/1-mezcalero-piñata.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 10
     },
     {
@@ -766,7 +766,7 @@
         "price": 1387.5,
         "collection": "Jaguar",
         "description": "Caja mini Jaguar completo. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/caja-mini-jaguar-completo.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 8
     },
     {
@@ -776,8 +776,8 @@
         "price": 2087.5,
         "collection": "Olinala",
         "description": "Caja chica base olinala linaloe. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/caja-chica-base-olinala-linaloe.jpg",
-        "stock": 10
+        "imagen": "/assets/img/products/Caja chica base olinala linaloe.png",
+        "stock": 9
     },
     {
         "id": 79,
@@ -786,8 +786,8 @@
         "price": 3287.5,
         "collection": "Olinala",
         "description": "Caja base Olinala Linaloe. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/caja-base-olinala-linaloe.jpg",
-        "stock": 13
+        "imagen": "/assets/img/products/Caja base olinala linaloe.png",
+        "stock": 0
     },
     {
         "id": 80,
@@ -796,7 +796,7 @@
         "price": 1037.5,
         "collection": "Olinala",
         "description": "Caja chica tapa olinala. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/caja-chica-tapa-olinala.jpg",
+        "imagen": "/assets/img/products/Caja chica tapa Olinalá.png",
         "stock": 19
     },
     {
@@ -806,7 +806,7 @@
         "price": 1837.5,
         "collection": "Jaguar",
         "description": "Caja tapa Jaguar. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/caja-tapa-jaguar.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 14
     },
     {
@@ -816,7 +816,7 @@
         "price": 2037.5,
         "collection": "Jaguar",
         "description": "Caja madera jaguar completo cuadrada. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/caja-madera-jaguar-completo-cuadrada.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 11
     },
     {
@@ -826,7 +826,7 @@
         "price": 2037.5,
         "collection": "Jaguar",
         "description": "Caja madera jaguar completo vino. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/caja-madera-jaguar-completo-vino.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 8
     },
     {
@@ -836,7 +836,7 @@
         "price": 1537.5,
         "collection": "Martina",
         "description": "Caja tapa martina. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/caja-tapa-martina.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 11
     },
     {
@@ -846,7 +846,7 @@
         "price": 1837.5,
         "collection": "Martina",
         "description": "Caja Martina alta te. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/caja-martina-alta-te.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 13
     },
     {
@@ -856,7 +856,7 @@
         "price": 2087.5,
         "collection": "Olinala",
         "description": "Caja Olinala alta te. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/caja-olinala-alta-te.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 19
     },
     {
@@ -866,7 +866,7 @@
         "price": 1937.5,
         "collection": "Olinala",
         "description": "Caja tapa Olinala. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/caja-tapa-olinala.jpg",
+        "imagen": "/assets/img/products/Caja tapa Olinalá.png",
         "stock": 6
     },
     {
@@ -876,7 +876,7 @@
         "price": 1637.5,
         "collection": "Olinala",
         "description": "Caja tapa Olinala mini. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/caja-tapa-olinala-mini.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 16
     },
     {
@@ -886,7 +886,7 @@
         "price": 1937.5,
         "collection": "Jaguar",
         "description": "Caja te jaguar. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/caja-te-jaguar.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 9
     },
     {
@@ -896,7 +896,7 @@
         "price": 1837.5,
         "collection": "Martina",
         "description": "Caja te Martina. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/caja-te-martina.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 7
     },
     {
@@ -906,7 +906,7 @@
         "price": 2087.5,
         "collection": "Olinala",
         "description": "Caja te Olinala. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/caja-te-olinala.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 8
     },
     {
@@ -916,7 +916,7 @@
         "price": 1937.5,
         "collection": "Jaguar",
         "description": "Caja vino jaguar. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/caja-vino-jaguar.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 18
     },
     {
@@ -926,7 +926,7 @@
         "price": 1937.5,
         "collection": "Jaguar",
         "description": "Caja vino jaguar completo. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/caja-vino-jaguar-completo.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 10
     },
     {
@@ -936,7 +936,7 @@
         "price": 1837.5,
         "collection": "Martina",
         "description": "Caja vino Martina. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/caja-vino-martina.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 6
     },
     {
@@ -946,7 +946,7 @@
         "price": 2087.5,
         "collection": "Olinala",
         "description": "Caja vino Olinala. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/caja-vino-olinala.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 9
     },
     {
@@ -956,7 +956,7 @@
         "price": 1387.5,
         "collection": "Jaguar",
         "description": "Caja 4 tequileros Jaguar. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/caja-4-tequileros-jaguar.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 17
     },
     {
@@ -966,7 +966,7 @@
         "price": 2337.5,
         "collection": "Olinala",
         "description": "Caja Olinala amenities. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/caja-olinala-amenities.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 9
     },
     {
@@ -976,7 +976,7 @@
         "price": 787.5,
         "collection": "General",
         "description": "Caja te sin tapa. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/caja-te-sin-tapa.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 7
     },
     {
@@ -986,7 +986,7 @@
         "price": 187.5,
         "collection": "General",
         "description": "Caja imanes 6 divisiones. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/caja-imanes-6-divisiones.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 20
     },
     {
@@ -996,7 +996,7 @@
         "price": 1037.5,
         "collection": "Jaguar",
         "description": "Servilletero jaguar. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/servilletero-jaguar.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 7
     },
     {
@@ -1006,7 +1006,7 @@
         "price": 1137.5,
         "collection": "General",
         "description": "Servilletero Libelula. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/servilletero-libelula.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 6
     },
     {
@@ -1016,7 +1016,7 @@
         "price": 1037.5,
         "collection": "General",
         "description": "Servilletero Narda. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/servilletero-narda.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 20
     },
     {
@@ -1026,7 +1026,7 @@
         "price": 1037.5,
         "collection": "Martina",
         "description": "Servilletero Martina. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/servilletero-martina.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 19
     },
     {
@@ -1036,7 +1036,7 @@
         "price": 887.5,
         "collection": "Panal",
         "description": "Servilletero Panal. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/servilletero-panal.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 19
     },
     {
@@ -1046,7 +1046,7 @@
         "price": 1137.5,
         "collection": "Olinala",
         "description": "Servilletero Olinala. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/servilletero-olinala.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 10
     },
     {
@@ -1056,7 +1056,7 @@
         "price": 1137.5,
         "collection": "Olinala",
         "description": "Servilletero medallon olinala. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/servilletero-medallon-olinala.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 5
     },
     {
@@ -1066,7 +1066,7 @@
         "price": 1037.5,
         "collection": "Martina",
         "description": "Servilletero aro Martina. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/servilletero-aro-martina.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 9
     },
     {
@@ -1076,7 +1076,7 @@
         "price": 987.5,
         "collection": "Martina",
         "description": "Servilletero pintado vertical Martina. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/servilletero-pintado-vertical-martina.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 11
     },
     {
@@ -1086,7 +1086,7 @@
         "price": 1037.5,
         "collection": "Martina",
         "description": "Servilletero largo Martina. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/servilletero-largo-martina.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 8
     },
     {
@@ -1096,7 +1096,7 @@
         "price": 1137.5,
         "collection": "Olinala",
         "description": "Servilletero largo Olinala. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/servilletero-largo-olinala.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 5
     },
     {
@@ -1106,7 +1106,7 @@
         "price": 987.5,
         "collection": "General",
         "description": "Servilletero Guanajuato. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/servilletero-guanajuato.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 7
     },
     {
@@ -1116,7 +1116,7 @@
         "price": 1387.5,
         "collection": "General",
         "description": "Porta salsas con botella. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/porta-salsas-con-botella.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 9
     },
     {
@@ -1126,7 +1126,7 @@
         "price": 1237.5,
         "collection": "General",
         "description": "Porta salsas sin botellas. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/porta-salsas-sin-botellas.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 8
     },
     {
@@ -1136,7 +1136,7 @@
         "price": 1237.5,
         "collection": "General",
         "description": "Salsera terna barro negro. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/salsera-terna-barro-negro.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 16
     },
     {
@@ -1146,7 +1146,7 @@
         "price": 1437.5,
         "collection": "Jaguar",
         "description": "Salsera barro negro jaguar. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/salsera-barro-negro-jaguar.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 8
     },
     {
@@ -1156,7 +1156,7 @@
         "price": 1287.5,
         "collection": "General",
         "description": "Salsera doble barro negro flor. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/salsera-doble-barro-negro-flor.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 14
     },
     {
@@ -1166,7 +1166,7 @@
         "price": 1387.5,
         "collection": "General",
         "description": "Salsera triple barro negro flor. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/salsera-triple-barro-negro-flor.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 11
     },
     {
@@ -1176,7 +1176,7 @@
         "price": 1037.5,
         "collection": "Jaguar",
         "description": "Salsera jaguar doble. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/salsera-jaguar-doble.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 15
     },
     {
@@ -1186,7 +1186,7 @@
         "price": 1237.5,
         "collection": "Jaguar",
         "description": "Salsera jaguar triple. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/salsera-jaguar-triple.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 5
     },
     {
@@ -1196,7 +1196,7 @@
         "price": 887.5,
         "collection": "Martina",
         "description": "Salsera Martina doble. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/salsera-martina-doble.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 16
     },
     {
@@ -1206,7 +1206,7 @@
         "price": 1087.5,
         "collection": "Martina",
         "description": "Salsera Martina triple. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/salsera-martina-triple.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 14
     },
     {
@@ -1216,7 +1216,7 @@
         "price": 687.5,
         "collection": "Martina",
         "description": "SALERA Paloma Martina. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/salera-paloma-martina.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 8
     },
     {
@@ -1226,7 +1226,7 @@
         "price": 2037.5,
         "collection": "Panal",
         "description": "Charola chica panal. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/charola-chica-panal.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 16
     },
     {
@@ -1236,7 +1236,7 @@
         "price": 2437.5,
         "collection": "Olinala",
         "description": "Charola chica Olinala. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/charola-chica-olinala.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 6
     },
     {
@@ -1246,7 +1246,7 @@
         "price": 2137.5,
         "collection": "Olinala",
         "description": "Charola 42 cms Olinala. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/charola-42-cms-olinala.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 20
     },
     {
@@ -1256,7 +1256,7 @@
         "price": 2337.5,
         "collection": "Martina",
         "description": "Charola cuadrada Martina. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/charola-cuadrada-martina.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 6
     },
     {
@@ -1266,7 +1266,7 @@
         "price": 2687.5,
         "collection": "Olinala",
         "description": "Charola cuadrada Olinala. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/charola-cuadrada-olinala.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 10
     },
     {
@@ -1276,7 +1276,7 @@
         "price": 2587.5,
         "collection": "Panal",
         "description": "Charola grande panal. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/charola-grande-panal.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 19
     },
     {
@@ -1286,7 +1286,7 @@
         "price": 3437.5,
         "collection": "Olinala",
         "description": "Charola grande Olinala. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/charola-grande-olinala.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 14
     },
     {
@@ -1296,7 +1296,7 @@
         "price": 687.5,
         "collection": "General",
         "description": "Charola ovalada chica. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/charola-ovalada-chica.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 18
     },
     {
@@ -1306,7 +1306,7 @@
         "price": 837.5,
         "collection": "General",
         "description": "Charola ovalada mediana. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/charola-ovalada-mediana.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 19
     },
     {
@@ -1316,7 +1316,7 @@
         "price": 1087.5,
         "collection": "General",
         "description": "Charola ovalada grande. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/charola-ovalada-grande.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 5
     },
     {
@@ -1326,7 +1326,7 @@
         "price": 1787.5,
         "collection": "Martina",
         "description": "Charola rectangular Martina. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/charola-rectangular-martina.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 10
     },
     {
@@ -1336,7 +1336,7 @@
         "price": 2187.5,
         "collection": "Martina",
         "description": "Charola redonda Martina. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/charola-redonda-martina.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 15
     },
     {
@@ -1346,7 +1346,7 @@
         "price": 2187.5,
         "collection": "General",
         "description": "Charola redonda Guanajuato. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/charola-redonda-guanajuato.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 5
     },
     {
@@ -1356,7 +1356,7 @@
         "price": 2587.5,
         "collection": "Olinala",
         "description": "Charola redonda Olinala. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/charola-redonda-olinala.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 12
     },
     {
@@ -1366,7 +1366,7 @@
         "price": 2587.5,
         "collection": "General",
         "description": "Charola redonda piel 30. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/charola-redonda-piel-30.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 16
     },
     {
@@ -1376,7 +1376,7 @@
         "price": 2687.5,
         "collection": "General",
         "description": "Charola redonda piel 36. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/charola-redonda-piel-36.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 10
     },
     {
@@ -1386,7 +1386,7 @@
         "price": 637.5,
         "collection": "General",
         "description": "Molcajete 5\". Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/molcajete-5\".jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 6
     },
     {
@@ -1396,7 +1396,7 @@
         "price": 987.5,
         "collection": "General",
         "description": "Molcajete 7\". Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/molcajete-7\".jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 6
     },
     {
@@ -1406,7 +1406,7 @@
         "price": 1187.5,
         "collection": "General",
         "description": "Molcajete 9\". Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/molcajete-9\".jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 17
     },
     {
@@ -1416,7 +1416,7 @@
         "price": 1187.5,
         "collection": "General",
         "description": "Molcajete 11\". Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/molcajete-11\".jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 15
     },
     {
@@ -1426,107 +1426,107 @@
         "price": 837.5,
         "collection": "General",
         "description": "Molcajete cupula. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/molcajete-cupula.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 6
     },
     {
         "id": 144,
-        "category": "Vajilla",
+        "category": "Individuales",
         "name": "Par de cucharones pintados Martina",
         "price": 1237.5,
         "collection": "Martina",
         "description": "Par de cucharones pintados Martina. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/par-de-cucharones-pintados-martina.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 16
     },
     {
         "id": 145,
-        "category": "Vajilla",
+        "category": "Individuales",
         "name": "Juego 3 cuchillos pintados Martina",
         "price": 587.5,
         "collection": "Martina",
         "description": "Juego 3 cuchillos pintados Martina. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/juego-3-cuchillos-pintados-martina.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 8
     },
     {
         "id": 146,
-        "category": "Vajilla",
+        "category": "Individuales",
         "name": "Juego 3 cuchillos 1 color",
         "price": 437.5,
         "collection": "General",
         "description": "Juego 3 cuchillos 1 color. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/juego-3-cuchillos-1-color.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 17
     },
     {
         "id": 147,
-        "category": "Vajilla",
+        "category": "Individuales",
         "name": "Juego 3 cuchillos lisos",
         "price": 387.5,
         "collection": "General",
         "description": "Juego 3 cuchillos lisos. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/juego-3-cuchillos-lisos.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 14
     },
     {
         "id": 148,
-        "category": "Vajilla",
+        "category": "Individuales",
         "name": "AZUCARERA Gallina Azucarera Martina",
         "price": 887.5,
         "collection": "Martina",
         "description": "AZUCARERA Gallina Azucarera Martina. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/azucarera-gallina-azucarera-martina.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 13
     },
     {
         "id": 149,
-        "category": "Vajilla",
+        "category": "Individuales",
         "name": "1 VASO Caballito Jaguar",
         "price": 437.5,
         "collection": "Jaguar",
         "description": "1 VASO Caballito Jaguar. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/1-vaso-caballito-jaguar.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 5
     },
     {
         "id": 150,
-        "category": "Vajilla",
+        "category": "Individuales",
         "name": "1 VASO Caballito vidrio soplado",
         "price": 387.5,
         "collection": "General",
         "description": "1 VASO Caballito vidrio soplado. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/1-vaso-caballito-vidrio-soplado.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 5
     },
     {
         "id": 151,
-        "category": "Vajilla",
+        "category": "Individuales",
         "name": "Vaso Martina",
         "price": 237.5,
         "collection": "Martina",
         "description": "Vaso Martina. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/vaso-martina.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 5
     },
     {
         "id": 152,
-        "category": "Vajilla",
+        "category": "Individuales",
         "name": "Vaso barro negro Jaguar",
         "price": 237.5,
         "collection": "Jaguar",
         "description": "Vaso barro negro Jaguar. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/vaso-barro-negro-jaguar.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 19
     },
     {
         "id": 153,
-        "category": "Vajilla",
+        "category": "Individuales",
         "name": "Plato pez pintado Martina",
         "price": 1287.5,
         "collection": "Martina",
         "description": "Plato pez pintado Martina. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/plato-pez-pintado-martina.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 14
     },
     {
@@ -1536,7 +1536,7 @@
         "price": 2337.5,
         "collection": "Martina",
         "description": "Ensaladera pintada Martina. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/ensaladera-pintada-martina.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 11
     },
     {
@@ -1546,7 +1546,7 @@
         "price": 1437.5,
         "collection": "Martina",
         "description": "Virgen madera pintada Martina. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/virgen-madera-pintada-martina.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 18
     },
     {
@@ -1556,7 +1556,7 @@
         "price": 2437.5,
         "collection": "General",
         "description": "Nicho virgen olinala. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/nicho-virgen-olinala.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 15
     },
     {
@@ -1566,7 +1566,7 @@
         "price": 2087.5,
         "collection": "Martina",
         "description": "Nicho virgen pintado Martina. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/nicho-virgen-pintado-martina.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 20
     },
     {
@@ -1576,7 +1576,7 @@
         "price": 937.5,
         "collection": "General",
         "description": "Panera esfera barro negro. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/panera-esfera-barro-negro.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 6
     },
     {
@@ -1586,7 +1586,7 @@
         "price": 1837.5,
         "collection": "General",
         "description": "Jarron colibri. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/jarron-colibri.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 7
     },
     {
@@ -1596,7 +1596,7 @@
         "price": 1487.5,
         "collection": "General",
         "description": "Jarron stand by chico. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/jarron-stand-by-chico.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 8
     },
     {
@@ -1606,7 +1606,7 @@
         "price": 2187.5,
         "collection": "General",
         "description": "Jarron stand by mediano. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/jarron-stand-by-mediano.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 17
     },
     {
@@ -1616,7 +1616,7 @@
         "price": 2737.5,
         "collection": "General",
         "description": "Jarron stand by grande. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/jarron-stand-by-grande.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 7
     },
     {
@@ -1626,7 +1626,7 @@
         "price": 1487.5,
         "collection": "General",
         "description": "Lazy Susan 25cm. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/lazy-susan-25cm.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 15
     },
     {
@@ -1636,7 +1636,7 @@
         "price": 2337.5,
         "collection": "General",
         "description": "Lazy Susan 55 cm. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/lazy-susan-55-cm.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 7
     },
     {
@@ -1646,7 +1646,7 @@
         "price": 1837.5,
         "collection": "Martina",
         "description": "Base Nespresso Martina. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/base-nespresso-martina.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 18
     },
     {
@@ -1656,7 +1656,7 @@
         "price": 2337.5,
         "collection": "Martina",
         "description": "Alhajero Martina. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/alhajero-martina.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 12
     },
     {
@@ -1666,7 +1666,7 @@
         "price": 2687.5,
         "collection": "Olinala",
         "description": "Alhajero Olinala. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/alhajero-olinala.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 11
     },
     {
@@ -1676,7 +1676,7 @@
         "price": 837.5,
         "collection": "General",
         "description": "Botanera triple rectangular. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/botanera-triple-rectangular.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 15
     },
     {
@@ -1686,7 +1686,7 @@
         "price": 887.5,
         "collection": "General",
         "description": "Botanera valle triple. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/botanera-valle-triple.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 7
     },
     {
@@ -1696,7 +1696,7 @@
         "price": 537.5,
         "collection": "General",
         "description": "Botanera individual valle. Pieza exclusiva fabricada en madera de Parota del estado de Jalisco. Producto artesanal hecho a mano, pintado y esculpido por artesanos mexicanos.",
-        "imagen": "/images/botanera-individual-valle.jpg",
+        "imagen": "/assets/img/products/Tortillero Martina Grises.png",
         "stock": 12
     }
 ]

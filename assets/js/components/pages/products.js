@@ -1,154 +1,184 @@
-// Estado general de la aplicación
-let allProducts = [];      // productos (local)
-let filteredProducts = []; // productos filtrados que se van a renderizar
-let visibleCount = 4;     // productos mostrados inicialmente
-const PAGE_SIZE = 4; // paso de recarga (cuántos productos se cargan por vez)
-let activeCategory = null; // categoría activa seleccionada
-let activeSubcategory = null; // subcategoría activa seleccionada
-const loadMoreBtn = document.querySelector("#loadMore");
+import { getProducts }       from '../../services/product.service.js';
+import { createProductCard } from '../ui/ProductCard.js';
+
+let allProducts      = [];
+let filteredProducts = [];
+let visibleCount     = 6;
+const PAGE_SIZE      = 6;
+let activeCollection = null;
+let activeCategory   = null;
+
+const cardsContainer = document.querySelector('#cards');
+const loadMoreBtn    = document.querySelector('#loadMore');
 
 
+// ===============================
+// Carga de datos
+// ===============================
 async function loadProductsData() {
   try {
-    const response = await fetch('../../../../productos_final.json'); // Ajusta la ruta a tu archivo
-    if (!response.ok) throw new Error("No se pudo cargar el archivo JSON");
-
-    allProducts = await response.json();
-
-    // Inicializamos la vista
+    allProducts = await getProducts();
     filteredProducts = [...allProducts];
-    renderProducts(filteredProducts, visibleCount);
-
+    renderProducts(); // Ya no necesita pasarle parámetros si usamos las globales
   } catch (error) {
-    console.error("Error en el Backend/Fetch:", error);
-    container.innerHTML = `<p class="text-danger">Error al cargar productos. Intente más tarde.</p>`;
+    console.error("Error al cargar productos:", error);
+    if (cardsContainer) cardsContainer.innerHTML = `<p class="text-danger">Error al cargar productos.</p>`;
   }
 }
 
 
-// Contenedor donde se insertan dinámicamente las cards de productos
-const container = document.querySelector("#cards");
+// ===============================
+// Renderizado
+// ===============================
+function renderProducts() {
+  if (!cardsContainer) return;
+  cardsContainer.innerHTML = "";
 
+  const toRender = filteredProducts.slice(0, visibleCount);
 
-// Función encargada de renderizar productos en el DOM
-// Recibe una lista (ya filtrada) y cuántos productos mostrar
-function renderProducts(list, count) {
-  // Limpia el contenedor antes de renderizar nuevamente
-  container.innerHTML = "";
-
-  // Se toman solo los productos necesarios según la paginación
-  list.slice(0, count).forEach(product => {
+  toRender.forEach(product => {
+    // IMPORTANTE: Usamos el componente para que el HTML sea el mismo siempre
+    const cardElement = createProductCard(product);
+    
+    // Creamos la columna de Bootstrap
     const col = document.createElement("div");
-    col.className = "col-12 col-md-4";
-
-    // cambiar imagen por el valor de la imagen de cada producto parecido a product.image
-    col.innerHTML = `
-      <div class="product-card">
-        <div class="product-image">
-          <img src="../../assets/img/products/onilala.jpeg" alt="${product.name}">
-        </div>
-        <h5 class="product-name">${product.name}</h5>
-        <p class="product-price">$${product.price}</p>
-      <!--<p class="product-description">${product.description}</p>-->
-        <button class="button-ixel-products" data-id=${product.id}>
-          +
-        </button>
-      </div>
-    `;
-
-    // Se añade la columna al contenedor principal
-    container.appendChild(col);
+    col.className = "col-12 col-md-6 col-lg-4";
+    col.appendChild(cardElement);
+    
+    cardsContainer.appendChild(col);
   });
-  // Oculta o muestra el botón "Cargar más" según si hay más productos
-  if (count >= list.length) {
-    loadMoreBtn.style.display = "none";
+  // Control del botón Cargar más
+  if (visibleCount >= filteredProducts.length) {
+    if (loadMoreBtn) loadMoreBtn.style.display = 'none';
   } else {
-    loadMoreBtn.style.display = "block";
+    if (loadMoreBtn) loadMoreBtn.style.display = 'block';
   }
 }
 
+// Inicializar
+loadProductsData();
 
-// Aplica todos los filtros activos (categoría y subcategoría)
-// y vuelve a renderizar los productos
+
+// ===============================
+// Filtros
+// ===============================
 function applyFilters() {
+  console.log("activeCollection:", activeCollection);
+  console.log("activeCategory:", activeCategory);
+
   filteredProducts = allProducts.filter(p => {
-    // Si no hay categoría activa, se aceptan todas
+    console.log("Producto:", p);
+
+    const matchCollection =
+      !activeCollection || p.collection === activeCollection;
+
     const matchCategory =
       !activeCategory || p.category === activeCategory;
 
-    // Si no hay subcategoría activa, se aceptan todas
-    const matchSubcategory =
-      !activeSubcategory || p.subcategory === activeSubcategory;
+    console.log(
+      "matchCollection:", matchCollection,
+      "matchCategory:", matchCategory
+    );
 
-    // El producto debe cumplir ambas condiciones
-    return matchCategory && matchSubcategory;
+    return matchCollection && matchCategory;
   });
 
-  // Se reinicia la paginación al aplicar filtros
+  console.log("Resultado filtrado:", filteredProducts);
+
   visibleCount = PAGE_SIZE;
   renderProducts(filteredProducts, visibleCount);
 }
 
 
-// Inicialización cuando el DOM está completamente cargado
-document.addEventListener("DOMContentLoaded", () => {
-  loadProductsData();
-});
+
+// ===============================
+// Sidebar por colección
+// ===============================
+function updateCategorySidebar() {
+  const links = document.querySelectorAll(".selectable-list a");
+
+  if (!activeCollection) {
+    links.forEach(link => {
+      link.parentElement.style.display = "list-item";
+    });
+    return;
+  }
+
+  const validCategories = new Set(
+    allProducts
+      .filter(p => p.collection === activeCollection)
+      .map(p => p.category)
+  );
+
+  links.forEach(link => {
+    const category = link.dataset.subcategory; // 🔥 FIX
+
+    if (validCategories.has(category)) {
+      link.parentElement.style.display = "list-item";
+    } else {
+      link.parentElement.style.display = "none";
+      link.classList.remove("active");
+
+      if (activeCategory === category) {
+        activeCategory = null;
+      }
+    }
+  });
+}
 
 
+// ===============================
+// Eventos
+// ===============================
+document.addEventListener("DOMContentLoaded", loadProductsData);
 
-// Botón "Cargar más": muestra más productos respetando los filtros activos
-document.querySelector("#loadMore").addEventListener("click", () => {
+// Load more
+loadMoreBtn.addEventListener("click", () => {
   visibleCount += PAGE_SIZE;
-
   renderProducts(filteredProducts, visibleCount);
 });
 
-
-// Filtro por categoría (tarjetas superiores)
+// Cards grandes (colecciones)
 document.querySelectorAll(".category").forEach(card => {
   card.addEventListener("click", () => {
-    const category = card.dataset.category;
+    const collection = card.dataset.category;
 
-    // Si se hace click en la categoría activa, se desactiva el filtro
-    if (activeCategory === category) {
-      activeCategory = null;
+    if (activeCollection === collection) {
+      activeCollection = null;
       card.classList.remove("active");
     } else {
-      // Se activa una nueva categoría
-      activeCategory = category;
+      activeCollection = collection;
 
-      // Se limpia el estado visual de las demás categorías
       document
-        .querySelectorAll(".category")
+        .querySelectorAll(".category") // 🔥 FIX
         .forEach(c => c.classList.remove("active"));
 
       card.classList.add("active");
     }
 
-    // Se reaplican los filtros
+    activeCategory = null;
+    document
+      .querySelectorAll(".selectable-list a")
+      .forEach(l => l.classList.remove("active"));
+
+    updateCategorySidebar();
     applyFilters();
   });
 });
 
-
-// Filtro por subcategoría (sidebar)
+// Sidebar categorías FILTRAR CATEGORIAS DEPENDIENDO DEL CASO
 document.querySelectorAll(".selectable-list a").forEach(link => {
   link.addEventListener("click", e => {
-    // Evita que el enlace navegue o recargue la página
     e.preventDefault();
 
-    const subcategory = link.dataset.subcategory;
-    console.log("Subcategory clicked:", subcategory); // keep for now
+    const category = link.dataset.subcategory; //FIX
 
-    // Toggle de subcategoría
-    if (activeSubcategory === subcategory) {
-      activeSubcategory = null;
+    if (activeCategory === category) {
+      activeCategory = null;
       link.classList.remove("active");
     } else {
-      activeSubcategory = subcategory;
+      activeCategory = category;
 
-      // Se limpia el estado visual de las demás subcategorías
       document
         .querySelectorAll(".selectable-list a")
         .forEach(l => l.classList.remove("active"));
@@ -156,8 +186,85 @@ document.querySelectorAll(".selectable-list a").forEach(link => {
       link.classList.add("active");
     }
 
-    // Se reaplican los filtros combinados
     applyFilters();
   });
-  
 });
+
+
+
+
+//!funcionalidad de flechas de seccion de productos
+document.addEventListener('DOMContentLoaded', () => {
+  const list = document.getElementById('subCategoryList');
+  const btnLeft = document.getElementById('prevBtn');
+  const btnRight = document.getElementById('nextBtn');
+
+  if (list && btnLeft && btnRight) {
+    // Desplaza 200px hacia la derecha
+    btnRight.onclick = () => {
+      list.scrollBy({ left: 250, behavior: 'smooth' });
+    };
+
+    // Desplaza 200px hacia la izquierda
+    btnLeft.onclick = () => {
+      list.scrollBy({ left: -250, behavior: 'smooth' });
+    };
+
+
+
+  }
+});
+
+
+//! dejar fijo el hover de catedoria y funcion para seleccionar y deselecionar 
+document.addEventListener('click', (e) => {
+  const card = e.target.closest('.category');
+
+  if (card) {
+    const isAlreadySelected = card.classList.contains('selected');
+
+    document.querySelectorAll('.category').forEach(c => c.classList.remove('selected'));
+
+
+    if (!isAlreadySelected) {
+      card.classList.add('selected');
+    }
+  }
+});
+
+// --- DELEGACIÓN DE EVENTOS PARA AGREGAR AL CARRITO ---
+if (cardsContainer) {
+  cardsContainer.addEventListener('click', async (e) => {
+    // Detectamos si se hizo clic en el botón de agregar
+    const btn = e.target.closest('.product-card__add-btn');
+    
+    // Si no es el botón o está deshabilitado (sin stock), no hacemos nada
+    if (!btn || btn.classList.contains('product-card__add-btn--disabled')) return;
+
+    const productId = btn.dataset.id;
+    
+    // Buscamos el producto en nuestra lista global
+    const product = allProducts.find(p => String(p.id) === String(productId));
+
+    if (product) {
+      // 1. Agregamos al storage
+      import('../../utils/storage.js').then(module => {
+        module.addToCart(product);
+
+        // 2. Disparamos evento para que el carrito lateral se actualice/abra
+        window.dispatchEvent(new StorageEvent('storage', { key: 'cart' }));
+
+        // 3. FEEDBACK VISUAL: La palomita (✓)
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '✓'; // Cambiamos el texto a una palomita
+        btn.classList.add('btn-success-anim'); // Opcional: clase para color verde
+
+        // 4. Regresamos al estado original tras 2 segundos
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+          btn.classList.remove('btn-success-anim');
+        }, 2000);
+      });
+    }
+  });
+}

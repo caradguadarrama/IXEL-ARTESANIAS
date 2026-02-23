@@ -186,11 +186,17 @@
 }
 
 .navbar__icon {
-  width: var(--icon-size);
-  height: var(--icon-size);
+  /* FIX: aspect-ratio + flex-shrink evitan que el SVG se estire
+     cuando el contenedor bubble cambia de tamaño en scroll o mobile.
+     Los SVG inline no usan object-fit, pero sí respetan width/height/aspect-ratio. */
+  width: 24px;
+  height: 24px;
+  aspect-ratio: 1 / 1;
+  flex-shrink: 0;
   color: var(--color-white);
-  fill: var(--color-white);
+  fill: none;          /* SVGs del proyecto usan stroke, no fill */
   stroke: currentColor;
+  display: block;
 }
 
 .navbar__badge {
