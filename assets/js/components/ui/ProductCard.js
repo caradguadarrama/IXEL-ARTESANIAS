@@ -32,11 +32,11 @@ export function createProductCard(product) {
       <p class="product-card__price">$${priceFormatted}</p>
       
       <button
-        class="product-card__add-btn"
-        data-id="${product.id}"
+        class="product-card__add-btn ${isOutOfStock ? 'product-card__add-btn--disabled' : ''}"
+        data-id="${product.id}" 
         ${isOutOfStock ? 'disabled' : ''}
       >
-        ${isOutOfStock ? 'AGOTADO' : '+'}
+        ${isOutOfStock ? 'AGOTADO' : '+'} 
       </button>
     </div>
   `;

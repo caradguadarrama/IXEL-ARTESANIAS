@@ -231,3 +231,40 @@ document.addEventListener('click', (e) => {
     }
   }
 });
+
+// --- DELEGACIÓN DE EVENTOS PARA AGREGAR AL CARRITO ---
+if (cardsContainer) {
+  cardsContainer.addEventListener('click', async (e) => {
+    // Detectamos si se hizo clic en el botón de agregar
+    const btn = e.target.closest('.product-card__add-btn');
+    
+    // Si no es el botón o está deshabilitado (sin stock), no hacemos nada
+    if (!btn || btn.classList.contains('product-card__add-btn--disabled')) return;
+
+    const productId = btn.dataset.id;
+    
+    // Buscamos el producto en nuestra lista global
+    const product = allProducts.find(p => String(p.id) === String(productId));
+
+    if (product) {
+      // 1. Agregamos al storage
+      import('../../utils/storage.js').then(module => {
+        module.addToCart(product);
+
+        // 2. Disparamos evento para que el carrito lateral se actualice/abra
+        window.dispatchEvent(new StorageEvent('storage', { key: 'cart' }));
+
+        // 3. FEEDBACK VISUAL: La palomita (✓)
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '✓'; // Cambiamos el texto a una palomita
+        btn.classList.add('btn-success-anim'); // Opcional: clase para color verde
+
+        // 4. Regresamos al estado original tras 2 segundos
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+          btn.classList.remove('btn-success-anim');
+        }, 2000);
+      });
+    }
+  });
+}
