@@ -85,14 +85,14 @@ document.addEventListener("DOMContentLoaded", () => {
   col.className = "col-12 col-md-4";
 
   col.innerHTML = `
-    <div class="product-card">
-      <div class="product-image favorite">
+    <div class="product-card-landing">
+      <div class="product-image-container favorite">
         <img src="${product.imagen}" alt="${product.name}">
       </div>
       <h5 class="product-name">${product.name}</h5>
       <p class="product-price">$${product.price}</p>
        <p class="desc">${product.description}</p>
-      <button class="button-ixel-products addCart" data-id="${product.id}">
+      <button class="button-ixel-rojo addCart" data-id="${product.id}">
         Comprar
       </button>
       <a href="#" class="learn-more">→ Learn More</a>
@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   cardsContainer.appendChild(col);
 });
-
+    });
   fetch('/productos_final.json')
     .then(res => {
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
