@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Productos | IXEL Admin</title>
+    
+    <!-- Bootstrap (solo grid y utilidades) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    
+    <!-- Estilos propios -->
+    <link rel="stylesheet" href="../../assets/css/reset.css">
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="stylesheet" href="../../assets/css/admin/products.css">
+    
+    <!-- JavaScript -->
+    <script defer type="module" src="../../assets/js/admin/products.js"></script>
+    
+</head>
+
+<body class="admin-page">
+    
+    <!-- Header Admin -->
+    <header class="admin-header">
+        <div class="admin-header__container">
+            <div class="admin-header__brand">
+                <img src="../../assets/img/icons/Marca-de-agua2_negro.png" alt="IXEL" class="admin-header__logo">
+                <h1 class="admin-header__title">Administración de Productos</h1>
+            </div>
+            <nav class="admin-header__nav">
+                <a href="dashboard.html" class="admin-header__link">Dashboard</a>
+                <a href="products.html" class="admin-header__link admin-header__link--active">Productos</a>
+                <a href="orders.html" class="admin-header__link">Pedidos</a>
+                <a href="users.html" class="admin-header__link">Usuarios</a>
+                <a href="../../index.html" class="admin-header__link admin-header__link--logout">Salir</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="admin-main">
+        <div class="container-fluid">
+            
+            <!-- Toolbar superior -->
+            <section class="admin-toolbar">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <h2 class="admin-toolbar__title">Productos</h2>
+                        <p class="admin-toolbar__subtitle">Gestiona tu catálogo de productos artesanales</p>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <button class="admin-button admin-button--primary" id="btn-add-product">
+                            <svg class="admin-button__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            Agregar Producto
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Filtros y búsqueda -->
+            <section class="admin-filters">
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <div class="admin-search">
+                            <svg class="admin-search__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <input type="search" class="admin-search__input" placeholder="Buscar productos..." id="search-input">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="admin-select" id="filter-category">
+                            <option value="">Todas las categorías</option>
+                            <option value="olinala">Olinalá</option>
+                            <option value="martina">Martina</option>
+                            <option value="jaguares">Jaguares</option>
+                            <option value="panal">Panal</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="admin-select" id="filter-subcategory">
+                            <option value="">Todas las subcategorías</option>
+                            <option value="tortillero">Tortilleros</option>
+                            <option value="caja">Cajas</option>
+                            <option value="caja-te">Cajas para té</option>
+                            <option value="servilletero">Servilleteros</option>
+                            <option value="charola">Charolas</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <button class="admin-button admin-button--secondary w-100" id="btn-clear-filters">
+                            Limpiar filtros
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tabla de productos -->
+            <section class="admin-products">
+                <div class="admin-table-wrapper">
+                    <table class="admin-table">
+                        <thead class="admin-table__head">
+                            <tr>
+                                <th class="admin-table__th admin-table__th--checkbox">
+                                    <input type="checkbox" class="admin-checkbox" id="select-all">
+                                </th>
+                                <th class="admin-table__th">Imagen</th>
+                                <th class="admin-table__th">Nombre</th>
+                                <th class="admin-table__th">Categoría</th>
+                                <th class="admin-table__th">Precio</th>
+                                <th class="admin-table__th">Stock</th>
+                                <th class="admin-table__th">Estado</th>
+                                <th class="admin-table__th admin-table__th--actions">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody class="admin-table__body" id="products-table-body">
+                            <!-- Productos se insertan aquí dinámicamente -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Mensaje cuando no hay productos -->
+                <div class="admin-empty" id="empty-state" style="display: none;">
+                    <svg class="admin-empty__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 7L12 3L4 7M20 7L12 11M20 7V17L12 21M12 11L4 7M12 11V21M4 7V17L12 21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <h3 class="admin-empty__title">No hay productos</h3>
+                    <p class="admin-empty__text">Comienza agregando tu primer producto artesanal</p>
+                    <button class="admin-button admin-button--primary" onclick="document.getElementById('btn-add-product').click()">
+                        Agregar primer producto
+                    </button>
+                </div>
+
+                <!-- Loading state -->
+                <div class="admin-loading" id="loading-state" style="display: none;">
+                    <div class="admin-loading__spinner"></div>
+                    <p class="admin-loading__text">Cargando productos...</p>
+                </div>
+            </section>
+
+            <!-- Paginación -->
+            <section class="admin-pagination" id="pagination">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <p class="admin-pagination__info">
+                            Mostrando <span id="pagination-showing">0</span> de <span id="pagination-total">0</span> productos
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <nav class="admin-pagination__nav" id="pagination-nav">
+                            <!-- Botones de paginación se generan aquí -->
+                        </nav>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Modal: Agregar/Editar Producto -->
+    <div class="admin-modal" id="product-modal">
+        <div class="admin-modal__overlay" id="modal-overlay"></div>
+        <div class="admin-modal__content">
+            <div class="admin-modal__header">
+                <h3 class="admin-modal__title" id="modal-title">Agregar Producto</h3>
+                <button class="admin-modal__close" id="modal-close" aria-label="Cerrar">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+            </div>
+
+            <form class="admin-form" id="product-form" novalidate>
+                <div class="row g-3">
+                    
+                    <!-- Columna izquierda -->
+                    <div class="col-md-6">
+                        <div class="admin-form__group">
+                            <label for="product-name" class="admin-form__label">
+                                Nombre del producto <span class="admin-form__required">*</span>
+                            </label>
+                            <input type="text" class="admin-form__input" id="product-name" name="name" required>
+                            <span class="admin-form__error" data-error="name"></span>
+                        </div>
+
+                        <div class="admin-form__group">
+                            <label for="product-category" class="admin-form__label">
+                                Categoría <span class="admin-form__required">*</span>
+                            </label>
+                            <select class="admin-form__select" id="product-category" name="category" required>
+                                <option value="">Selecciona una categoría</option>
+                                <option value="olinala">Olinalá</option>
+                                <option value="martina">Martina</option>
+                                <option value="jaguares">Jaguares</option>
+                                <option value="panal">Panal</option>
+                            </select>
+                            <span class="admin-form__error" data-error="category"></span>
+                        </div>
+
+                        <div class="admin-form__group">
+                            <label for="product-subcategory" class="admin-form__label">
+                                Subcategoría <span class="admin-form__required">*</span>
+                            </label>
+                            <select class="admin-form__select" id="product-subcategory" name="subcategory" required>
+                                <option value="">Selecciona una subcategoría</option>
+                                <option value="tortillero">Tortillero</option>
+                                <option value="caja">Caja</option>
+                                <option value="caja-te">Caja para té</option>
+                                <option value="servilletero">Servilletero</option>
+                                <option value="charola">Charola</option>
+                            </select>
+                            <span class="admin-form__error" data-error="subcategory"></span>
+                        </div>
+
+                        <div class="admin-form__group">
+                            <label for="product-description" class="admin-form__label">
+                                Descripción <span class="admin-form__required">*</span>
+                            </label>
+                            <textarea class="admin-form__textarea" id="product-description" name="description" rows="4" required></textarea>
+                            <span class="admin-form__error" data-error="description"></span>
+                        </div>
+                    </div>
+
+                    <!-- Columna derecha -->
+                    <div class="col-md-6">
+                        <div class="admin-form__group">
+                            <label for="product-price" class="admin-form__label">
+                                Precio actual <span class="admin-form__required">*</span>
+                            </label>
+                            <div class="admin-form__input-group">
+                                <span class="admin-form__prefix">$</span>
+                                <input type="number" class="admin-form__input admin-form__input--prefix" id="product-price" name="currentPrice" min="0" step="0.01" required>
+                            </div>
+                            <span class="admin-form__error" data-error="currentPrice"></span>
+                        </div>
+
+                        <div class="admin-form__group">
+                            <label for="product-original-price" class="admin-form__label">
+                                Precio original (opcional)
+                            </label>
+                            <div class="admin-form__input-group">
+                                <span class="admin-form__prefix">$</span>
+                                <input type="number" class="admin-form__input admin-form__input--prefix" id="product-original-price" name="originalPrice" min="0" step="0.01">
+                            </div>
+                            <span class="admin-form__error" data-error="originalPrice"></span>
+                        </div>
+
+                        <div class="admin-form__group">
+                            <label for="product-stock" class="admin-form__label">
+                                Stock <span class="admin-form__required">*</span>
+                            </label>
+                            <input type="number" class="admin-form__input" id="product-stock" name="stock" min="0" required>
+                            <span class="admin-form__error" data-error="stock"></span>
+                        </div>
+
+                        <div class="admin-form__group">
+                            <label for="product-image" class="admin-form__label">
+                                URL de imagen <span class="admin-form__required">*</span>
+                            </label>
+                            <input type="text" class="admin-form__input" id="product-image" name="image" placeholder="../../assets/img/products/producto.png" required>
+                            <span class="admin-form__error" data-error="image"></span>
+                        </div>
+
+                        <div class="admin-form__group">
+                            <label class="admin-form__label">Estado</label>
+                            <div class="admin-form__toggle">
+                                <input type="checkbox" class="admin-form__toggle-input" id="product-active" name="active" checked>
+                                <label for="product-active" class="admin-form__toggle-label">
+                                    <span class="admin-form__toggle-text">Producto activo</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="admin-form__actions">
+                    <button type="button" class="admin-button admin-button--secondary" id="btn-cancel">
+                        Cancelar
+                    </button>
+                    <button type="submit" class="admin-button admin-button--primary" id="btn-submit">
+                        Guardar Producto
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: Confirmación de eliminación -->
+    <div class="admin-modal" id="delete-modal">
+        <div class="admin-modal__overlay" id="delete-modal-overlay"></div>
+        <div class="admin-modal__content admin-modal__content--small">
+            <div class="admin-modal__header">
+                <h3 class="admin-modal__title">Confirmar eliminación</h3>
+            </div>
+            <div class="admin-modal__body">
+                <p>¿Estás seguro de que deseas eliminar este producto? Esta acción no se puede deshacer.</p>
+                <p class="admin-modal__product-name" id="delete-product-name"></p>
+            </div>
+            <div class="admin-form__actions">
+                <button type="button" class="admin-button admin-button--secondary" id="btn-cancel-delete">
+                    Cancelar
+                </button>
+                <button type="button" class="admin-button admin-button--danger" id="btn-confirm-delete">
+                    Eliminar Producto
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS (solo para utilidades si necesario) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" 
+        crossorigin="anonymous">
+    </script>
+
+</body>
+</html>

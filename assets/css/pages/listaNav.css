@@ -1,0 +1,139 @@
+/*  Contenedor Principal */
+.selectable-list-container {
+    width: 100%;
+    margin: 40px 0 60px 0;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    /* Centra el bloque de la lista en la pantalla */
+    align-items: center;
+    background: #ffffff;
+    /* Color de fondo */
+}
+
+/*  Flechas de Navegación */
+.nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 45px;
+    height: 45px;
+    border: none;
+    background: #ffffff;
+    /* Fondo sólido */
+    color: #A0191E;
+    /* Rojo Artesanal */
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 999;
+    /* Siempre por encima */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.left-arrow {
+    left: 10px;
+}
+
+.right-arrow {
+    right: 10px;
+}
+
+.nav-arrow:hover {
+    background: #F9E8CF;
+    /* Color Crema */
+    color: #683531;
+    /* Color Marrón */
+    transform: translateY(-50%) scale(1.1);
+}
+
+/* La Lista  */
+.selectable-list {
+    display: flex;
+    list-style: none;
+    margin: 0 auto;
+    padding: 20px 60px;
+    gap: 40px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+    /* Scroll suave */
+
+
+    justify-content: safe center;
+}
+
+/* Oculta scroll en Chrome/Safari */
+.selectable-list::-webkit-scrollbar {
+    display: none;
+}
+
+/* Items de la Lista */
+.selectable-list li {
+    flex: 0 0 auto;
+    /* Evita que el texto se comprima */
+    position: relative;
+}
+
+/* Enlaces (Estilo Editorial) */
+.selectable-list a {
+    text-decoration: none;
+    color: #683531;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    padding: 12px 0;
+    white-space: nowrap;
+    /* Mantiene el texto en una sola línea */
+    position: relative;
+    display: inline-block;
+    transition: all 0.4s ease;
+    opacity: 0.8;
+}
+
+/* 6. Animación de Subrayado Centrada */
+.selectable-list a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: #A0191E;
+    transition: all 0.4s ease;
+    transform: translateX(-50%);
+}
+
+.selectable-list a:hover,
+.selectable-list a.active {
+    color: #A0191E;
+    opacity: 1;
+}
+
+.selectable-list a:hover::after,
+.selectable-list a.active::after {
+    width: 100%;
+}
+
+/* Ajustes Responsivos (Móvil) */
+@media (max-width: 1023px) {
+    .selectable-list {
+        gap: 25px;
+        padding: 20px 50px;
+        /* En móviles pequeños aseguramos que el centrado no bloquee el inicio */
+        justify-content: safe center;
+    }
+
+    .nav-arrow {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+}

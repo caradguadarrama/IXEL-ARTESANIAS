@@ -1,0 +1,515 @@
+/* ============================================
+   NAVBAR - Metodología BEM
+   ============================================ */
+
+:root {
+  --color-primary: #683531;
+  --color-primary-hover: #8b4c47;
+  --color-accent: #a0191e;
+  --color-bg-light: #F9E8CF;
+  --color-bg-light-transparent: rgba(249, 232, 207, 0.95);
+  --color-text-dark: #683531;
+  --color-white: #ffffff;
+  
+  --navbar-height: 100px;
+  --navbar-padding-x: 5%;
+  --navbar-gap: 40px;
+  --bubble-size: 40px;
+  --icon-size: 20px;
+  
+  --transition-smooth: all 0.3s ease;
+}
+
+/* ============================================
+   CENEFA DECORATIVA SUPERIOR
+   ============================================ */
+
+.navbar-border {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 15px;
+  z-index: 1001;
+  background-color: var(--color-white);
+  overflow: hidden;
+}
+
+.navbar-border__image {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  display: block;
+}
+
+/* ============================================
+   NAVBAR PRINCIPAL
+   ============================================ */
+
+.navbar {
+  background-color: var(--color-bg-light);
+  height: var(--navbar-height);
+  padding: 0 var(--navbar-padding-x);
+  position: fixed;
+  top: 15px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  transition: var(--transition-smooth);
+}
+
+.navbar--scrolled {
+  height: 70px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background-color: var(--color-bg-light-transparent);
+}
+
+/* ============================================
+   LOGO
+   ============================================ */
+
+.navbar__logo {
+  flex-shrink: 0;
+  z-index: 1002;
+}
+
+.navbar__logo a {
+  display: block;
+}
+
+.navbar__logo-image {
+  transition: var(--transition-smooth);
+}
+
+.navbar__logo-image--desktop {
+  height: 85px;
+  width: auto;
+  display: block;
+}
+
+.navbar__logo-image--mobile {
+  height: 60px;
+  width: auto;
+  display: none;
+}
+
+.navbar--scrolled .navbar__logo-image--desktop {
+  height: 60px;
+}
+
+.navbar--scrolled .navbar__logo-image--mobile {
+  height: 45px;
+}
+
+.navbar__logo-image:hover {
+  transform: scale(1.05);
+}
+
+/* ============================================
+   NAVEGACIÓN
+   ============================================ */
+
+.navbar__nav {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.navbar__links {
+  display: flex;
+  gap: var(--navbar-gap);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar__link {
+  text-decoration: none;
+  font-family: 'Nunito', sans-serif;
+  font-size: 18px;
+  color: var(--color-text-dark);
+  font-weight: 600;
+  transition: var(--transition-smooth);
+  position: relative;
+  padding: 5px 0;
+}
+
+.navbar__link:hover {
+  color: var(--color-accent);
+}
+
+.navbar__link--active {
+  color: var(--color-accent);
+}
+
+.navbar__link--active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-accent);
+}
+
+/* ============================================
+   ÍCONOS DE ACCIÓN (DESKTOP)
+   ============================================ */
+
+.navbar__actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.navbar__bubble {
+  width: var(--bubble-size);
+  height: var(--bubble-size);
+  background-color: var(--color-primary);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  position: relative;
+  text-decoration: none;
+}
+
+.navbar__bubble:hover {
+  background-color: var(--color-primary-hover);
+  transform: scale(1.1);
+}
+
+.navbar__icon {
+  /* FIX: aspect-ratio + flex-shrink evitan que el SVG se estire
+     cuando el contenedor bubble cambia de tamaño en scroll o mobile.
+     Los SVG inline no usan object-fit, pero sí respetan width/height/aspect-ratio. */
+  width: 24px;
+  height: 24px;
+  aspect-ratio: 1 / 1;
+  flex-shrink: 0;
+  color: var(--color-white);
+  fill: none;          /* SVGs del proyecto usan stroke, no fill */
+  stroke: currentColor;
+  display: block;
+}
+
+.navbar__badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: var(--color-accent);
+  color: var(--color-white);
+  border-radius: 50%;
+  min-width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 0 5px;
+  font-family: 'Nunito', sans-serif;
+}
+
+/* ============================================
+   MENÚ HAMBURGUESA
+   ============================================ */
+
+.navbar__hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 1002;
+}
+
+.navbar__hamburger-line {
+  width: 28px;
+  height: 3px;
+  background-color: var(--color-primary);
+  border-radius: 2px;
+  transition: var(--transition-smooth);
+}
+
+.navbar__hamburger--active .navbar__hamburger-line:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.navbar__hamburger--active .navbar__hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.navbar__hamburger--active .navbar__hamburger-line:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* ============================================
+   ACCIONES MÓVILES (dentro del menú)
+   ============================================ */
+
+.navbar__mobile-actions {
+  display: none;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+  border-top: 2px solid rgba(104, 53, 49, 0.2);
+  margin-top: 10px;
+  padding-top: 10px;
+}
+
+.navbar__mobile-action {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px 20px;
+  text-decoration: none;
+  color: var(--color-text-dark);
+  font-family: 'Nunito', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+  position: relative;
+  border-bottom: 1px solid rgba(104, 53, 49, 0.1);
+}
+
+.navbar__mobile-action:hover {
+  background-color: rgba(160, 25, 30, 0.05);
+}
+
+.navbar__mobile-action-icon {
+  width: 24px;
+  height: 24px;
+  color: var(--color-primary);
+  fill: var(--color-primary);
+  stroke: currentColor;
+  flex-shrink: 0;
+}
+
+.navbar__mobile-action-text {
+  flex: 1;
+}
+
+.navbar__mobile-badge {
+  background-color: var(--color-accent);
+  color: var(--color-white);
+  border-radius: 50%;
+  min-width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 0 6px;
+}
+
+/* ============================================
+   MODAL DE BÚSQUEDA
+   ============================================ */
+
+.navbar__search-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 2000;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 20vh;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.navbar__search-modal--open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.navbar__search-modal-content {
+  background-color: var(--color-white);
+  border-radius: 12px;
+  padding: 30px;
+  width: 90%;
+  max-width: 600px;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  transform: translateY(-20px);
+  transition: transform 0.3s ease;
+}
+
+.navbar__search-modal--open .navbar__search-modal-content {
+  transform: translateY(0);
+}
+
+.navbar__search-input {
+  flex: 1;
+  border: 2px solid var(--color-primary);
+  border-radius: 8px;
+  padding: 15px 20px;
+  font-size: 18px;
+  font-family: 'Nunito', sans-serif;
+  color: var(--color-text-dark);
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.navbar__search-input:focus {
+  border-color: var(--color-accent);
+}
+
+.navbar__search-close {
+  background-color: var(--color-primary);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.navbar__search-close:hover {
+  background-color: var(--color-accent);
+}
+
+.navbar__search-close svg {
+  width: 20px;
+  height: 20px;
+  color: var(--color-white);
+  stroke: currentColor;
+}
+
+/* ============================================
+   RESPONSIVE - TABLET
+   ============================================ */
+
+@media screen and (max-width: 1024px) {
+  :root {
+    --navbar-gap: 25px;
+  }
+
+  .navbar__link {
+    font-size: 16px;
+  }
+}
+
+/* ============================================
+   RESPONSIVE - MÓVIL
+   ============================================ */
+
+@media screen and (max-width: 768px) {
+  :root {
+    --navbar-height: 70px;
+    --bubble-size: 36px;
+    --icon-size: 18px;
+  }
+
+  /* Logo móvil */
+  .navbar__logo-image--desktop {
+    display: none;
+  }
+
+  .navbar__logo-image--mobile {
+    display: block;
+  }
+
+  /* Hamburguesa visible */
+  .navbar__hamburger {
+    display: flex;
+  }
+
+  /* Ocultar acciones desktop */
+  .navbar__actions--desktop {
+    display: none;
+  }
+
+  /* Menú móvil */
+  .navbar__nav {
+    position: fixed;
+    top: 85px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 85px);
+    background-color: var(--color-bg-light);
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0;
+    transform: translateX(-100%);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    overflow-y: auto;
+  }
+
+  .navbar__nav--open {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  .navbar__links {
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+  }
+
+  .navbar__links li {
+    width: 100%;
+  }
+
+  .navbar__links li:not(.navbar__mobile-actions) {
+    border-bottom: 1px solid rgba(104, 53, 49, 0.1);
+  }
+
+  .navbar__link {
+    display: block;
+    padding: 18px 20px;
+    font-size: 18px;
+  }
+
+  .navbar__link--active::after {
+    display: none;
+  }
+
+  /* Mostrar acciones móviles */
+  .navbar__mobile-actions {
+    display: flex;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  :root {
+    --navbar-padding-x: 3%;
+  }
+
+  .navbar__logo-image--mobile {
+    height: 50px;
+  }
+
+  .navbar__search-modal-content {
+    padding: 20px;
+  }
+
+  .navbar__search-input {
+    padding: 12px 15px;
+    font-size: 16px;
+  }
+
+  
+
+}

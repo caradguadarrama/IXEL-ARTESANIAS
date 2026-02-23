@@ -1,30 +1,113 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IXEL ARTESANIAS</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nosotros | IXEL Artesanías</title>
 
+  <!-- Bootstrap 5 — solo grid/utilities -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+    crossorigin="anonymous"
+  >
+
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="../../assets/css/main.css">
+  <link rel="stylesheet" href="../../assets/css/pages/about.css">
+
+  <!-- JS: main primero (navbar/footer), about después -->
+  <script defer type="module" src="/assets/js/main.js"></script>
+  <script defer type="module" src="/assets/js/components/pages/about.js"></script>
 </head>
 
 <body>
 
+  <div id="navbar-container"></div>
 
+  <!-- Carrito lateral: debe existir en TODAS las páginas.
+       initSlidingCart() hace querySelector('.cart') — si este div
+       no existe, openBtn no tiene nada que abrir. -->
+  <div class="cart">
+    <h1>Carrito</h1>
+    <ul class="listCart"></ul>
+    <div class="checkout">
+      <div class="total"></div>
+      <div class="closeShopping"><a>Cerrar</a></div>
+    </div>
+  </div>
 
-    
-    <main>
+  <main>
 
+    <!-- ══ HERO ══════════════════════════════════════════════ -->
+    <section class="about-hero" aria-labelledby="about-hero-title">
+      <div class="about-hero__content">
+        <h1 class="about-hero__title" id="about-hero-title">Nosotros</h1>
+        <p class="about-hero__subtitle">Handmade with Passion</p>
+      </div>
+    </section>
 
+    <!-- ══ SECCIÓN MARTINA ══════════════════════════════════ -->
+    <section class="about-feature container" aria-labelledby="about-feature-title">
+      <div class="row g-0 about-feature__card">
 
+        <div class="col-12 col-md-5 about-feature__image-col">
+          <img
+            src="../../assets/img/martina.png"
+            alt="Artesanía de la Colección Martina"
+            class="about-feature__image"
+            loading="lazy"
+          >
+        </div>
 
+        <div class="col-12 col-md-7">
+          <div class="about-feature__body">
+            <h2 class="about-feature__title" id="about-feature-title">Colección Martina</h2>
+            <!--
+              El contenido de este párrafo es inyectado por about.js.
+              Lee de localStorage (editado por admin) o usa texto por defecto.
+              NO hay botón de editar aquí — eso es exclusivo del admin.
+            -->
+            <p class="about-feature__text" id="about-text"></p>
+          </div>
+        </div>
 
+      </div>
+    </section>
 
-    </main>
+    <!-- ══ CARRUSEL DEL EQUIPO ══════════════════════════════ -->
+    <!--
+      El HTML de las tarjetas es generado dinámicamente por about.js.
+      No hardcodear miembros aquí — la única fuente de verdad es el
+      array TEAM en about.js.
+    -->
+    <section class="team-carousel" aria-label="Nuestro equipo">
+      <div class="team-carousel__viewport">
+        <div class="team-carousel__track" role="list" aria-label="Miembros del equipo">
+          <!-- Inyectado por about.js -->
+        </div>
+      </div>
+    </section>
 
+  </main>
 
+  <div id="footer-container"></div>
 
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"
+  ></script>
 
 </body>
-
 </html>

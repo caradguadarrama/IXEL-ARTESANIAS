@@ -1,0 +1,278 @@
+/* =====================================================
+   about.css + carrousel.css — unificados
+   Bloque: .about-hero, .about-feature, .team-carousel
+   Reemplaza: about.css original + carrousel.css original
+   ===================================================== */
+
+/* ─── FONT ─────────────────────────────────────────── */
+
+@font-face {
+  font-family: 'TheFarmerTextured';
+  src: url('../../fonts/TheFarmerTextured.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* ─── VARIABLES LOCALES ─────────────────────────────── */
+/* Solo valores específicos de esta página.
+   Los tokens globales (colores, fuentes) viven en main.css */
+
+:root {
+  --about-card-bg:      #6a2929;
+  --about-card-hover:   #7e3333;
+  --about-card-width:   200px;
+  --about-card-height:  280px;
+  --about-carousel-dur: 40s;
+}
+
+/* ─── HERO ──────────────────────────────────────────── */
+
+.about-hero {
+  background-color: var(--color-primary);
+  color: var(--color-text-light);
+  text-align: center;
+  padding: 4rem 1rem;
+}
+
+.about-hero__title {
+  font-family: 'TheFarmerTextured', serif;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  margin: 0 0 0.5rem;
+  letter-spacing: 0.02em;
+}
+
+.about-hero__subtitle {
+  font-family: var(--font-primary);
+  font-size: 0.95rem;
+  letter-spacing: 0.2rem;
+  text-transform: uppercase;
+  opacity: 0.75;
+  margin: 0;
+}
+
+/* ─── SECCIÓN MARTINA ───────────────────────────────── */
+
+.about-feature {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.about-feature__card {
+  background: var(--color-white);
+  border-radius: 1.25rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  animation: about-fade-in 0.8s ease-out both;
+}
+
+.about-feature__image-col {
+  overflow: hidden;
+}
+
+.about-feature__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.about-feature__image-col:hover .about-feature__image {
+  transform: scale(1.04);
+}
+
+.about-feature__body {
+  padding: 2rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.about-feature__title {
+  font-family: 'TheFarmerTextured', serif;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+}
+
+.about-feature__text {
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--color-text-dark);
+  text-align: justify;
+  margin: 0;
+  /* El texto llega vacío del HTML y lo rellena about.js */
+  min-height: 1rem;
+}
+
+/* ─── CARRUSEL DEL EQUIPO ───────────────────────────── */
+
+.team-carousel {
+  margin: 3rem 0 4rem;
+  overflow: hidden;
+  /* Máscara: bordes difuminados sin recortar el contenido */
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 4%,
+    black 96%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 4%,
+    black 96%,
+    transparent
+  );
+}
+
+.team-carousel__viewport {
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Track: contenedor flex que aloja dos grupos idénticos.
+   La animación desplaza exactamente el 50% (= ancho de un grupo).
+   Al llegar al 50% el CSS retorna a 0 — el segundo grupo es el primero,
+   así que el salto es invisible. */
+.team-carousel__track {
+  display: flex;
+  width: max-content;
+  animation: carousel-scroll var(--about-carousel-dur) linear infinite;
+  will-change: transform;
+}
+
+.team-carousel__group {
+  display: flex;
+  gap: 20px;
+  padding-right: 20px;
+}
+
+/* Tarjeta individual */
+.team-carousel__card {
+  flex: 0 0 var(--about-card-width);
+  height: var(--about-card-height);
+  padding: 1.5rem 1rem;
+  background: var(--about-card-bg);
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+              background-color 0.3s ease;
+  cursor: default;
+}
+
+.team-carousel__card:hover {
+  transform: translateY(-6px) scale(1.03);
+  background: var(--about-card-hover);
+}
+
+.team-carousel__photo {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  display: block;
+}
+
+.team-carousel__name {
+  color: var(--color-white);
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-align: center;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.team-carousel__social {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.team-carousel__social-link {
+  width: 32px;
+  height: 32px;
+  background: var(--color-white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  color: var(--about-card-bg);
+}
+
+.team-carousel__social-link:hover {
+  transform: scale(1.15);
+  background-color: var(--color-bg-light);
+}
+
+.team-carousel__social-icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* ─── ANIMACIÓN CARRUSEL ────────────────────────────── */
+/* translateX(-50%) desplaza exactamente un grupo completo.
+   El resultado: el grupo 2 (copia) ocupa el lugar del grupo 1,
+   y el ciclo vuelve a 0 de forma invisible. */
+
+@keyframes carousel-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ─── ANIMACIÓN FADE-IN (sección Martina) ───────────── */
+
+@keyframes about-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ─── RESPONSIVE ────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .about-feature__body {
+    padding: 1.5rem;
+  }
+
+  :root {
+    --about-card-width:   160px;
+    --about-card-height:  240px;
+    --about-carousel-dur: 30s;
+  }
+
+  .team-carousel__photo {
+    width: 70px;
+    height: 70px;
+  }
+
+  .team-carousel__name {
+    font-size: 0.875rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .team-carousel__track {
+    animation: none;
+  }
+
+  .about-feature__card {
+    animation: none;
+  }
+}

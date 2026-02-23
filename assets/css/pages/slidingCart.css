@@ -1,0 +1,192 @@
+.header-cart{
+  position: relative;
+  text-align: right;
+  cursor: pointer;
+  touch-action: manipulation;
+  z-index: 1100;
+}
+
+.header-cart span{
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  position: absolute;
+  font-size: 13px;
+}
+/*seccion de carrito con ajustes de version en movil*/
+.cart{
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(400px, 100vw);
+  height: 100dvh;
+  background-color:#ffffff;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  transform: translateX(100%);
+  transition: transform 0.4s ease;
+  z-index: 1000;
+  overflow-y: auto;
+  font-family: 'Roboto', sans-serif;
+  border-bottom-left-radius: 7%;
+
+}
+
+.cart.active{
+  transform: translateX(0);
+}
+
+.cart h1{
+  color: #a0191e;
+  font-weight: 100;
+  margin: 0;
+  padding: 0 20px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  font-family: 'TheFarmerTextured';
+}
+
+.listCart{
+  padding: 20px;
+
+}
+
+/*acomodo de elementos de productos en carrito*/
+.listCart li{
+  display: grid;
+  grid-template-columns: 90px repeat(3, 1fr);
+  color: #000000;
+  row-gap: 10px;
+  margin-bottom: 20px;
+}
+
+.listCart li div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.listCart li img{
+  width: 90px;
+  height: 80px;
+  border-radius: 20px;
+  object-fit: cover;
+  margin-top: 10%;
+}
+
+.listCart button{
+  width: auto;
+  background-color: #683531;
+  border: none;
+  padding: 4px 8px;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+.listCart .count{
+  margin: 0 10px;
+}
+
+/*elementos de compra*/
+/* ============================================================
+   LIMPIEZA TOTAL DEL BOTÓN EN EL CARRITO (Sliding Cart)
+   ============================================================ */
+
+/* 1. Contenedor: Aseguramos que los dos botones compartan el ancho */
+.cart .checkout {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0 !important;
+}
+
+/* 2. Estilo base para ambos (Cerrar y Pagar) */
+.cart .checkout div {
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    /* MATAMOS TODO LO HEREDADO */
+    border: none !important;
+    transform: none !important; 
+    box-shadow: none !important; /* <--- AQUÍ QUITAMOS EL SOMBREADO FEO */
+    transition: background-color 0.2s ease !important;
+}
+
+/* 3. BOTÓN IZQUIERDO: "CERRAR" */
+.cart .checkout div:first-child {
+    background-color: #F8E8CF !important; /* Beige */
+    color: #683531 !important;
+}
+
+.cart .checkout div:first-child:hover {
+    background-color: #f1dbc0 !important; /* Un beige un pelín más oscuro */
+    box-shadow: none !important; 
+    transform: none !important;
+}
+
+/* 4. BOTÓN DERECHO: "PAGAR" */
+.cart .checkout .total__pay, 
+.cart .checkout div:nth-child(2) {
+    background-color: #A0191E !important; /* Rojo IXEL */
+    color: #ffffff !important;
+}
+
+.cart .checkout .total__pay:hover,
+.cart .checkout div:nth-child(2):hover {
+    background-color: #7d1418 !important; /* Rojo más oscuro */
+    box-shadow: none !important; /* Aseguramos que en hover no salga la sombra de buttons.css */
+    transform: none !important;
+}
+
+/* 5. Efecto de click (opcional, muy sutil) */
+.cart .checkout div:active {
+    filter: brightness(0.9);
+}
+
+/* atributos de las imagenes en carrito */
+.list{
+  margin-top: 30px;
+}
+
+.list .item{
+  display: grid;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.list .item img{
+  width: 200px;
+  height: 180px;
+  border-radius: 30%;
+  object-fit: cover;
+}
+
+/* estado de activo para version pc*/
+.active .container-c{
+  transform: translateX(-200px);
+}
+
+/*estado de activo para version movil */
+@media (max-width: 480px){
+  .container-c{
+    width: 100%;
+    grid-template-columns: 1fr 40px;
+    padding: 0 10px;
+  }
+
+  .active .container-c{
+    transform: none;
+  }
+
+  .list .item img{
+    width: 100%;
+    height: auto;
+  }
+}
+

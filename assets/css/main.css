@@ -1,0 +1,113 @@
+/* ============================================
+   MAIN.CSS - Punto de entrada de estilos
+   ============================================ */
+
+/* Importar estilos base */
+@import url('./reset.css');
+
+/* Importar componentes */
+@import url('./navbar.css');
+@import url('./footer.css');
+@import url('/assets/css/pages/buttons.css');
+@import url('/assets/css/pages/carrousel.css');
+@import url('/assets/css/pages/slidingCart.css');
+/* listaNav.css eliminado: sus estilos viven en products.css  */
+/* cart.css eliminado:     sus estilos viven en products.css  */
+@import url('/assets/css/pages/products.css');
+
+
+
+
+
+
+/* ============================================
+   ESTILOS GLOBALES
+   ============================================ */
+
+/* Variables globales */
+:root {
+  /* Colores principales */
+  --color-primary: #683531;
+  --color-primary-hover: #8b4c47;
+  --color-accent: #a0191e;
+  --color-bg-light: #F9E8CF;
+  --color-bg-white: #FFFDFA;
+  --color-text-dark: #683531;
+  --color-text-light: #f8e8cf;
+  --color-white: #ffffff;
+
+  /* Tipografía */
+  --font-primary: 'Nunito', sans-serif;
+  --font-secondary: 'Roboto', sans-serif;
+
+  /* Espaciado */
+  --spacing-xs: 5px;
+  --spacing-sm: 10px;
+  --spacing-md: 20px;
+  --spacing-lg: 40px;
+  --spacing-xl: 60px;
+
+  /* Contenedor */
+  --container-max-width: 1200px;
+  --container-padding: 20px;
+
+  /* Navbar height (para padding-top del body) */
+  --navbar-height: 296px;
+}
+
+/* ============================================
+   BODY
+   ============================================ */
+body {
+  font-family: var(--font-primary);
+  background-color: var(--color-bg-white);
+  color: var(--color-text-dark);
+  min-width: 320px;
+  padding-top: var(--navbar-height);
+  line-height: 1.6;
+}
+
+/* ============================================
+   CONTENEDOR PRINCIPAL
+   ============================================ */
+.main-content {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: var(--container-padding);
+  min-height: calc(100vh - var(--navbar-height) - 200px);
+}
+
+/* ============================================
+   UTILIDADES
+   ============================================ */
+
+/* Espaciado */
+.mt-sm { margin-top: var(--spacing-sm); }
+.mt-md { margin-top: var(--spacing-md); }
+.mt-lg { margin-top: var(--spacing-lg); }
+.mb-sm { margin-bottom: var(--spacing-sm); }
+.mb-md { margin-bottom: var(--spacing-md); }
+.mb-lg { margin-bottom: var(--spacing-lg); }
+
+/* Texto */
+.text-center { text-align: center; }
+.text-primary { color: var(--color-primary); }
+.text-accent { color: var(--color-accent); }
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media screen and (max-width: 768px) {
+  :root {
+    --navbar-height: auto;
+    --container-padding: 15px;
+  }
+
+  body {
+    padding-top: 0;
+  }
+
+  .main-content {
+    padding: var(--spacing-sm);
+  }
+}
