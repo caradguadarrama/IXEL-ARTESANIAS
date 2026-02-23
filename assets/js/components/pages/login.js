@@ -34,9 +34,11 @@ handleForm('.form2', 'REGISTER DATA');
 //validación contraseña 
 const passwordInput = document.getElementById('password');
 
-passwordInput.addEventListener('blur', function () {
-  const regex = /^(?=.*[A-Z])(?=.*[!@#$%^&*]).{7,}$/;
-  if (!regex.test(this.value)) {
-    alert("La contraseña debe tener al menos 7 caracteres, una mayúscula y un carácter especial.");
-  }
-});
+if(passwordInput){
+    passwordInput.addEventListener('blur', function () {
+    const regex = /^(?=.*[A-Z])(?=.*[!@#$%^&*]).{7,}$/;
+    if (!regex.test(this.value)) {
+        alert("La contraseña debe tener al menos 7 caracteres, una mayúscula y un carácter especial.");
+    }
+    });
+}

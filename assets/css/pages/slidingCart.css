@@ -91,35 +91,62 @@
 }
 
 /*elementos de compra*/
-.cart .checkout{
-  display: grid;
-  grid-template-columns: repeat(2,1fr);
+/* ============================================================
+   LIMPIEZA TOTAL DEL BOTÓN EN EL CARRITO (Sliding Cart)
+   ============================================================ */
+
+/* 1. Contenedor: Aseguramos que los dos botones compartan el ancho */
+.cart .checkout {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0 !important;
 }
 
-.cart .checkout div{
-  background-color: #F8E8CF;
-  height: 70px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
-  cursor: pointer;
-  color: #683531;
+/* 2. Estilo base para ambos (Cerrar y Pagar) */
+.cart .checkout div {
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    /* MATAMOS TODO LO HEREDADO */
+    border: none !important;
+    transform: none !important; 
+    box-shadow: none !important; /* <--- AQUÍ QUITAMOS EL SOMBREADO FEO */
+    transition: background-color 0.2s ease !important;
 }
 
-.cart .checkout div:hover{
-    background-color: #F8E8CF;
-    /* Un tono ligeramente más claro */
-    border-color: #F8E8CF;
-    transform: translateY(-3px);
-    /* El botón "flota" hacia arriba */
-    box-shadow: 0 8px 15px rgba(104, 53, 49, 0.3);
-    /* La sombra crece */
+/* 3. BOTÓN IZQUIERDO: "CERRAR" */
+.cart .checkout div:first-child {
+    background-color: #F8E8CF !important; /* Beige */
+    color: #683531 !important;
 }
 
-.cart .checkout div:nth-child(2){
-  background-color: #A0191E;
-  color: #ffffff;
+.cart .checkout div:first-child:hover {
+    background-color: #f1dbc0 !important; /* Un beige un pelín más oscuro */
+    box-shadow: none !important; 
+    transform: none !important;
+}
+
+/* 4. BOTÓN DERECHO: "PAGAR" */
+.cart .checkout .total__pay, 
+.cart .checkout div:nth-child(2) {
+    background-color: #A0191E !important; /* Rojo IXEL */
+    color: #ffffff !important;
+}
+
+.cart .checkout .total__pay:hover,
+.cart .checkout div:nth-child(2):hover {
+    background-color: #7d1418 !important; /* Rojo más oscuro */
+    box-shadow: none !important; /* Aseguramos que en hover no salga la sombra de buttons.css */
+    transform: none !important;
+}
+
+/* 5. Efecto de click (opcional, muy sutil) */
+.cart .checkout div:active {
+    filter: brightness(0.9);
 }
 
 /* atributos de las imagenes en carrito */
@@ -162,3 +189,4 @@
     height: auto;
   }
 }
+
