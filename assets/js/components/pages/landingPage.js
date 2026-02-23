@@ -73,9 +73,11 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
       <h5 class="product-name">${product.name}</h5>
       <p class="product-price">$${product.price}</p>
+       <p class="desc">${product.description}</p>
       <button class="button-ixel-products addCart" data-id="${product.id}">
-        +
+        Comprar
       </button>
+      <a href="#" class="learn-more">→ Learn More</a>
     </div>
   `;
 
