@@ -20,6 +20,7 @@
     <!-- JavaScript -->
     <script defer type="module" src="assets/js/main.js"></script>
     <script defer type="module" src="assets/js/components/pages/landingPage.js"></script>
+    <script defer type="module" src="assets/js/components/pages/cart.js"></script>
 </head>
 
 <body>
@@ -30,8 +31,11 @@
         <h1>Carrito</h1>
         <ul class="listCart"></ul>
         <div class="checkout">
-        
-            <div class="closeShopping">Cerrar</div>
+            <div class="total">
+            </div>
+            <div class="closeShopping">
+                <a>Cerrar</a>
+            </div>
         </div>
     </div>
 
@@ -49,28 +53,29 @@
 
       <div class="top-card">
         <div class="top-card-inner">
-          <div class="top-card-front">Producto 1</div>
+          <div class="top-card-front"><img src="/assets/img/materials/VERDE.PNG" alt=""></div>
           <div class="top-card-back">Descripción 1</div>
         </div>
       </div> 
 
       <div class="top-card">
         <div class="top-card-inner">
-          <div class="top-card-front">Producto 2</div>
+          <div class="top-card-front">
+            <img src="/assets/img/tapa Martina.jpeg" alt=""></div>
           <div class="top-card-back">Descripción 2</div>
         </div>
       </div>
 
       <div class="top-card">
         <div class="top-card-inner">
-          <div class="top-card-front">Producto 3</div>
+          <div class="top-card-front"><img src="/assets/img/materials/AMARILLO.PNG" alt=""></div>
           <div class="top-card-back">Descripción 3</div>
         </div>
       </div>
 
       <div class="top-card">
         <div class="top-card-inner">
-          <div class="top-card-front">Producto 4</div>
+          <div class="top-card-front"><img src="/assets/img/products/Caja Tapa Jaguar.png" alt=""></div>
           <div class="top-card-back">Descripción 4</div>
         </div>
       </div>
@@ -79,7 +84,7 @@
   </div>
 </section>
         <section id="products" class=" my-5 imprescindibles-section">
-        <h2 class="section-title text-center">Productos Imprescindibles</h2>
+        <h2 class="section-title">Productos Imprescindibles</h2>
         <div class="imprescindibles-container">
             <div class="row g-3" id="cards"></div>
         </div>

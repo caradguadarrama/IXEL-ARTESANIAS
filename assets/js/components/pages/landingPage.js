@@ -19,8 +19,7 @@
 //     no existan → TypeError en cualquier página que cargue este módulo sin hero.
 //     FIX: guard explícito antes de registrar el listener.
 
-import { addToCart } from '/assets/js/utils/storage.js';
-
+import { addToCart } from '../../utils/storage.js';
 // ─── PARALLAX DEL HERO ─────────────────────────────────────────
 // Guard: no registra el listener si los elementos no existen.
 
@@ -49,30 +48,83 @@ let topCards = Array.from(document.querySelectorAll('.top-card'));
 const totalRealCards = topCards.length;
 const cardWidthPercent = 33.3333;
 
-// Clone first and last TWO cards for stability
 const cards = Array.from(document.querySelectorAll('.top-card'));
 
 let positions = ['left', 'center', 'right', 'hidden'];
 
-function renderCarousel() {
-    cards.forEach(card => {
-        card.classList.remove('left', 'center', 'right', 'hidden');
-    });
+/* ---------------- RENDER ---------------- */
 
-    if (cards[0]) cards[0].classList.add('left');
-    if (cards[1]) cards[1].classList.add('center');
-    if (cards[2]) cards[2].classList.add('right');
-    if (cards[3]) cards[3].classList.add('hidden');
+function renderCarousel() {
+  cards.forEach(card => {
+    card.classList.remove('left', 'center', 'right', 'hidden');
+  });
+
+  if (cards[0]) cards[0].classList.add('left');
+  if (cards[1]) cards[1].classList.add('center');
+  if (cards[2]) cards[2].classList.add('right');
+  if (cards[3]) cards[3].classList.add('hidden');
 }
+
+/* ---------------- ROTATE ---------------- */
 
 function rotateCarousel() {
-    const first = cards.shift();   // remove first card
-    cards.push(first);             // move it to the end
-    renderCarousel();
+  const first = cards.shift();
+  cards.push(first);
+  renderCarousel();
 }
 
+/* ---------------- INTERVAL CONTROL (FIXED) ---------------- */
+
+let carouselInterval = null;
+
+function startAutoRotate() {
+  if (carouselInterval !== null) return; // already running
+  carouselInterval = setInterval(rotateCarousel, 2500);
+}
+
+function stopAutoRotate() {
+  if (carouselInterval === null) return; // already stopped
+  clearInterval(carouselInterval);
+  carouselInterval = null;
+}
+
+/* ---------------- INIT ---------------- */
+
 renderCarousel();
-setInterval(rotateCarousel, 3000);
+startAutoRotate();
+
+/* ---------------- DESKTOP HOVER ---------------- */
+
+function isMobile() {
+  return window.innerWidth <= 768;
+}
+
+if (!isMobile()) {
+  topTrack.addEventListener('mouseenter', stopAutoRotate);
+  topTrack.addEventListener('mouseleave', startAutoRotate);
+}
+
+/* ---------------- MOBILE CLICK ---------------- */
+
+cards.forEach(card => {
+  card.addEventListener('click', () => {
+    if (!isMobile()) return;
+
+    const isFlipped = card.classList.contains('flipped');
+
+    // First: unflip everything
+    cards.forEach(c => c.classList.remove('flipped'));
+
+    if (isFlipped) {
+      // It was flipped → now everything is unflipped → resume
+      startAutoRotate();
+    } else {
+      // It was not flipped → flip this one → pause
+      card.classList.add('flipped');
+      stopAutoRotate();
+    }
+  });
+});
 
 // ─── PRODUCTOS DESTACADOS ──────────────────────────────────────
 // Ruta absoluta para que funcione desde cualquier profundidad de URL.
@@ -141,9 +193,9 @@ document.addEventListener('click', e => {
 
   // Canal unificado — main.js y cart.js escuchan este evento
   window.dispatchEvent(new StorageEvent('storage', { key: 'cart' }));
-
   // Feedback visual breve
   const original = btn.textContent.trim();
   btn.textContent = '✓';
   setTimeout(() => { btn.textContent = original; }, 1000);
+
 });
