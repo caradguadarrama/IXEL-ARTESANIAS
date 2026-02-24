@@ -89,7 +89,7 @@ loginForm.addEventListener("submit", (e) => {
     const user = users.find(user => user.email === data.email);
 
     if (!user || user.password !== data.password) {
-        alert("Credenciales incorrectas");
+        alert("El usuario no existe");
         return;
     }
     localStorage.setItem("currentUser", JSON.stringify(user)); // guardar sesión
