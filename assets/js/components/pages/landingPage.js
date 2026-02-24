@@ -19,8 +19,7 @@
 //     no existan → TypeError en cualquier página que cargue este módulo sin hero.
 //     FIX: guard explícito antes de registrar el listener.
 
-import { addToCart } from '/assets/js/utils/storage.js';
-
+import { addToCart } from '../../utils/storage.js';
 // ─── PARALLAX DEL HERO ─────────────────────────────────────────
 // Guard: no registra el listener si los elementos no existen.
 
@@ -141,9 +140,9 @@ document.addEventListener('click', e => {
 
   // Canal unificado — main.js y cart.js escuchan este evento
   window.dispatchEvent(new StorageEvent('storage', { key: 'cart' }));
-
   // Feedback visual breve
   const original = btn.textContent.trim();
   btn.textContent = '✓';
   setTimeout(() => { btn.textContent = original; }, 1000);
+
 });

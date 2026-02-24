@@ -76,7 +76,9 @@ export function addToCart(product) {
     cart.push({ ...product, quantity: product.quantity || 1 });
   }
 
-  return saveCart(cart);
+  saveCart(cart);
+window.dispatchEvent(new StorageEvent('storage', { key: 'cart' }));
+return true;
 }
 
 /**
