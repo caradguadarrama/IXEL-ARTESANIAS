@@ -56,7 +56,7 @@
 /* Botón Ver Colección */
 .hero-content {
     position: absolute;
-    bottom: 10%; /* Lo posicionamos abajo para no obstruir el centro */
+    bottom: 10%;
     right: clamp(16px, 5vw, 80px);
     z-index: 15;
 }
@@ -178,7 +178,7 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    border-radius: 12px;
+    border-radius: 30px;
     backface-visibility: hidden;
     display: flex;
     align-items: center;
@@ -186,19 +186,38 @@
 }
 
 .top-card-front {
-    background: #ffffff;
+    background: #F8E8CF;
+}
+
+
+.top-card-title{
+   position: absolute;
+   align-content: center;
+    font-family: 'TheFarmerTextured', serif;
+    font-size: 7rem; 
+    color: #F8E8CF;
 }
 
 .top-card-back {
-    background: var(--color-accent);
-    color: white;
+    background-color: var(--color-accent);
+    color: #F8E8CF;
     transform: rotateY(180deg);
+    padding: 30px;
+    text-align: center;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.2rem;
+    line-height: 1.6;
 }
+
+
+
 .product-card-landing {
   width: 100%;
   height: 100%;
   font-family: 'DM Sans', sans-serif;
-  font-size: 1.5rem}
+  font-size: 1.5rem
+}
+
 .product-name{
     font-family: 'TheFarmerTextured', serif;
     font-size: 2rem
