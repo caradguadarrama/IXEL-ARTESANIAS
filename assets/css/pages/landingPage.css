@@ -1,6 +1,6 @@
 .hero {
     height: 90vh;
-    background-image: url('../../img/main/Tortillero\ Olinala\ Rojo2.jpeg');
+    background-image: url('../../img/Main/Charola\ de\ servicio\ rectangular\ azul.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -19,7 +19,7 @@
 
 .btn-ver-mas {
     position: sticky;
-    top: 50vh; /* starts centered */
+    top: 80vh; /* starts centered */
     transform: translateY(-50%);
     margin-right: clamp(16px, 5vw, 80px);
 }
@@ -142,7 +142,7 @@
 }
 
 .top-card-front {
-    background: #ddd;
+    background: #ffffff;
 }
 
 .top-card-back {

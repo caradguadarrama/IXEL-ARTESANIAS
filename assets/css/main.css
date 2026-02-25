@@ -54,29 +54,7 @@ body {
     letter-spacing: 3px;
 }
 
-/* Hero Section */
-.hero-carousel {
-    position: relative;
-    width: 100%;
-}
 
-.hero-carousel img {
-    width: 100%;
-    display: block;
-}
-
-.btn-buy-hero {
-    position: absolute;
-    bottom: 40px;
-    right: 5%;
-    background: var(--color-vino);
-    color: white;
-    padding: 12px 45px;
-    border-radius: 25px;
-    border: none;
-    font-weight: bold;
-    cursor: pointer;
-}
 
 
 /* Sección Imprescindibles */
