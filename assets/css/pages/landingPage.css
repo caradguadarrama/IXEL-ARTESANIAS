@@ -1,6 +1,6 @@
 .hero {
     height: 90vh;
-    background-image: url('../../img/background-pattern.png');
+    background-image: url('../../img/main/Tortillero\ Olinala\ Rojo2.jpeg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -54,7 +54,24 @@
     opacity: 0.6;
     perspective: 1000px;
 }
+@media (max-width: 768px) {
+  .top-card {
+    padding: 0 4px; /* smaller gutter */
+    height: 280px;
+  }
+  .top-card.hidden {
+    display: none;
+  }
+  .top-card.center {
+    width: 100%;
+    transform: scale(1);
+    opacity: 1;
+  }
 
+  .top-carousel-track {
+    justify-content: center;
+  }
+}
 /* LEFT */
 .top-card.left {
     width: 30%;
@@ -96,9 +113,21 @@
     transition: transform 0.6s;
 }
 
-.top-card:hover .top-card-inner {
+
+/* ---------------- DESKTOP ---------------- */
+@media (min-width: 769px) {
+  .top-card:hover .top-card-inner {
     transform: rotateY(180deg);
+  }
 }
+
+/* ---------------- MOBILE ---------------- */
+@media (max-width: 768px) {
+  .top-card.flipped .top-card-inner {
+    transform: rotateY(180deg);
+  }
+}
+
 
 .top-card-front,
 .top-card-back {
@@ -121,10 +150,15 @@
     color: white;
     transform: rotateY(180deg);
 }
-.product-card {
+.product-card-landing {
+  width: 100%;
   height: 100%;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1.5rem}
+.product-name{
+    font-family: 'TheFarmerTextured', serif;
+    font-size: 2rem
 }
-
 #cards .product-card {
   flex: 1;
 }
@@ -132,7 +166,10 @@
 #cards .col-md-4 {
   display: flex;
 }
-
-.product-card {
-  width: 100%;
+@media (max-width: 768px) {
+  .section-title {
+    padding: 0 16px;
+    text-align: center;
+    font-size: clamp(2rem, 5vw, 2rem);
+  }
 }
