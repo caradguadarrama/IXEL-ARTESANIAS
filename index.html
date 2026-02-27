@@ -2,98 +2,125 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IXEL Artesanías</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IXEL Artesanías</title>
 
-    <!-- Fuentes -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Trocchi&display=swap"
-        rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Estilos -->
-    <link rel="stylesheet" href="assets/css/main.css">
-    <link rel="stylesheet" href="assets/css/pages/landingPage.css">
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Trocchi&display=swap"
+    rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Estilos -->
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/pages/landingPage.css">
 
-    <!-- JavaScript -->
-    <script defer type="module" src="assets/js/main.js"></script>
-    <script defer type="module" src="assets/js/components/pages/landingPage.js"></script>
-    <script defer type="module" src="assets/js/components/pages/cart.js"></script>
+  <!-- JavaScript -->
+  <script defer type="module" src="assets/js/main.js"></script>
+  <script defer type="module" src="assets/js/components/pages/landingPage.js"></script>
+  <script defer type="module" src="assets/js/components/pages/cart.js"></script>
 </head>
 
 <body>
-    <!-- Navbar se inyecta aquí -->
-    <div id="navbar-container"></div>
+  <!-- Navbar se inyecta aquí -->
+  <div id="navbar-container"></div>
 
-<div class="cart">
-        <h1>Carrito</h1>
-        <ul class="listCart"></ul>
-        <div class="checkout">
-            <div class="total">
-            </div>
-            <div class="closeShopping">
-                <a>Cerrar</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Contenido principal -->
-    <main>
-    <section class="hero">
-        <div class="hero-content">
-            <button href="#" class="btn-ver-mas btn mt-4 button-ixel-rojo">Ver colección</button>
-        </div>
-    </section>
-  <section class="top-cards-section">
-  <h2 class="section-title">De qué estamos hechos</h2>
-  <div class="top-carousel-container">
-    <div class="top-carousel-track">
-
-      <div class="top-card">
-        <div class="top-card-inner">
-          <div class="top-card-front">Parota<img src="/assets/img/main/Set Martina3.jpg" alt=""></div>
-          <div class="top-card-back">De vetas profundas y carácter indomable. Seleccionamos la madera de Parota más fina de Jalisco para crear piezas que respiran la fuerza de nuestra tierra.
-</div>
-        </div>
-      </div> 
-
-      <div class="top-card">
-        <div class="top-card-inner">
-          <div class="top-card-front">Hierro<img src="/assets/img/tapa Martina.jpeg" alt=""></div>
-          <div class="top-card-back">Donde el fuego se vuelve arte. Nuestros mangos de hierro fundido son detallados a mano por artesanos mexicanos, logrando una textura única que solo el trabajo manual puede dar.</div>
-        </div>
+  <div class="cart">
+    <h1>Carrito</h1>
+    <ul class="listCart"></ul>
+    <div class="checkout">
+      <div class="total">
       </div>
-
-      <div class="top-card">
-        <div class="top-card-inner">
-          <div class="top-card-front">Barro<img src="/assets/img/main/Barro.jpeg" alt=""></div>
-          <div class="top-card-back">Moldeado por la historia. Cada pieza nace del barro chiapaneco, transformado por las manos y el pincel de mujeres indígenas que plasman su cosmovisión en cada trazo.</div>
-        </div>
+      <div class="closeShopping">
+        <a>Cerrar</a>
       </div>
-
-      <div class="top-card">
-        <div class="top-card-inner">
-          <div class="top-card-front">Metal<img src="/assets/img/main/Caja chica olinalá.jpeg" alt="Mango Metal Rosa"></div>
-          <div class="top-card-back">Una flor que nunca marchita. Este diseño emblemático rinde homenaje a Guadalajara, capturando la delicadeza de sus rosas en metal forjado con maestría local.</div>
-        </div>
-      </div>
-
     </div>
   </div>
-</section>
-        <section id="products" class=" my-5 imprescindibles-section">
-        <h2 class="section-title">Productos Imprescindibles</h2>
-        <div class="imprescindibles-container">
-            <div class="row g-3" id="cards"></div>
-        </div>
+
+  <!-- Contenido principal -->
+  <main>
+
+    <section class="hero">
+      <div class="slider-container">
+        <div class="slide active" style="background-image: url('assets/img/Main/Charola\ de\ servicio\ rectangular\ azul.jpg');"></div>
+        <div class="slide" style="background-image: url('assets/img/Main/Tortillero\ Olianala\ Rojo\ 1.jpeg');"></div>
+        <div class="slide" style="background-image: url('assets/img/Main/Set\ Martina3.jpg');"></div>
+      </div>
+
+      <button class="nav-btn prev" onclick="changeSlide(-1)">&#10094;</button>
+      <button class="nav-btn next" onclick="changeSlide(1)">&#10095;</button>
+
+      <div class="hero-content">
+        <a href="#" class="btn-ver-mas btn mt-4 button-ixel-rojo">Ver colección</a>
+      </div>
     </section>
-    </main>
+
+    <section class="top-cards-section">
+      <h2 class="section-title">De qué estamos hechos</h2>
+      <div class="top-carousel-container">
+        <div class="top-carousel-track">
+
+          <div class="top-card">
+            <div class="top-card-inner">
+              <div class="top-card-front">
+                <img src="/assets/img/main/Set Martina3.jpg" alt="">
+                <span class="top-card-title">Parota</span>
+                </div>
+              <div class="top-card-back">De vetas profundas y carácter indomable. Seleccionamos la madera de Parota más
+                fina de Jalisco para crear piezas que respiran la fuerza de nuestra tierra.
+              </div>
+            </div>
+          </div>
+
+          <div class="top-card">
+            <div class="top-card-inner">
+              <div class="top-card-front">
+                <img src="/assets/img/Main/tapa Martina.jpeg" alt="">
+                  <span class="top-card-title">Hierro</span>
+                  </div>
+              <div class="top-card-back">Donde el fuego se vuelve arte. Nuestros mangos de hierro fundido son detallados
+                a mano por artesanos mexicanos, logrando una textura única que solo el trabajo manual puede dar.</div>
+            </div>
+          </div>
+
+          <div class="top-card">
+            <div class="top-card-inner">
+              <div class="top-card-front">
+                <img src="/assets/img/main/Barro.jpeg" alt="">
+                <span class="top-card-title">Barro</span>
+                </div>
+              <div class="top-card-back">Moldeado por la historia. Cada pieza nace del barro chiapaneco, transformado
+                por las manos y el pincel de mujeres indígenas que plasman su cosmovisión en cada trazo.</div>
+            </div>
+          </div>
+
+          <div class="top-card">
+            <div class="top-card-inner">
+              <div class="top-card-front">
+                <img src="/assets/img/Main/Tortillero Olinala Rojo4.jpeg"alt="Mango Metal Rosa">
+              <span class="top-card-title">Metal</span>
+            </div>
+              <div class="top-card-back">Una flor que nunca marchita. Este diseño emblemático rinde homenaje a
+                Guadalajara, capturando la delicadeza de sus rosas en metal forjado con maestría local.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <section id="products" class=" my-5 imprescindibles-section">
+      <h2 class="section-title">Productos Imprescindibles</h2>
+      <div class="imprescindibles-container">
+        <div class="row g-3" id="cards"></div>
+      </div>
+    </section>
+  </main>
 
 
-    <!-- Footer se inyecta aquí -->
-    <footer id="footer-container"></footer>
+  <!-- Footer se inyecta aquí -->
+  <footer id="footer-container"></footer>
 
 </body>
 

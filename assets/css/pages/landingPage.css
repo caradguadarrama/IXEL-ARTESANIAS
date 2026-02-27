@@ -1,28 +1,73 @@
 .hero {
     height: 90vh;
-    background-image: url('../../img/main/Tortillero\ Olinala\ Rojo2.jpeg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
     position: relative;
-
+    overflow: hidden;
     display: flex;
     justify-content: center;
-}
-
-.hero-content {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
     align-items: center;
 }
 
-.btn-ver-mas {
-    position: sticky;
-    top: 50vh; /* starts centered */
-    transform: translateY(-50%);
-    margin-right: clamp(16px, 5vw, 80px);
+/* Manejo de las diapositivas */
+.slider-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
+
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+/* Botones de navegación transparentes */
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.2); /* Efecto transparente */
+    backdrop-filter: blur(5px); /* Desenfoque opcional */
+    border: none;
+    color: white;
+    padding: 20px 15px;
+    cursor: pointer;
+    font-size: 2rem;
+    z-index: 10;
+    transition: background 0.3s;
+}
+
+.nav-btn:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.prev { left: 0; border-radius: 0 5px 5px 0; }
+.next { right: 0; border-radius: 5px 0 0 5px; }
+
+/* Botón Ver Colección */
+.hero-content {
+    position: absolute;
+    bottom: 10%;
+    right: clamp(16px, 5vw, 80px);
+    z-index: 15;
+}
+
+.btn-ver-mas {
+    text-decoration: none;
+    display: inline-block;
+}
+
+
+
 .top-cards-section {
     width: 100%;
     padding: 100px 0;
@@ -104,7 +149,6 @@
 }
 
 
-
 .top-card-inner {
     width: 100%;
     height: 100%;
@@ -134,7 +178,7 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    border-radius: 12px;
+    border-radius: 30px;
     backface-visibility: hidden;
     display: flex;
     align-items: center;
@@ -142,19 +186,38 @@
 }
 
 .top-card-front {
-    background: #ddd;
+    background: #F8E8CF;
+}
+
+
+.top-card-title{
+   position: absolute;
+   align-content: center;
+    font-family: 'TheFarmerTextured', serif;
+    font-size: 7rem; 
+    color: #F8E8CF;
 }
 
 .top-card-back {
-    background: var(--color-accent);
-    color: white;
+    background-color: var(--color-accent);
+    color: #F8E8CF;
     transform: rotateY(180deg);
+    padding: 30px;
+    text-align: center;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.2rem;
+    line-height: 1.6;
 }
+
+
+
 .product-card-landing {
   width: 100%;
   height: 100%;
   font-family: 'DM Sans', sans-serif;
-  font-size: 1.5rem}
+  font-size: 1.5rem
+}
+
 .product-name{
     font-family: 'TheFarmerTextured', serif;
     font-size: 2rem
