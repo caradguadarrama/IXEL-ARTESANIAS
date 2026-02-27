@@ -48,6 +48,10 @@ export function initSlidingCart() {
 
   function renderCart() {
     const cart = getCart();
+    console.log('RENDER CART DATA:', cart);
+    console.log('listCartEl:', listCartEl);
+console.log('Is in DOM?', document.body.contains(listCartEl));
+console.log('All .listCart elements:', document.querySelectorAll('.listCart'));
     if (!listCartEl || !totalEl) return;
 
     listCartEl.innerHTML = '';
@@ -136,7 +140,9 @@ export function initSlidingCart() {
   // disparan tras addToCart(). Re-renderiza y abre el carrito.
 
   window.addEventListener('storage', e => {
+    console.log('STORAGE EVENT HEARD', e.key);
     if (e.key !== 'cart') return;
+    console.log('STORAGE EVENT HEARD', e.key);
     renderCart();
     openCart();
   });
