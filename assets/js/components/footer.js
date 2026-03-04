@@ -29,8 +29,8 @@ export function createFooter() {
           <section class="footer__section">
             <h4 class="footer__title">Contacto</h4>
             <ul class="footer__list" role="list">
-              <li class="footer__list-item"><a href="tel:+523312345678"                   class="footer__link">+52 33 1234 5678</a></li>
-              <li class="footer__list-item"><a href="mailto:contacto@ixelartesanias.com"  class="footer__link">contacto@ixelartesanias.com</a></li>
+              <li class="footer__list-item"><a href="tel:+523346675957"                   class="footer__link">+52 1 33 4667 5957</a></li>
+              <li class="footer__list-item"><a href="mailto:ixelartesanias@gmail.com"  class="footer__link">ixelartesanias@gmail.com</a></li>
               <li class="footer__list-item"><span class="footer__link">Jalisco, México</span></li>
             </ul>
           </section>
@@ -65,17 +65,20 @@ export function createFooter() {
             </a>
 
             <a href="http://wa.me/523330336808"
-               target="_blank" rel="noopener noreferrer"
-               class="footer__social-link" aria-label="WhatsApp">
-              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.524 3.655 1.435 5.163L2 22l4.837-1.435A9.953 9.953 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z" stroke="#F2D5C1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M8.5 9.5c.5 1 1.5 3 3.5 4.5s3.5 1.5 4.5 1" stroke="#F2D5C1" stroke-width="1.5" stroke-linecap="round"/>
-              </svg>
+                target="_blank" rel="noopener noreferrer"
+                class="footer__social-link" aria-label="WhatsApp">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.524 3.655 1.435 5.163L2 22l4.837-1.435A9.953 9.953 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"
+                    stroke="#F2D5C1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M8.5 9.5c.5 1 1.5 3 3.5 4.5s3.5 1.5 4.5 1"
+                    stroke="#F2D5C1" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
             </a>
+
           </nav>
 
           <div class="footer__monogram" aria-hidden="true">
-            <img src="../../assets/img/icons/x.png" alt="" class="footer__monogram-image">
+            <img src="../../assets/img/icons/x.png" alt="ixel_monogram" class="footer__monogram-image">
           </div>
         </div>
 
