@@ -120,7 +120,7 @@ loginForm.addEventListener("submit", (e) => {
     if (data.email == admin.email && data.password === admin.password){
         localStorage.setItem("currentUser", JSON.stringify(admin ));
         showMessage(loginForm, "Bienvenida, Paola", "success");
-        setTimeout(() => {window.location.href = "pages/admin/products.html"}, 1200);
+        setTimeout(() => {window.location.href = "../admin/dashboard.html"}, 1200);
         return;
     }
     if (!user || user.password !== data.password) {
