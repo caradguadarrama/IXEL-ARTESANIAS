@@ -1,5 +1,5 @@
 .hero {
-    height: 90vh;
+    height: 100vh;
     position: relative;
     overflow: hidden;
     display: flex;
@@ -31,18 +31,6 @@
 }
 
 
-/* Botón Ver Colección */
-.hero-content {
-    position: absolute;
-    bottom: 10%;
-    right: clamp(16px, 5vw, 80px);
-    z-index: 15;
-}
-
-.btn-ver-mas {
-    text-decoration: none;
-    display: inline-block;
-}
 
 /* Cards materiales */
 
@@ -65,7 +53,6 @@
     position: relative;
 }
 
-
 .top-card {
     height: 380px;
     padding: 0 15px;
@@ -77,11 +64,7 @@
     opacity: 0.6;
     perspective: 1000px;
 }
-@media (max-width: 768px) {
-  .top-card {
-    padding: 0 4px; /* smaller gutter */
-    height: 280px;
-  }
+
   .top-card.hidden {
     display: none;
   }
@@ -94,7 +77,8 @@
   .top-carousel-track {
     justify-content: center;
   }
-}
+
+
 /* LEFT */
 .top-card.left {
     width: 30%;
@@ -135,6 +119,37 @@
     transition: transform 0.6s;
 }
 
+.top-card-front,
+.top-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 30px; 
+    overflow: hidden;    
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.top-card-title{
+   position: absolute;
+   align-content: center;
+    font-family: 'TheFarmerTextured', serif;
+    font-size: 7rem; 
+    color: #f8e8cf;
+}
+
+.top-card-back {
+    background-color:#683531;
+    color: #F8E8CF;
+    transform: rotateY(180deg);
+    padding: 30px;
+    text-align: center;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
 
 /* ---------------- DESKTOP ---------------- */
 @media (min-width: 769px) {
@@ -151,43 +166,7 @@
 }
 
 
-.top-card-front,
-.top-card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 30px;
-    backface-visibility: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.top-card-front {
-    background: #F8E8CF;
-}
-
-
-.top-card-title{
-   position: absolute;
-   align-content: center;
-    font-family: 'TheFarmerTextured', serif;
-    font-size: 7rem; 
-    color: #F8E8CF;
-}
-
-.top-card-back {
-    background-color: var(--color-accent);
-    color: #F8E8CF;
-    transform: rotateY(180deg);
-    padding: 30px;
-    text-align: center;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 1.2rem;
-    line-height: 1.6;
-}
-
-
+/* Cards productos imprescindibles */
 
 .product-card-landing {
   width: 100%;

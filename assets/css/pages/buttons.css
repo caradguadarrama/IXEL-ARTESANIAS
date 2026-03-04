@@ -1,3 +1,34 @@
+/* Botones de navegación transparentes landing page*/
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.2); /* Efecto transparente */
+    backdrop-filter: blur(5px); /* Desenfoque opcional */
+    border: none;
+    color: white;
+    padding: 20px 15px;
+    cursor: pointer;
+    font-size: 2rem;
+    z-index: 10;
+    transition: background 0.3s;
+}
+
+.nav-btn:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.prev { left: 0; border-radius: 0 5px 5px 0; }
+.next { right: 0; border-radius: 5px 0 0 5px; }
+
+/* Botón Ver Colección */
+.hero-content-button {
+    position: absolute;
+    bottom: 12%;
+    right: clamp(16px, 5vw, 80px);
+    z-index: 15;
+}
+
 .button-ixel-cafe {
     background-color: #683531;
     border-radius: 50px;
@@ -119,25 +150,3 @@
 }
 
 
-/* Botones de navegación transparentes landing page*/
-.nav-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.2); /* Efecto transparente */
-    backdrop-filter: blur(5px); /* Desenfoque opcional */
-    border: none;
-    color: white;
-    padding: 20px 15px;
-    cursor: pointer;
-    font-size: 2rem;
-    z-index: 10;
-    transition: background 0.3s;
-}
-
-.nav-btn:hover {
-    background: rgba(255, 255, 255, 0.4);
-}
-
-.prev { left: 0; border-radius: 0 5px 5px 0; }
-.next { right: 0; border-radius: 5px 0 0 5px; }

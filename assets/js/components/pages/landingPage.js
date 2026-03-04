@@ -37,8 +37,8 @@ function changeSlide(direction) {
     slides[currentSlide].classList.add('active');
 }
 
-// Opcional: Cambio automático cada 5 segundos
-setInterval(() => changeSlide(1), 5000);
+// Cambio automático cada 3 segundos
+setInterval(() => changeSlide(1), 3000);
 
 
 // ─── PARALLAX DEL HERO ─────────────────────────────────────────
