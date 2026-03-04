@@ -117,3 +117,27 @@
 .button-ixel-products:hover {
     background-color: #5a0b06;
 }
+
+
+/* Botones de navegación transparentes landing page*/
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.2); /* Efecto transparente */
+    backdrop-filter: blur(5px); /* Desenfoque opcional */
+    border: none;
+    color: white;
+    padding: 20px 15px;
+    cursor: pointer;
+    font-size: 2rem;
+    z-index: 10;
+    transition: background 0.3s;
+}
+
+.nav-btn:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.prev { left: 0; border-radius: 0 5px 5px 0; }
+.next { right: 0; border-radius: 5px 0 0 5px; }

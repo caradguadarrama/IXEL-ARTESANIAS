@@ -23,7 +23,7 @@ import { addToCart } from '/assets/js/utils/storage.js';
 
 
 //Carrusel del hero
-// let currentSlide = 0;
+let currentSlide = 0;
 const slides = document.querySelectorAll('.slide');
 
 function changeSlide(direction) {
@@ -39,7 +39,6 @@ function changeSlide(direction) {
 
 // Opcional: Cambio automático cada 5 segundos
 setInterval(() => changeSlide(1), 5000);
-
 
 
 // ─── PARALLAX DEL HERO ─────────────────────────────────────────
