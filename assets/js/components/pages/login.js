@@ -1,3 +1,11 @@
+// inicio de sesion para el admin
+const admin = {
+    email: "pao@gmail.com",
+    password: "Admin123@",
+    rol: "admin",
+    nombre: "Administrador"
+};
+
 //cambio entre login y registro
 function toggleForm() {
     const container = document.getElementById("container");
@@ -92,13 +100,13 @@ registerForm.addEventListener("submit", (e) => {
     let users = JSON.parse(localStorage.getItem("users")) || [];
     const exists = users.find(user => user.email === data.email);
     if (exists) {
-        showMessage(registerForm, "⚠️ El usuario ya existe.", "error");
+        showMessage(registerForm, "El usuario ya existe.", "error");
         return;
     }
     users.push(data);
     localStorage.setItem("users", JSON.stringify(users));
     console.log("Usuarios guardados:", users);
-    showMessage(registerForm, "✅ Registro exitoso. ¡Bienvenido!", "success");
+    showMessage(registerForm, "Registro exitoso. ¡Bienvenido!", "success");
 });
 
 const loginForm = document.querySelector('.form');
@@ -108,12 +116,20 @@ loginForm.addEventListener("submit", (e) => {
     const data = Object.fromEntries(formData.entries());
     let users = JSON.parse(localStorage.getItem("users")) || [];
     const user = users.find(user => user.email === data.email);
+
+    if (data.email == admin.email && data.password === admin.password){
+        localStorage.setItem("currentUser", JSON.stringify(admin ));
+        showMessage(loginForm, "Bienvenida, Paola", "success");
+        setTimeout(() => {window.location.href = "pages/admin/products.html"}, 1200);
+        return;
+    }
     if (!user || user.password !== data.password) {
-        showMessage(loginForm, "❌ Correo o contraseña incorrectos.", "error");
+        showMessage(loginForm, "Correo o contraseña incorrectos.", "error");
         return;
     }
     localStorage.setItem("currentUser", JSON.stringify(user));
     console.log("Usuario logueado:", user);
-    showMessage(loginForm, "✅ Iniciando sesión...", "success");
+    showMessage(loginForm, "Iniciando sesión...", "success");
     setTimeout(() => { window.location.href = "/index.html"; }, 1200);
-});
+    });
+

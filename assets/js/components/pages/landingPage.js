@@ -21,6 +21,27 @@
 
 import { addToCart } from '/assets/js/utils/storage.js';
 
+
+//Carrusel del hero
+// let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+
+function changeSlide(direction) {
+    // Quitar clase activa
+    slides[currentSlide].classList.remove('active');
+    
+    // Calcular siguiente slide
+    currentSlide = (currentSlide + direction + slides.length) % slides.length;
+    
+    // Añadir clase activa
+    slides[currentSlide].classList.add('active');
+}
+
+// Opcional: Cambio automático cada 5 segundos
+setInterval(() => changeSlide(1), 5000);
+
+
+
 // ─── PARALLAX DEL HERO ─────────────────────────────────────────
 // Guard: no registra el listener si los elementos no existen.
 
@@ -43,23 +64,89 @@ if (hero && button) {
 
 // ─── CARRUSEL DE TOP PRODUCTS ──────────────────────────────────
 
-const cards     = Array.from(document.querySelectorAll('.top-card'));
-let   positions = ['left', 'center', 'right', 'hidden'];
+const topTrack = document.querySelector('.top-carousel-track');
+let topCards = Array.from(document.querySelectorAll('.top-card'));
+
+const totalRealCards = topCards.length;
+const cardWidthPercent = 33.3333;
+
+const cards = Array.from(document.querySelectorAll('.top-card'));
+
+let positions = ['left', 'center', 'right', 'hidden'];
+
+/* ---------------- RENDER ---------------- */
 
 function renderCarousel() {
-  cards.forEach((card, i) => {
+  cards.forEach(card => {
     card.classList.remove('left', 'center', 'right', 'hidden');
-    card.classList.add(positions[i % positions.length]);
   });
+
+  if (cards[0]) cards[0].classList.add('left');
+  if (cards[1]) cards[1].classList.add('center');
+  if (cards[2]) cards[2].classList.add('right');
+  if (cards[3]) cards[3].classList.add('hidden');
 }
 
-if (cards.length) {
+/* ---------------- ROTATE ---------------- */
+
+function rotateCarousel() {
+  const first = cards.shift();
+  cards.push(first);
   renderCarousel();
-  setInterval(() => {
-    positions.push(positions.shift());
-    renderCarousel();
-  }, 3000);
 }
+
+/* ---------------- INTERVAL CONTROL (FIXED) ---------------- */
+
+let carouselInterval = null;
+
+function startAutoRotate() {
+  if (carouselInterval !== null) return; // already running
+  carouselInterval = setInterval(rotateCarousel, 2500);
+}
+
+function stopAutoRotate() {
+  if (carouselInterval === null) return; // already stopped
+  clearInterval(carouselInterval);
+  carouselInterval = null;
+}
+
+/* ---------------- INIT ---------------- */
+
+renderCarousel();
+startAutoRotate();
+
+/* ---------------- DESKTOP HOVER ---------------- */
+
+function isMobile() {
+  return window.innerWidth <= 768;
+}
+
+if (!isMobile()) {
+  topTrack.addEventListener('mouseenter', stopAutoRotate);
+  topTrack.addEventListener('mouseleave', startAutoRotate);
+}
+
+/* ---------------- MOBILE CLICK ---------------- */
+
+cards.forEach(card => {
+  card.addEventListener('click', () => {
+    if (!isMobile()) return;
+
+    const isFlipped = card.classList.contains('flipped');
+
+    // First: unflip everything
+    cards.forEach(c => c.classList.remove('flipped'));
+
+    if (isFlipped) {
+      // It was flipped → now everything is unflipped → resume
+      startAutoRotate();
+    } else {
+      // It was not flipped → flip this one → pause
+      card.classList.add('flipped');
+      stopAutoRotate();
+    }
+  });
+});
 
 // ─── PRODUCTOS DESTACADOS ──────────────────────────────────────
 // Ruta absoluta para que funcione desde cualquier profundidad de URL.
@@ -85,16 +172,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const col = document.createElement('div');
         col.className = 'col-12 col-md-4';
         col.innerHTML = `
-          <div class="product-card">
-            <div class="product-image favorite">
-              <img src="${product.imagen}" alt="${product.name}">
-            </div>
-            <h5 class="product-name">${product.name}</h5>
-            <p class="product-price">$${product.price}</p>
-            <button class="button-ixel-products addCart" data-id="${product.id}" type="button">
-              +
-            </button>
-          </div>
+          <div class="product-card-landing">
+      <div class="product-image-container favorite">
+        <img src="${product.imagen}" alt="${product.name}">
+      </div>
+      <h5 class="product-name">${product.name}</h5>
+      <p class="product-price">$${product.price}</p>
+       <p class="desc">${product.description}</p>
+      <button class="button-ixel-rojo addCart" data-id="${product.id}">
+        Comprar
+      </button>
+      <a href="#" class="learn-more">→ Learn More</a>
+    </div>
         `;
         cardsContainer.appendChild(col);
       });
@@ -126,9 +215,9 @@ document.addEventListener('click', e => {
 
   // Canal unificado — main.js y cart.js escuchan este evento
   window.dispatchEvent(new StorageEvent('storage', { key: 'cart' }));
-
   // Feedback visual breve
   const original = btn.textContent.trim();
   btn.textContent = '✓';
   setTimeout(() => { btn.textContent = original; }, 1000);
+
 });
