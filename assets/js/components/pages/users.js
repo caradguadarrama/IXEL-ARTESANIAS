@@ -89,4 +89,13 @@ function addAlert() {
 });
 }
 
+document.getElementById("cerrar").addEventListener("click", function(event) {
+    event.preventDefault();
+
+    localStorage.removeItem("currentUser");
+
+    window.location.replace("/index.html");
+
+})
+
 showForms("account");

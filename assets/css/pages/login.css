@@ -47,7 +47,7 @@ main {
 /* MODO REGISTRO */
 .container.register-mode .image-panel {
     transform: translateX(100%);
-    background-image: url("/assets/img/tapa\ Martina.jpeg");
+    background-image: url("/assets/img/main/tapa\ Martina.jpeg");
 }
 
 /* FORMULARIOS */

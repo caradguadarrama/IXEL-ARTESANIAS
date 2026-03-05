@@ -130,6 +130,11 @@ loginForm.addEventListener("submit", (e) => {
     localStorage.setItem("currentUser", JSON.stringify(user));
     console.log("Usuario logueado:", user);
     showMessage(loginForm, "Iniciando sesión...", "success");
-    setTimeout(() => { window.location.href = "/index.html"; }, 1200);
+    // setTimeout(() => { window.location.replace = "/index.html"; }, 1200);
+    window.location.replace("/pages/users/users.html");
+
     });
 
+if (JSON.parse(localStorage.getItem("currentUser"))) {
+    window.location.replace("/pages/users/users.html");
+}
