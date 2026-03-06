@@ -30,14 +30,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (cart.length === 0) {
             tableBody.innerHTML = '<div class="text-center py-4"><p>Tu carrito está vacío.</p></div>';
 
-            // ✅ Deshabilitar botón correctamente
+            //  Deshabilitar botón correctamente
             if (finalizarElement) {
                 finalizarElement.disabled = true;
                 finalizarElement.style.opacity = '0.5'; // ← Cambiado
                 finalizarElement.style.cursor = 'not-allowed';
             }
 
-            // ✅ Actualizar resumen a $0
+            // Actualizar resumen a $0
             if (infoElement) {
                 infoElement.innerHTML = `<span>0 productos</span> <span>$0.00</span>`;
             }
