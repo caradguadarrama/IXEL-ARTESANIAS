@@ -37,7 +37,10 @@
 /* La página de detalle usa EB Garamond como fuente base
    para conseguir el feel editorial del modelo.
    La clase .pd-page evita que afecte a otras páginas. */
-
+.pd{
+  margin-top: var(--navbar-height, 100px);
+  padding-top: 2rem;;
+}
 .pd-page body,
 body.pd-page {
   font-family: var(--pd-font-display);
