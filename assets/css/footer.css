@@ -26,6 +26,7 @@
   justify-content: space-between;
   gap: 70px;
   padding-bottom: 35px;
+  padding-left: 80px;
 }
 
 /* ============================================
@@ -33,6 +34,7 @@
    ============================================ */
 
 .footer__left {
+  
   display: flex;
   gap: 55px;
   flex-wrap: wrap;
@@ -43,6 +45,7 @@
 }
 
 .footer__title {
+  
   font-size: 14px;
   font-family: var(--font-secondary);
   color: var(--footer-text);
@@ -53,6 +56,7 @@
 }
 
 .footer__list {
+  border-top: 2px solid #f8e8cf;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -127,7 +131,7 @@
 }
 
 .footer__monogram-image {
-  height: 60px;
+  height: 100px;
   width: auto;
   opacity: 0.65;
   transition: opacity 0.3s ease;

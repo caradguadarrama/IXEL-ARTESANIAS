@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const tableBody = document.querySelector('#cart-table-body');
     const totalElement = document.querySelector('#products-total span strong');
     const infoElement = document.querySelector('#products-info');
+    const finalizarElement = document.querySelector('#finalizar-compra');
 
     function renderCheckout() {
         const cart = getCart();
@@ -28,8 +29,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (cart.length === 0) {
             tableBody.innerHTML = '<div class="text-center py-4"><p>Tu carrito está vacío.</p></div>';
+
+            //  Deshabilitar botón correctamente
+            if (finalizarElement) {
+                finalizarElement.disabled = true;
+                finalizarElement.style.opacity = '0.5'; // ← Cambiado
+                finalizarElement.style.cursor = 'not-allowed';
+            }
+
+            // Actualizar resumen a $0
+            if (infoElement) {
+                infoElement.innerHTML = `<span>0 productos</span> <span>$0.00</span>`;
+            }
+            if (totalElement) {
+                totalElement.textContent = '$0.00';
+            }
+
             return;
+
         }
+
+        if (finalizarElement) {
+            finalizarElement.disabled = false;
+            finalizarElement.style.opacity = '1';
+            finalizarElement.style.cursor = 'pointer';
+        }
+
 
         cart.forEach(item => {
             const subtotal = item.price * (item.quantity || 1);
@@ -49,12 +74,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     <small class="text-success fw-bold">Envío Gratis</small>
                 </div>
                 <div class="col-6 col-md-3 d-flex align-items-center justify-content-center mt-2 mt-md-0">
-                    <button class="btn btn-sm btn-outline-secondary qty-minus" data-id="${item.id}">-</button>
+                    <button class="btn btn-sm btn-outline-secondary qty-minus" data-id="${item.id}" ${item.quantity === 1 ? 'disabled' : ''}>-</button>
                     <span class="mx-3 fw-bold">${item.quantity}</span>
                     <button class="btn btn-sm btn-outline-secondary qty-plus" data-id="${item.id}">+</button>
                 </div>
                 <div class="col-6 col-md-3 text-end mt-2 mt-md-0">
-                    <div class="fw-bold fs-5">$${subtotal.toLocaleString()}</div>
+                    <div class="fw-bold fs-5">$${subtotal.toFixed(2)}</div>
                     <button class="btn btn-sm text-danger remove-item" data-id="${item.id}">
                         <i class="bi bi-trash"></i> Eliminar
                     </button>
@@ -65,35 +90,45 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Actualizamos los números del resumen lateral (Isaac style)
         if (infoElement) {
-            infoElement.innerHTML = `<span>${totalItems} productos</span> <span>$${total.toLocaleString()}</span>`;
+            infoElement.innerHTML = `<span>${totalItems} productos</span> <span>$${total.toFixed(2)}</span>`;
         }
         if (totalElement) {
-            totalElement.textContent = `$${total.toLocaleString()}`;
+            totalElement.textContent = `$${total.toFixed(2)}`;
         }
+
     }
 
-    // Listener de eventos (Copia y pega este bloque tal cual)
+
     document.addEventListener('click', (e) => {
         const btn = e.target.closest('[data-id]');
         if (!btn) return;
-        
+
         const id = btn.dataset.id;
         let cart = getCart();
         const index = cart.findIndex(i => String(i.id) === String(id));
 
         if (e.target.closest('.qty-plus')) {
-            cart[index].quantity++;
+            cart[index].quantity += 1;
+            saveCart(cart);
+            window.dispatchEvent(new StorageEvent('storage', { key: 'cart' }))
+            renderCheckout();
         } else if (e.target.closest('.qty-minus')) {
-            if (cart[index].quantity > 1) cart[index].quantity--;
-            else cart.splice(index, 1);
-        } else if (e.target.closest('.remove-item')) {
-            cart.splice(index, 1);
-        }
 
-        saveCart(cart);
-        renderCheckout();
-        // Notifica al resto del sistema (Navbar y Sliding Cart)
-        window.dispatchEvent(new StorageEvent('storage', { key: 'cart' }));
+            if (cart[index].quantity > 1) {
+                cart[index].quantity -= 1;
+                saveCart(cart);
+                window.dispatchEvent(new StorageEvent('storage', { key: 'cart' }))
+                renderCheckout();
+            }
+
+        }
+        else if (e.target.closest('.remove-item')) {
+            const productName = cart[index].name || 'este producto';
+            cart.splice(index, 1);
+            saveCart(cart);
+            window.dispatchEvent(new StorageEvent('storage', { key: 'cart' }))
+            renderCheckout();
+        }
     });
 
     renderCheckout();

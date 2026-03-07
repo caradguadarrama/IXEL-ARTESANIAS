@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" 
+    rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" 
+    crossorigin="anonymous">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto | IXEL Artesanías</title>
+    
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="stylesheet" href="../../assets/css/pages/users.css">
+    
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    
+    <!-- JavaScript -->
+    <script defer type="module" src="../../assets/js/main.js"></script>
+    <script defer type="module" src="../../assets/js/components/pages/users.js"></script>
+</head>
+<body>
+    <!-- Navbar -->
+    <div id="navbar-container"></div>
+
+    <div class="margen"></div>
+
+
+    <div class="row write">
+
+        <div class="col-4 p-5">
+
+            <div class="d-flex align-items-center flex-sm-column p-2 account account-box" id="info">
+
+<!--INFORMACIÓN DEL USUARIO-->
+
+                <div class="d-flex m-5 justify-content-center">
+
+                    <img src="/assets/img/icons/Marca-de-agua.png" class="img-thumbnail w-75 h-75 imagen" alt="profile">
+
+                </div>
+
+                <div class="d-flex justify-content-center flex-sm-column menu">
+                    
+                    <ul class="p-0">
+
+                        <li>
+                            <a id="account"><p class="text-center">Datos de la cuenta</p></a>
+                        </li>
+
+                        <li>
+                            <a id="session"><p class="text-center">Inicio de sesión y seguridad</p></a>
+                        </li>
+
+                        <li>
+                            <a id="address"><p class="text-center">Direcciones</p></a>
+                        </li>
+
+                        <li>
+                            <a id="delivery"><p class="text-center">Historial de compras</p></a>
+                        </li>
+
+                    </ul>
+
+                    <button class="btn m-5 btn-outline-danger close" id="cerrar">Cerrar sesión</button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+<!--FORMULARIOS-->
+
+        <div class="col-8 p-5">
+
+            <div class="account boton-box w-100 h-100 p-5" id="info">
+
+                <div id="user-forms">
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+<!-- Footer -->
+    <footer id="footer-container"></footer>
+</body>
+</html>
