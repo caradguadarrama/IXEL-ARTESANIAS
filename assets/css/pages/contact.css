@@ -31,7 +31,8 @@
    ============================================ */
 .contact {
     min-height: 100vh;
-    background: linear-gradient(to bottom, #ffffff 0%, #faf8f5 100%);
+    background: #ebddc5;
+    background: linear-gradient(0deg, rgba(235, 221, 197, 1) 56%, rgba(255, 255, 255, 1) 100%);
 }
 
 /* ============================================
@@ -119,7 +120,7 @@
    ============================================ */
 .contact-form {
     background: #ffffff;
-    border-radius: 2px;
+    border-radius: 40px;
     width: 100%;
     max-width: 900px;
     padding: 60px 70px;
