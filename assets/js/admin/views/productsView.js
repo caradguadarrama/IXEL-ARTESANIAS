@@ -212,7 +212,7 @@ function openProductModal(id = null) {
       </div>
       <div class="form-group-admin">
         <label>Ruta de imagen</label>
-        <input class="form-control-admin" id="mp-img" placeholder="/assets/img/products/…" value="${prod?.imagen || ''}">
+        <input class="form-control-admin" id="mp-img" placeholder="./assets/img/products/…" value="${prod?.imagen || ''}">
       </div>
     </div>
     <div class="form-group-admin">

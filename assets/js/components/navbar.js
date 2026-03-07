@@ -14,20 +14,20 @@
 export function createNavbar() {
   return `
     <div class="navbar-border" role="presentation" aria-hidden="true">
-      <img src="/assets/img/icons/cenefa.png" alt="" class="navbar-border__image">
+      <img src="./assets/img/icons/cenefa.png" alt="" class="navbar-border__image">
     </div>
 
     <header class="navbar" role="banner">
 
       <div class="navbar__logo">
-        <a href="/index.html" aria-label="Ir al inicio">
+        <a href="./index.html" aria-label="Ir al inicio">
           <img
-            src="/assets/img/icons/Marca-de-agua2_negro.png"
+            src="./assets/img/icons/Marca-de-agua2_negro.png"
             alt="IXEL Artesanías"
             class="navbar__logo-image navbar__logo-image--desktop"
           >
           <img
-            src="/assets/img/icons/x.png"
+            src="./assets/img/icons/x.png"
             alt="IXEL"
             class="navbar__logo-image navbar__logo-image--mobile"
           >
@@ -48,10 +48,10 @@ export function createNavbar() {
 
       <nav class="navbar__nav" id="navbar-nav" aria-label="Navegación principal">
         <ul class="navbar__links" role="list">
-          <li><a href="/index.html"                 class="navbar__link">Inicio</a></li>
-          <li><a href="/pages/public/products.html" class="navbar__link">Productos</a></li>
-          <li><a href="/pages/public/about.html"    class="navbar__link">Nosotros</a></li>
-          <li><a href="/pages/public/contact.html"  class="navbar__link">Contacto</a></li>
+          <li><a href="./index.html"                 class="navbar__link">Inicio</a></li>
+          <li><a href="./pages/public/products.html" class="navbar__link">Productos</a></li>
+          <li><a href="./pages/public/about.html"    class="navbar__link">Nosotros</a></li>
+          <li><a href="./pages/public/contact.html"  class="navbar__link">Contacto</a></li>
 
           <li class="navbar__mobile-actions" role="none">
             <button class="navbar__mobile-action" data-action="search" aria-label="Buscar" type="button">
@@ -62,7 +62,7 @@ export function createNavbar() {
               <span class="navbar__mobile-action-text">Buscar</span>
             </button>
 
-            <a href="/pages/public/car.html" class="navbar__mobile-action" aria-label="Mi carrito">
+            <a href="./pages/public/car.html" class="navbar__mobile-action" aria-label="Mi carrito">
               <svg class="navbar__mobile-action-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 <line x1="3" y1="6" x2="21" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -72,7 +72,7 @@ export function createNavbar() {
               <span id="cart-count-mobile" class="navbar__mobile-badge" aria-label="artículos en el carrito">0</span>
             </a>
 
-            <a href="/pages/public/profile.html" class="navbar__mobile-action" aria-label="Mi perfil">
+            <a href="./pages/public/profile.html" class="navbar__mobile-action" aria-label="Mi perfil">
               <svg class="navbar__mobile-action-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -116,7 +116,7 @@ export function createNavbar() {
           <span id="cart-count" class="navbar__badge quantity">0</span>
         </button>
 
-        <a href="/pages/public/profile.html" class="navbar__bubble" aria-label="Mi perfil">
+        <a href="./pages/public/profile.html" class="navbar__bubble" aria-label="Mi perfil">
           <svg class="navbar__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
