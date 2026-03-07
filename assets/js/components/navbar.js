@@ -14,7 +14,7 @@
 export function createNavbar() {
   return `
     <div class="navbar-border" role="presentation" aria-hidden="true">
-      <img src="/assets/img/icons/cenefa.png" alt="" class="navbar-border__image">
+      <img src="./assets/img/icons/cenefa.png" alt="" class="navbar-border__image">
     </div>
 
     <header class="navbar" role="banner">
@@ -22,12 +22,12 @@ export function createNavbar() {
       <div class="navbar__logo">
         <a href="/index.html" aria-label="Ir al inicio">
           <img
-            src="/assets/img/icons/Marca-de-agua2_negro.png"
+            src="./assets/img/icons/Marca-de-agua2_negro.png"
             alt="IXEL Artesanías"
             class="navbar__logo-image navbar__logo-image--desktop"
           >
           <img
-            src="/assets/img/icons/x.png"
+            src="./assets/img/icons/x.png"
             alt="IXEL"
             class="navbar__logo-image navbar__logo-image--mobile"
           >
