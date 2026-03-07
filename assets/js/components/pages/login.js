@@ -131,10 +131,10 @@ loginForm.addEventListener("submit", (e) => {
     console.log("Usuario logueado:", user);
     showMessage(loginForm, "Iniciando sesión...", "success");
     // setTimeout(() => { window.location.replace = "/index.html"; }, 1200);
-    window.location.replace("/pages/users/users.html");
+    window.location.replace("./pages/users/users.html");
 
     });
 
 if (JSON.parse(localStorage.getItem("currentUser"))) {
-    window.location.replace("/pages/users/users.html");
+    window.location.replace("./pages/users/users.html");
 }
