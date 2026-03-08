@@ -8,12 +8,12 @@
 /* Importar componentes */
 @import url('./navbarmain.css');
 @import url('./footer.css');
-@import url('/assets/css/pages/buttons.css');
-@import url('/assets/css/pages/carrousel.css');
-@import url('/assets/css/pages/slidingCart.css');
+@import url('./pages/buttons.css');
+@import url('./pages/carrousel.css');
+@import url('./pages/slidingCart.css');
 /* listaNav.css eliminado: sus estilos viven en products.css  */
 /* cart.css eliminado:     sus estilos viven en products.css  */
-@import url('/assets/css/pages/products.css');
+@import url('./pages/products.css');
 
 
 
