@@ -22,7 +22,7 @@ export function createProductCard(product) {
           alt="${product.name}"
           class="product-card__img"
           loading="lazy"
-          onerror="this.src='/assets/img/products/fallback.png'"
+          onerror="this.src='./assets/img/products/fallback.png'"
         >
       </div>
     </a>
