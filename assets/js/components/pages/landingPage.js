@@ -19,7 +19,7 @@
 //     no existan → TypeError en cualquier página que cargue este módulo sin hero.
 //     FIX: guard explícito antes de registrar el listener.
 
-import { addToCart } from './assets/js/utils/storage.js';
+import { addToCart } from '../../utils/storage.js';
 
 
 //Carrusel del hero
